@@ -1,0 +1,27 @@
+# ignore everything
+# file 
+/*
+# folder
+/*/
+
+/ranger/plugins/__pycache__/*
+/ranger/colorschemes/__pycache__/*
+/ranger/folders.conf
+/ranger/history
+/ranger/bookmarks
+/ranger/tagged
+
+
+# ... but these:
+!/i3/
+!/polybar/
+!/ranger/
+!/alacritty/
+!/neofetch/
+!/compton.conf
+!/.xmodmap
+!/.zshrc
+!/.gitignore
+!/README.md
+!/zsh
+!/.vimrc
