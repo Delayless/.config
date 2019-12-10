@@ -1,0 +1,23 @@
+vim
+fcitx,fcitx-im,fcitx-configtool
+yaourt
+archlinuxcn-keyring
+fish
+oh-my-fish
+omf install agnoster, bobthefish
+//need archlinuxcn Source
+google-chrome 
+i3
+cmake 
+dmenu
+//Read wiki to install ranger. Range can Preview images.
+//By installing w3m and modifying rc.conf and scope.h(range --copy-config=scope)
+ranger 
+//plugin in github wiki, Ranger Devicons plugin (file icon glyphs for ranger)
+nerd-fonts-complete
+polybar
+alacritty
+feh
+variety
+code
+privoxy or chrome's plugin SwitchyOmega

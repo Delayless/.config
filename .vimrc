@@ -31,7 +31,7 @@ noremap <C-j> Lzz
 noremap <C-h> 0
 noremap <C-l> $
 noremap <LEADER>j 20J
-noremap U <C-r>   
+noremap U <C-r>
 noremap ` ~
 noremap < <<
 noremap > >>
@@ -49,14 +49,14 @@ map <LEADER>p :set paste!<CR>
 "map <LEADER>P :set nopaste<CR>
 vnoremap Y "+y
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'Valloric/YouCompleteMe'
-
-call vundle#end()            " required
+"set rtp+=~/.vim/bundle/Vundle.vim
+"call vundle#begin()
+"
+"" let Vundle manage Vundle, required
+"Plugin 'VundleVim/Vundle.vim'
+"Plugin 'Valloric/YouCompleteMe'
+"
+"call vundle#end()            " required
 filetype plugin indent on    " required
 
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
