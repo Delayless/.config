@@ -296,3 +296,4 @@ function fish_prompt
   end
   prompt_finish
 end
+

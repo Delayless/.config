@@ -1,4 +1,4 @@
-
+"set shell=/bin/bash
 let mapleader=" "
 set nocompatible             
 set scrolloff=4   "界面上下方至少保留4行
@@ -23,7 +23,6 @@ set encoding=utf-8
 "set spell spelllang=en_us
 set nospell
 
-
 syntax on
 filetype off                  " required
 
@@ -37,7 +36,7 @@ noremap <C-k> Hzz
 noremap <C-j> Lzz
 noremap <C-h> 0
 noremap <C-l> $
-noremap <LEADER>j 20J
+"noremap <LEADER>j 20J
 noremap U <C-r>
 noremap ` ~
 noremap < <<
@@ -54,6 +53,4 @@ map <LEADER>n :set nonu<CR>:set norelativenumber<CR>
 map <LEADER>N :set nu<CR>:set relativenumber<CR>
 "Greater Indent format for copying from Internet or no
 map <LEADER>p :set paste!<CR>
-
 vnoremap Y "+y
-
