@@ -1,5 +1,23 @@
-let mapleader=" "
+" ===
+" === Auto load for first time uses
+" ===
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+syntax on
 set nocompatible             
+filetype on 
+filetype indent on
+filetype plugin on
+filetype plugin indent on
+set encoding=utf-8
+
+set clipboard=unnamed
+
+let mapleader=" "
 set scrolloff=4   "界面上下方至少保留4行
 set backspace=2
 set tabstop=4
@@ -15,15 +33,11 @@ set hlsearch
 set incsearch
 set ignorecase
 set autoindent
-set encoding=utf-8
 "To move to a misspelled word, use ]s and [s.
 "use z=, open suggest list.
 "use zg, add the word to vim dictionary. zw to mark words as incorrect.
 "set spell spelllang=en_us
 set nospell
-
-syntax on
-filetype off                  " required
 
 noremap J 5j
 noremap K 5k
@@ -43,7 +57,7 @@ noremap > >>
  
 map S :w<CR>
 map Q :q<CR>
-map R :source ~/.vimrc<CR>
+map R :source $MYVIMRC<CR>
 map <LEADER>S :w !sudo tee %<CR><CR>
 map <LEADER>rc :!vim ~/.vimrc<CR>
 map <LEADER><CR> :nohlsearch<CR>
