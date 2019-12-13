@@ -1,4 +1,3 @@
-"set shell=/bin/bash
 let mapleader=" "
 set nocompatible             
 set scrolloff=4   "界面上下方至少保留4行
