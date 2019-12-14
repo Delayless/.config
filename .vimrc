@@ -23,7 +23,7 @@ vnoremap Y :w !xclip -i -sel c<CR><CR>
 
 
 let mapleader=" "
-set scrolloff=4   "界面上下方至少保留4行
+set scrolloff=4   "at least 4 lines on the screenup and screendown
 set backspace=2
 set tabstop=4
 set shiftwidth=4
@@ -59,14 +59,12 @@ noremap <LEADER>sp :set spell!<CR>
 
 noremap J 5j
 noremap K 5k
-noremap H 5h
-noremap L 5l
+noremap H ^
+noremap L $
 noremap W 5w
 noremap B 5b
 noremap <C-k> Hzz
 noremap <C-j> Lzz
-noremap <C-h> 0
-noremap <C-l> $
 
 "===
 "=== Window Manage
@@ -124,7 +122,7 @@ map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
 au BufNewFile *.cpp,*.[ch],*.sh,*.java :call SetTitle()
 func SetTitle()
-    "如果文件类型为.sh文件
+    "if the file is *.sh
     if &filetype == 'sh'
         call setline(1,"\#########################################################################")
         call append(line("."), "\# File Name: ".expand("%"))
@@ -152,7 +150,7 @@ func SetTitle()
         call append(line(".")+6, "#include<stdio.h>")
         call append(line(".")+7, "")
     endif
-    "新建文件后，自动定位到文件末尾
+	"Edit at the endline of file
     autocmd BufNewFile * normal G
 endfunc 
 
@@ -170,11 +168,20 @@ Plug 'dkarter/bullets.vim'  "automated bullet lists, :RenumberSelection.
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 
+Plug 'majutsushi/tagbar'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'majutsushi/tagbar'
-
 Plug 'francoiscabrol/ranger.vim'
+
+Plug 'Konfekt/FastFold'
+Plug 'airblade/vim-gitgutter'
+"Plug 'tpope/vim-capslock'	" Ctrl+L (insert) to toggle capslock
+
+" Pretty Dress
+Plug 'ajmwagar/vim-deus'
+Plug 'chrisbra/Colorizer' " Show colors with :ColorHighlight
+Plug 'liuchengxu/eleline.vim'
+Plug 'bling/vim-bufferline'
 call plug#end()
 
 
@@ -247,11 +254,12 @@ let g:mkdp_markdown_css = ''
 let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
 let g:mkdp_page_title = '「${name}」'
-nmap <F7> <Plug>MarkdownPreview
+nmap <F12> <Plug>MarkdownPreview
 
 
 " Bullets.vim
 " automated bullet lists, :RenumberSelection.
+"1. 2. 3. autoincrease, - is also.
 let g:bullets_enabled_file_types = [
     \ 'markdown',
     \ 'text',
@@ -375,3 +383,77 @@ imap <F8> <ESC>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
 set tags=tags
 set tags+=./tags "Search the tags in current filefolder
 set tags+=~/ctags/tags "When searching the tags, search the ~/ctags/tags at the same time. Don't move the tags file after 'ctags -R'. Otherwise, prompt the warning "Can't find any souce file" when you press Ctrl+]
+
+
+"""""""""""""""""""""""""""""
+" ===
+" === fastfold
+" ===
+nmap zuz <Plug>(FastFoldUpdate)
+let g:fastfold_savehook = 1
+let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
+let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
+
+let g:markdown_folding = 1
+let g:tex_fold_enabled = 1
+let g:vimsyn_folding = 'af'
+let g:xml_syntax_folding = 1
+let g:javaScript_fold = 1
+let g:sh_fold_enabled= 7
+let g:ruby_fold = 1
+let g:perl_fold = 1
+let g:perl_fold_blocks = 1
+let g:r_syntax_folding = 1
+let g:rust_fold = 1
+let g:php_folding = 1
+
+" ===
+" ==
+" == GitGutter
+" ==
+let g:gitgutter_map_keys = 0
+let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_preview_win_floating = 1
+autocmd BufWritePost * GitGutter
+nnoremap <LEADER>gf :GitGutterFold<CR>
+nnoremap H :GitGutterPreviewHunk<CR>
+nnoremap <LEADER>g- :GitGutterPrevHunk<CR>
+nnoremap <LEADER>g= :GitGutterNextHunk<CR>
+
+
+" ===
+" === eleline
+" ===
+set laststatus=2 ruler
+
+" ===
+" === Colorizer
+" ===
+let g:colorizer_syntax = 1
+
+" ===
+" ===vim-deus
+" ===
+set t_Co=256
+set termguicolors	" enable true colors support
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+set background=dark    " Setting dark mode
+colorscheme deus
+let g:deus_termcolors=256
+"let ayucolor="mirage"
+"let g:oceanic_next_terminal_bold = 1
+"let g:oceanic_next_terminal_italic = 1
+"let g:one_allow_italics = 1
+
+"color dracula
+"color one
+color deus
+"color gruvbox
+"let ayucolor="light"
+"color ayu
+"set background=light
+
+hi NonText ctermfg=gray guifg=grey10
+"hi SpecialKey ctermfg=blue guifg=grey70
