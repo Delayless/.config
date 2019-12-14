@@ -44,14 +44,14 @@ exec fcitx
 #bindsym $mod+shift+b exec variety -p
 
 # like mac spotlight
-exec_always albert
+#exec_always albert
 
 #################################################################
 #################################################################
 ## External expansion screen,set vertical screen
 exec_always xrandr --output eDP1 --primary
 exec_always xrandr --output eDP1 --right-of HDMI1 
-exec_always sleep 0.5;xrandr --output HDMI1 --rotate left
+exec_always xrandr --output HDMI1 --rotate left
 
 #---wallpaper---
 # static mode
@@ -305,7 +305,7 @@ for_window [class="ranger"] floating enable enable border pixel 1
 for_window [class='vlc'] floating enable
 #for_window [class="albert"] floating enable border pixel 0
 gaps inner 8
-gaps outer 2
+gaps outer 4
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
@@ -315,9 +315,9 @@ smart_borders on
 bindsym $mod+F2 exec pactl set-sink-volume 0 -10%
 bindsym $mod+F3 exec pactl set-sink-volume 0 +10%
 
-exec --no-startup-id killall compton;sleep 1; compton -b
+exec --no-startup-id killall compton; sleep 1; compton -b
 #reverse the mouse button
 #exec xmodmap -e "pointer = 3 2 1"
 ##change keyboard map
-exec_always xmodmap ~/.xmodmap
+exec_always sleep 1; xmodmap ~/.xmodmap
 
