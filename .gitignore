@@ -11,7 +11,6 @@
 /ranger/bookmarks
 /ranger/tagged
 
-
 # ... but these:
 !/i3/
 /i3/log/
@@ -29,3 +28,7 @@
 !/my-packages.txt
 !/zsh
 !/.vimrc
+!/vimium-options.json
+!/install.sh
+!/config-env.sh
+!/snippits.vim

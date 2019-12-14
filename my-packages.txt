@@ -1,23 +1,38 @@
 vim
+vlc
+xclip
+alacritty
 fcitx,fcitx-im,fcitx-configtool
-yaourt
-archlinuxcn-keyring
+###############/etc/pacman.conf##################
+[archlinuxcn]
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
+################################################
+archlinuxcn-keyring  
+pikur
+i3
+cmake 
+dmenu
+scrot
+netease-cloud-music
 fish
 oh-my-fish
 omf install agnoster, bobthefish
 //need archlinuxcn Source
 google-chrome 
-i3
-cmake 
-dmenu
-//Read wiki to install ranger. Range can Preview images.
-//By installing w3m and modifying rc.conf and scope.h(range --copy-config=scope)
+#############################################################
+//Read wiki to configure ranger. Range can Preview images. By installing w3m and modifying rc.conf and scope.h(range --copy-config=scope)
+//Install some ranger's plugins from github wiki. e.g: Ranger Devicons plugin (file icon glyphs for ranger), nerd-fonts-complete
+//ranger_devicons plugin backup in the ranger's configuration folder;;; git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
+w3m
 ranger 
-//plugin in github wiki, Ranger Devicons plugin (file icon glyphs for ranger)
 nerd-fonts-complete
-polybar
-alacritty
-feh
-variety
+#############################################################
+//polybar
+feh/variety
 code
+goldendict
 privoxy or chrome's plugin SwitchyOmega
+axel
+vim-plug
+vim-spell-en
+tree
