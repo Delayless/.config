@@ -1,39 +1,59 @@
-.vimrc is created by hard link
-ln ~/.vimrc ~/.config/.vimrc
+# Download the Repository
+1. Download my config file by `git clone https://github.com/Delayless/.config`
+2. copy config file by`cp -rf ./.config/* ~/.config/`, and open the directory`cd ~/.config`
+## config-env
+`sudo ./config-env.sh`
+1. Checking the shell is zsh or no.
+2. map the Keyboard, Caps--->Ctrl, Swap the Left_Command and Left_Alt, Left_Crtl --->Esc, Right_Alt--->Command, Right_menu--->Alt.
+3. Add the config for Chinese Input.
+4. Creat the soft link about the vimrc and zshrc on /home.
+5. Add Source about the Archlinuxcn of Tsinghua.
+## Install Software
+`sudo ./install.sh`
 
-============================================================
+See [my-packages.txt](./my-packages.txt) for detail.
+
+# vim-plug
+Modified from`theniceboy/nvim`
+## markdown-preview
+> b-bold, s-sliced, i-italic, \`-block, c-big block code, t-todo(check mark), p-picture, a-link, l-link, f-forward
+
+| Shortcut   | Output            |   |   | Shortcut   | Output     |
+| ---------- | ----------------- | - | - | ---------- | ---------- |
+| `,n`       | ---               |   |   | `,p`       | picture    |
+| `,b`       | **Bold** text     |   |   | `,l`       | [link]()   |
+| `,s`       | ~~sliced~~ text   |   |   | `,1`       | # H1       |
+| `,i`       | *italic* text     |   |   | `,2`       | ## H2      |
+| ,\`        | code slice        |   |   | `,3`       | ### H3     |
+| `,c`       | block of code     |   |   | `,4`       | #### H4    |
+| `,t`       | - [ ] Todo list   |   |   | `,a`       | --------   |
+
+`,f` to go to the next `<++>` (placeholder)
+
+`,w` to go to the next `<++>` (placeholder) and then press `Enter` for you
+
+
+# vimium(Chrome plugin)
 Add a Google Chrome plugin: vimium(Control Chrome using vim's hotkey)
+| Shotcut         | Action                                 |
+|-----------------|----------------------------------------|
+| `h` `j` `k` `l` | Scroll Left/Down/Up/Right              |
+| `gg` `G`        | Scroll to the top/bottom of the page   |
+| `K`             | scrollPageUp                           |
+| `J`             | scrollPageDown                         |
+| `Ctrl+j`        | scrollFullPageDown                     |
+| `Ctrl+k`        | scrollFullPageUp                       |
+| `f`             | Open a link in the current tab         |
+| `F`             | Open a link in a new tab               |
+| `u`             | goBack                                 |
+| `U`             | goForward                              |
+| `H`             | previousTab                            |
+| `L`             | nextTab                                |
+| `gi`            | Focus the first text input on the page |
+| `dd` or `x`     | removeTab                              |
+| `Ctrl+r` or `X` | restoreTab                             |
 
-map K scrollPageUp
-map J scrollPageDown
-map <C-j> scrollFullPageDown
-map <C-k> scrollFullPageUp
-map dd removeTab
-map <C-r> restoreTab
-map u goBack
-map U goForward
-" Open a Link in current tab using a new tab
-map F LinkHints.activateModeToOpenInNewTab
-map H previousTab
-map L nextTab
-===========================================================
-"b-bold, s-sliced, i-italic, `-block, c-big block code, t-todo, p-picture, a-link, l-line, f-forward
-f <Esc>/<++><CR>:nohlsearch<CR>c4l
-w <Esc>/ <++><CR>:nohlsearch<CR>c5l<CR>,,,, ,,,  
-n ---<Enter><Enter>
-b **** <++>
-s ~~~~ <++>
-i ** <++>
-` `` <++>
-c ``````
-t - [ ] <Enter>
-p ![](<++>) <++>
-a [](<++>) <++>
-1 #
-2 ##
-3 ###
-4 ####
-l --------<Enter>
+#### test code block
 ```python
 import url
 
@@ -41,11 +61,7 @@ def a():
 	b=4
 	print("%s"%b)
 	return 0
-a()
-```
-| jflakja   | jafdkf    |
-|-----------|-----------|
-| j autocmd | jfdklafjd |
-|-----------|-----------|
 
-""
+if __name__ == "__main__":
+	a()
+```
