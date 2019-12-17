@@ -17,6 +17,7 @@ set encoding=utf-8
 vnoremap Y :w !xclip -i -sel c<CR><CR>
 "when vim version feature include clipboard
 "convenient to copy. Of course, We also can use "+y to copy.
+"Passed the test, "+y  means to first press \" release then press \+ finally press y, 
 "vnoremap Y "+y
 "In the normal mode with clipboard feature, press 'p' to paste text from the system clipboard
 "set clipboard=unnamedplus
