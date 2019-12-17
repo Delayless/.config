@@ -17,6 +17,7 @@ set encoding=utf-8
 vnoremap Y :w !xclip -i -sel c<CR><CR>
 "when vim version feature include clipboard
 "convenient to copy. Of course, We also can use "+y to copy.
+"Passed the test, "+y  means to first press \" release then press \+ finally press y, 
 "vnoremap Y "+y
 "In the normal mode with clipboard feature, press 'p' to paste text from the system clipboard
 "set clipboard=unnamedplus
@@ -29,8 +30,8 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 
-"set list
-"set listchars=tab:▸\ ,trail:▫
+set list
+set listchars=tab:▸\ ,trail:▫
 set wrap
 set ruler
 set cursorline
@@ -45,6 +46,8 @@ exec "nohlsearch"
 set incsearch
 set ignorecase
 set smartcase
+highlight ColorColumn ctermbg=red
+call matchadd('ColorColumn', '\%81v', 100)
 
 set autoindent
 set foldenable
@@ -160,7 +163,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 "Plug 'airblade/vim-gitgutter'
 
-"Markdown
+"Markdown, It only works on vim >= 8.1 and neovim
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'dkarter/bullets.vim'  "automated bullet lists, :RenumberSelection.
 Plug 'iamcco/mathjax-support-for-mkdp'
@@ -179,7 +182,7 @@ Plug 'francoiscabrol/ranger.vim'
 " Pretty Dress
 Plug 'liuchengxu/eleline.vim'
 Plug 'chrisbra/Colorizer' " Show colors with :ColorHighlight
-Plug 'ajmwagar/vim-deus'
+Plug 'ajmwagar/vim-deus'  " It only works on vim >=8.1 and neovim
 Plug 'bling/vim-bufferline'
 call plug#end()
 

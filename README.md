@@ -1,3 +1,4 @@
+> Some plugs only work on vim >= 8.1 or neovim. e.g, markdown-preview, vim-deus, coc
 # Download the Repository
 1. Download my config file by `git clone https://github.com/Delayless/.config`
 2. copy config file by`cp -rf ./.config/* ~/.config/`, and open the directory`cd ~/.config`
@@ -35,6 +36,7 @@ Modified from`theniceboy/nvim`
 
 # vimium(Chrome plugin)
 Add a Google Chrome plugin: vimium(Control Chrome using vim's hotkey)
+
 | Shotcut         | Action                                 |
 |-----------------|----------------------------------------|
 | `h` `j` `k` `l` | Scroll Left/Down/Up/Right              |
