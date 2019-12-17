@@ -35,6 +35,7 @@ Modified from`theniceboy/nvim`
 
 # vimium(Chrome plugin)
 Add a Google Chrome plugin: vimium(Control Chrome using vim's hotkey)
+
 | Shotcut         | Action                                 |
 |-----------------|----------------------------------------|
 | `h` `j` `k` `l` | Scroll Left/Down/Up/Right              |
