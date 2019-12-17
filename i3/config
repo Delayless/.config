@@ -50,7 +50,7 @@ exec fcitx
 #################################################################
 ## External expansion screen,set vertical screen
 exec_always xrandr --output eDP1 --primary
-exec_always xrandr --output eDP1 --right-of HDMI1 
+exec_always sleep 1; xrandr --output eDP1 --right-of HDMI1 
 exec_always xrandr --output HDMI1 --rotate left
 
 #---wallpaper---
@@ -319,5 +319,5 @@ exec --no-startup-id killall compton; sleep 1; compton -b
 #reverse the mouse button
 #exec xmodmap -e "pointer = 3 2 1"
 ##change keyboard map
-exec_always sleep 1; xmodmap ~/.xmodmap
+exec_always sleep 1; xmodmap ~/.Xmodmap
 

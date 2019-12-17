@@ -21,7 +21,7 @@
 !/alacritty/
 !/neofetch/
 !/compton.conf
-!/.xmodmap
+!/.Xmodmap
 !/.zshrc
 !/.gitignore
 !/README.md

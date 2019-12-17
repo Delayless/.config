@@ -1,13 +1,7 @@
 #!/bin/sh
 
 if [ "${HOSTNAME}" == "Manjaro" ]; then
-	sudo pacman-mirrors -i -c China -m rank
-	sudo echo "[archlinuxcn]" >> /etc/pacman.conf
-	sudo echo "Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch" >> /etc/pacman.conf
-	sudo pacman -Sy archlinuxcn-keyring --noconfirm
-	# update the list of mirrors source
-	sudo pacman-mirrors -g
-	sudo pacman -Syyu
+	sudo pacman -S openssl --noconfirm
 	sudo pacman -S make --noconfirm
 	sudo pacman -S cmake --noconfirm
 	sudo pacman -S tree --noconfirm
@@ -43,6 +37,6 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo make install
 	cd .. && rm -rf compton && cd ~/
 	#############################
-	sudo pacman -S ctags
+	sudo pacman -S ctags --noconfirm
 	sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
