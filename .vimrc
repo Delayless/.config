@@ -407,7 +407,7 @@ let $FZF_DEFAULT_OPTS .= ' --bind ctrl-d:deselect-all'
 inoremap <expr> <c-x><c-k> fzf#vim#complete('cat /usr/share/dict/words')
 
 " View commits in fzf
-nmap <LEADER>c :Commits<cr>
+nmap <Bslash>c :Commits<cr>
 " Fuzzy-find tags
 
 " [rg](BurntSushi/ripgrep)
@@ -418,13 +418,13 @@ noremap <silent> <c-f> :Rg<CR>
 " `sudo apt install the_silver_searcher`
 " search filename
 " setting in .bashrc for searching hidden files.:FZF actually would use the_silver_searcher's 'ag'.
-noremap <silent> <LEADER>f :FZF<CR>
+noremap <silent> <Bslash>f :FZF<CR>
 " The history of the opened files.
-noremap <silent> <LEADER>h :History<CR>
-noremap <silent> <LEADER>bt :BTags<CR>	" the current file's variables
+noremap <silent> <Bslash>h :History<CR>
+noremap <silent> <Bslash>bt :BTags<CR>	" the current file's variables
 " Project tags, save all variables.
 " noremap <silent> <C-t> :Tags<CR>
-noremap <silent> <C-b> :Buffers<CR>
+noremap <silent> <Bslash>bu :Buffers<CR>
 
 " Default fzf layout
 " - down / up / left / right
@@ -444,10 +444,10 @@ command! -bang -nargs=* Buffers
 
 " search code in current file.
 " the dot\. at end of command means regrex's everychar.
-	"\   'rg --column --line-number --no-heading --color=always --smart-case --with-filename .'.fnameescape(expand('%')), 1,
+	"\   'rg --column --line-number --no-heading --color=always --smart-case --with-filename . '.fnameescape(expand('%')), 1,
 command! -bang -nargs=* Rg
 	\ call fzf#vim#grep(
-	\   'rg --column --line-number --no-heading --color=always --smart-case .'.shellescape(<q-args>), 1,
+	\   'rg --column --line-number --no-heading --color=always --smart-case --hidden .'.shellescape(<q-args>), 1,
 	\   <bang>0 ? fzf#vim#with_preview('up:50%')
 	\           : fzf#vim#with_preview('right:50%', '?'),
 	\   <bang>0)
@@ -565,7 +565,7 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " remap <Enter> to trigger completion.
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " Useful commands
-nnoremap <silent> <LEADER>y :<C-u>CocList -A --normal yank<cr>
+nnoremap <silent> <Bslash>y :<C-u>CocList -A --normal yank<cr>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)

@@ -39,4 +39,6 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	#############################
 	sudo pacman -S ctags --noconfirm
 	sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+	pacaur -S ccat
+	pacaur -S ccat-git
 fi
