@@ -10,6 +10,9 @@ endif
 " Open vim display Garbage R^[[>1;4205;0c^[]10;rgb:ffff/ffff/ffff^G
 " But one side-effect of this setting is broken set background auto-detection
 set t_RB= t_RF= t_RV= t_u7= t_ut=
+" when opening vim have latency and Dispaly >4;2m.Maybe it's because of Xmodmap .
+let &t_TI = ""
+let &t_TE = ""
 "set t_ut=
 
 syntax on
@@ -38,7 +41,6 @@ set softtabstop=4
 set list
 " set listchars=tab:\|\ ,trail:▫
 set listchars=tab:\|\ ,trail:■
-" set listchars=tab:»■,trail:■
 set wrap
 " close autowrap at insert mode.when textwidth > x, text will auto wrap
 set textwidth=0
@@ -63,12 +65,12 @@ set smartcase
 
 set autoindent
 set foldenable
+set foldmethod=indent
 "To move to a misspelled word, use ]s and [s.
 "use z=, open suggest list.
 "use zg, add the word to vim dictionary. zw to mark words as incorrect.
 set spell spelllang=en_us
 set nospell
-set fdm=indent
 
 set ttimeoutlen=100 " reduce latency of swithing input method for Plug fcitx.vim
 "markdown auto spell
@@ -76,6 +78,7 @@ set ttimeoutlen=100 " reduce latency of swithing input method for Plug fcitx.vim
 noremap <LEADER>sp :set spell!<CR>
 
 " <m-s> == Alt+s ?, they are unequal in ubuntu.
+
 " j/k will move virtual lines (lines that wrap)
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
@@ -90,10 +93,6 @@ noremap <C-j> Lzz
 
 " it would be prone to bugs if mapping : ;.
 noremap ; :
-
-" Quotation
-nnoremap <Leader>dq ciw""<Esc>Pl
-nnoremap <Leader>sq ciw''<Esc>Pl
 
 " copy current filepath and line
 " nnoremap y. :let @+ = expand("%") . ':' . line(".")<cr>
@@ -147,7 +146,7 @@ map <LEADER>sp :set paste!<CR>
 
 
 " Press space twice to jump to the next '<++>' and edit it
-map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+" map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 source ~/.config/snippits.vim
 
 
@@ -155,8 +154,9 @@ source ~/.config/snippits.vim
 " === terminal mode
 " ===
 " :terminal can open a terminal at vim>=8.1
-noremap \py :belowright term python<cr>
-noremap \t :belowright term<cr>
+" ctrl+d exit terminal at insert mode.
+noremap <Bslash>py :belowright term python<cr>
+noremap <Bslash>t :belowright term<cr>
 " Esc exit insert mode into normal mode
 tnoremap <Esc> <c-\><c-n>
 tnoremap <LEADER>j <C-w>j
@@ -210,6 +210,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'dkarter/bullets.vim'  " automated bullet lists, :RenumberSelection.
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
+Plug 'mzlogin/vim-markdown-toc'
 
 " Optimize Chinese input experience
 " To avoid the Esc delay, please set 'ttimeoutlen' to 100 or some value.
@@ -244,6 +245,10 @@ Plug 'junegunn/fzf.vim'
 " Plug 'prettier/vim-prettier', {
 "   \ 'do': 'yarn install',
 "   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+
+" ysiw{ ysiw} yss<p1> cs ds{, Visual select and input S<p class="important">
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat' " The . command will work with ds, cs, yss
 call plug#end()
 
 
@@ -257,6 +262,7 @@ set viewoptions=cursor,folds,slash,unix  " autosave cursor position and fold inf
 "===
 "=== NERDtree
 "===
+" debug
 map tt :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 let NERDTreeMapOpenExpl = ""
@@ -302,10 +308,10 @@ let g:gitgutter_map_keys = 0
 let g:gitgutter_override_sign_column_highlight = 0
 let g:gitgutter_preview_win_floating = 1
 autocmd BufWritePost * GitGutter
-nnoremap <LEADER>gf :GitGutterFold<CR>
-nnoremap <LEADER>D :GitGutterPreviewHunk<CR>
-nnoremap [c :GitGutterPrevHunk<CR>
-nnoremap ]c :GitGutterNextHunk<CR>
+nnoremap ,f :GitGutterFold<CR>
+nnoremap ,d :GitGutterPreviewHunk<CR>
+nnoremap ,k :GitGutterPrevHunk<CR>
+nnoremap ,j :GitGutterNextHunk<CR>
 
 
 "===
@@ -339,7 +345,8 @@ let g:mkdp_markdown_css = ''
 let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
 let g:mkdp_page_title = '「${name}」'
-nmap <F12> <Plug>MarkdownPreview
+"nmap <F12> <Plug>MarkdownPreview
+nmap <Bslash>m <Plug>MarkdownPreview
 
 
 " Bullets.vim
@@ -360,24 +367,28 @@ noremap <LEADER>tm :TableModeToggle<CR>
 "let g:table_mode_disable_mappings = 1
 let g:table_mode_cell_text_object_i_map = 'k<Bar>'
 
+" ===
+" === vim-markdown-toc
+" ===
+" :GenTocGFM generate TOC
+let g:vmt_fence_text = 'TOC'
+let g:vmt_fence_closing_text = '/TOC'
+let g:vmt_cycle_list_item_markers = 1 " mark by *-+, not only *.
+" Remove lower directory levels
+function RToc()
+    exe "/-toc .* -->"
+    let lstart=line('.')
+    exe "/-toc -->"
+    let lnum=line('.')
+    execute lstart.",".lnum."g/           /d"
+endfunction
+
 
 " ===
 " === fzf.vim
 " ===
 " :GitFiles
-" [Ag](ggreer/the_silver_searcher)
-" A code searching tool similar to ack, with a focus on speed.
-" `sudo apt install the_silver_searcher`
-" search filename
-" noremap <silent> <C-p> :Ag<CR>
 "===================================
-" View commits in fzf
-nmap <Leader>c :Commits<cr>
-
-" Fuzzy-find tags
-map <Leader>bt :BTags<cr>
-nmap <Leader>bt :BTags<cr>
-
 " Fuzzy-find tags
 " map <Leader>w :Windows<cr>
 " nmap <Leader>w :Windows<cr>
@@ -395,15 +406,22 @@ let $FZF_DEFAULT_OPTS .= ' --bind ctrl-d:deselect-all'
 " Replace the default dictionary completion with fzf-based fuzzy completion
 inoremap <expr> <c-x><c-k> fzf#vim#complete('cat /usr/share/dict/words')
 
-map <c-p> :Files<cr>
-nmap <c-p> :Files<cr>
+" View commits in fzf
+nmap <LEADER>c :Commits<cr>
+" Fuzzy-find tags
 
 " [rg](BurntSushi/ripgrep)
 " search code in files.
-noremap <silent> <C-c> :Rg<CR>
+noremap <silent> <c-f> :Rg<CR>
+" [Ag](ggreer/the_silver_searcher)
+" A code searching tool similar to ack, with a focus on speed.
+" `sudo apt install the_silver_searcher`
+" search filename
+" setting in .bashrc for searching hidden files.:FZF actually would use the_silver_searcher's 'ag'.
+noremap <silent> <LEADER>f :FZF<CR>
 " The history of the opened files.
-noremap <silent> <C-h> :History<CR>
-noremap <silent> <C-t> :BTags<CR>	" the current file's variables
+noremap <silent> <LEADER>h :History<CR>
+noremap <silent> <LEADER>bt :BTags<CR>	" the current file's variables
 " Project tags, save all variables.
 " noremap <silent> <C-t> :Tags<CR>
 noremap <silent> <C-b> :Buffers<CR>
@@ -414,13 +432,9 @@ let g:fzf_layout = { 'down': '~40%' }
 
 " [[B]Commits] Customize the options used by 'git log':
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-noremap <silent> <C-f> :FZF<CR>
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noruler
   \ autocmd BufLeave <buffer> set laststatus=2 ruler
-
-command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 command! -bang -nargs=* Buffers
   \ call fzf#vim#buffers(<q-args>, fzf#vim#with_preview(), <bang>0)
@@ -428,11 +442,12 @@ command! -bang -nargs=* Buffers
 "   :Rg  - Start fzf with hidden preview window that can be enabled with "?" key
 "   :Rg! - Start fzf in fullscreen and display the preview window above
 
-"\   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-" search code in current file: 'rg --with-filename --column --line-number --no-heading --color=always --smart-case --hidden . '
+" search code in current file.
+" the dot\. at end of command means regrex's everychar.
+	"\   'rg --column --line-number --no-heading --color=always --smart-case --with-filename .'.fnameescape(expand('%')), 1,
 command! -bang -nargs=* Rg
 	\ call fzf#vim#grep(
-	\   'rg --with-filename --column --line-number --no-heading --color=always --smart-case --hidden '.fnameescape(expand('%')), 1,
+	\   'rg --column --line-number --no-heading --color=always --smart-case .'.shellescape(<q-args>), 1,
 	\   <bang>0 ? fzf#vim#with_preview('up:50%')
 	\           : fzf#vim#with_preview('right:50%', '?'),
 	\   <bang>0)
@@ -462,7 +477,7 @@ command! -bang BTags
 " ===
 " === Ranger.vim
 " ===
-nnoremap <silent> <LEADER>f :Ranger<CR>
+nnoremap <silent> <Bslash>r :Ranger<CR>
 let g:ranger_map_keys = 0
 
 
@@ -534,7 +549,7 @@ let g:coc_global_extensions = ['coc-python', 'coc-pyls', 'coc-pairs', 'coc-snipp
 	\ 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-tailwindcss', 'coc-stylelint',
 	\ 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-highlight',
 	\ 'coc-cmake', 'coc-clangd', 'coc-explorer']
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 function! s:check_back_space() abort
 	let col = col('.') - 1
 	return !col || getline('.')[col - 1]  =~ '\s'
@@ -550,7 +565,7 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " remap <Enter> to trigger completion.
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " Useful commands
-nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
+nnoremap <silent> <LEADER>y :<C-u>CocList -A --normal yank<cr>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -622,7 +637,7 @@ set tags+=~/ctags/tags "When searching the tags, search the ~/ctags/tags at the 
 "  ===
 "  === vista.vim
 "  ===
-noremap <silent> <LEADER>t :Vista!!<CR>
+noremap <silent> vv :Vista!!<CR>
 " Note: this option only works the LSP executives, doesn't work for `:Vista ctags`.
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 " See all the avaliable executives via `:echo g:vista#executives`.
@@ -670,3 +685,4 @@ color deus
 hi NonText ctermfg=gray guifg=grey10
 " hi SpecialKey ctermfg=blue guifg=grey70
 
+silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
