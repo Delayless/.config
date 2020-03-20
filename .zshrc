@@ -117,3 +117,7 @@ alias comptonconfig="vim ~/.config/compton.conf"
 alias vimrc="vim ~/.vimrc"
 alias ra="ranger"
 
+# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# The old option is --path-to-agignore
+# alias ag='ag --path-to-ignore ~/.ignore --hidden'
+# export FZF_DEFAULT_COMMAND='ag --path-to-ignore ~/.ignore --hidden -g ""'

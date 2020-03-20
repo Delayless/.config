@@ -1,3 +1,19 @@
+
+<!-- TOC GFM -->
+
++ [Download the Repository](#download-the-repository)
+	* [config-env](#config-env)
+	* [Install Software](#install-software)
++ [Key Map](#key-map)
++ [vim-plug](#vim-plug)
+	* [markdown-preview](#markdown-preview)
++ [vimium(Chrome plugin)](#vimiumchrome-plugin)
++ [ctag](#ctag)
++ [coc](#coc)
+	* [test code block](#test-code-block)
+
+<!-- /TOC -->
+
 > Some plugs only work on vim >= 8.1 or neovim. e.g, markdown-preview, vim-deus, coc
 # Download the Repository
 1. Download my config file by `git clone https://github.com/Delayless/.config`
@@ -104,7 +120,7 @@ private:
 };
 endsnippet
 ```
-#### test code block
+## test code block
 ```python
 import url
 
