@@ -97,7 +97,7 @@ sudo make install
 # coc
 Every extensions should be installed by CocInstall.
 - [Extensions](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions)
-`CocInstall coc-python coc-pyls coc-pairs coc-snippets coc-vimlsp coc-html coc-json coc-css coc-tsserver coc-tailwindcss coc-stylelint coc-yank coc-lists coc-gitignore coc-highlight coc-cmake coc-clangd coc-explorer`
+`CocInstall coc-python coc-pyls coc-pairs coc-snippets coc-vimlsp coc-translator coc-html coc-json coc-css coc-tsserver coc-tailwindcss coc-stylelint coc-yank coc-lists coc-gitignore coc-highlight coc-cmake coc-clangd coc-explorer`
 coc-clangd:The extension does not install clangd for you! You must install clangd separately.sudo apt install clang<Tab>, version >=7.0
 
 coc-snippets configuration:

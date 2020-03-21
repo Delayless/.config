@@ -1,6 +1,5 @@
 "autocmd Filetype markdown map <leader>w yiWi[<esc>Ea](<esc>pa)
 "b-bold, s-sliced, i-italic, `-block, c-big block code, t-todo, p-picture, a-link, l-link, f-forward
-autocmd Filetype markdown map <buffer> <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 autocmd Filetype markdown inoremap <buffer> ,f <Esc>/<++><CR>:nohlsearch<CR>c4l
 autocmd Filetype markdown inoremap <buffer> ,w <Esc>/ <++><CR>:nohlsearch<CR>c5l<CR>
 autocmd Filetype markdown inoremap <buffer> ,n ---<Enter><Enter>

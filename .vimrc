@@ -19,7 +19,7 @@ syntax on
 set nocompatible
 filetype on
 filetype plugin indent on
-set encoding=utf-8
+set encoding=UTF-8
 
 "Copy to system clipboard
 vnoremap Y :w !xclip -i -sel c<CR><CR>
@@ -73,12 +73,10 @@ set spell spelllang=en_us
 set nospell
 
 set ttimeoutlen=100 " reduce latency of swithing input method for Plug fcitx.vim
-"markdown auto spell
-"autocmd BufRead,BufNewFile *.md setlocal spell
 noremap <LEADER>sp :set spell!<CR>
 
+" :help keycode
 " <m-s> == Alt+s ?, they are unequal in ubuntu.
-
 " j/k will move virtual lines (lines that wrap)
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
@@ -146,9 +144,10 @@ map <LEADER>sp :set paste!<CR>
 
 
 " Press space twice to jump to the next '<++>' and edit it
-" map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 source ~/.config/snippits.vim
-
+"markdown auto spell
+autocmd BufRead,BufNewFile *.md setlocal spell
 
 " ===
 " === terminal mode
@@ -235,6 +234,10 @@ Plug 'liuchengxu/eleline.vim'
 Plug 'chrisbra/Colorizer' " Show colors with :ColorHighlight
 Plug 'ajmwagar/vim-deus'  " It only works on vim >=8.1 and neovim
 Plug 'bling/vim-bufferline'
+Plug 'sheerun/vim-polyglot' " language packages for highlight
+Plug 'ryanoasis/vim-devicons'
+Plug 'MattesGroeger/vim-bookmarks'
+" Plug 'morhetz/gruvbox' "a color scheme
 
 Plug 'vim-scripts/restore_view.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -534,66 +537,6 @@ func! CompileRunGcc()
 endfunc
 
 
-" ===
-" === coc
-" ===
-" if hidden is not set, TextEdit might fail.
-set hidden
-set cmdheight=2
-set updatetime=300
-" always show signcolumns. Display the sign in the left column.
-set signcolumn=yes
-silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
-" every extensions should be installed by CocInstall, e.g, \"CocInstall coc-python"
-let g:coc_global_extensions = ['coc-python', 'coc-pyls', 'coc-pairs', 'coc-snippets', 'coc-vimlsp',
-	\ 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-tailwindcss', 'coc-stylelint',
-	\ 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-highlight',
-	\ 'coc-cmake', 'coc-clangd', 'coc-explorer']
-" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-" use <tab> for trigger completion and navigate to the next complete item
-inoremap <silent><expr> <Tab>
-   		\ pumvisible() ? "\<C-n>" :
-   		\ <SID>check_back_space() ? "\<Tab>" :
-   		\ coc#refresh()
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-" remap <Enter> to trigger completion.
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-" Useful commands
-nnoremap <silent> <Bslash>y :<C-u>CocList -A --normal yank<cr>
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-" nmap <leader>rn <Plug>(coc-rename)
-" Remap for rename current word
-nmap <F2> <Plug>(coc-rename)
-colorscheme deus
-let g:highlightedyank_highlight_duration = 500
-" Color is the same as the fonts' color.
-hi clear HighlightedyankRegion
-hi HighlightedyankRegion cterm=reverse gui=reverse
-
-" Use D to show documentation in preview window
-nnoremap <silent> D :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-
 """"""""""""""""""""""""""""""
 "" ===
 "" === fastfold
@@ -664,25 +607,117 @@ autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 " ===
 " ===vim-deus
 " ===
-" set t_Co=256
-set termguicolors	" enable true colors support
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-set background=dark    " Setting dark mode
+color deus
+set t_Co=256
+" it's awesome, but I don't like a feature about highlight
+" e.g: the word "red" would be highlight red.
+" it's awesome for css
+" set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+set background=dark    " Setting dark mode statusline
 colorscheme deus
 let g:deus_termcolors=256
-"let ayucolor="mirage"
-"let g:oceanic_next_terminal_bold = 1
-"let g:oceanic_next_terminal_italic = 1
-"let g:one_allow_italics = 1
-"color dracula
-"color one
-color deus
-"color gruvbox
-"let ayucolor="light"
-"color ayu
-"set background=light
-" Color is bold.
+
 hi NonText ctermfg=gray guifg=grey10
-" hi SpecialKey ctermfg=blue guifg=grey70
+let g:highlightedyank_highlight_duration = 200
+" Color is the same as the fonts' color.
+hi clear HighlightedyankRegion
+hi HighlightedyankRegion cterm=reverse gui=reverse
+
+
+" ===
+" === coc.nvim
+" ===
+" :hi to veiw palette
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+hi CocHighlightText cterm=bold ctermfg=235 ctermbg=109 gui=bold guifg=#2C323B guibg=#83a598
+" if hidden is not set, TextEdit might fail.
+set hidden
+set cmdheight=2
+set updatetime=300
+" always show signcolumns. Display the sign in the left column.
+set signcolumn=yes
+silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
+" every extensions should be installed by CocInstall, e.g, \"CocInstall coc-python"
+let g:coc_global_extensions = ['coc-python', 'coc-pyls', 'coc-pairs', 'coc-snippets', 'coc-vimlsp', 'coc-translator',
+	\ 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-tailwindcss', 'coc-stylelint',
+	\ 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-highlight',
+	\ 'coc-cmake', 'coc-clangd', 'coc-explorer']
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+" use <tab> for trigger completion and navigate to the next complete item
+inoremap <silent><expr> <Tab>
+   		\ pumvisible() ? "\<C-n>" :
+   		\ <SID>check_back_space() ? "\<Tab>" :
+   		\ coc#refresh()
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+" remap Ctrl+j to trigger completion.
+inoremap <silent><expr> <c-j> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" Useful commands
+nnoremap <silent> <Bslash>y :<C-u>CocList -A --normal yank<cr>
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" nmap <leader>rn <Plug>(coc-rename)
+" Remap for rename current word
+nmap <F2> <Plug>(coc-rename)
+
+" Use D to show documentation in preview window
+nnoremap <silent> D :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+
+" ===
+" === vim-polyglot
+" ===
+" let g:polyglot_disabled = ['css']
+
+
+" ===
+" === coc-translator
+" ===
+" :CocList translator
+" press Tab can select operation(yank, append, delete)
+" popup
+nmap <LEADER>t <Plug>(coc-translator-p)
+vmap <LEADER>t <Plug>(coc-translator-pv)
+" echo
+nmap <LEADER>e <Plug>(coc-translator-e)
+nmap <LEADER>e <Plug>(coc-translator-ev)
+" replace
+nmap <LEADER>r <Plug>(coc-translator-r)
+nmap <LEADER>r <Plug>(coc-translator-rv)
+
+
+" ===
+" === vim-bookmarks
+" ===
+" let g:bookmark_no_default_key_mappings = 1
+nmap mm :BookmarkToggle<CR>
+nmap mi :BookmarkAnnotate<CR>
+nmap mn :BookmarkNext<CR>
+nmap mp :BookmarkPrev<CR>
+nmap ma :BookmarkShowAll<CR>
+nmap mc :BookmarkClear<CR>
+nmap mx :BookmarkClearAll<CR>
+nmap mkk :BookmarkMoveUp
+nmap mjj :BookmarkMoveDown
+
+
 
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
