@@ -127,5 +127,7 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_COMPLETION_TRIGGER='\'
 export FZF_TMUX_HEIGHT='80%'
 
+# Enable Italics of vim-dues
+export TERM_ITALICS=true
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
