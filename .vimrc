@@ -143,12 +143,6 @@ set pastetoggle=<F10>
 map <LEADER>sp :set paste!<CR>
 
 
-" Press space twice to jump to the next '<++>' and edit it
-map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
-source ~/.config/snippits.vim
-"markdown auto spell
-autocmd BufRead,BufNewFile *.md setlocal spell
-
 " ===
 " === terminal mode
 " ===
@@ -218,6 +212,9 @@ Plug 'lilydjwg/fcitx.vim'
 
 " Install nodejs when necessary:  curl -sL install-node.now.sh/lts | bash
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " Requestment: ctags
 Plug 'majutsushi/tagbar'
@@ -629,6 +626,8 @@ hi HighlightedyankRegion cterm=reverse gui=reverse
 " ===
 " === coc.nvim
 " ===
+" coc-python can't autofresh the complete item after backspace. coc can't implementation.
+" Only manual trigger completion by pressing Tab
 " :hi to veiw palette
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -641,23 +640,23 @@ set updatetime=300
 set signcolumn=yes
 silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
 " every extensions should be installed by CocInstall, e.g, \"CocInstall coc-python"
-let g:coc_global_extensions = ['coc-python', 'coc-pyls', 'coc-pairs', 'coc-snippets', 'coc-vimlsp', 'coc-translator',
+let g:coc_global_extensions = ['coc-python', 'coc-pyls', 'coc-pairs', 'coc-vimlsp', 'coc-translator',
 	\ 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-tailwindcss', 'coc-stylelint',
 	\ 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-highlight',
 	\ 'coc-cmake', 'coc-clangd', 'coc-explorer']
 " set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
 " use <tab> for trigger completion and navigate to the next complete item
 inoremap <silent><expr> <Tab>
    		\ pumvisible() ? "\<C-n>" :
    		\ <SID>check_back_space() ? "\<Tab>" :
    		\ coc#refresh()
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
 " remap Ctrl+j to trigger completion.
 inoremap <silent><expr> <c-j> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " Useful commands
@@ -680,6 +679,41 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+" Formatting selected code.
+xmap <leader>fm  <Plug>(coc-format-selected)
+nmap <leader>fm  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
+nmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
+
+
+" ===
+" === ultisnips
+" ===
+let g:UltiSnipsUsePythonVersion=3
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/Ultisnips/', 'UltiSnips']
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" Press space twice to jump to the next '<++>' and edit it
+map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+source ~/.config/snippits.vim
+"markdown auto spell
+autocmd BufRead,BufNewFile *.md setlocal spell
 
 
 " ===

@@ -6,6 +6,9 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S cmake --noconfirm
 	sudo pacman -S tree --noconfirm
 	sudo pacman -S vim --noconfirm
+	# joplin-desktop, directory: ~/.joplin-bin
+	wget -O - https://raw.githubusercontent.com/laurent22/joplin/master/Joplin_install_and_update.sh | bash
+	sudo pacman -S the_silver_searcher
 	sudo pacman -S vlc --noconfirm
 	sudo pacman -S xclip --noconfirm
 	sudo pacman -S alacritty --noconfirm

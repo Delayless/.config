@@ -119,6 +119,9 @@ alias comptonconfig="vim ~/.config/compton.conf"
 alias vimrc="vim ~/.vimrc"
 alias ra="ranger"
 alias ag='ag --hidden --ignore .git'
+
+export EDITOR=vim
+export PATH=$PATH:/opt/go/bin
 alias cat=ccat
 
 # fzf
