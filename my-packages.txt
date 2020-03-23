@@ -7,10 +7,10 @@ fcitx,fcitx-im,fcitx-configtool
 [archlinuxcn]
 Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 ################################################
-archlinuxcn-keyring  
+archlinuxcn-keyring
 pikur
 i3
-cmake 
+cmake
 dmenu
 scrot
 netease-cloud-music
@@ -18,13 +18,13 @@ fish
 oh-my-fish
 omf install agnoster, bobthefish
 //need archlinuxcn Source
-google-chrome 
+google-chrome
 #############################################################
 //Read wiki to configure ranger. Range can Preview images. By installing w3m and modifying rc.conf and scope.h(range --copy-config=scope)
 //Install some ranger's plugins from github wiki. e.g: Ranger Devicons plugin (file icon glyphs for ranger), nerd-fonts-complete
 //ranger_devicons plugin backup in the ranger's configuration folder;;; git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
 w3m
-ranger 
+ranger
 nerd-fonts-complete
 #############################################################
 //polybar

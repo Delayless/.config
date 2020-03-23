@@ -2,8 +2,11 @@
 <!-- TOC GFM -->
 
 + [Download the Repository](#download-the-repository)
-	* [config-env](#config-env)
++ [config](#config)
+	* [config environment](#config-environment)
+	* [config joplin CLI](#config-joplin-cli)
 	* [Install Software](#install-software)
+		- [python3 for vim](#python3-for-vim)
 + [Key Map](#key-map)
 + [vim-plug](#vim-plug)
 	* [markdown-preview](#markdown-preview)
@@ -18,21 +21,44 @@
 # Download the Repository
 1. Download my config file by `git clone https://github.com/Delayless/.config`
 2. copy config file by`cp -rf ./.config/* ~/.config/`, and open the directory`cd ~/.config`
-## config-env
+# config
+## config environment
 `sudo ./config-env.sh`
 1. Checking the shell is zsh or no.
 2. map the Keyboard, Caps--->Ctrl, Swap the Left_Command and Left_Alt, Left_Crtl --->Esc, Right_Alt--->Command, Right_menu--->Alt.
 3. Add the config for Chinese Input.
 4. Creat the soft link about the vimrc and zshrc on /home.
 5. Add Source about the Archlinuxcn of Tsinghua.
+## config joplin CLI
+```
+NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin
+sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin
+```
+For Dropbox, type `:config sync.target 7`. Then type `sync` to login to the service and start the synchronisation process.
+
+It is possible to also synchronise outside of the user interface by typing joplin sync from the terminal. This can be used to setup a cron script to synchronise at regular interval. For example, this would do it every 30 minutes:
+```
+*/30 * * * * /path/to/joplin sync
+```
+
 ## Install Software
 `sudo ./install.sh`
-
+### python3 for vim
+ultisnips needs vim to support vim-python3,
+Compile Vim
+```
+git clone https://github.com/vim/vim
+cd vim/src
+./configure  --enable-python3interp=yes
+make
+sudo make install
+# vim --version, to check `+python3` or not
+```
 See [my-packages.txt](./my-packages.txt) for detail.
 
 # Key Map
-| Shortcut    | Action        |  |  | Shortcut | Action |
-|-------------|---------------|--|--|----------|--------|
+| Shortcut   | Action                   |   |   | Shortcut   | Action   |
+| ---------- | ------------------------ | - | - | ---------- | -------- |
 
 # vim-plug
 Modified from`theniceboy/nvim`
@@ -97,12 +123,9 @@ sudo make install
 # coc
 Every extensions should be installed by CocInstall.
 - [Extensions](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions)
-`CocInstall coc-python coc-pyls coc-pairs coc-snippets coc-vimlsp coc-translator coc-html coc-json coc-css coc-tsserver coc-tailwindcss coc-stylelint coc-yank coc-lists coc-gitignore coc-highlight coc-cmake coc-clangd coc-explorer`
+`CocInstall coc-python coc-pyls coc-pairs coc-vimlsp coc-translator coc-html coc-json coc-css coc-tsserver coc-tailwindcss coc-stylelint coc-yank coc-lists coc-gitignore coc-highlight coc-cmake coc-clangd coc-explorer`
 coc-clangd:The extension does not install clangd for you! You must install clangd separately.sudo apt install clang<Tab>, version >=7.0
 
-coc-snippets configuration:
-- [Example](https://github.com/neoclide/coc-snippets/tree/master/tests/snippets)
-`:CocCommand snippets.editSnippets`
 ```
 snippet main "main(int argc, char *argv[]){}" b
 main(int argc, char *argv[]){$1};
