@@ -18,3 +18,10 @@ autocmd Filetype markdown inoremap <buffer> ,4 ####<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap <buffer> ,a --------<Enter>
 
 
+autocmd Filetype c,cpp inoremap <buffer> ,f <Esc>/<++><CR>:nohlsearch<CR>c4l
+autocmd Filetype c,cpp inoremap <buffer> ,w <Esc>/ <++><CR>:nohlsearch<CR>c5l<CR>
+autocmd Filetype c,cpp inoremap <buffer> ,p ()<++><Esc>F(a
+autocmd Filetype c,cpp  inoremap <buffer> ,c {<Enter><Enter>}<Enter><Enter><++><Esc>4ko
+autocmd Filetype c,cpp  inoremap <buffer> ,' ""<++><Esc>4hi
+autocmd Filetype c,cpp  inoremap <buffer> ,m <Esc>/main<CR>:nohlsearch<CR>
+autocmd Filetype c,cpp  inoremap <buffer> ,a <Esc>i<++><Esc>

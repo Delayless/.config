@@ -47,16 +47,17 @@ set ignorecase
 set smartcase
 
 set autoindent
-set foldenable
+set nofoldenable
 "To move to a misspelled word, use ]s and [s.
 "use z=, open suggest list.
 "use zg, add the word to vim dictionary. zw to mark words as incorrect.
-set spell spelllang=en_us
-set nospell
+set spell spelllang=en
+
+"set nospell
 set fdm=indent
 "markdown auto spell
 "autocmd BufRead,BufNewFile *.md setlocal spell
-noremap <LEADER>sp :set spell!<CR>
+noremap <LEADER>sp :hi SpellBad ctermbg=yellow<CR>:set spell!<CR>
 
 noremap J 5j
 noremap K 5k
@@ -126,7 +127,7 @@ func SetTitle()
         call setline(1,"\#########################################################################")
         call append(line("."), "\# File Name: ".expand("%"))
         call append(line(".")+1, "\# Author:<++>")
-        call append(line(".")+2, "\# mail:<++>")
+		"call append(line(".")+2, "\# mail:<++>")
         call append(line(".")+3, "\# Created Time: ".strftime("%c"))
         call append(line(".")+4, "\#########################################################################")
         call append(line(".")+5, "\#!/bin/bash")
@@ -135,10 +136,10 @@ func SetTitle()
         call setline(1, "/*************************************************************************")
         call append(line("."), "    > File Name: ".expand("%"))
         call append(line(".")+1, "    > Author: <++>")
-        call append(line(".")+2, "    > Mail: <++>")
-        call append(line(".")+3, "    > Created Time: ".strftime("%c"))
-        call append(line(".")+4, " ************************************************************************/")
-        call append(line(".")+5, "")
+        "call append(line(".")+2, "    > Mail: <++>")
+        call append(line(".")+2, "    > Created Time: ".strftime("%c"))
+        call append(line(".")+3, " ************************************************************************/")
+        call append(line(".")+4, "")
     endif
     if &filetype == 'cpp'
         call append(line(".")+6, "#include<iostream>")
@@ -411,7 +412,7 @@ hi NonText ctermfg=gray guifg=grey10
 
 
 "compile function
-noremap <LEADER>R :call CompileRunGcc()<CR>
+noremap <F5> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
 	exec "w"
 	if &filetype == 'c'
