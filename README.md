@@ -66,3 +66,27 @@ def a():
 if __name__ == "__main__":
 	a()
 ```
+
+<LEADER> is <Space>
+| Shortcut           | Action                                             |
+|--------------------|----------------------------------------------------|
+| F5                 | Compile sourcefile                                 |
+| F8                 | Regenerate the tag file                            |
+| F12                | MarkdownPreview                                    |
+| Y                  | Copy to system clipboard by 'xclip' in visual mode |
+| <LEADER>sp         | Spell check swith                                  |
+| Ctrl+j             | Scroll a half page down                            |
+| Ctrl+k             | Scroll a half page up                              |
+| <LEADER>S          | Save file as root after editing as non-root        |
+| <LEADER><Enter>    | Set nohightlight                                   |
+| U                  | Undo                                               |
+| <F10> or <LEADER>p | Greater Indent format for copying from Internet    |
+| Ctrl+a             | add 1                                              |
+| Ctrl+x             | subtract 1                                         |
+
+
+
+
+
+
+
