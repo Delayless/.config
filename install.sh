@@ -19,6 +19,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S google-chrome --noconfirm
 	sudo pacman -S w3m --noconfirm
 	sudo pacman -S nerd-fonts-complete --noconfirm
+	# ranger_devicons Prerequisites https://github.com/ryanoasis/nerd-fonts
 	sudo pacman -S ranger --noconfirm
 	sudo pacman -S feh --noconfirm
 	sudo pacman -S code --noconfirm
@@ -39,4 +40,6 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	#############################
 	sudo pacman -S ctags --noconfirm
 	sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+	pikaur -S ccat
+	pikaur -S ccat-git
 fi
