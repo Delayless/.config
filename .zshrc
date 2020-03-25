@@ -118,6 +118,8 @@ source $ZSH/oh-my-zsh.sh
 #source ~/.oh-my-zsh/plugins/incr/incr*.zsh
 alias eb='vim ~/.bashrc'
 alias sb='source ~/.bashrc'
+alias ez='vim ~/.zshrc'
+alias sz='source ~/.zshrc'
 alias gs='git status'
 alias gp='git pull'
 
@@ -133,6 +135,19 @@ alias i3config="vim ~/.config/i3/config"
 alias comptonconfig="vim ~/.config/compton.conf"
 alias vimrc="vim ~/.vimrc"
 alias ra="ranger"
+alias ag='ag --hidden --ignore .git'
+alias cat=ccat
+
+# fzf
+export FZF_DEFAULT_OPTS='--bind ctrl-e:down,ctrl-u:up --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || coderay {} || rougify {} || cat {}) 2> /dev/null | head -500"'
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_COMPLETION_TRIGGER='\'
+export FZF_TMUX_HEIGHT='80%'
+
+# Enable Italics of vim-dues
+export TERM_ITALICS=true
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # vi mode
 bindkey -v

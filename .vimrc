@@ -7,16 +7,25 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" Open vim display Garbage R^[[>1;4205;0c^[]10;rgb:ffff/ffff/ffff^G
+" But one side-effect of this setting is broken set background auto-detection
+set t_RB= t_RF= t_RV= t_u7= t_ut=
+" when opening vim have latency and Dispaly >4;2m.Maybe it's because of Xmodmap .
+let &t_TI = ""
+let &t_TE = ""
+"set t_ut=
+
 syntax on
 set nocompatible
 filetype on
 filetype plugin indent on
-set encoding=utf-8
+set encoding=UTF-8
 
 "Copy to system clipboard
 vnoremap Y :w !xclip -i -sel c<CR><CR>
 "when vim version feature include clipboard
 "convenient to copy. Of course, We also can use "+y to copy.
+"Passed the test, "+y  means to first press \" release then press \+ finally press y
 "vnoremap Y "+y
 "In the normal mode with clipboard feature, press 'p' to paste text from the system clipboard
 "set clipboard=unnamedplus
@@ -29,13 +38,17 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 
-"set list
-"set listchars=tab:▸\ ,trail:▫
+set list
+" set listchars=tab:\|\ ,trail:▫
+set listchars=tab:\|\ ,trail:■
 set wrap
+" close autowrap at insert mode.when textwidth > x, text will auto wrap
+set textwidth=0
 set ruler
 set cursorline
 set number
 set relativenumber
+set autochdir " auto change working directory
 set showcmd
 set wildmenu
 set mouse=a
@@ -46,19 +59,28 @@ set incsearch
 set ignorecase
 set smartcase
 
+" highlight Column 81
+" highlight ColorColumn ctermbg=red
+" call matchadd('ColorColumn', '\%81v', 100)
+
 set autoindent
-set nofoldenable
+
+set foldenable
+set foldmethod=indent
 "To move to a misspelled word, use ]s and [s.
 "use z=, open suggest list.
 "use zg, add the word to vim dictionary. zw to mark words as incorrect.
-set spell spelllang=en
+set spell spelllang=en_us
+set nospell
 
-"set nospell
-set fdm=indent
-"markdown auto spell
-"autocmd BufRead,BufNewFile *.md setlocal spell
+set ttimeoutlen=100 " reduce latency of swithing input method for Plug fcitx.vim
 noremap <LEADER>sp :hi SpellBad ctermbg=yellow<CR>:set spell!<CR>
 
+" :help keycode
+" <m-s> == Alt+s ?, they are unequal in ubuntu.
+" j/k will move virtual lines (lines that wrap)
+noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 noremap J 5j
 noremap K 5k
 noremap H ^
@@ -67,6 +89,12 @@ noremap W 5w
 noremap B 5b
 noremap <C-k> Hzz
 noremap <C-j> Lzz
+
+" it would be prone to bugs if mapping : ;.
+noremap ; :
+
+" copy current filepath and line
+" nnoremap y. :let @+ = expand("%") . ':' . line(".")<cr>
 
 "===
 "=== Window Manage
@@ -102,6 +130,7 @@ noremap ` ~
 noremap < <<
 noremap > >>
 
+
 map S :w<CR>
 map Q :q<CR>
 map R S:source $MYVIMRC<CR>
@@ -112,12 +141,28 @@ map <LEADER>n :set nonu<CR>:set norelativenumber<CR>
 map <LEADER>N :set nu<CR>:set relativenumber<CR>
 "Greater Indent format for copying from Internet or no
 set pastetoggle=<F10>
-map <LEADER>p :set paste!<CR>
+map <LEADER>sp :set paste!<CR>
 
 
 " Press space twice to jump to the next '<++>' and edit it
 map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 source ~/.config/snippits.vim
+"markdown auto spell
+autocmd BufRead,BufNewFile *.md setlocal spell
+
+" ===
+" === terminal mode
+" ===
+" :terminal can open a terminal at vim>=8.1
+" ctrl+d exit terminal at insert mode.
+noremap <Bslash>py :belowright term python<cr>
+noremap <Bslash>t :belowright term<cr>
+" Esc exit insert mode into normal mode
+tnoremap <Esc> <c-\><c-n>
+tnoremap <LEADER>j <C-w>j
+tnoremap <LEADER>k <C-w>k
+tnoremap <LEADER>l <C-w>l
+tnoremap <LEADER>h <C-w>h
 
 
 au BufNewFile *.cpp,*.[ch],*.sh,*.java :call SetTitle()
@@ -152,42 +197,76 @@ func SetTitle()
     endif
 	"Edit at the endline of file
     autocmd BufNewFile * normal G
-endfunc 
-
+endfunc
 
 call plug#begin('~/.vim/plugged')
-"Option 'on', means On-demand loading: Commands or <Plug>-mappings
+" Option 'on', means On-demand loading: Commands or <Plug>-mappings
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
-"Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 
-"Markdown
+" Markdown, It only works on vim >= 8.1 and neovim
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-Plug 'dkarter/bullets.vim'  "automated bullet lists, :RenumberSelection.
+Plug 'dkarter/bullets.vim'  " automated bullet lists, :RenumberSelection.
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
+Plug 'mzlogin/vim-markdown-toc'
 
-"Install nodejs when necessary:  curl -sL install-node.now.sh/lts | bash
+" Optimize Chinese input experience
+" To avoid the Esc delay, please set 'ttimeoutlen' to 100 or some value.
+" It's also related to screens's maptimeout
+Plug 'lilydjwg/fcitx.vim'
+
+" Install nodejs when necessary:  curl -sL install-node.now.sh/lts | bash
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'majutsushi/tagbar'
 
-"ranger's dependency for neovim   "Plug 'rbgrouleff/bclose.vim' 
+" Requestment: ctags
+Plug 'majutsushi/tagbar'
+Plug 'liuchengxu/vista.vim'
+
+" ranger's dependency for neovim   "Plug 'rbgrouleff/bclose.vim'
 Plug 'francoiscabrol/ranger.vim'
 
-"Plug 'Konfekt/FastFold'
-"Plug 'tpope/vim-capslock'	" Ctrl+L (insert) to toggle capslock
+" Plug 'Konfekt/FastFold'
+" Plug 'tpope/vim-capslock'	" Ctrl+L (insert) to toggle capslock
 
 " Pretty Dress
 Plug 'liuchengxu/eleline.vim'
 Plug 'chrisbra/Colorizer' " Show colors with :ColorHighlight
-Plug 'ajmwagar/vim-deus'
+Plug 'ajmwagar/vim-deus'  " It only works on vim >=8.1 and neovim
 Plug 'bling/vim-bufferline'
+Plug 'sheerun/vim-polyglot' " language packages for highlight
+Plug 'ryanoasis/vim-devicons'
+Plug 'MattesGroeger/vim-bookmarks'
+" Plug 'morhetz/gruvbox' "a color scheme
+
+Plug 'vim-scripts/restore_view.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+" Plug 'vimwiki/vimwiki'
+" Plug 'prettier/vim-prettier', {
+"   \ 'do': 'yarn install',
+"   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+
+" ysiw{ ysiw} yss<p1> cs ds{, Visual select and input S<p class="important">
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat' " The . command will work with ds, cs, yss
 call plug#end()
+
+
+ "===
+"=== restore_view
+"===
+set viewoptions=cursor,folds,slash,unix  " autosave cursor position and fold information
+" let g:skipview_files = ['*\.vim'] " exclude some files to be autosaved.
 
 
 "===
 "=== NERDtree
 "===
+" debug
 map tt :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 let NERDTreeMapOpenExpl = ""
@@ -226,17 +305,17 @@ let g:NERDTreeIndicatorMapCustom = {
     \ }
 
 
-"" ==
-"" == GitGutter
-"" ==
-"let g:gitgutter_map_keys = 0
-"let g:gitgutter_override_sign_column_highlight = 0
-"let g:gitgutter_preview_win_floating = 1
-"autocmd BufWritePost * GitGutter
-"nnoremap <LEADER>gf :GitGutterFold<CR>
-"nnoremap H :GitGutterPreviewHunk<CR>
-"nnoremap <LEADER>g- :GitGutterPrevHunk<CR>
-"nnoremap <LEADER>g= :GitGutterNextHunk<CR>
+" ==
+" == GitGutter
+" ==
+let g:gitgutter_map_keys = 0
+let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_preview_win_floating = 1
+autocmd BufWritePost * GitGutter
+nnoremap ,f :GitGutterFold<CR>
+nnoremap ,d :GitGutterPreviewHunk<CR>
+nnoremap ,k :GitGutterPrevHunk<CR>
+nnoremap ,j :GitGutterNextHunk<CR>
 
 
 "===
@@ -270,7 +349,8 @@ let g:mkdp_markdown_css = ''
 let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
 let g:mkdp_page_title = '「${name}」'
-nmap <F12> <Plug>MarkdownPreview
+"nmap <F12> <Plug>MarkdownPreview
+nmap <Bslash>m <Plug>MarkdownPreview
 
 
 " Bullets.vim
@@ -291,15 +371,126 @@ noremap <LEADER>tm :TableModeToggle<CR>
 "let g:table_mode_disable_mappings = 1
 let g:table_mode_cell_text_object_i_map = 'k<Bar>'
 
+" ===
+" === vim-markdown-toc
+" ===
+" :GenTocGFM generate TOC
+let g:vmt_fence_text = 'TOC'
+let g:vmt_fence_closing_text = '/TOC'
+let g:vmt_cycle_list_item_markers = 1 " mark by *-+, not only *.
+" Remove lower directory levels
+function RToc()
+    exe "/-toc .* -->"
+    let lstart=line('.')
+    exe "/-toc -->"
+    let lnum=line('.')
+    execute lstart.",".lnum."g/           /d"
+endfunction
+
+
+" ===
+" === fzf.vim
+" ===
+" :GitFiles
+"===================================
+" Fuzzy-find tags
+" map <Leader>w :Windows<cr>
+" nmap <Leader>w :Windows<cr>
+
+" This is the default extra key bindings
+" In any scenario(fzf,rg,buffers), Open the file in new tab, new split, new vsplit by pressing ctrl-t, ctrl-x, ctrl-v.
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+let $FZF_DEFAULT_OPTS .= ' --bind ctrl-a:select-all'
+let $FZF_DEFAULT_OPTS .= ' --bind ctrl-d:deselect-all'
+
+" Replace the default dictionary completion with fzf-based fuzzy completion
+inoremap <expr> <c-x><c-k> fzf#vim#complete('cat /usr/share/dict/words')
+
+" View commits in fzf
+nmap <Bslash>c :Commits<cr>
+" Fuzzy-find tags
+
+" [rg](BurntSushi/ripgrep)
+" search code in files.
+noremap <silent> <c-f> :Rg<CR>
+" [Ag](ggreer/the_silver_searcher)
+" A code searching tool similar to ack, with a focus on speed.
+" `sudo apt install the_silver_searcher`
+" search filename
+" setting in .bashrc for searching hidden files.:FZF actually would use the_silver_searcher's 'ag'.
+noremap <silent> <Bslash>f :FZF<CR>
+" The history of the opened files.
+noremap <silent> <Bslash>h :History<CR>
+noremap <silent> <Bslash>bt :BTags<CR>	" the current file's variables
+" Project tags, save all variables.
+" noremap <silent> <C-t> :Tags<CR>
+noremap <silent> <Bslash>bu :Buffers<CR>
+
+" Default fzf layout
+" - down / up / left / right
+let g:fzf_layout = { 'down': '~40%' }
+
+" [[B]Commits] Customize the options used by 'git log':
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noruler
+  \ autocmd BufLeave <buffer> set laststatus=2 ruler
+
+command! -bang -nargs=* Buffers
+  \ call fzf#vim#buffers(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+"   :Rg  - Start fzf with hidden preview window that can be enabled with "?" key
+"   :Rg! - Start fzf in fullscreen and display the preview window above
+
+" search code in current file.
+" the dot\. at end of command means regrex's everychar.
+	"\   'rg --column --line-number --no-heading --color=always --smart-case --with-filename . '.fnameescape(expand('%')), 1,
+command! -bang -nargs=* Rg
+	\ call fzf#vim#grep(
+	\   'rg --column --line-number --no-heading --color=always --smart-case --hidden .'.shellescape(<q-args>), 1,
+	\   <bang>0 ? fzf#vim#with_preview('up:50%')
+	\           : fzf#vim#with_preview('right:50%', '?'),
+	\   <bang>0)
+
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
+" nnoremap <silent> <Leader>A :Ag<CR>
+
+command! -bang -nargs=* History call fzf#vim#history(fzf#vim#with_preview())
+
+command! -bang BTags
+  \ call fzf#vim#buffer_tags('', {
+  \     'down': '40%',
+  \     'options': '--with-nth 1
+  \                 --reverse
+  \                 --prompt "> "
+  \                 --preview-window="70%"
+  \                 --preview "
+  \                     tail -n +\$(echo {3} | tr -d \";\\\"\") {2} |
+  \                     head -n 16"'
+  \ })
+
 
 " ===
 " === Ranger.vim
 " ===
-nnoremap <LEADER>f :Ranger<CR>
+nnoremap <silent> <Bslash>r :Ranger<CR>
 let g:ranger_map_keys = 0
 
-nmap <LEADER>t :TagbarToggle<CR><C-w>l
 
+" ===
+" === tagbar
+" ===
+" :taglist
+" Requestment: ctags
+nmap T :TagbarToggle<CR><C-w>l
 let g:tagbar_type_markdown = {
     \ 'ctagstype' : 'markdown',
     \ 'kinds' : [
@@ -308,108 +499,6 @@ let g:tagbar_type_markdown = {
         \ 'k:Heading_L3'
     \ ]
 \ }
-
-
-" ===
-" === coc
-" ===
-" if hidden is not set, TextEdit might fail.
-set hidden
-set cmdheight=2
-set updatetime=300
-" always show signcolumns. Display the sign in the left column.
-set signcolumn=yes
-silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
-let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss', 'coc-stylelint']
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-" use <tab> for trigger completion and navigate to the next complete item
-inoremap <silent><expr> <Tab>
-   		\ pumvisible() ? "\<C-n>" :
-   		\ <SID>check_back_space() ? "\<Tab>" :
-   		\ coc#refresh()
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-" Useful commands
-nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <leader>rn <Plug>(coc-rename)
-" Use K to show documentation in preview window
-"nnoremap <silent> K :call <SID>show_documentation()<CR>
-"
-"function! s:show_documentation()
-"  if (index(['vim','help'], &filetype) >= 0)
-"    execute 'h '.expand('<cword>')
-"  else
-"    call CocAction('doHover')
-"  endif
-"endfunction
-
-
-""""""""""""""""""""""""""""""
-"" ===
-"" === fastfold
-"" ===
-"nmap zuz <Plug>(FastFoldUpdate)
-"let g:fastfold_savehook = 1
-"let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
-"let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
-"let g:markdown_folding = 1
-"let g:tex_fold_enabled = 1
-"let g:vimsyn_folding = 'af'
-"let g:xml_syntax_folding = 1
-"let g:javaScript_fold = 1
-"let g:sh_fold_enabled= 7
-"let g:ruby_fold = 1
-"let g:perl_fold = 1
-"let g:perl_fold_blocks = 1
-"let g:r_syntax_folding = 1
-"let g:rust_fold = 1
-"let g:php_folding = 1
-
-
-" ===
-" === eleline
-" ===
-set laststatus=2 ruler
-
-" ===
-" === Colorizer
-" ===
-let g:colorizer_syntax = 1
-
-" ===
-" ===vim-deus
-" ===
-set t_Co=256
-set termguicolors	" enable true colors support
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-set background=dark    " Setting dark mode
-colorscheme deus
-let g:deus_termcolors=256
-"let ayucolor="mirage"
-"let g:oceanic_next_terminal_bold = 1
-"let g:oceanic_next_terminal_italic = 1
-"let g:one_allow_italics = 1
-"color dracula
-"color one
-color deus
-"color gruvbox
-"let ayucolor="light"
-"color ayu
-"set background=light
-hi NonText ctermfg=gray guifg=grey10
-"hi SpecialKey ctermfg=blue guifg=grey70
-
 
 "compile function
 noremap <F5> :call CompileRunGcc()<CR>
@@ -448,6 +537,38 @@ func! CompileRunGcc()
 endfunc
 
 
+""""""""""""""""""""""""""""""
+"" ===
+"" === fastfold
+"" ===
+"nmap zuz <Plug>(FastFoldUpdate)
+"let g:fastfold_savehook = 1
+"let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
+"let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
+"let g:markdown_folding = 1
+"let g:tex_fold_enabled = 1
+"let g:vimsyn_folding = 'af'
+"let g:xml_syntax_folding = 1
+"let g:javaScript_fold = 1
+"let g:sh_fold_enabled= 7
+"let g:ruby_fold = 1
+"let g:perl_fold = 1
+"let g:perl_fold_blocks = 1
+"let g:r_syntax_folding = 1
+"let g:rust_fold = 1
+"let g:php_folding = 1
+
+
+" ===
+" === eleline
+" ===
+set laststatus=2 ruler
+
+" ===
+" === Colorizer
+" ===
+let g:colorizer_syntax = 1
+
 " Press F8 to regenerate the tag file
 map <F8> :!ctags -R --c++-kinds=+p --fields=+iaS --extras=+q .<CR><CR>
 imap <F8> <ESC>:!ctags -R --c++-kinds=+p --fields=+iaS --extras=+q .<CR><CR>
@@ -455,3 +576,147 @@ set tags=tags
 set tags+=./tags "Search the tags in current filefolder
 set tags+=~/ctags/tags "When searching the tags, search the ~/ctags/tags at the same time. Don't move the tags file after 'ctags -R'. Otherwise, prompt the warning "Can't find any souce file" when you press Ctrl+]
 
+
+"  ===
+"  === vista.vim
+"  ===
+noremap <silent> vv :Vista!!<CR>
+" Note: this option only works the LSP executives, doesn't work for `:Vista ctags`.
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+" See all the avaliable executives via `:echo g:vista#executives`.
+let g:vista_default_executive = 'ctags'
+" To enable fzf's preview window set g:vista_fzf_preview.
+" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
+" For example:
+let g:vista_fzf_preview = ['right:50%']
+" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
+let g:vista#renderer#enable_icon = 1
+" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
+let g:vista#renderer#icons = {
+\   "function": "\uf794",
+\   "variable": "\uf71b",
+\  }
+
+function! NearestMethodOrFunction() abort
+	return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+set statusline+=%{NearestMethodOrFunction()}
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+
+
+" ===
+" ===vim-deus
+" ===
+color deus
+set t_Co=256
+" it's awesome, but I don't like a feature about highlight
+" e.g: the word "red" would be highlight red.
+" it's awesome for css
+" set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+set background=dark    " Setting dark mode statusline
+colorscheme deus
+let g:deus_termcolors=256
+
+hi NonText ctermfg=gray guifg=grey10
+let g:highlightedyank_highlight_duration = 200
+" Color is the same as the fonts' color.
+hi clear HighlightedyankRegion
+hi HighlightedyankRegion cterm=reverse gui=reverse
+
+
+" ===
+" === coc.nvim
+" ===
+" :hi to veiw palette
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+hi CocHighlightText cterm=bold ctermfg=235 ctermbg=109 gui=bold guifg=#2C323B guibg=#83a598
+" if hidden is not set, TextEdit might fail.
+set hidden
+set cmdheight=2
+set updatetime=300
+" always show signcolumns. Display the sign in the left column.
+set signcolumn=yes
+silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
+" every extensions should be installed by CocInstall, e.g, \"CocInstall coc-python"
+let g:coc_global_extensions = ['coc-python', 'coc-pyls', 'coc-pairs', 'coc-snippets', 'coc-vimlsp', 'coc-translator',
+	\ 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-tailwindcss', 'coc-stylelint',
+	\ 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-highlight',
+	\ 'coc-cmake', 'coc-clangd', 'coc-explorer']
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+" use <tab> for trigger completion and navigate to the next complete item
+inoremap <silent><expr> <Tab>
+   		\ pumvisible() ? "\<C-n>" :
+   		\ <SID>check_back_space() ? "\<Tab>" :
+   		\ coc#refresh()
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+" remap Ctrl+j to trigger completion.
+inoremap <silent><expr> <c-j> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" Useful commands
+nnoremap <silent> <Bslash>y :<C-u>CocList -A --normal yank<cr>
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" nmap <leader>rn <Plug>(coc-rename)
+" Remap for rename current word
+nmap <F2> <Plug>(coc-rename)
+
+" Use D to show documentation in preview window
+nnoremap <silent> D :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+
+" ===
+" === vim-polyglot
+" ===
+" let g:polyglot_disabled = ['css']
+
+
+" ===
+" === coc-translator
+" ===
+" :CocList translator
+" press Tab can select operation(yank, append, delete)
+" popup
+nmap <LEADER>t <Plug>(coc-translator-p)
+vmap <LEADER>t <Plug>(coc-translator-pv)
+" echo
+nmap <LEADER>e <Plug>(coc-translator-e)
+nmap <LEADER>e <Plug>(coc-translator-ev)
+" replace
+nmap <LEADER>r <Plug>(coc-translator-r)
+nmap <LEADER>r <Plug>(coc-translator-rv)
+
+
+" ===
+" === vim-bookmarks
+" ===
+" let g:bookmark_no_default_key_mappings = 1
+nmap mm :BookmarkToggle<CR>
+nmap mi :BookmarkAnnotate<CR>
+nmap mn :BookmarkNext<CR>
+nmap mp :BookmarkPrev<CR>
+nmap ma :BookmarkShowAll<CR>
+nmap mc :BookmarkClear<CR>
+nmap mx :BookmarkClearAll<CR>
+nmap mkk :BookmarkMoveUp
+nmap mjj :BookmarkMoveDown
+
+
+silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
