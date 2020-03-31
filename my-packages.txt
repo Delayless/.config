@@ -36,3 +36,14 @@ axel
 vim-plug
 vim-spell-en
 tree
+peek //gif recording
+joplin
+OBS Studio //screen recording and streaming.
+kdenlive //Video Editor
+virtualbox
+brave //browers
+lazygit
+p3x-onenote
+//Zeal is an offline documentation browser for software developers.
+zeal
+asciinema //record and share your terminal sessions.
