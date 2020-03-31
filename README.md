@@ -57,8 +57,30 @@ sudo make install
 See [my-packages.txt](./my-packages.txt) for detail.
 
 # Key Map
-| Shortcut   | Action                   |   |   | Shortcut   | Action   |
-| ---------- | ------------------------ | - | - | ---------- | -------- |
+`setxkbmap us -variant colemak` set colemak keyboard layout or modify xmodmap.
+`xmodmap -pke` print keycodes.
+'xev': press key to print its keycode. some distro linux need to install `xorg-xev`.
+
+<LEADER> is <Space>
+| Shortcut   | Action                   |   |   | Shortcut           | Action                                          |
+| ---------- | ------------------------ | - | - | ----------         | --------                                        |
+| F5         | Compile sourcefile       | - | - | <LEADER>S          | Save file as root after editing as non-root     |
+| F8         | Regenerate the tag file  | - | - | <LEADER>sp         | Spell check swith                               |
+| F12        | MarkdownPreview          | - | - | <LEADER><Enter>    | Set nohightlight                                |
+| Ctrl+j     | Scroll a half page down  | - | - | <F10> or <LEADER>p | Greater Indent format for copying from Internet |
+| Ctrl+k     | Scroll a half page up    | - | - | Y or <C-c>         | Copy to system clipboard                        |
+| Ctrl+a     | add 1                    | - | - | <C-v>              | paste from system clipboard                     |
+| Ctrl+x     | subtract 1               | - | - | U or <C-r>         | Undo                                            |
+
+
+
+
+
+
+
+
+
+PS: Command `xdotool key Caps_Lock` to toggle Caps_Lock status.
 
 # vim-plug
 Modified from`theniceboy/nvim`
@@ -119,12 +141,14 @@ make
 sudo make install
 ```
 
-
 # coc
-Every extensions should be installed by CocInstall.
 - [Extensions](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions)
-`CocInstall coc-python coc-pyls coc-pairs coc-vimlsp coc-translator coc-html coc-json coc-css coc-tsserver coc-tailwindcss coc-stylelint coc-yank coc-lists coc-gitignore coc-highlight coc-cmake coc-clangd coc-explorer`
 coc-clangd:The extension does not install clangd for you! You must install clangd separately.sudo apt install clang<Tab>, version >=7.0
+
+coc-snippets configuration:
+- [Example](https://github.com/neoclide/coc-snippets/tree/master/tests/snippets)
+`:CocCommand snippets.editSnippets`
+
 
 ```
 snippet main "main(int argc, char *argv[]){}" b
