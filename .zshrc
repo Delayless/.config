@@ -130,34 +130,38 @@ alias ssrstop="cd ~/Desktop/shadowsocksr/shadowsocks/ && sudo python local.py -d
 
 alias setproxy="export ALL_PROXY=socks5://127.0.0.1:1080"
 alias unsetproxy="unset ALL_PROXY"
-alias ip="curl -i https://ip.cn"
+alias getip="curl -i https://ip.cn"
 alias i3config="vim ~/.config/i3/config"
 alias comptonconfig="vim ~/.config/compton.conf"
 alias vimrc="vim ~/.vimrc"
 alias ra="ranger"
 alias ag='ag --hidden --ignore .git'
 alias cat=ccat
+# alias getip="getent hosts unix.stackexchange.com | awk '{ print $1 }'"
 
 # fzf
-export FZF_DEFAULT_OPTS='--bind ctrl-e:down,ctrl-u:up --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || coderay {} || rougify {} || cat {}) 2> /dev/null | head -500"'
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-export FZF_COMPLETION_TRIGGER='\'
+# Install by source, Ctrl+t, Ctrl+R, Alt+c.
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export FZF_DEFAULT_OPTS='--bind ctrl-j:down,ctrl-k:up --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || coderay {} || rougify {} || cat {}) 2> /dev/null | head -500"'
 export FZF_TMUX_HEIGHT='80%'
+export FZF_COMPLETION_TRIGGER='\'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 # Enable Italics of vim-dues
 export TERM_ITALICS=true
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # vi mode
-bindkey -v
-export KEYTIMEOUT=1
+# bindkey -v
+# export KEYTIMEOUT=1
 
-# Use vim keys in tab complete menu:
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
+# # Use vim keys in tab complete menu:
+# bindkey -M menuselect 'h' vi-backward-char
+# bindkey -M menuselect 'k' vi-up-line-or-history
+# bindkey -M menuselect 'l' vi-forward-char
+# bindkey -M menuselect 'j' vi-down-line-or-history
 
 # Use ranger to switch directories and bind it to ctrl-o
 # q swith directory and cancel ranger.

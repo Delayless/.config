@@ -50,8 +50,9 @@ exec fcitx
 #################################################################
 ## External expansion screen,set vertical screen
 exec_always xrandr --output eDP1 --primary
-exec_always sleep 1; xrandr --output eDP1 --right-of HDMI1 
-#exec_always xrandr --output HDMI1 --rotate left
+exec_always xrandr --output HDMI1 --mode 1920x1080
+exec_always sleep 1; xrandr --output eDP1 --right-of HDMI1
+# exec_always xrandr --output HDMI1 --rotate left
 
 #---wallpaper---
 # static mode
@@ -122,7 +123,8 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+semicolon split h;exec notify-send 'tile horizontally'
+#bindsym $mod+semicolon split h;exec notify-send 'tile horizontally'
+bindsym $mod+Shift+v split h;exec notify-send 'tile horizontally'
 
 # split in vertical orientation
 bindsym $mod+v split v;exec notify-send 'tile vertically'
@@ -308,13 +310,27 @@ for_window [class='vlc'] floating enable
 gaps inner 8
 gaps outer 4
 
-# Smart borders (draw borders around container only if it is not the only container on this workspace) 
+# Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders on
 
+
+#PHONES SOUND:
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-mute 1 toggle #mute sound volume
+
+#HDMI SOUND:
+bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym $mod+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym $mod+XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym $mod+Shift+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-mute 0 toggle  #mute sound volume
+
 # setting Volume, device 0 maybe device 1.
-bindsym $mod+F2 exec pactl set-sink-volume 0 -10%
-bindsym $mod+F3 exec pactl set-sink-volume 0 +10%
+bindsym $mod+F1 exec --no-startup-id pactl set-sink-mute 1 toggle
+bindsym $mod+F2 exec --no-startup-id pactl set-sink-volume 1 -10%
+bindsym $mod+F3 exec --no-startup-id pactl set-sink-volume 1 +10%
 
 #reverse the mouse button
 #exec xmodmap -e "pointer = 3 2 1"

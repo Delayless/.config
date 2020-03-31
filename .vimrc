@@ -13,7 +13,7 @@ set t_RB= t_RF= t_RV= t_u7= t_ut=
 " when opening vim have latency and Dispaly >4;2m.Maybe it's because of Xmodmap .
 let &t_TI = ""
 let &t_TE = ""
-"set t_ut=
+" set t_ut=
 
 syntax on
 set nocompatible
@@ -21,18 +21,18 @@ filetype on
 filetype plugin indent on
 set encoding=UTF-8
 
-"Copy to system clipboard
-vnoremap Y :w !xclip -i -sel c<CR><CR>
-"when vim version feature include clipboard
-"convenient to copy. Of course, We also can use "+y to copy.
-"Passed the test, "+y  means to first press \" release then press \+ finally press y
-"vnoremap Y "+y
-"In the normal mode with clipboard feature, press 'p' to paste text from the system clipboard
-"set clipboard=unnamedplus
+" Shift+insert paste from system clipboard without any dependency.
+" vim version feature must include clipboard. So install gvim or vim-gnome instead of vim.
+" \"+y  means to first press \" release then press \+ finally press y
+set clipboard=unnamed
+" Copy/Paste. vim must be running when using shared clipboard.
+vnoremap Y "+y
+vnoremap <C-c> "+y
+nnoremap <C-b> "+p
 
 
 let mapleader=" "
-set scrolloff=4   "at least 4 lines on the screenup and screendown
+set scrolloff=3   "at least 3 lines on the screenup and screendown
 set backspace=2
 set tabstop=4
 set shiftwidth=4
@@ -144,12 +144,6 @@ set pastetoggle=<F10>
 map <LEADER>sp :set paste!<CR>
 
 
-" Press space twice to jump to the next '<++>' and edit it
-map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
-source ~/.config/snippits.vim
-"markdown auto spell
-autocmd BufRead,BufNewFile *.md setlocal spell
-
 " ===
 " === terminal mode
 " ===
@@ -219,6 +213,9 @@ Plug 'lilydjwg/fcitx.vim'
 
 " Install nodejs when necessary:  curl -sL install-node.now.sh/lts | bash
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " Requestment: ctags
 Plug 'majutsushi/tagbar'
@@ -354,7 +351,7 @@ nmap <Bslash>m <Plug>MarkdownPreview
 
 
 " Bullets.vim
-" automated bullet lists, :RenumberSelection.
+" automated bullet lists, select code at visual mode, :RenumberSelection.
 "1. 2. 3. autoincrease, - is also.
 let g:bullets_enabled_file_types = [
     \ 'markdown',
@@ -600,7 +597,7 @@ let g:vista#renderer#icons = {
 function! NearestMethodOrFunction() abort
 	return get(b:, 'vista_nearest_method_or_function', '')
 endfunction
-set statusline+=%{NearestMethodOrFunction()}
+" set statusline+=%{NearestMethodOrFunction()}
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 
@@ -627,45 +624,79 @@ hi HighlightedyankRegion cterm=reverse gui=reverse
 
 
 " ===
+" === ultisnips
+" ===
+let g:UltiSnipsUsePythonVersion=3
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/Ultisnips/', 'UltiSnips']
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" Press space twice to jump to the next '<++>' and edit it
+map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+source ~/.config/snippits.vim
+"markdown auto spell
+autocmd BufRead,BufNewFile *.md setlocal spell
+
+
+" ===
+" === vim-polyglot
+" ===
+" let g:polyglot_disabled = ['css']
+
+
+" ===
 " === coc.nvim
 " ===
+" coc-python can't autofresh the complete item after backspace. coc can't implementation.
+" Only manual trigger completion by pressing Tab
 " :hi to veiw palette
 " Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-hi CocHighlightText cterm=bold ctermfg=235 ctermbg=109 gui=bold guifg=#2C323B guibg=#83a598
+" autocmd CursorHold * silent call CocActionAsync('highlight')
+" hi CocHighlightText cterm=bold ctermfg=235 ctermbg=109 gui=bold guifg=#2C323B guibg=#83a598
 " if hidden is not set, TextEdit might fail.
 set hidden
+set nobackup
+set nowritebackup
+
 set cmdheight=2
 set updatetime=300
 " always show signcolumns. Display the sign in the left column.
 set signcolumn=yes
 silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
-" every extensions should be installed by CocInstall, e.g, \"CocInstall coc-python"
-let g:coc_global_extensions = ['coc-python', 'coc-pyls', 'coc-pairs', 'coc-snippets', 'coc-vimlsp', 'coc-translator',
+" You can automatically install multiple extensions when the coc.nvim service starts by defining global variable `g:coc_global_extensions`
+let g:coc_global_extensions = ['coc-python', 'coc-pyls', 'coc-pairs', 'coc-vimlsp', 'coc-translator',
 	\ 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-tailwindcss', 'coc-stylelint',
 	\ 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-highlight',
-	\ 'coc-cmake', 'coc-clangd', 'coc-explorer']
-" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
+	\ 'coc-cmake', 'coc-clangd', 'coc-explorer', 'coc-emoji', 'coc-dictionary']
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " use <tab> for trigger completion and navigate to the next complete item
 inoremap <silent><expr> <Tab>
    		\ pumvisible() ? "\<C-n>" :
    		\ <SID>check_back_space() ? "\<Tab>" :
    		\ coc#refresh()
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
 " remap Ctrl+j to trigger completion.
 inoremap <silent><expr> <c-j> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " Useful commands
 nnoremap <silent> <Bslash>y :<C-u>CocList -A --normal yank<cr>
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+nmap gd <Plug>(coc-definition)
+nmap gy <Plug>(coc-type-definition)
+nmap gi <Plug>(coc-implementation)
+nmap gr <Plug>(coc-references)
 " nmap <leader>rn <Plug>(coc-rename)
 " Remap for rename current word
 nmap <F2> <Plug>(coc-rename)
@@ -680,12 +711,22 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+" Formatting selected code.
+xmap <leader>fm  <Plug>(coc-format-selected)
+nmap <leader>fm  <Plug>(coc-format-selected)
 
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
 
-" ===
-" === vim-polyglot
-" ===
-" let g:polyglot_disabled = ['css']
+" Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
+nmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
 
 
 " ===
