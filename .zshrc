@@ -3,9 +3,10 @@ autoload -U colors && colors
 PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 # History in cache directory:
-HISTSIZE=10000
-SAVEHIST=10000
-HISTFILE=~/.cache/zsh/history
+export EDITOR=vim
+export HISTSIZE=10000
+export SAVEHIST=10000
+export HISTFILE=~/.zsh_history
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -139,6 +140,8 @@ alias ag='ag --hidden --ignore .git'
 alias cat=ccat
 # alias getip="getent hosts unix.stackexchange.com | awk '{ print $1 }'"
 
+source ~/.config/zsh-vim-mode.zsh
+
 # fzf
 # Install by source, Ctrl+t, Ctrl+R, Alt+c.
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -152,16 +155,6 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 # Enable Italics of vim-dues
 export TERM_ITALICS=true
-
-# vi mode
-# bindkey -v
-# export KEYTIMEOUT=1
-
-# # Use vim keys in tab complete menu:
-# bindkey -M menuselect 'h' vi-backward-char
-# bindkey -M menuselect 'k' vi-up-line-or-history
-# bindkey -M menuselect 'l' vi-forward-char
-# bindkey -M menuselect 'j' vi-down-line-or-history
 
 # Use ranger to switch directories and bind it to ctrl-o
 # q swith directory and cancel ranger.

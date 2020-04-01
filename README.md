@@ -62,21 +62,16 @@ See [my-packages.txt](./my-packages.txt) for detail.
 'xev': press key to print its keycode. some distro linux need to install `xorg-xev`.
 
 <LEADER> is <Space>
-| Shortcut   | Action                   |   |   | Shortcut           | Action                                          |
-| ---------- | ------------------------ | - | - | ----------         | --------                                        |
-| F5         | Compile sourcefile       | - | - | <LEADER>S          | Save file as root after editing as non-root     |
-| F8         | Regenerate the tag file  | - | - | <LEADER>sp         | Spell check swith                               |
-| F12        | MarkdownPreview          | - | - | <LEADER><Enter>    | Set nohightlight                                |
-| Ctrl+j     | Scroll a half page down  | - | - | <F10> or <LEADER>p | Greater Indent format for copying from Internet |
-| Ctrl+k     | Scroll a half page up    | - | - | Y or <C-c>         | Copy to system clipboard                        |
-| Ctrl+a     | add 1                    | - | - | <C-v>              | paste from system clipboard                     |
-| Ctrl+x     | subtract 1               | - | - | U or <C-r>         | Undo                                            |
-
-
-
-
-
-
+| Shortcut | Action                     |   |   | Shortcut            | Action                                               |
+| -------- | ------------------------   | - | - | ------------------- | ---------------------------------------------------- |
+| F5       | Compile sourcefile         | - | - | <LEADER>S           | Save file as root after editing as non-root          |
+| F8       | Regenerate the tag file    | - | - | <LEADER>sp          | Spell check swith                                    |
+| F12      | MarkdownPreview            | - | - | <LEADER><Enter>     | Set nohightlight                                     |
+| Ctrl+j   | Scroll a half page down    | - | - | <F10> or <LEADER>sp | Grdapeieater Indent format for copying from Internet |
+| Ctrl+k   | Scroll a half page up      | - | - | Y or <C-c>          | Copy to system clipboard                             |
+| Ctrl+a   | add 1                      | - | - | <C-v>               | paste from system clipboard                          |
+| Ctrl+x   | subtract 1                 | - | - | U or <C-r>          | Undo                                                 |
+| gf       | open the file under cursor | - | - |
 
 
 
