@@ -56,9 +56,10 @@ exec_always sleep 1; xrandr --output eDP1 --right-of HDMI1
 
 #---wallpaper---
 # static mode
-#exec_always sleep 1;feh --bg-fill ~/Pictures/Wallpapers/Girlfriend-HorizontalView.jpg ~/Pictures/Wallpapers/Girlfriend-VerticalView.jpg
+# exec_always sleep 1;feh --bg-fill ~/Pictures/Wallpapers/Girlfriend-HorizontalView.jpg ~/Pictures/Wallpapers/Girlfriend-VerticalView.jpg
 exec_always sleep 1;feh --bg-fill ~/Pictures/Wallpapers/Girlfriend-HorizontalView.jpg ~/Pictures/Wallpapers/Girlfriend-HorizontalView.jpg
 exec_always --no-startup-id killall compton; compton -b
+
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] 1
 # assign [class="Pale moon"] 2

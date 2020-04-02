@@ -33,6 +33,7 @@
 !/config-env.sh
 !/snippits.vim
 !/zsh-vim-mode.zsh
+!/agnoster-modified.zsh-theme
 
 !/joplin
 /joplin/*

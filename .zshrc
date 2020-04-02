@@ -26,7 +26,7 @@ export ZSH="/home/lenovo/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+# ZSH_THEME="agnoster"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -138,9 +138,11 @@ alias vimrc="vim ~/.vimrc"
 alias ra="ranger"
 alias ag='ag --hidden --ignore .git'
 alias cat=ccat
+alias lg=lazygit
 # alias getip="getent hosts unix.stackexchange.com | awk '{ print $1 }'"
 
 source ~/.config/zsh-vim-mode.zsh
+source ~/.config/agnoster-modified.zsh-theme
 
 # fzf
 # Install by source, Ctrl+t, Ctrl+R, Alt+c.
