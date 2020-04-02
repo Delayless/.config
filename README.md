@@ -7,7 +7,6 @@
 	* [config joplin CLI](#config-joplin-cli)
 	* [Install Software](#install-software)
 		- [python3 for vim](#python3-for-vim)
-	* [oh-my-zsh theme](#oh-my-zsh-theme)
 + [Key Map](#key-map)
 + [vim-plug](#vim-plug)
 	* [markdown-preview](#markdown-preview)
@@ -57,8 +56,6 @@ sudo make install
 ```
 See [my-packages.txt](./my-packages.txt) for detail.
 
-## oh-my-zsh theme
-cp ~/.config/agnoster-modified.zsh-theme ~/.oh-my-zsh/custom/themes/
 
 # Key Map
 `setxkbmap us -variant colemak` set colemak keyboard layout or modify xmodmap.
