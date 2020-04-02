@@ -24,10 +24,9 @@ export ZSH="/home/lenovo/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
-# tfo know which specific one was loaded, run: echo $RANDOM_THEME
+# to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="agnoster"
-ZSH_THEME="bullet-train"
+ZSH_THEME="agnoster"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -141,7 +140,7 @@ alias ag='ag --hidden --ignore .git'
 alias cat=ccat
 # alias getip="getent hosts unix.stackexchange.com | awk '{ print $1 }'"
 
-# source ~/.config/zsh-vim-mode.zsh
+source ~/.config/zsh-vim-mode.zsh
 
 # fzf
 # Install by source, Ctrl+t, Ctrl+R, Alt+c.
@@ -169,20 +168,6 @@ rangercd () {
     fi
 }
 bindkey -s '^o' 'rangercd\n'
-
-bindkey -v
-KEYTIMEOUT=1
-function zle-line-init zle-keymap-select {
-    case ${KEYMAP} in
-        (vicmd)      BULLETTRAIN_PROMPT_CHAR="N" ;;
-        (main|viins) BULLETTRAIN_PROMPT_CHAR="I" ;;
-        (*)          BULLETTRAIN_PROMPT_CHAR="I" ;;
-    esac
-    zle reset-prompt
-}
-
-zle -N zle-line-init
-zle -N zle-keymap-select
 
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
