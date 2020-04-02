@@ -7,15 +7,20 @@ zle -N zle-keymap-select
 
 bindkey -v
 
+# keymap in the insert mode.
 # allow ctrl-a and ctrl-e to move to beginning/end of line
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
-
 # allow ctrl-h, ctrl-w for char and word deletion (standard behaviour)
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 # delete key
 bindkey '\e[3~' delete-char
+
+# keymap in the normal mode
+bindkey -M vicmd '\e[3~' delete-char
+bindkey -M vicmd 'H' beginning-of-line
+bindkey -M vicmd 'L' end-of-line
 
 # if mode indicator wasn't setup by theme, define default
 if [[ "$N_MODE" == "" ]]; then
