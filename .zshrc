@@ -123,6 +123,7 @@ alias ez='vim ~/.zshrc'
 alias sz='source ~/.zshrc'
 alias gs='git status'
 alias gp='git pull'
+alias gd='git difftool'
 
 alias s="neofetch"
 alias ssr="sudo python ~/Desktop/shadowsocksr/shadowsocks/local.py -c ~/Desktop/shadowsocksr/shadowsocks/config.json -d start"

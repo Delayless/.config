@@ -135,6 +135,7 @@ map S :w<CR>
 map Q :q<CR>
 map R S:source $MYVIMRC<CR>
 map <LEADER>S :w !sudo tee %<CR><CR>
+map <LEADER>Q :q!<CR>
 map <LEADER>rc :!vim ~/.vimrc<CR>
 map <LEADER><CR> :nohlsearch<CR>
 map <LEADER>n :set nonu<CR>:set norelativenumber<CR>
@@ -204,6 +205,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'dkarter/bullets.vim'  " automated bullet lists, :RenumberSelection.
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
+"Modified by vim-markdown. You can look plasticboy/vim-markdown's documentation for help.
 Plug 'mzlogin/vim-markdown-toc'
 
 " Optimize Chinese input experience
@@ -372,6 +374,7 @@ let g:table_mode_cell_text_object_i_map = 'k<Bar>'
 " === vim-markdown-toc
 " ===
 " :GenTocGFM generate TOC
+" :GenTocGFM for GitHub, :GenTocGitLab for GitLab
 let g:vmt_fence_text = 'TOC'
 let g:vmt_fence_closing_text = '/TOC'
 let g:vmt_cycle_list_item_markers = 1 " mark by *-+, not only *.
@@ -384,6 +387,16 @@ function RToc()
     execute lstart.",".lnum."g/           /d"
 endfunction
 
+let g:vim_markdown_toc_autofit = 1
+function! Toc()
+  if &filetype == 'markdown'
+    :Toc
+    set nofoldenable
+    syntax on
+  endif
+endfunction
+nnoremap T :call Toc()<CR>
+" autocmd VimEnter,BufReadPost,BufWinEnter  *.m*  call s:Toc()
 
 " ===
 " === fzf.vim
@@ -487,7 +500,9 @@ let g:ranger_map_keys = 0
 " ===
 " :taglist
 " Requestment: ctags
-nmap T :TagbarToggle<CR><C-w>l
+nmap ,t :TagbarToggle<CR><C-w>l
+let g:tagbar_width = 30
+let g:tagbar_left = 0
 let g:tagbar_type_markdown = {
     \ 'ctagstype' : 'markdown',
     \ 'kinds' : [
@@ -757,8 +772,8 @@ nmap mp :BookmarkPrev<CR>
 nmap ma :BookmarkShowAll<CR>
 nmap mc :BookmarkClear<CR>
 nmap mx :BookmarkClearAll<CR>
-nmap mkk :BookmarkMoveUp
-nmap mjj :BookmarkMoveDown
+nmap mkk :BookmarkMoveUp<CR>
+nmap mjj :BookmarkMoveDown<CR>
 
 
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
