@@ -138,6 +138,7 @@ alias vimrc="vim ~/.vimrc"
 alias ra="ranger"
 alias ag='ag --hidden --ignore .git'
 alias cat=ccat
+alias lg=lazygit
 # alias getip="getent hosts unix.stackexchange.com | awk '{ print $1 }'"
 
 source ~/.config/zsh-vim-mode.zsh

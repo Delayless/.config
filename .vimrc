@@ -128,7 +128,8 @@ noremap U <C-r>
 noremap ` ~
 noremap < <<
 noremap > >>
-
+noremap [f :bN<cr>
+noremap ]f :bn<cr>
 
 map S :w<CR>
 map Q :q<CR>

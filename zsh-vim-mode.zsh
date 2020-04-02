@@ -1,20 +1,23 @@
-function zle-line-init zle-keymap-select {
-  zle reset-prompt
-  zle -R
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
-
 bindkey -v
+DEFAULT_VI_MODE=viins
+KEYTIMEOUT=1
 
 # keymap in the insert mode.
 # allow ctrl-a and ctrl-e to move to beginning/end of line
-bindkey '^a' beginning-of-line
-bindkey '^e' end-of-line
-# allow ctrl-h, ctrl-w for char and word deletion (standard behaviour)
+bindkey '^p' up-history
+bindkey '^n' down-history
+
+bindkey '^f' forward-char
+bindkey '^b' backward-char
+bindkey '^d' delete-char
+bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
-# delete key
+bindkey '^r' history-incremental-search-backward
+
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
+# Delete key
 bindkey '\e[3~' delete-char
 
 # keymap in the normal mode
@@ -22,20 +25,76 @@ bindkey -M vicmd '\e[3~' delete-char
 bindkey -M vicmd 'H' beginning-of-line
 bindkey -M vicmd 'L' end-of-line
 
-# if mode indicator wasn't setup by theme, define default
-if [[ "$N_MODE" == "" ]]; then
-  N_MODE="%{$fg[red]%}-- NORMAL --%{$reset_color%}"
-fi
+# Allows you to open the in-progress command inside of $EDITOR
+autoload -Uz edit-command-line
+bindkey -M vicmd 'v' edit-command-line
+zle -N edit-command-line
 
-if [[ "$I_MODE" == "" ]]; then
-  I_MODE="%{$fg[white]%}-- INSERT --%{$reset_color%}"
-fi
+# Prefer vi shortcuts
+__set_cursor() {
+    local style
+    case $1 in
+        reset) style=0;; # The terminal emulator's default
+        blink-block) style=1;;
+        block) style=2;;
+        blink-underline) style=3;;
+        underline) style=4;;
+        blink-vertical-line) style=5;;
+        vertical-line) style=6;;
+    esac
 
-function vi_mode_prompt_info() {
-	echo "${${KEYMAP/vicmd/$N_MODE}/(main|viins)/$I_MODE}"
+    [ $style -ge 0 ] && print -n -- "\e[${style} q"
 }
 
-# define right prompt, if it wasn't defined by a theme
-if [[ "$RPS1" == "" && "$RPROMPT" == "" ]]; then
-  RPS1='$(vi_mode_prompt_info)'
-fi
+# Set your desired cursors here...
+__set_vi_mode_cursor() {
+    case $KEYMAP in
+        vicmd)
+          __set_cursor block
+          ;;
+        main|viins)
+          __set_cursor vertical-line
+          ;;
+    esac
+}
+
+# red    black    yellow   green
+# cyan   white    magenta  blue
+__get_vi_mode() {
+    local mode
+    case $KEYMAP in
+        vicmd)
+          mode='%B%F{red}NORMAL'
+          ;;
+        main|viins)
+          mode=
+          ;;
+    esac
+    print -n -- $mode
+}
+
+zle-line-init() {
+    zle -K $DEFAULT_VI_MODE
+}
+
+zle-keymap-select() {
+    __set_vi_mode_cursor
+    zle reset-prompt
+}
+
+zle-line-finish() {
+    # Let applications manage their own cursor
+    __set_cursor reset
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+zle -N zle-line-finish
+
+# PROMPT_SUBST enables functions and variables to re-run everytime the prompt is rendered
+# perform parameter expansion/command substitution in prompt
+# setopt PROMPT_SUBST
+
+# Single quotes are important so that function is not run immediately and saved in the variable
+RPROMPT='$(__get_vi_mode)'
+
