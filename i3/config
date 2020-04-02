@@ -56,7 +56,9 @@ exec_always sleep 1; xrandr --output eDP1 --right-of HDMI1
 
 #---wallpaper---
 # static mode
-exec_always sleep 1;feh --bg-fill ~/Pictures/Wallpapers/Girlfriend-HorizontalView.jpg ~/Pictures/Wallpapers/Girlfriend-VerticalView.jpg
+# exec_always sleep 1;feh --bg-fill ~/Pictures/Wallpapers/Girlfriend-HorizontalView.jpg ~/Pictures/Wallpapers/Girlfriend-VerticalView.jpg
+exec_always sleep 1;feh --bg-fill ~/Pictures/Wallpapers/Girlfriend-HorizontalView.jpg ~/Pictures/Wallpapers/Girlfriend-HorizontalView.jpg
+exec_always --no-startup-id killall compton; compton -b
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] 1
@@ -148,7 +150,7 @@ bindsym $mod+a focus parent
 
 #navigate workspaces next / previous
 bindsym $mod+Tab workspace next
-bindsym mod1+Tab workspace prev
+bindsym $mod+Shift+Tab workspace prev
 bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
 
@@ -331,7 +333,6 @@ bindsym $mod+F1 exec --no-startup-id pactl set-sink-mute 1 toggle
 bindsym $mod+F2 exec --no-startup-id pactl set-sink-volume 1 -10%
 bindsym $mod+F3 exec --no-startup-id pactl set-sink-volume 1 +10%
 
-exec --no-startup-id killall compton; sleep 1; compton -b
 #reverse the mouse button
 #exec xmodmap -e "pointer = 3 2 1"
 ##change keyboard map

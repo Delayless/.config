@@ -59,5 +59,5 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 	~/.fzf/install
 	sudo npm install -g p3x-onenote --unsafe-perm=true --allow-root
-	p3x-onenote &
+	# p3x-onenote &
 fi

@@ -13,7 +13,7 @@ cd ~/.config
 #if [ -f ~/.zshrc ]; then
 #	echo '.zshrc already exists'
 #else
-#	ln -s ~/.config/.zshrc ~/.zshrc 
+#	ln -s ~/.config/.zshrc ~/.zshrc
 #fi
 
 ## '!' means if not exist. Also the format can like above.
