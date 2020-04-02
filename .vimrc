@@ -74,7 +74,7 @@ set spell spelllang=en_us
 set nospell
 
 set ttimeoutlen=100 " reduce latency of swithing input method for Plug fcitx.vim
-noremap <LEADER>sp :hi SpellBad ctermbg=yellow<CR>:set spell!<CR>
+noremap <LEADER>sp :set spell!<CR>
 
 " :help keycode
 " <m-s> == Alt+s ?, they are unequal in ubuntu.
