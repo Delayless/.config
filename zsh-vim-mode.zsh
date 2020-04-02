@@ -11,10 +11,11 @@ bindkey -v
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
 
-# allow ctrl-h, ctrl-w, ctrl-? for char and word deletion (standard behaviour)
-bindkey '^?' backward-delete-char
+# allow ctrl-h, ctrl-w for char and word deletion (standard behaviour)
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
+# delete key
+bindkey '\e[3~' delete-char
 
 # if mode indicator wasn't setup by theme, define default
 if [[ "$N_MODE" == "" ]]; then
