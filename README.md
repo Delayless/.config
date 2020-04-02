@@ -18,6 +18,7 @@
 <!-- /TOC -->
 
 > Some plugs only work on vim >= 8.1 or neovim. e.g, markdown-preview, vim-deus, coc
+
 # Download the Repository
 1. Download my config file by `git clone https://github.com/Delayless/.config`
 2. copy config file by`cp -rf ./.config/* ~/.config/`, and open the directory`cd ~/.config`
