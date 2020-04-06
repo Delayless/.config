@@ -418,6 +418,8 @@ let $FZF_DEFAULT_OPTS .= ' --bind ctrl-a:select-all'
 let $FZF_DEFAULT_OPTS .= ' --bind ctrl-d:deselect-all'
 
 " Replace the default dictionary completion with fzf-based fuzzy completion
+" if not exist the file, can download from github or `sudo pacman -S words`
+" https://raw.githubusercontent.com/eneko/data-repository/master/data/words.txt
 inoremap <expr> <c-x><c-k> fzf#vim#complete('cat /usr/share/dict/words')
 
 " View commits in fzf
@@ -774,6 +776,13 @@ nmap mc :BookmarkClear<CR>
 nmap mx :BookmarkClearAll<CR>
 nmap mkk :BookmarkMoveUp<CR>
 nmap mjj :BookmarkMoveDown<CR>
+
+
+" tab to indentation
+nmap <tab> V>
+nmap <s-tab> V<
+vmap <tab> >gv
+vmap <s-tab> <gv
 
 
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
