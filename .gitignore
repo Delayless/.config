@@ -34,6 +34,7 @@
 !/snippits.vim
 !/zsh-vim-mode.zsh
 !/agnoster-modified.zsh-theme
+!/fzf.zsh
 
 !/joplin
 /joplin/*

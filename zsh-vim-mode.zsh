@@ -2,28 +2,33 @@ bindkey -v
 DEFAULT_VI_MODE=viins
 KEYTIMEOUT=1
 
-# keymap in the insert mode.
-# allow ctrl-a and ctrl-e to move to beginning/end of line
+#######################################
+###### keymap in the normal mode ######
+#######################################
 bindkey '^p' up-history
 bindkey '^n' down-history
-
 bindkey '^f' forward-char
 bindkey '^b' backward-char
 bindkey '^d' delete-char
 bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
-bindkey '^r' history-incremental-search-backward
+# if not use fzf, uncomment the following command.
+# bindkey '^r' history-incremental-search-backward
 
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
 # Delete key
 bindkey '\e[3~' delete-char
 
-# keymap in the normal mode
+#######################################
+###### keymap in the normal mode ######
+#######################################
 bindkey -M vicmd '\e[3~' delete-char
 bindkey -M vicmd 'H' beginning-of-line
 bindkey -M vicmd 'L' end-of-line
+# if not use fzf, uncomment the following command.
+# bindkey -M vicmd '^r' history-incremental-search-backward
 
 # Allows you to open the in-progress command inside of $EDITOR
 autoload -Uz edit-command-line
