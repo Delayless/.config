@@ -107,22 +107,27 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
 
 #source ~/.oh-my-zsh/plugins/incr/incr*.zsh
+
+# if not set the follow alias, aliases not available when using sudo
+# I want to 'sudo cp' == "sudo cp -i", so this setting is necessary.
+alias sudo='sudo '
+# confirm before overwriting something
+alias cp="cp -i"
+alias mv="mv -i"
+
 alias eb='vim ~/.bashrc'
 alias sb='source ~/.bashrc'
 alias ez='vim ~/.zshrc'
 alias sz='source ~/.zshrc'
 alias gs='git status'
 alias gp='git pull'
+alias gd='git difftool'
 
 alias s="neofetch"
 alias ssr="sudo python ~/Desktop/shadowsocksr/shadowsocks/local.py -c ~/Desktop/shadowsocksr/shadowsocks/config.json -d start"
@@ -143,17 +148,7 @@ alias lg=lazygit
 
 source ~/.config/zsh-vim-mode.zsh
 source ~/.config/agnoster-modified.zsh-theme
-
-# fzf
-# Install by source, Ctrl+t, Ctrl+R, Alt+c.
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-export FZF_DEFAULT_OPTS='--bind ctrl-j:down,ctrl-k:up --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || coderay {} || rougify {} || cat {}) 2> /dev/null | head -500"'
-export FZF_TMUX_HEIGHT='80%'
-export FZF_COMPLETION_TRIGGER='\'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+source ~/.config/fzf.zsh
 
 # Enable Italics of vim-dues
 export TERM_ITALICS=true
