@@ -14,8 +14,6 @@
 # ... but these:
 !/i3/
 /i3/log/
-!/fish/
-!/omf/
 !/polybar/
 !/ranger/
 !/alacritty/
