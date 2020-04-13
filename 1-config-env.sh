@@ -5,24 +5,13 @@
 
 #dir="$HOME/.config"
 # $dir to reference
+## '!' means if not exist.
 cd ~/.config
 [ ! -f ~/.vimrc ] &&   ln -sf ~/.config/.vimrc ~/.vimrc || echo '.vimrc already exists'
 [ ! -f ~/.Xmodmap ] && ln -sf ~/.config/.Xmodmap ~/.Xmodmap || echo '.Xmodmap already exists'
 [ ! -f ~/.zshrc ] &&   ln -sf ~/.config/.zshrc ~/.zshrc || echo '.zshrc already exists'
 
-#if [ -f ~/.zshrc ]; then
-#	echo '.zshrc already exists'
-#else
-#	ln -s ~/.config/.zshrc ~/.zshrc
-#fi
-
-## '!' means if not exist. Also the format can like above.
-
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-sudo cp /etc/X11/xinit/xinitrc ~/.xinitrc
-echo "export GTK_IM_MODULE=fcitx" >> ~/.xinitrc
-echo "export QT_IM_MODULE=fcitx" >> ~/.xinitrc
-echo "export XMODIFIERS=\"@im=fcitx\"" >> ~/.xinitrc
 
 sudo pacman-mirrors -i -c China -m rank
 sudo echo "[archlinuxcn]" >> /etc/pacman.conf

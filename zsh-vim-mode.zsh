@@ -27,6 +27,8 @@ bindkey '\e[3~' delete-char
 bindkey -M vicmd '\e[3~' delete-char
 bindkey -M vicmd 'H' beginning-of-line
 bindkey -M vicmd 'L' end-of-line
+# use '/' to search command history, and '=' to repeat. But fzf is more convenient.
+bindkey -M vicmd '=' vi-repeat-search
 # if not use fzf, uncomment the following command.
 # bindkey -M vicmd '^r' history-incremental-search-backward
 
