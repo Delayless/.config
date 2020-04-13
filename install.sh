@@ -58,6 +58,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	# if install fzf using pacman, it's not be enabled by default key bindings in terminal.
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 	~/.fzf/install
+	sudo pacman -S npm --noconfirm
 	sudo npm install -g p3x-onenote --unsafe-perm=true --allow-root
 	# p3x-onenote &
 fi
