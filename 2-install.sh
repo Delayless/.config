@@ -6,6 +6,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S cmake --noconfirm
 	sudo pacman -S tree --noconfirm
 	sudo pacman -S gvim --noconfirm
+	sudo pacman -S xclip --noconfirm
 	sudo pacman -S clang --noconfirm
 	# joplin-desktop, directory: ~/.joplin-bin
 	wget -O - https://raw.githubusercontent.com/laurent22/joplin/master/Joplin_install_and_update.sh | bash
@@ -58,6 +59,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	# if install fzf using pacman, it's not be enabled by default key bindings in terminal.
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 	~/.fzf/install
+	sudo pacman -S npm --noconfirm
 	sudo npm install -g p3x-onenote --unsafe-perm=true --allow-root
 	# p3x-onenote &
 fi
