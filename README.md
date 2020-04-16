@@ -7,6 +7,7 @@
 	* [config joplin CLI](#config-joplin-cli)
 	* [Install Software](#install-software)
 		- [python3 for vim](#python3-for-vim)
+		- [Goldendict](#goldendict)
 + [Key Map](#key-map)
 + [vim-plug](#vim-plug)
 	* [markdown-preview](#markdown-preview)
@@ -32,6 +33,7 @@
 5. Add Source about the Archlinuxcn of Tsinghua.
 ## config joplin CLI
 ```
+sudo pacman -S nodejs npm
 NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin
 sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin
 ```
@@ -56,6 +58,11 @@ sudo make install
 # vim --version, to check `+python3` or not
 ```
 See [my-packages.txt](./my-packages.txt) for detail.
+### Goldendict
+> Audio player
+> WARN: FFmpeg audio Player ao_open_live() failed: can not open the device alsa channel 1, rate 11025, bit 8
+Edit -- Preferences -- Audio -- Use external program:
+`cvlc  --play-and-stop -Vdummy`
 
 
 # Key Map
@@ -120,6 +127,8 @@ Add a Google Chrome plugin: vimium(Control Chrome using vim's hotkey)
 | `gi`            | Focus the first text input on the page |
 | `dd` or `x`     | removeTab                              |
 | `Ctrl+r` or `X` | restoreTab                             |
+Press 'v' enter visual mode, and use 'c' to enter caret mode from visual mode(press 'v' then 'c' from normal mode).
+'v' and 'c' can be used to switch between visual and caret modes.
 
 # ctag
 ```

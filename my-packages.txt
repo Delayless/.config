@@ -47,3 +47,4 @@ p3x-onenote
 //Zeal is an offline documentation browser for software developers.
 zeal
 asciinema //record and share your terminal sessions.
+xorg-xsetroot
