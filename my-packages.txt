@@ -12,7 +12,6 @@ pikur
 i3
 cmake
 dmenu
-scrot
 netease-cloud-music
 fish
 oh-my-fish
@@ -41,10 +40,15 @@ joplin
 OBS Studio //screen recording and streaming.
 kdenlive //Video Editor
 virtualbox
-brave //browers
 lazygit
 p3x-onenote
 //Zeal is an offline documentation browser for software developers.
 zeal
 asciinema //record and share your terminal sessions.
+//Scrot is a minimalist command line screen capturing application.
+scrot
+//setroot -name "xxx". DWM shows the information(XXX) in the statusbar
 xorg-xsetroot
+kicad //Alternatives to Altium Designer for Linux.
+
+

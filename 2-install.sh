@@ -19,7 +19,9 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S i3 --noconfirm
 	sudo pacman -S dmenu --noconfirm
 	sudo pacman -S powerline-fonts --noconfirm
+	# Scrot is a minimalist command line screen capturing application.
 	sudo pacman -S scrot --noconfirm
+	sudo pacman -S baidunetdisk-bin --noconfirm
 	sudo pacman -S netease-cloud-music --noconfirm
 	sudo pacman -S google-chrome --noconfirm
 	sudo pacman -S w3m --noconfirm
@@ -28,6 +30,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S ranger --noconfirm
 	sudo pacman -S feh --noconfirm
 	sudo pacman -S code --noconfirm
+	sudo pacman -S kicad --noconfirm
 	sudo pacman -S goldendict --noconfirm
 	sudo pacman -S axel --noconfirm
 	sudo pacman -S virtualbox --noconfirm
@@ -35,8 +38,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S kdenlive --noconfirm
 	# Screen recording and streaming
 	sudo pacman -S obs-studio --noconfirm
-	# browers, faster thean chrome
-	sudo pacman -S brave --noconfirm
+	# gif recording
 	sudo pacman -S peek --noconfirm
 	sudo pacman -S lazygit --noconfirm
 	sudo pacman -S vim-plug --noconfirm
