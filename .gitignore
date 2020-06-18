@@ -33,6 +33,8 @@
 !/zsh-vim-mode.zsh
 !/agnoster-modified.zsh-theme
 !/fzf.zsh
+!/coc-settings.json
+!/UltiSnips/
 
 !/joplin
 /joplin/*

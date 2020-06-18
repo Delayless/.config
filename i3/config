@@ -76,7 +76,7 @@ floating_modifier $mod
 bindsym $mod+Return exec alacritty
 
 # open ranger
-bindsym $mod+Shift+f exec alacritty -e ranger 
+bindsym $mod+Shift+f exec alacritty -e ranger
 
 # kill focused window
 bindsym $mod+Shift+q kill
