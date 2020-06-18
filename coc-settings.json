@@ -1,0 +1,8 @@
+{
+	// Preview of a function
+	"suggest.maxPreviewWidth":50,
+	// Detail on the right side of popup window
+	"suggest.detailMaxLength":30,
+	// popup window's width
+	"suggest.labelMaxLength":50
+}

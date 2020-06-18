@@ -65,7 +65,8 @@ set smartcase
 
 set autoindent
 set foldenable
-set foldmethod=indent
+" set foldmethod=indent
+set foldmethod=manual
 "To move to a misspelled word, use ]s and [s.
 "use z=, open suggest list.
 "use zg, add the word to vim dictionary. zw to mark words as incorrect.
@@ -644,12 +645,15 @@ hi HighlightedyankRegion cterm=reverse gui=reverse
 " ===
 " === ultisnips
 " ===
+inoremap <c-j> <nop>
+inoremap <c-k> <nop>
 let g:UltiSnipsUsePythonVersion=3
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/Ultisnips/', 'UltiSnips']
+set runtimepath+=~/.config/UltiSnips
+let g:UltiSnipsSnippetDirectories = ['~/.config/UltiSnips']
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
@@ -684,7 +688,11 @@ set cmdheight=2
 set updatetime=300
 " always show signcolumns. Display the sign in the left column.
 set signcolumn=yes
+
+let g:coc_config_home = $HOME.'/.config/'
 silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
+" get correct comment highlighting for the configureation file(coc-settings.json)
+autocmd FileType json syntax match Comment +\/\/.\+$+
 " You can automatically install multiple extensions when the coc.nvim service starts by defining global variable `g:coc_global_extensions`
 let g:coc_global_extensions = ['coc-python', 'coc-pyls', 'coc-pairs', 'coc-vimlsp', 'coc-translator',
 	\ 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-tailwindcss', 'coc-stylelint',
