@@ -3,7 +3,7 @@ DEFAULT_VI_MODE=viins
 KEYTIMEOUT=1
 
 #######################################
-###### keymap in the normal mode ######
+###### keymap in the insert mode ######
 #######################################
 bindkey '^p' up-history
 bindkey '^n' down-history

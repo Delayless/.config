@@ -28,7 +28,7 @@ exec fcitx
 #################################################################
 ######################自添加开机启动项###########################
 # exec commands will not run when restarting i3, if you need a command to run also when restarting i3 you should use the exec_always keyword. These commands will be run in order.
-# The --no-startup-id parameter disables startup-notification support for this particular exec command. 
+# The --no-startup-id parameter disables startup-notification support for this particular exec command.
 # Shift,Ctrl
 # Super=Mod4=$mod
 # Alt=Mod1，回车(Enter)=Return
@@ -51,7 +51,7 @@ exec fcitx
 ## External expansion screen,set vertical screen
 exec_always xrandr --output eDP1 --primary
 exec_always xrandr --output HDMI1 --mode 1920x1080
-exec_always sleep 1; xrandr --output eDP1 --right-of HDMI1
+exec_always sleep 1; xrandr --output eDP-1 --right-of HDMI1
 # exec_always xrandr --output HDMI1 --rotate left
 
 #---wallpaper---
@@ -76,7 +76,7 @@ floating_modifier $mod
 bindsym $mod+Return exec alacritty
 
 # open ranger
-bindsym $mod+Shift+f exec alacritty -e ranger 
+bindsym $mod+Shift+f exec alacritty -e ranger
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -257,7 +257,7 @@ client.focused          #1ABB96 #1ABB96 #1ABB96 #1ABB96
 client.focused_inactive #44475A #44475A #44475A #44475A
 client.unfocused        #44475A #44475A #44475A #44475A
 client.urgent           #44475A #44475A #44475A #44475A
-client.placeholder      #000000 #0c0c0c #ffffff #000000 
+client.placeholder      #000000 #0c0c0c #ffffff #000000
 
 client.background       #2B2C2B
 
@@ -331,6 +331,10 @@ bindsym $mod+Shift+F3 exec --no-startup-id pactl set-sink-volume 0 +5% #increase
 bindsym $mod+F1 exec --no-startup-id pactl set-sink-mute 1 toggle
 bindsym $mod+F2 exec --no-startup-id pactl set-sink-volume 1 -10%
 bindsym $mod+F3 exec --no-startup-id pactl set-sink-volume 1 +10%
+
+# Sreen brightness controls
+bindsym $mod+F11 exec --no-startup-id brightnessctl set 20%- # decrease screen brightness
+bindsym $mod+F12 exec --no-startup-id brightnessctl set +20% # increase screen brightness
 
 #reverse the mouse button
 #exec xmodmap -e "pointer = 3 2 1"

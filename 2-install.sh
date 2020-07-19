@@ -5,7 +5,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S make --noconfirm
 	sudo pacman -S cmake --noconfirm
 	sudo pacman -S tree --noconfirm
-	sudo pacman -S gvim --noconfirm
+	# sudo pacman -S gvim --noconfirm
 	sudo pacman -S xclip --noconfirm
 	sudo pacman -S clang --noconfirm
 	# joplin-desktop, directory: ~/.joplin-bin
@@ -14,35 +14,51 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S the_silver_searcher --noconfirm
 	sudo pacman -S vlc --noconfirm
 	sudo pacman -S alacritty --noconfirm
+	sudo pacman -S brightnessctl --noconfirm
 	sudo pacman -S fcitx fcitx-im fcitx-configtool fcitx-googlepinyin --noconfirm
 	sudo pacman -S pikaur --noconfirm
 	sudo pacman -S i3 --noconfirm
 	sudo pacman -S dmenu --noconfirm
 	sudo pacman -S powerline-fonts --noconfirm
+	# Scrot is a minimalist command line screen capturing application.
 	sudo pacman -S scrot --noconfirm
+	sudo pacman -S baidunetdisk-bin --noconfirm
 	sudo pacman -S netease-cloud-music --noconfirm
 	sudo pacman -S google-chrome --noconfirm
 	sudo pacman -S w3m --noconfirm
 	sudo pacman -S nerd-fonts-complete --noconfirm
 	# ranger_devicons Prerequisites https://github.com/ryanoasis/nerd-fonts
 	sudo pacman -S ranger --noconfirm
+	# Dependency for Archive Compression/Extraction in ranger
+	sudo pacman -S atool --noconfirm
+	sudo pacman -S pandoc --noconfirm
+	sudo pacman -S texlive-core --noconfirm
 	sudo pacman -S feh --noconfirm
 	sudo pacman -S code --noconfirm
+	sudo pacman -S kicad --noconfirm
 	sudo pacman -S goldendict --noconfirm
+	# google translate for goldendict
+	pip3 install google-translate-for-goldendict
+	# GoldenDict - Edit - Dictionary - Program
+	# type: html, command: `python -m googletranslate.googletranslate zh-CN %GDWORD%`
 	sudo pacman -S axel --noconfirm
 	sudo pacman -S virtualbox --noconfirm
 	# Video Editor
 	sudo pacman -S kdenlive --noconfirm
 	# Screen recording and streaming
 	sudo pacman -S obs-studio --noconfirm
-	# browers, faster thean chrome
-	sudo pacman -S brave --noconfirm
+	# gif recording
 	sudo pacman -S peek --noconfirm
 	sudo pacman -S lazygit --noconfirm
 	sudo pacman -S vim-plug --noconfirm
 	sudo pacman -S vim-spell-en --noconfirm
+	# pdf viewer using vim shortcuts.
+	sudo pacman -S zauthura --noconfirm
+	sudo pacman -S zauthura-pdf-mupdf --noconfirm
+	sudo pacman -S zauthura-djvu --noconfirm
 	##############compton###############
 	sudo pacman -S libx11 libxcomposite libxdamage libxfixes libxext libxrender libxrandr libxinerama ruby-pkg-config xorg-xwininfo libconfig libdrm libdbusmenu-glib asciidoc --noconfirm
+	sudo pacman -S nvidia-utils --noconfirm
 	mkdir -p ~/Desktop/tmp/
 	cd ~/Desktop/tmp/
 	git clone https://github.com/tryone144/compton.git
