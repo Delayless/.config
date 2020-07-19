@@ -49,9 +49,9 @@ exec fcitx
 #################################################################
 #################################################################
 ## External expansion screen,set vertical screen
-exec_always xrandr --output eDP1 --primary
-exec_always xrandr --output HDMI1 --mode 1920x1080
-exec_always sleep 1; xrandr --output eDP-1 --right-of HDMI1
+exec_always xrandr --output eDP-1 --primary
+exec_always xrandr --output HDMI-1 --mode 1920x1080
+exec_always sleep 1; xrandr --output eDP-1 --right-of HDMI-1
 # exec_always xrandr --output HDMI1 --rotate left
 
 #---wallpaper---
