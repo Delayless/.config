@@ -1,0 +1,50 @@
+{
+	"coc.preferences.extensionUpdateCheck": "daily",
+	"coc.preferences.enableFloatHighlight": true,
+	"diagnostic.errorSign": "×",
+	"suggest.snippetIndicator": "",
+	// Preview of a function
+	"suggest.maxPreviewWidth":50,
+	// Detail on the right side of popup window
+	"suggest.detailMaxLength":30,
+	// popup window's width
+	"suggest.labelMaxLength":50,
+	"suggest.completionItemKindLabels": {
+		"class": "\uf0e8",
+		"color": "\ue22b",
+		"constant": "\uf8fe",
+		"default": "\uf29c",
+		"enum": "\uf435",
+		"enumMember": "\uf02b",
+		"event": "\ufacd",
+		"field": "\uf93d",
+		"file": "\uf723",
+		"folder": "\uf115",
+		"function": "\u0192",
+		"interface": "\uf417",
+		"keyword": "\uf1de",
+		"method": "\uf6a6",
+		"module": "\uf40d",
+		"operator": "\uf915",
+		"property": "\ue624",
+		"reference": "\ufa46",
+		"snippet": "\ue60b",
+		"struct": "\ufb44",
+		"text": "\ue612",
+		"typeParameter": "\uf728",
+		"unit": "\uf475",
+		"value": "\uf89f",
+		"variable": "\ue71b"
+	},
+	"snippets.userSnippetsDirectory": "~/.config/UltiSnips/",
+	"snippets.ultisnips.directories": [
+		"UltiSnips",
+		"~/.config/UltiSnips/",
+		"$HOME/.config/nvim/Ultisnips/"
+	],
+	"yank.enableCompletion": false,
+	"python.linting.pylintEnabled": false,
+	"python.linting.flake8Enabled": true,
+	"python.linting.enabled": true,
+	"python.jediEnabled": false
+}

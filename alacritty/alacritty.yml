@@ -681,4 +681,7 @@ key_bindings:
   - { key: F10,      mods: Super,   chars: "\x1b[21;3~"                      }
   - { key: F11,      mods: Super,   chars: "\x1b[23;3~"                      }
   - { key: F12,      mods: Super,   chars: "\x1b[24;3~"                      }
-  - { key: NumpadEnter,             chars: "\n"                              } 
+  - { key: NumpadEnter,             chars: "\n"                              }
+  # Solved alacritty can't recognize shift+enter.
+  - { key: Return,   mods: Shift,   chars: "\x1b[13;2u"                      }
+  - { key: Return,   mods: Control, chars: "\x1b[13;5u"                      }
