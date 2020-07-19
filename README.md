@@ -128,6 +128,7 @@ Add a Google Chrome plugin: vimium(Control Chrome using vim's hotkey)
 | `gi`            | Focus the first text input on the page |
 | `dd` or `x`     | removeTab                              |
 | `Ctrl+r` or `X` | restoreTab                             |
+
 Press 'v' enter visual mode, and use 'c' to enter caret mode from visual mode(press 'v' then 'c' from normal mode).
 'v' and 'c' can be used to switch between visual and caret modes.
 
