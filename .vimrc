@@ -30,6 +30,15 @@ vnoremap Y "+y
 vnoremap <C-c> "+y
 nnoremap <C-b> "+p
 
+" tab to indentation.
+vmap <tab> >gv
+vmap <s-tab> <gv
+
+" Move up/down the selected lines in visual mode.
+vnoremap <c-p> :m '<-2<CR>gv=gv
+vnoremap <c-n> :m '>+1<CR>gv=gv
+nnoremap <c-p> V:m '<-2<CR>gv=gv<esc>
+nnoremap <c-n> V:m '>+1<CR>gv=gv<esc>
 
 let mapleader=" "
 set scrolloff=3   "at least 3 lines on the screenup and screendown
@@ -52,6 +61,7 @@ set autochdir " auto change working directory
 set showcmd
 set wildmenu
 set mouse=a
+" set noswapfile
 
 set hlsearch
 exec "nohlsearch"
@@ -59,13 +69,8 @@ set incsearch
 set ignorecase
 set smartcase
 
-" highlight Column 81
-" highlight ColorColumn ctermbg=red
-" call matchadd('ColorColumn', '\%81v', 100)
-
 set autoindent
-set foldenable
-" set foldmethod=indent
+set nofoldenable
 set foldmethod=manual
 "To move to a misspelled word, use ]s and [s.
 "use z=, open suggest list.
@@ -74,21 +79,26 @@ set spell spelllang=en_us
 set nospell
 
 set ttimeoutlen=100 " reduce latency of swithing input method for Plug fcitx.vim
-noremap <LEADER>sp :set spell!<CR>
+" check spell
+noremap <LEADER>cp :set spell!<CR>
 
 " :help keycode
 " <m-s> == Alt+s ?, they are unequal in ubuntu.
 " j/k will move virtual lines (lines that wrap)
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+" nnoremap j jzz
+" nnoremap k kzz
 noremap J 5j
 noremap K 5k
 noremap H ^
 noremap L $
 noremap W 5w
 noremap B 5b
-noremap <C-k> Hzz
-noremap <C-j> Lzz
+nnoremap <CR> o<Esc>
+nnoremap <S-CR> i<CR><Esc>
+nnoremap <C-k> Hzz
+nnoremap <C-j> Lzz
 
 " it would be prone to bugs if mapping : ;.
 noremap ; :
@@ -124,11 +134,25 @@ noremap su <C-w>t<C-w>K
 " Rotate screens
 noremap sru <C-w>b<C-w>K
 noremap srv <C-w>b<C-w>H
+
+" ===
+" === Tab Management
+" ===
+" `N Backpack` go to N tab or N buffer
+" Create a new tab with tu
+noremap tu :tabe<CR>
+" Move around tabs with th and tl
+noremap th :-tabnext<CR>
+noremap tl :+tabnext<CR>
+" Move the tabs with tmh and tml
+noremap tmh :-tabmove<CR>
+noremap tml :+tabmove<CR>
+
 "noremap <LEADER>j 20J
 noremap U <C-r>
 noremap ` ~
-noremap < <<
-noremap > >>
+nnoremap < <<
+nnoremap > >>
 noremap [f :bN<cr>
 noremap ]f :bn<cr>
 
@@ -160,6 +184,17 @@ tnoremap <LEADER>k <C-w>k
 tnoremap <LEADER>l <C-w>l
 tnoremap <LEADER>h <C-w>h
 
+" ===
+" === Command line mode(cmdline)
+" ===
+cnoremap <c-a> <Home>
+cnoremap <c-e> <End>
+cnoremap <c-l> <Right>
+cnoremap <c-h> <Left>
+" words backward.
+cnoremap <c-b> <S-Left>
+" words forward.
+cnoremap <c-f> <S-Right>
 
 au BufNewFile *.cpp,*.[ch],*.sh,*.java :call SetTitle()
 func SetTitle()
@@ -203,7 +238,7 @@ Plug 'airblade/vim-gitgutter'
 
 " Markdown, It only works on vim >= 8.1 and neovim
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-Plug 'dkarter/bullets.vim'  " automated bullet lists, :RenumberSelection.
+Plug 'Delayless/bullets.vim'  " automated bullet lists, :RenumberSelection.
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 "Modified by vim-markdown. You can look plasticboy/vim-markdown's documentation for help.
@@ -216,9 +251,9 @@ Plug 'lilydjwg/fcitx.vim'
 
 " Install nodejs when necessary:  curl -sL install-node.now.sh/lts | bash
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-fugitive'
 
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+Plug 'Delayless/vim-snippets'
 
 " Requestment: ctags
 Plug 'majutsushi/tagbar'
@@ -238,13 +273,16 @@ Plug 'bling/vim-bufferline'
 Plug 'sheerun/vim-polyglot' " language packages for highlight
 Plug 'ryanoasis/vim-devicons'
 Plug 'MattesGroeger/vim-bookmarks'
-" Plug 'morhetz/gruvbox' "a color scheme
+Plug 'mg979/vim-xtabline'	"Tab manager in the top of windows
+" fades your inactive buffers and preserves syntax highlighting.
+Plug 'TaDaa/vimade'
 
 Plug 'vim-scripts/restore_view.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+Plug 'vuciv/vim-bujo'	"TODO
 " Plug 'vimwiki/vimwiki'
 " Plug 'prettier/vim-prettier', {
 "   \ 'do': 'yarn install',
@@ -252,7 +290,10 @@ Plug 'junegunn/fzf.vim'
 
 " ysiw{ ysiw} yss<p1> cs ds{, Visual select and input S<p class="important">
 Plug 'tpope/vim-surround'
+Plug 'godlygeek/tabular' "Align, :Tabularize /:\zs
 Plug 'tpope/vim-repeat' " The . command will work with ds, cs, yss
+Plug 'junegunn/vim-after-object' " copy, change, delete, yank after =/:/-/#/<space>
+Plug 'chrisbra/NrrwRgn'		"display narrow region(focus)
 call plug#end()
 
 
@@ -309,13 +350,16 @@ let g:NERDTreeIndicatorMapCustom = {
 " == GitGutter
 " ==
 let g:gitgutter_map_keys = 0
-let g:gitgutter_override_sign_column_highlight = 0
 let g:gitgutter_preview_win_floating = 1
 autocmd BufWritePost * GitGutter
 nnoremap ,f :GitGutterFold<CR>
 nnoremap ,d :GitGutterPreviewHunk<CR>
 nnoremap ,k :GitGutterPrevHunk<CR>
 nnoremap ,j :GitGutterNextHunk<CR>
+" Git add(stage) this change
+nnoremap ,a :GitGutterStageHunk<CR>
+" Undo Changed Context
+nnoremap ,u :GitGutterUndoHunk<CR>
 
 
 "===
@@ -353,8 +397,9 @@ let g:mkdp_page_title = '「${name}」'
 nmap <Bslash>m <Plug>MarkdownPreview
 
 
-" Bullets.vim
+" bullets.vim
 " automated bullet lists, select code at visual mode, :RenumberSelection.
+" In Insert mode, <C-t> for child bullet and <C-d> for parent bullet.
 "1. 2. 3. autoincrease, - is also.
 let g:bullets_enabled_file_types = [
     \ 'markdown',
@@ -403,6 +448,7 @@ nnoremap T :call Toc()<CR>
 " === fzf.vim
 " ===
 " :GitFiles
+" :Ag
 "===================================
 " Fuzzy-find tags
 " map <Leader>w :Windows<cr>
@@ -418,66 +464,55 @@ let g:fzf_action = {
 let $FZF_DEFAULT_OPTS .= ' --bind ctrl-a:select-all'
 let $FZF_DEFAULT_OPTS .= ' --bind ctrl-d:deselect-all'
 
-" Replace the default dictionary completion with fzf-based fuzzy completion
-" if not exist the file, can download from github or `sudo pacman -S words`
-" https://raw.githubusercontent.com/eneko/data-repository/master/data/words.txt
-inoremap <expr> <c-x><c-k> fzf#vim#complete('cat /usr/share/dict/words')
-
-" View commits in fzf
-nmap <Bslash>c :Commits<cr>
-" Fuzzy-find tags
-
-" [rg](BurntSushi/ripgrep)
-" search code in files.
-noremap <silent> <c-f> :Rg<CR>
-" [Ag](ggreer/the_silver_searcher)
-" A code searching tool similar to ack, with a focus on speed.
-" `sudo apt install the_silver_searcher`
-" search filename
-" setting in .bashrc for searching hidden files.:FZF actually would use the_silver_searcher's 'ag'.
-noremap <silent> <Bslash>f :FZF<CR>
-" The history of the opened files.
-noremap <silent> <Bslash>h :History<CR>
-noremap <silent> <Bslash>bt :BTags<CR>	" the current file's variables
-" Project tags, save all variables.
-" noremap <silent> <C-t> :Tags<CR>
-noremap <silent> <Bslash>bu :Buffers<CR>
-
 " Default fzf layout
 " - down / up / left / right
 let g:fzf_layout = { 'down': '~40%' }
 
+if has('nvim') && !exists('g:fzf_layout')
+  autocmd! FileType fzf
+  autocmd  FileType fzf set laststatus=0 noshowmode noruler
+    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+endif
+
 " [[B]Commits] Customize the options used by 'git log':
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noruler
-  \ autocmd BufLeave <buffer> set laststatus=2 ruler
-
-command! -bang -nargs=* Buffers
-  \ call fzf#vim#buffers(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 "   :Rg  - Start fzf with hidden preview window that can be enabled with "?" key
 "   :Rg! - Start fzf in fullscreen and display the preview window above
 
-" search code in current file.
 " the dot\. at end of command means regrex's everychar.
-	"\   'rg --column --line-number --no-heading --color=always --smart-case --with-filename . '.fnameescape(expand('%')), 1,
-command! -bang -nargs=* Rg
+	"\   'rg --column --line-number --no-heading --color=always --smart-case --hidden .'.shellescape(<q-args>), 1,
+" set the preview window to hidden by default(add ':hidden'), e.g:
+	"\          : fzf#vim#with_preview('right:50%:hidden', '?'),
+" search code in current file.
+command! -bang -nargs=* RgCurrentFile
 	\ call fzf#vim#grep(
-	\   'rg --column --line-number --no-heading --color=always --smart-case --hidden .'.shellescape(<q-args>), 1,
-	\   <bang>0 ? fzf#vim#with_preview('up:50%')
+	\   'rg --column --line-number --no-heading --color=always --smart-case --with-filename . '.fnameescape(expand('%')), 1,
+	\   <bang>0 ? fzf#vim#with_preview('up:40%')
 	\           : fzf#vim#with_preview('right:50%', '?'),
 	\   <bang>0)
 
+command! -bang -nargs=* Rg
+	\ call fzf#vim#grep(
+	\   'rg --column --line-number --no-heading --color=always --smart-case --hidden .'.shellescape(<q-args>), 1,
+	\   <bang>0 ? fzf#vim#with_preview('up:40%')
+	\           : fzf#vim#with_preview('right:50%', '?'),
+	\   <bang>0)
+
+" Default options are --nogroup --column --color
+let s:ag_options = ' --column --one-device --skip-vcs-ignores --smart-case '
 command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \                 <bang>0)
-" nnoremap <silent> <Leader>A :Ag<CR>
+	\ call fzf#vim#ag(
+	\   <q-args>,
+	\   s:ag_options,
+	\  <bang>0 ? fzf#vim#with_preview('up:60%')
+	\          : fzf#vim#with_preview('right:50%', '?'),
+	\   <bang>0
+	\ )
 
 command! -bang -nargs=* History call fzf#vim#history(fzf#vim#with_preview())
 
+" Variables, same as the plug "Vista".
 command! -bang BTags
   \ call fzf#vim#buffer_tags('', {
   \     'down': '40%',
@@ -489,6 +524,52 @@ command! -bang BTags
   \                     tail -n +\$(echo {3} | tr -d \";\\\"\") {2} |
   \                     head -n 16"'
   \ })
+
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep(
+  \   'git grep --line-number -- '.shellescape(<q-args>), 0,
+  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+
+" Replace the default dictionary completion with fzf-based fuzzy completion
+" if not exist the file, can download from github or `sudo pacman -S words`
+" https://raw.githubusercontent.com/eneko/data-repository/master/data/words.txt
+inoremap <expr> <c-x><c-k> fzf#vim#complete('cat /usr/share/dict/words')
+
+" View commits in fzf
+nmap <Bslash>c :Commits<cr>
+
+" [rg](BurntSushi/ripgrep)
+" search code in files.
+noremap <silent> <c-f> :Rg<CR>
+" [Ag](ggreer/the_silver_searcher)
+" A code searching tool similar to ack, with a focus on speed.
+" `sudo apt install the_silver_searcher`
+" search filename
+" setting in .bashrc for searching hidden files.:FZF actually would use the_silver_searcher's 'ag'.
+noremap <silent> <Bslash>F :FZF<CR>
+nnoremap <silent> <Bslash>f :RgCurrentFile<CR>
+" The history of the opened files.
+noremap <silent> <Bslash>h :History<CR>
+noremap <silent> <Bslash>bt :BTags<CR>	" the current file's variables
+" Project tags, save all variables.
+noremap <silent> <C-t> :Tags<CR>
+noremap <silent> <Bslash>bu :Buffers<CR>
+
+
+" ===
+" === vim-bujo
+" ===
+nmap ,l :Todo<CR>
+" Insert a new task:
+nmap <c-s> <Plug>BujoAddnormal
+imap <c-s> <Plug>BujoAddinsert
+" Check off a task:
+nmap <c-q> <Plug>BujoChecknormal
+imap <c-q> <Plug>BujoCheckinsert
+" Change cache directory:
+let g:bujo#todo_file_path = $HOME . "/.cache/bujo"
+" Change todo window width:
+let g:bujo#window_width = 50
 
 
 " ===
@@ -514,6 +595,29 @@ let g:tagbar_type_markdown = {
         \ 'k:Heading_L3'
     \ ]
 \ }
+
+
+"  ===
+"  === vista.vim
+"  ===
+noremap <silent> vv :Vista!!<CR>
+" Note: this option only works the LSP executives, doesn't work for `:Vista ctags`.
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+" See all the avaliable executives via `:echo g:vista#executives`.
+let g:vista_default_executive = 'ctags'
+" To enable fzf's preview window set g:vista_fzf_preview.
+" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
+" For example:
+let g:vista_fzf_preview = ['right:50%']
+" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
+let g:vista#renderer#enable_icon = 1
+" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
+let g:vista#renderer#icons = {
+\   "function": "\uf794",
+\   "variable": "\uf71b",
+\  }
+
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 
 "compile function
@@ -580,10 +684,12 @@ endfunc
 " ===
 set laststatus=2 ruler
 
+
 " ===
 " === Colorizer
 " ===
 let g:colorizer_syntax = 1
+
 
 " Press F8 to regenerate the tag file
 map <F8> :!ctags -R --c++-kinds=+p --fields=+iaS --extras=+q .<CR><CR>
@@ -591,33 +697,6 @@ imap <F8> <ESC>:!ctags -R --c++-kinds=+p --fields=+iaS --extras=+q .<CR><CR>
 set tags=tags
 set tags+=./tags "Search the tags in current filefolder
 set tags+=~/ctags/tags "When searching the tags, search the ~/ctags/tags at the same time. Don't move the tags file after 'ctags -R'. Otherwise, prompt the warning "Can't find any souce file" when you press Ctrl+]
-
-
-"  ===
-"  === vista.vim
-"  ===
-noremap <silent> vv :Vista!!<CR>
-" Note: this option only works the LSP executives, doesn't work for `:Vista ctags`.
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-" See all the avaliable executives via `:echo g:vista#executives`.
-let g:vista_default_executive = 'ctags'
-" To enable fzf's preview window set g:vista_fzf_preview.
-" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
-" For example:
-let g:vista_fzf_preview = ['right:50%']
-" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
-let g:vista#renderer#enable_icon = 1
-" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
-let g:vista#renderer#icons = {
-\   "function": "\uf794",
-\   "variable": "\uf71b",
-\  }
-
-function! NearestMethodOrFunction() abort
-	return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
-" set statusline+=%{NearestMethodOrFunction()}
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 
 " ===
@@ -628,34 +707,38 @@ set t_Co=256
 " it's awesome, but I don't like a feature about highlight
 " e.g: the word "red" would be highlight red.
 " it's awesome for css
-" set termguicolors
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-set background=dark    " Setting dark mode statusline
+set termguicolors
+" fix color bug about the display of vim's TrueColor
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+set background=dark    " Setting dark mode statusline. or so setting 'light' mode
+let g:deus_invert_selection = '0'
 colorscheme deus
 let g:deus_termcolors=256
 
+
+" ===
+" === Highlight Settings
+" ===
+" :hi to veiw palette
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+hi CocHighlightText cterm=bold ctermfg=235 ctermbg=109 gui=bold guifg=#2C323B guibg=#83a598
+" highlight Column 81
+" highlight ColorColumn ctermbg=red
+" call matchadd('ColorColumn', '\%81v', 100)
+" OR
+" set colorcolumn=81
+" highlight ColorColumn term=reverse cterm=reverse
 hi NonText ctermfg=gray guifg=grey10
-let g:highlightedyank_highlight_duration = 200
-" Color is the same as the fonts' color.
-hi clear HighlightedyankRegion
-hi HighlightedyankRegion cterm=reverse gui=reverse
+let g:highlightedyank_highlight_duration = 2000
+augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 50)
+augroup END
 
-
-" ===
-" === ultisnips
-" ===
-inoremap <c-j> <nop>
-inoremap <c-k> <nop>
-let g:UltiSnipsUsePythonVersion=3
-set runtimepath+=~/.config/UltiSnips
-let g:UltiSnipsSnippetDirectories = ['~/.config/UltiSnips']
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
 
 " Press space twice to jump to the next '<++>' and edit it
 map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
@@ -671,20 +754,55 @@ autocmd BufRead,BufNewFile *.md setlocal spell
 
 
 " ===
+" === vim-bookmarks
+" ===
+let g:bookmark_no_default_key_mappings = 1
+function! BookmarkMapKeys()
+    nmap mm :BookmarkToggle<CR>
+    nmap mi :BookmarkAnnotate<CR>
+    nmap mj :BookmarkNext<CR>
+    nmap mk :BookmarkPrev<CR>
+    nmap ma :BookmarkShowAll<CR>
+    nmap mc :BookmarkClear
+    nmap mx :BookmarkClearAll
+    nmap mp :BookmarkMoveUp
+    nmap mn :BookmarkMoveDown
+endfunction
+function! BookmarkUnmapKeys()
+    unmap mm
+    unmap mi
+    unmap mj
+    unmap mk
+    unmap ma
+    unmap mc
+    unmap mx
+    unmap mp
+    unmap mn
+endfunction
+autocmd BufEnter * :call BookmarkMapKeys()
+autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
+
+
+" ===
+" === vimade
+" ===
+let g:vimade = {}
+let g:vimade.fadelevel = 0.7
+let g:vimade.enablesigns = 0
+
+
+" ===
 " === coc.nvim
 " ===
 " coc-python can't autofresh the complete item after backspace. coc can't implementation.
 " Only manual trigger completion by pressing Tab
-" :hi to veiw palette
-" Highlight symbol under cursor on CursorHold
-" autocmd CursorHold * silent call CocActionAsync('highlight')
-" hi CocHighlightText cterm=bold ctermfg=235 ctermbg=109 gui=bold guifg=#2C323B guibg=#83a598
 " if hidden is not set, TextEdit might fail.
 set hidden
 set nobackup
 set nowritebackup
 
 set cmdheight=2
+" if the echo is blinked out in `cmdline`, you cant set updatetime to be larger.
 set updatetime=300
 " always show signcolumns. Display the sign in the left column.
 set signcolumn=yes
@@ -696,9 +814,8 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 " You can automatically install multiple extensions when the coc.nvim service starts by defining global variable `g:coc_global_extensions`
 let g:coc_global_extensions = ['coc-python', 'coc-pyls', 'coc-pairs', 'coc-vimlsp', 'coc-translator',
 	\ 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-tailwindcss', 'coc-stylelint',
-	\ 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-highlight',
+	\ 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-highlight', 'coc-snippets',
 	\ 'coc-cmake', 'coc-clangd', 'coc-explorer', 'coc-emoji', 'coc-dictionary']
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " use <tab> for trigger completion and navigate to the next complete item
 inoremap <silent><expr> <Tab>
    		\ pumvisible() ? "\<C-n>" :
@@ -710,21 +827,34 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+" coc-snippets
+" supported .tex not only .latex
+let g:tex_flavor = "latex"
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+let g:coc_snippet_next = '<c-j>'
+let g:coc_snippet_prev = '<c-k>'
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " remap Ctrl+j to trigger completion.
 inoremap <silent><expr> <c-j> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " Useful commands
 nnoremap <silent> <Bslash>y :<C-u>CocList -A --normal yank<cr>
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" `:CocDiagnostics` to check for syntax errors(warning).
+" e.g: According to the python's PEP8 syntax rules.
+" Use `[e` and `]e` to navigate diagnostics
+nmap <silent> [e <Plug>(coc-diagnostic-prev)
+nmap <silent> ]e <Plug>(coc-diagnostic-next)
 
 nmap gd <Plug>(coc-definition)
 nmap gy <Plug>(coc-type-definition)
-nmap gi <Plug>(coc-implementation)
 nmap gr <Plug>(coc-references)
-" nmap <leader>rn <Plug>(coc-rename)
-" Remap for rename current word
+" default "gi": Insert text in the same position as where Insert mode was stopped last time in the current buffer.
+" nmap gi <Plug>(coc-implementation)
+" rename current word
 nmap <F2> <Plug>(coc-rename)
 
 " Use D to show documentation in preview window
@@ -749,48 +879,62 @@ augroup mygroup
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-" Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
-
 
 " ===
 " === coc-translator
 " ===
 " :CocList translator
-" press Tab can select operation(yank, append, delete)
+" press Tab can select operation(yank, append, delete) after `:CocList translator`
 " popup
 nmap <LEADER>t <Plug>(coc-translator-p)
 vmap <LEADER>t <Plug>(coc-translator-pv)
 " echo
 nmap <LEADER>e <Plug>(coc-translator-e)
-nmap <LEADER>e <Plug>(coc-translator-ev)
+vmap <LEADER>e <Plug>(coc-translator-ev)
 " replace
 nmap <LEADER>r <Plug>(coc-translator-r)
-nmap <LEADER>r <Plug>(coc-translator-rv)
+vmap <LEADER>r <Plug>(coc-translator-rv)
 
 
 " ===
-" === vim-bookmarks
+" === Tabular
 " ===
-" let g:bookmark_no_default_key_mappings = 1
-nmap mm :BookmarkToggle<CR>
-nmap mi :BookmarkAnnotate<CR>
-nmap mn :BookmarkNext<CR>
-nmap mp :BookmarkPrev<CR>
-nmap ma :BookmarkShowAll<CR>
-nmap mc :BookmarkClear<CR>
-nmap mx :BookmarkClearAll<CR>
-nmap mkk :BookmarkMoveUp<CR>
-nmap mjj :BookmarkMoveDown<CR>
+" :Tabularize /=<CR>, equal signs(=) could be aligned.
+" If you don’t like stacking the colons in a column, you could use the \zs atom to exclude the : character from the search match.
+" :Tabularize /:\zs<CR>.
+" a(mnemonic for align)
+vmap ga :Tabularize /
+"If you put [this gist](https://gist.github.com/tpope/287147#file-cucumbertables-vim) in your vimrc file, then it will call the :Tabularize command each time you insert a | character.
 
 
-" tab to indentation
-nmap <tab> V>
-nmap <s-tab> V<
-vmap <tab> >gv
-vmap <s-tab> <gv
-
-
+" ===
+" === vim-repeat
+" ===
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
+
+
+" ===
+" === vim-after-object
+" ===
+" va=  visual after =
+" ca=  change after =
+" da=  delete after =
+" ya=  yank after =
+autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
+
+
+" ===
+" === NrrwRgn
+" ===
+vmap <LEADER>nr <Plug>NrrwrgnDo
+
+
+" ===
+" === Remove Unwant Spaces
+" ===
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+autocmd BufWritePre * :call TrimWhitespace()

@@ -87,9 +87,9 @@ alias sudo='sudo -E '
 alias cp="cp -i"
 alias mv="mv -i"
 
-alias eb='vim ~/.bashrc'
+alias vb='vim ~/.bashrc'
 alias sb='source ~/.bashrc'
-alias ez='vim ~/.zshrc'
+alias vz='vim ~/.zshrc'
 alias sz='source ~/.zshrc'
 alias gs='git status'
 alias gp='git pull'
@@ -105,11 +105,14 @@ alias unsetproxy="unset ALL_PROXY"
 alias getip="curl -i https://ip.cn"
 alias i3config="vim ~/.config/i3/config"
 alias comptonconfig="vim ~/.config/compton.conf"
-alias vimrc="vim ~/.vimrc"
+alias vimrc="vim ~/.config/.vimrc"
 alias ra="ranger"
+# Usage: "ag text ./search-path/"
 alias ag='ag --hidden --ignore .git'
 alias cat=ccat
 alias lg=lazygit
+# Help Config
+alias helpconfig="vim ~/.config/README.md"
 # alias gdb="gdb -tui"
 # alias getip="getent hosts unix.stackexchange.com | awk '{ print $1 }'"
 
@@ -119,6 +122,7 @@ source ~/.config/fzf.zsh
 
 # Enable Italics of vim-dues
 export TERM_ITALICS=true
+export RANGER_LOAD_DEFAULT_RC="false"
 
 # Use ranger to switch directories and bind it to ctrl-o
 # q swith directory and cancel ranger.
@@ -132,6 +136,8 @@ rangercd () {
     fi
 }
 bindkey -s '^o' 'rangercd\n'
+
+cdls() {cd "$@" && ls; }
 
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
