@@ -3,18 +3,19 @@
 
 + [Download the Repository](#download-the-repository)
 + [config](#config)
-	* [config environment](#config-environment)
-	* [config joplin CLI](#config-joplin-cli)
-	* [Install Software](#install-software)
-		- [python3 for vim](#python3-for-vim)
-		- [Goldendict](#goldendict)
+    * [config environment](#config-environment)
+    * [config joplin CLI](#config-joplin-cli)
+    * [Install Software](#install-software)
+        - [python3 for vim](#python3-for-vim)
+        - [Goldendict](#goldendict)
 + [Key Map](#key-map)
 + [vim-plug](#vim-plug)
-	* [markdown-preview](#markdown-preview)
+    * [markdown-preview](#markdown-preview)
 + [vimium(Chrome plugin)](#vimiumchrome-plugin)
 + [ctag](#ctag)
 + [coc](#coc)
-	* [test code block](#test-code-block)
+    * [test code block](#test-code-block)
++ [PS](#ps)
 
 <!-- /TOC -->
 
@@ -111,23 +112,24 @@ Modified from`theniceboy/nvim`
 # vimium(Chrome plugin)
 Add a Google Chrome plugin: vimium(Control Chrome using vim's hotkey)
 
-| Shotcut         | Action                                 |
-|-----------------|----------------------------------------|
-| `h` `j` `k` `l` | Scroll Left/Down/Up/Right              |
-| `gg` `G`        | Scroll to the top/bottom of the page   |
-| `K`             | scrollPageUp                           |
-| `J`             | scrollPageDown                         |
-| `Ctrl+j`        | scrollFullPageDown                     |
-| `Ctrl+k`        | scrollFullPageUp                       |
-| `f`             | Open a link in the current tab         |
-| `F`             | Open a link in a new tab               |
-| `u`             | goBack                                 |
-| `U`             | goForward                              |
-| `H`             | previousTab                            |
-| `L`             | nextTab                                |
-| `gi`            | Focus the first text input on the page |
-| `dd` or `x`     | removeTab                              |
-| `Ctrl+r` or `X` | restoreTab                             |
+| Shotcut         | Action                                         |
+|-----------------|------------------------------------------------|
+| `h` `j` `k` `l` | Scroll Left/Down/Up/Right                      |
+| `gg` `G`        | Scroll to the top/bottom of the page           |
+| `K`             | scrollPageUp                                   |
+| `J`             | scrollPageDown                                 |
+| `Ctrl+j`        | scrollFullPageDown                             |
+| `Ctrl+k`        | scrollFullPageUp                               |
+| `f`             | Open a link in the current tab                 |
+| `F`             | Open a link in a new tab                       |
+| `u`             | goBack                                         |
+| `U`             | goForward                                      |
+| `H`             | previousTab                                    |
+| `L`             | nextTab                                        |
+| `gi`            | Focus the first text input on the page         |
+| `dd` or `x`     | removeTab                                      |
+| `Ctrl+r` or `X` | restoreTab                                     |
+| `o` or `O`      | open a link. Edit its URL by typing Ctrl+Enter |
 
 Press 'v' enter visual mode, and use 'c' to enter caret mode from visual mode(press 'v' then 'c' from normal mode).
 'v' and 'c' can be used to switch between visual and caret modes.
@@ -188,4 +190,11 @@ if __name__ == "__main__":
 	a()
 ```
 
-
+# PS
+1. dmenu font fullwidth
+```bash
+# Downgrade `ttf-inconsolata` to older version
+sudo pacman -U https://archive.archlinux.org/packages/t/ttf-inconsolata/ttf-inconsolata-1%3A2.0.0.1-3-any.pkg.tar.xz
+# Tell pacman to ignore auto-upgrading ttf-inconsolata in the future.
+echo "IgnorePkg = ttf-inconsolata" >> /etc/pacman.conf
+```

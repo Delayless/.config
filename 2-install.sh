@@ -29,6 +29,8 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S nerd-fonts-complete --noconfirm
 	# ranger_devicons Prerequisites https://github.com/ryanoasis/nerd-fonts
 	sudo pacman -S ranger --noconfirm
+	# preview json file with color in ranger
+	sudo pacman -S jq --noconfirm
 	# Dependency for Archive Compression/Extraction in ranger
 	sudo pacman -S atool --noconfirm
 	sudo pacman -S pandoc --noconfirm
@@ -53,9 +55,9 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S vim-plug --noconfirm
 	sudo pacman -S vim-spell-en --noconfirm
 	# pdf viewer using vim shortcuts.
-	sudo pacman -S zauthura --noconfirm
-	sudo pacman -S zauthura-pdf-mupdf --noconfirm
-	sudo pacman -S zauthura-djvu --noconfirm
+	sudo pacman -S zathura --noconfirm
+	sudo pacman -S zathura-pdf-mupdf --noconfirm
+	sudo pacman -S zathura-djvu --noconfirm
 	##############compton###############
 	sudo pacman -S libx11 libxcomposite libxdamage libxfixes libxext libxrender libxrandr libxinerama ruby-pkg-config xorg-xwininfo libconfig libdrm libdbusmenu-glib asciidoc --noconfirm
 	sudo pacman -S nvidia-utils --noconfirm

@@ -96,3 +96,10 @@ snippet / "Fraction" iA
 \\frac{${VISUAL}}{$1}$0
 endsnippet
 
+snippet box "Box"
+`!p snip.rv = '┌' + '─' * (len(t[1]) + 2) + '┐'`
+│ $1 │
+`!p snip.rv = '└' + '─' * (len(t[1]) + 2) + '┘'`
+$0
+endsnippet
+

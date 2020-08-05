@@ -83,16 +83,29 @@ handle_extension() {
             lynx -dump -- "${FILE_PATH}" && exit 5
             elinks -dump "${FILE_PATH}" && exit 5
             ;; # Continue with next handler on failure
+
+        ## JSON
+        json)
+            jq --color-output . "${FILE_PATH}" && exit 5
+            python -m json.tool -- "${FILE_PATH}" && exit 5
+            ;;
     esac
 }
 
 handle_image() {
+    local DEFAULT_SIZE="1920x1080"
     local mimetype="${1}"
     case "${mimetype}" in
         # SVG
         # image/svg+xml)
         #     convert "${FILE_PATH}" "${IMAGE_CACHE_PATH}" && exit 6
         #     exit 1;;
+
+        # DjVu
+        image/vnd.djvu)
+            ddjvu -format=tiff -quality=90 -page=1 -size="${DEFAULT_SIZE}" \
+                  - "${IMAGE_CACHE_PATH}" < "${FILE_PATH}" \
+                  && exit 6 || exit 1;;
 
         # Image
         image/*)
@@ -114,6 +127,7 @@ handle_image() {
             # Thumbnail
             ffmpegthumbnailer -i "${FILE_PATH}" -o "${IMAGE_CACHE_PATH}" -s 0 && exit 6
             exit 1;;
+
         # PDF
         application/pdf)
             pdftoppm -f 1 -l 1 \
@@ -123,6 +137,37 @@ handle_image() {
                      -jpeg -tiffcompression jpeg \
                      -- "${FILE_PATH}" "${IMAGE_CACHE_PATH%.*}" \
                 && exit 6 || exit 1;;
+
+        # ePub, MOBI, FB2 (using Calibre)
+        application/epub+zip|application/x-mobipocket-ebook|\
+        application/x-fictionbook+xml)
+            # ePub (using https://github.com/marianosimone/epub-thumbnailer)
+            epub-thumbnailer "${FILE_PATH}" "${IMAGE_CACHE_PATH}" \
+                "${DEFAULT_SIZE%x*}" && exit 6
+            ebook-meta --get-cover="${IMAGE_CACHE_PATH}" -- "${FILE_PATH}" \
+                >/dev/null && exit 6
+            exit 1;;
+
+        ## Font
+        application/font*|application/*opentype)
+            preview_png="/tmp/$(basename "${IMAGE_CACHE_PATH%.*}").png"
+            if fontimage -o "${preview_png}" \
+                         --pixelsize "120" \
+                         --fontname \
+                         --pixelsize "80" \
+                         --text "  ABCDEFGHIJKLMNOPQRSTUVWXYZ  " \
+                         --text "  abcdefghijklmnopqrstuvwxyz  " \
+                         --text "  0123456789.:,;(*!?') ff fl fi ffi ffl  " \
+                         --text "  The quick brown fox jumps over the lazy dog.  " \
+                         "${FILE_PATH}";
+            then
+                convert -- "${preview_png}" "${IMAGE_CACHE_PATH}" \
+                    && rm "${preview_png}" \
+                    && exit 6
+            else
+                exit 1
+            fi
+            ;;
 
         # Preview archives using the first image inside.
         # (Very useful for comic book collections for example.)
@@ -163,6 +208,7 @@ handle_image() {
     esac
 }
 
+# Display File information. e.g. epub file's bookname, author, publisher.
 handle_mime() {
     local mimetype="${1}"
     case "${mimetype}" in

@@ -8,11 +8,12 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango:monospace 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+# font pango:DejaVu Sans Mono 8
+# font pango:Terminus 11px
 
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
@@ -20,6 +21,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
 
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
@@ -45,14 +47,15 @@ exec fcitx
 
 # like mac spotlight
 #exec_always albert
-
+exec_always --no-startup-id ~/.config/i3/tap-to-click.sh
+exec_always --no-startup-id ~/.config/i3/inverse-scroll.sh
 #################################################################
 #################################################################
 ## External expansion screen,set vertical screen
 exec_always xrandr --output eDP-1 --primary
 exec_always xrandr --output HDMI-1 --mode 1920x1080
 exec_always sleep 1; xrandr --output eDP-1 --right-of HDMI-1
-# exec_always xrandr --output HDMI1 --rotate left
+# exec_always xrandr --output HDMI-1 --rotate left
 
 #---wallpaper---
 # static mode
@@ -91,7 +94,14 @@ bindsym $mod+Print exec scrot
 bindsym $mod+Shift+d exec goldendict
 
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that installed.
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# Font spacing too big after system update.
+# Downgrade `ttf-inconsolata` to older version
+# sudo pacman -U https://archive.archlinux.org/packages/t/ttf-inconsolata/ttf-inconsolata-1%3A2.0.0.1-3-any.pkg.tar.xz
+# Tell pacman to ignore auto-upgrading ttf-inconsolata in the future.
+# echo "IgnorePkg = ttf-inconsolata" >> /etc/pacman.conf
+bindsym $mod+d exec --no-startup-id dmenu_recency
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# bindsym $mod+d exec --no-startup-id dmenu_run -fn monaco-15
 
 # google chrome
 #bindsym $mod+Shift+c exec google-chrome --proxy-server="socks://127.0.0.1:1080"
@@ -227,9 +237,11 @@ bar {
     status_command i3blocks -c ~/.config/i3/i3blocks.conf
 
     position top
+	# dock, hide, invisible
     mode hide
     workspace_buttons yes
-    #output eDP1
+	# commenting the following line will display bar on all monitors.
+    #output eDP-1
     tray_output primary
     #tray_padding 0
     separator_symbol "|"
