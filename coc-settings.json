@@ -12,7 +12,7 @@
 	"suggest.completionItemKindLabels": {
 		"class": "\uf0e8",
 		"color": "\ue22b",
-		"constant": "\uf8fe",
+		"constant": "\uf8ff",
 		"default": "\uf29c",
 		"enum": "\uf435",
 		"enumMember": "\uf02b",
@@ -25,16 +25,16 @@
 		"keyword": "\uf1de",
 		"method": "\uf6a6",
 		"module": "\uf40d",
-		"operator": "\uf915",
-		"property": "\ue624",
-		"reference": "\ufa46",
+		"operator": "\u00b1",
+		"property": "\ufab6",
+		"reference": "\uf87a",
 		"snippet": "\ue60b",
 		"struct": "\ufb44",
 		"text": "\ue612",
-		"typeParameter": "\uf728",
+		"typeParameter": "\uf278",
 		"unit": "\uf475",
-		"value": "\uf89f",
-		"variable": "\ue71b"
+		"value": "\uf8a3",
+		"variable": "\uf71b"
 	},
 	"snippets.userSnippetsDirectory": "~/.config/UltiSnips/",
 	"snippets.ultisnips.directories": [
