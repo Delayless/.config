@@ -155,8 +155,8 @@ noremap U <C-r>
 noremap ` ~
 nnoremap < <<
 nnoremap > >>
-noremap <LEADER>bh :bN<cr>
-noremap <LEADER>bl :bn<cr>
+noremap [f :bn<cr>
+noremap ]f :bN<cr>
 
 map S :w<CR>
 map Q :q<CR>
@@ -293,7 +293,7 @@ Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs' " better than coc-pairs
 Plug 'godlygeek/tabular' "Align, :Tabularize /:\zs
 Plug 'tpope/vim-repeat' " The . command will work with ds, cs, yss
-Plug 'junegunn/vim-after-object' " copy, change, delete, yank after =/:/-/#/<space>
+Plug 'junegunn/vim-after-object' " copy, change, delete, yank after some symbols like `=/:/-/#/<space>`
 Plug 'chrisbra/NrrwRgn'		"display narrow region(focus)
 Plug 'puremourning/vimspector', { 'do': './install_gadget.py --force-enable-chrome --enable-c' }
 Plug 'liuchengxu/vim-which-key'
@@ -776,7 +776,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 hi CocHighlightText cterm=bold ctermfg=235 ctermbg=109 gui=bold guifg=#2C323B guibg=#83a598
 " Python PEP8: Error: line too long (183 > 79 characters). So set colorcolumn=80
 highlight ColorColumn ctermbg=red ctermfg=white guibg=#592929
-call matchadd('ColorColumn', '\%80v', 100)
+autocmd FileType python call matchadd('ColorColumn', '\%80v', 100)
 " OR
 " set colorcolumn=81
 " highlight ColorColumn term=reverse cterm=reverse
@@ -791,8 +791,8 @@ augroup END
 " Press space twice to jump to the next '<++>' and edit it
 map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 source ~/.config/snippits.vim
-"markdown auto spell
-autocmd BufRead,BufNewFile *.md setlocal spell
+" markdown auto spell
+" autocmd BufRead,BufNewFile *.md setlocal spell
 
 
 " ===
@@ -1016,6 +1016,10 @@ command! -register CopyMatches call CopyMatches(<q-reg>)
 " === vim-which-key
 " ===
 set timeoutlen=500
+" Executes native commands if keymap is not defined.
+" use `:WhichKey 'g'` and get `gg` work correct:
+let g:which_key_fallback_to_native_key=1
+let g:which_key_display_names = {'<CR>': '↵', '<TAB>': '⇆'}
 
 let g:which_key_map = {}
 let g:which_key_map.s = {
@@ -1060,5 +1064,8 @@ let g:which_key_map.b = {
 call which_key#register('<Space>', "g:which_key_map")
 
 nnoremap <silent> , :WhichKey  ','<CR>
+nnoremap <silent> g :WhichKey  'g'<CR>
+nnoremap <silent> [ :WhichKey  '['<CR>
+nnoremap <silent> ] :WhichKey  ']'<CR>
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 nnoremap <silent> <Bslash> :WhichKey  '<Bslash>'<CR>
