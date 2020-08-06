@@ -228,7 +228,7 @@ func SetTitle()
         call append(line(".")+5, "#include<stdio.h>")
         call append(line(".")+6, "")
     endif
-	"Edit at the endline of file
+    "Edit at the endline of file
     autocmd BufNewFile * normal G
 endfunc
 
@@ -263,7 +263,7 @@ Plug 'majutsushi/tagbar'
 Plug 'liuchengxu/vista.vim'
 
 " Plug 'Konfekt/FastFold'
-" Plug 'tpope/vim-capslock'	" Ctrl+L (insert) to toggle capslock
+" Plug 'tpope/vim-capslock' " Ctrl+L (insert) to toggle capslock
 
 " Pretty Dress
 Plug 'liuchengxu/eleline.vim'
@@ -273,7 +273,7 @@ Plug 'bling/vim-bufferline'
 Plug 'sheerun/vim-polyglot' " language packages for highlight
 Plug 'ryanoasis/vim-devicons'
 Plug 'MattesGroeger/vim-bookmarks'
-Plug 'mg979/vim-xtabline'	"Tab manager in the top of windows
+Plug 'mg979/vim-xtabline'   "Tab manager in the top of windows
 " fades your inactive buffers and preserves syntax highlighting.
 Plug 'TaDaa/vimade'
 
@@ -282,7 +282,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-Plug 'vuciv/vim-bujo'	"TODO
+Plug 'vuciv/vim-bujo'   "TODO
 " Plug 'vimwiki/vimwiki'
 " Plug 'prettier/vim-prettier', {
 "   \ 'do': 'yarn install',
@@ -294,18 +294,18 @@ Plug 'jiangmiao/auto-pairs' " better than coc-pairs
 Plug 'godlygeek/tabular' "Align, :Tabularize /:\zs
 Plug 'tpope/vim-repeat' " The . command will work with ds, cs, yss
 Plug 'junegunn/vim-after-object' " copy, change, delete, yank after some symbols like `=/:/-/#/<space>`
-Plug 'chrisbra/NrrwRgn'		"display narrow region(focus)
+Plug 'chrisbra/NrrwRgn'     "display narrow region(focus)
 Plug 'puremourning/vimspector', { 'do': './install_gadget.py --force-enable-chrome --enable-c' }
 Plug 'liuchengxu/vim-which-key'
 
 if has('nvim')
-	" Ranger in a floating window. Only support neovim for now 2020-07-08 21:43.
-	" `:checkhealth` Run all healthchecks.
-	Plug 'kevinhwang91/rnvimr'
-	" Plug 'cpiger/NeoDebug'
+    " Ranger in a floating window. Only support neovim for now 2020-07-08 21:43.
+    " `:checkhealth` Run all healthchecks.
+    Plug 'kevinhwang91/rnvimr'
+    " Plug 'cpiger/NeoDebug'
 else
-	" ranger's dependency for neovim   "Plug 'rbgrouleff/bclose.vim'
-	Plug 'francoiscabrol/ranger.vim'
+    " ranger's dependency for neovim   "Plug 'rbgrouleff/bclose.vim'
+    Plug 'francoiscabrol/ranger.vim'
 endif
 
 call plug#end()
@@ -395,14 +395,14 @@ let g:mkdp_refresh_slow = 0
 " by default it can be use in markdown file
 let g:mkdp_command_for_global = 0
 let g:mkdp_preview_options = {
-			\ 'mkit': {},
-			\ 'katex': {},
-			\ 'uml': {},
-			\ 'maid': {},
-			\ 'disable_sync_scroll': 0,
-			\ 'sync_scroll_type': 'middle',
-			\ 'hide_yaml_meta': 1
-			\ }
+            \ 'mkit': {},
+            \ 'katex': {},
+            \ 'uml': {},
+            \ 'maid': {},
+            \ 'disable_sync_scroll': 0,
+            \ 'sync_scroll_type': 'middle',
+            \ 'hide_yaml_meta': 1
+            \ }
 let g:mkdp_markdown_css = ''
 let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
@@ -495,34 +495,34 @@ let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %
 "   :Rg! - Start fzf in fullscreen and display the preview window above
 
 " the dot\. at end of command means regrex's everychar.
-	"\   'rg --column --line-number --no-heading --color=always --smart-case --hidden .'.shellescape(<q-args>), 1,
+    "\   'rg --column --line-number --no-heading --color=always --smart-case --hidden .'.shellescape(<q-args>), 1,
 " set the preview window to hidden by default(add ':hidden'), e.g:
-	"\          : fzf#vim#with_preview('right:50%:hidden', '?'),
+    "\          : fzf#vim#with_preview('right:50%:hidden', '?'),
 " search code in current file.
 command! -bang -nargs=* RgCurrentFile
-	\ call fzf#vim#grep(
-	\   'rg --column --line-number --no-heading --color=always --smart-case --with-filename . '.fnameescape(expand('%')), 1,
-	\   <bang>0 ? fzf#vim#with_preview('up:40%')
-	\           : fzf#vim#with_preview('right:50%', '?'),
-	\   <bang>0)
+    \ call fzf#vim#grep(
+    \   'rg --column --line-number --no-heading --color=always --smart-case --with-filename . '.fnameescape(expand('%')), 1,
+    \   <bang>0 ? fzf#vim#with_preview('up:40%')
+    \           : fzf#vim#with_preview('right:50%', '?'),
+    \   <bang>0)
 
 command! -bang -nargs=* Rg
-	\ call fzf#vim#grep(
-	\   'rg --column --line-number --no-heading --color=always --smart-case --hidden .'.shellescape(<q-args>), 1,
-	\   <bang>0 ? fzf#vim#with_preview('up:40%')
-	\           : fzf#vim#with_preview('right:50%', '?'),
-	\   <bang>0)
+    \ call fzf#vim#grep(
+    \   'rg --column --line-number --no-heading --color=always --smart-case --hidden .'.shellescape(<q-args>), 1,
+    \   <bang>0 ? fzf#vim#with_preview('up:40%')
+    \           : fzf#vim#with_preview('right:50%', '?'),
+    \   <bang>0)
 
 " Default options are --nogroup --column --color
 let s:ag_options = ' --column --one-device --skip-vcs-ignores --smart-case '
 command! -bang -nargs=* Ag
-	\ call fzf#vim#ag(
-	\   <q-args>,
-	\   s:ag_options,
-	\  <bang>0 ? fzf#vim#with_preview('up:60%')
-	\          : fzf#vim#with_preview('right:50%', '?'),
-	\   <bang>0
-	\ )
+    \ call fzf#vim#ag(
+    \   <q-args>,
+    \   s:ag_options,
+    \  <bang>0 ? fzf#vim#with_preview('up:60%')
+    \          : fzf#vim#with_preview('right:50%', '?'),
+    \   <bang>0
+    \ )
 
 command! -bang -nargs=* History call fzf#vim#history(fzf#vim#with_preview())
 
@@ -564,7 +564,7 @@ noremap <silent> <Bslash>F :FZF<CR>
 nnoremap <silent> <Bslash>f :RgCurrentFile<CR>
 " The history of the opened files.
 noremap <silent> <Bslash>h :History<CR>
-noremap <silent> <Bslash>bt :BTags<CR>	" the current file's variables
+noremap <silent> <Bslash>bt :BTags<CR>  " the current file's variables
 " Project tags, save all variables.
 noremap <silent> <C-t> :Tags<CR>
 noremap <silent> <Bslash>bu :Buffers<CR>
@@ -590,41 +590,41 @@ let g:bujo#window_width = 50
 " === Different between nvim and vim
 " ===
 if has('nvim')
-	" ===
-	" === rnvimr
-	" ===
-	let g:rnvimr_enable_ex = 1
-	let g:rnvimr_enable_picker = 1
-	let g:rnvimr_draw_border = 0
-	highlight link RnvimrNormal CursorLine
-	tnoremap <silent> <M-i> <C-\><C-n>:RnvimrResize<CR>
-	nnoremap <silent> <M-o> :RnvimrToggle<CR>
-	" nnoremap <silent> <Bslash>r :RnvimrToggle<CR>
-	tnoremap <silent> <M-o> <C-\><C-n>:RnvimrToggle<CR>
-	" Map Rnvimr action
-	let g:rnvimr_action = {
-				\ '<C-t>': 'NvimEdit tabedit',
-				\ '<C-x>': 'NvimEdit split',
-				\ '<C-v>': 'NvimEdit vsplit',
-				\ 'gw': 'JumpNvimCwd',
-				\ 'yw': 'EmitRangerCwd'
-				\ }
-	" Customize the initial layout
-	let g:rnvimr_layout = { 'relative': 'editor',
-				\ 'width': &columns,
-				\ 'height': &lines,
-				\ 'col': 0,
-				\ 'row': 0,
-				\ 'style': 'minimal' }
-	let g:rnvimr_presets = [{'width': 1.0, 'height': 1.0},
-						  \ {'width': 0.500, 'height': 0.500, 'col': 0.5, 'row': 0}]
+    " ===
+    " === rnvimr
+    " ===
+    let g:rnvimr_enable_ex = 1
+    let g:rnvimr_enable_picker = 1
+    let g:rnvimr_draw_border = 0
+    highlight link RnvimrNormal CursorLine
+    tnoremap <silent> <M-i> <C-\><C-n>:RnvimrResize<CR>
+    nnoremap <silent> <M-o> :RnvimrToggle<CR>
+    " nnoremap <silent> <Bslash>r :RnvimrToggle<CR>
+    tnoremap <silent> <M-o> <C-\><C-n>:RnvimrToggle<CR>
+    " Map Rnvimr action
+    let g:rnvimr_action = {
+                \ '<C-t>': 'NvimEdit tabedit',
+                \ '<C-x>': 'NvimEdit split',
+                \ '<C-v>': 'NvimEdit vsplit',
+                \ 'gw': 'JumpNvimCwd',
+                \ 'yw': 'EmitRangerCwd'
+                \ }
+    " Customize the initial layout
+    let g:rnvimr_layout = { 'relative': 'editor',
+                \ 'width': &columns,
+                \ 'height': &lines,
+                \ 'col': 0,
+                \ 'row': 0,
+                \ 'style': 'minimal' }
+    let g:rnvimr_presets = [{'width': 1.0, 'height': 1.0},
+                          \ {'width': 0.500, 'height': 0.500, 'col': 0.5, 'row': 0}]
 else
-	" ===
-	" === Ranger.vim
-	" ===
-	execute "set <M-o>=\eo"
-	nnoremap <M-o> :Ranger<CR>
-	let g:ranger_map_keys = 0
+    " ===
+    " === Ranger.vim
+    " ===
+    execute "set <M-o>=\eo"
+    nnoremap <M-o> :Ranger<CR>
+    let g:ranger_map_keys = 0
 endif
 
 
@@ -672,37 +672,37 @@ autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 "compile function
 noremap <F5> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
-	exec "w"
-	if &filetype == 'c'
-		exec "!g++ % -o %<"
-		exec "!time ./%<"
-	elseif &filetype == 'cpp'
-		set splitbelow
-		exec "!g++ -std=c++11 % -Wall -o %<"
-		:sp
-		:res -15
-		:term ./%<
-	elseif &filetype == 'java'
-		exec "!javac %"
-		exec "!time java %<"
-	elseif &filetype == 'sh'
-		:!time bash %
-	elseif &filetype == 'python'
-		set splitbelow
-		:sp
-		:term python3 %
-	elseif &filetype == 'html'
-		silent! exec "!google-chrome-stable % &"
-	elseif &filetype == 'markdown'
-		exec "MarkdownPreview"
-	elseif &filetype == 'tex'
-		silent! exec "VimtexStop"
-		silent! exec "VimtexCompile"
-	elseif &filetype == 'go'
-		set splitbelow
-		:sp
-		:term go run %
-	endif
+    exec "w"
+    if &filetype == 'c'
+        exec "!g++ % -o %<"
+        exec "!time ./%<"
+    elseif &filetype == 'cpp'
+        set splitbelow
+        exec "!g++ -std=c++11 % -Wall -o %<"
+        :sp
+        :res -15
+        :term ./%<
+    elseif &filetype == 'java'
+        exec "!javac %"
+        exec "!time java %<"
+    elseif &filetype == 'sh'
+        :!time bash %
+    elseif &filetype == 'python'
+        set splitbelow
+        :sp
+        :term python3 %
+    elseif &filetype == 'html'
+        silent! exec "!google-chrome-stable % &"
+    elseif &filetype == 'markdown'
+        exec "MarkdownPreview"
+    elseif &filetype == 'tex'
+        silent! exec "VimtexStop"
+        silent! exec "VimtexCompile"
+    elseif &filetype == 'go'
+        set splitbelow
+        :sp
+        :term go run %
+    endif
 endfunc
 
 
@@ -861,14 +861,14 @@ silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
 autocmd FileType json syntax match Comment +\/\/.\+$+
 " You can automatically install multiple extensions when the coc.nvim service starts by defining global variable `g:coc_global_extensions`
 let g:coc_global_extensions = ['coc-python', 'coc-pyls', 'coc-vimlsp', 'coc-translator',
-	\ 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-tailwindcss', 'coc-stylelint',
-	\ 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-highlight', 'coc-snippets',
-	\ 'coc-cmake', 'coc-clangd', 'coc-explorer', 'coc-emoji', 'coc-dictionary']
+    \ 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-tailwindcss', 'coc-stylelint',
+    \ 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-highlight', 'coc-snippets',
+    \ 'coc-cmake', 'coc-clangd', 'coc-explorer', 'coc-emoji', 'coc-dictionary']
 " use <tab> for trigger completion and navigate to the next complete item
 inoremap <silent><expr> <Tab>
-   		\ pumvisible() ? "\<C-n>" :
-   		\ <SID>check_back_space() ? "\<Tab>" :
-   		\ coc#refresh()
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<Tab>" :
+        \ coc#refresh()
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 function! s:check_back_space() abort
