@@ -1053,13 +1053,14 @@ let g:which_key_map.w = {
     \ }
 let g:which_key_map.b = {
     \ 'name' : '+buffer' ,
-    \ '1' : ['b1'        , 'buffer 1']        ,
-    \ 'd' : ['bd'        , 'delete-buffer']   ,
-    \ 'H' : ['bfirst'    , 'first-buffer']    ,
-    \ 'L' : ['blast'     , 'last-buffer']     ,
-    \ 'l' : ['bnext'     , 'next-buffer']     ,
-    \ 'h' : ['bprevious' , 'previous-buffer'] ,
-    \ '?' : ['Buffers'   , 'fzf-buffer']      ,
+    \ '1' : ['b1'        , 'buffer 1'            ] ,
+    \ 'd' : ['bd'        , 'delete-buffer'       ] ,
+    \ 'W' : ['bw!'       , 'force-delete-buffer' ] ,
+    \ 'H' : ['bfirst'    , 'first-buffer'        ] ,
+    \ 'L' : ['blast'     , 'last-buffer'         ] ,
+    \ 'l' : ['bnext'     , 'next-buffer'         ] ,
+    \ 'h' : ['bprevious' , 'previous-buffer'     ] ,
+    \ '?' : ['Buffers'   , 'fzf-buffer'          ] ,
     \ }
 call which_key#register('<Space>', "g:which_key_map")
 

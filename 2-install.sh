@@ -50,7 +50,8 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	# Screen recording and streaming
 	sudo pacman -S obs-studio --noconfirm
 	# gif recording
-	sudo pacman -S peek --noconfirm
+	sudo pacman -S simplescreenkey --noconfirm
+	sudo pacman -S screenkey --noconfirm
 	sudo pacman -S lazygit --noconfirm
 	sudo pacman -S vim-plug --noconfirm
 	sudo pacman -S vim-spell-en --noconfirm
