@@ -1,31 +1,53 @@
 #!/bin/bash
-# DEFAULT_SINK_NAME=$(pactl info | awk -F": " '/^Default Sink: /{print $2}')
-DEFAULT_SINK_NAME=$(pactl list sinks | awk '$2=="RUNNING"{getline; print $2;}')
-SINK_INDEX=$(pactl list short | grep RUNNING | sed -e 's/^\([0-9][0-9]*\)[^0-9].*/\1/')
-RUNNING_SINK_CURRENT_VOLUME=$(pactl list sinks | awk '/^\sVolume:/{i++} i=='$(($SINK_INDEX+1))'{print $5; exit}')
+# It's not working(when it's suspend the video, the device isn't RUNNING)
+# But this statement can be referenced(getline to get next line).
+# DEFAULT_SINK_NAME=$(pactl list sinks | awk '$2=="RUNNING"{getline; print $2;}')
+
+SINK_INDEX=$(pacmd list-sinks | awk '/index:/{i++} /* index:/{print i; exit}')
+DEFAULT_SINK_NAME=$(pacmd stat | awk -F": " '/^Default sink name: /{print $2}')
+DEFAULT_SINK_VOLUME=$(pacmd list-sinks |
+        awk '/^\s+name: /{indefault = $2 == "<'$DEFAULT_SINK_NAME'>"}
+            /^\s+volume: / && indefault {print $5; exit}')
 # yes/no
-MUTE_STATUS=$(pactl list sinks | awk '/^\sMute:/{i++} i=='$(($SINK_INDEX+1))'{print $2; exit}')
+MUTE_STATUS=$(pacmd list-sinks | awk '/^\smuted:/{i++} i=='$SINK_INDEX'{print $2; exit}')
 
 case $1 in
     '--toggle')
+        echo $DEFAULT_SINK_NAME
         pactl set-sink-mute $DEFAULT_SINK_NAME toggle # mute sound
         ;;
     '--up')
-        pactl set-sink-mute $DEFAULT_SINK_NAME 0 # mute sound
+        if [[ $MUTE_STATUS == 'yes' ]];then
+            pactl set-sink-volume $DEFAULT_SINK_NAME 35%
+            pactl set-sink-mute $DEFAULT_SINK_NAME 0 # unmute sound
+        fi
         pactl set-sink-volume $DEFAULT_SINK_NAME +5%  # increase sound volume
         ;;
     '--down')
         pactl set-sink-volume $DEFAULT_SINK_NAME -5%  # decrease sound volume
+        ;;
+    +[0-9]*%)
+        if [[ $MUTE_STATUS == 'yes' ]];then
+            pactl set-sink-volume $DEFAULT_SINK_NAME 35%
+            pactl set-sink-mute $DEFAULT_SINK_NAME 0 # unmute sound
+        fi
+        pactl set-sink-volume $DEFAULT_SINK_NAME $1  # increase sound volume
+        ;;
+    -[0-9]*%)
+        pactl set-sink-volume $DEFAULT_SINK_NAME $1  # decrease sound volume
+        ;;
+    [0-9]*%)
+        pactl set-sink-volume $DEFAULT_SINK_NAME $1  # set volume
         ;;
     '--get-volume')
         if [[ $MUTE_STATUS == 'yes' ]]; then
             # echo "🔇"
             echo "✖"
         else
-            echo $RUNNING_SINK_CURRENT_VOLUME
+            echo $DEFAULT_SINK_VOLUME
         fi
         ;;
     *)
-        echo "Please input --option(--toggle/up/down)"
+        echo "Please input --option(--toggle/up/down/get-volume or +5%/-5%/50%)"
 esac
 
