@@ -15,7 +15,7 @@ let &t_TI = ""
 let &t_TE = ""
 " set t_ut=
 
-" Vim overrule your settings with the defaults, use: > `:syntax on`
+" Vim overrule your settings(Highlight colors) with the defaults, use: > `:syntax on`
 syntax enable
 set nocompatible
 filetype on
@@ -236,6 +236,7 @@ call plug#begin('~/.vim/plugged')
 " Option 'on', means On-demand loading: Commands or <Plug>-mappings
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'airblade/vim-gitgutter'
 
 " Markdown, It only works on vim >= 8.1 and neovim
@@ -283,7 +284,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 Plug 'vuciv/vim-bujo'   "TODO
-" Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki'
 " Plug 'prettier/vim-prettier', {
 "   \ 'do': 'yarn install',
 "   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
@@ -573,7 +574,7 @@ noremap <silent> <Bslash>bu :Buffers<CR>
 " ===
 " === vim-bujo
 " ===
-nmap ,l :Todo<CR>
+nmap <Bslash>l :Todo<CR>
 " Insert a new task:
 nmap <c-s> <Plug>BujoAddnormal
 imap <c-s> <Plug>BujoAddinsert
@@ -584,6 +585,18 @@ imap <c-q> <Plug>BujoCheckinsert
 let g:bujo#todo_file_path = $HOME . "/.cache/bujo"
 " Change todo window width:
 let g:bujo#window_width = 50
+
+
+" ===
+" === vimwiki
+" ===
+let g:vimwiki_table_mappings = 0
+" let g:vimwiki_tab_key = '<F7>'
+" let g:vimwiki_shift_tab_key = '<F8>'
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'auto_toc': 1}]
+"  ,'syntax': 'markdown', 'ext': '.md'}]
+nmap <Leader>wj <Plug>VimwikiNextLink
+nmap <Leader>wk <Plug>VimwikiPrevLink
 
 
 " ===
@@ -863,7 +876,7 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 let g:coc_global_extensions = ['coc-python', 'coc-pyls', 'coc-vimlsp', 'coc-translator',
     \ 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-tailwindcss', 'coc-stylelint',
     \ 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-highlight', 'coc-snippets',
-    \ 'coc-cmake', 'coc-clangd', 'coc-explorer', 'coc-emoji', 'coc-dictionary']
+    \ 'coc-cmake', 'coc-clangd', 'coc-emoji', 'coc-dictionary']
 " use <tab> for trigger completion and navigate to the next complete item
 inoremap <silent><expr> <Tab>
         \ pumvisible() ? "\<C-n>" :
@@ -1033,22 +1046,7 @@ let g:which_key_map.f = {
     \}
 let g:which_key_map.w = {
     \ 'name' : '+windows' ,
-    \ 'w' : ['<C-W>w'     , 'other-window']          ,
-    \ 'd' : ['<C-W>c'     , 'delete-window']         ,
-    \ '-' : ['<C-W>s'     , 'split-window-below']    ,
-    \ '|' : ['<C-W>v'     , 'split-window-right']    ,
-    \ '2' : ['<C-W>v'     , 'layout-double-columns'] ,
-    \ 'k' : ['<C-W>k'     , 'window-up']             ,
-    \ 'j' : ['<C-W>j'     , 'window-below']          ,
-    \ 'h' : ['<C-W>h'     , 'window-left']           ,
-    \ 'l' : ['<C-W>l'     , 'window-right']          ,
-    \ 'K' : [':resize -5'  , 'expand-window-up']      ,
-    \ 'J' : [':resize +5'  , 'expand-window-below']   ,
-    \ 'H' : ['<C-W>5<'    , 'expand-window-left']    ,
-    \ 'L' : ['<C-W>5>'    , 'expand-window-right']   ,
-    \ 's' : ['<C-W>s'     , 'split-window-below']    ,
     \ '=' : ['<C-W>='     , 'balance-window']        ,
-    \ 'v' : ['<C-W>v'     , 'split-window-below']    ,
     \ '/' : ['Windows'    , 'fzf-window']            ,
     \ }
 let g:which_key_map.b = {

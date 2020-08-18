@@ -146,6 +146,7 @@ rangercd () {
 bindkey -s '^o' 'rangercd\n'
 
 mkcd() {mkdir $@ && cd $@}
+
 cdls() {cd "$@" && ls; }
 
 # Load zsh-syntax-highlighting; should be last.
