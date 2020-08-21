@@ -124,12 +124,25 @@ map <LEADER>h <C-w>h
 map <LEADER>j <C-w>j
 map <LEADER>k <C-w>k
 map <LEADER>l <C-w>l
+map <LEADER>1 1<C-w><C-w>
+map <LEADER>2 2<C-w><C-w>
+map <LEADER>3 3<C-w><C-w>
+map <LEADER>4 4<C-w><C-w>
+map <LEADER>5 5<C-w><C-w>
+map <LEADER>6 6<C-w><C-w>
+map <LEADER>7 7<C-w><C-w>
+map <LEADER>8 8<C-w><C-w>
+map <LEADER>9 9<C-w><C-w>
+map <LEADER>0 10<C-w><C-w>
 
 " Resize splits with arrow keys
 map <up> :res +5<CR>
 map <down> :res -5<CR>
 map <left> :vertical resize-5<CR>
 map <right> :vertical resize+5<CR>
+" use 'M' to maximize and 'm' to minimize
+nnoremap <LEADER>wM <C-W>\| <C-W>_
+nnoremap <LEADER>wm <C-W>=
 
 noremap sv <C-w>t<C-w>H
 noremap su <C-w>t<C-w>K
@@ -160,9 +173,10 @@ noremap ]f :bN<cr>
 
 map S :w<CR>
 map Q :q<CR>
-map R S:source $MYVIMRC<CR>
+map R :source $MYVIMRC<CR>
 map <LEADER>S :w !sudo tee %<CR><CR>
 map <LEADER>Q :q!<CR>
+map <LEADER>R S:source $MYVIMRC<CR>
 map <LEADER>rc :vsp ~/.config/.vimrc<CR>
 map <LEADER><CR> :nohlsearch<CR>
 map <LEADER>n :set nonu<CR>:set norelativenumber<CR>
@@ -242,10 +256,10 @@ Plug 'airblade/vim-gitgutter'
 " Markdown, It only works on vim >= 8.1 and neovim
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'Delayless/bullets.vim'  " automated bullet lists, :RenumberSelection.
+Plug 'mzlogin/vim-markdown-toc'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 "Modified by vim-markdown. You can look plasticboy/vim-markdown's documentation for help.
-Plug 'mzlogin/vim-markdown-toc'
 Plug 'lervag/vimtex'
 
 " Optimize Chinese input experience
@@ -285,6 +299,7 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'vuciv/vim-bujo'   "TODO
 Plug 'vimwiki/vimwiki'
+Plug 'mattn/calendar-vim'  " vimwiki daily Index in calendar.
 " Plug 'prettier/vim-prettier', {
 "   \ 'do': 'yarn install',
 "   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
@@ -390,7 +405,7 @@ let g:mkdp_browser = ''    "spcify brower
 let g:mkdp_browserfunc = ''
 
 let g:mkdp_auto_start = 0
-let g:mkdp_auto_close = 0
+let g:mkdp_auto_close = 1
 let g:mkdp_refresh_slow = 0
 " set to 1, the MarkdownPreview command can be use for all files,
 " by default it can be use in markdown file
@@ -929,8 +944,8 @@ function! s:show_documentation()
   endif
 endfunction
 " Formatting selected code.
-xmap <leader>fm  <Plug>(coc-format-selected)
-nmap <leader>fm  <Plug>(coc-format-selected)
+xmap <LEADER>fm  <Plug>(coc-format-selected)
+nmap <LEADER>fm  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -1008,7 +1023,9 @@ let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
 let g:vimspector_enable_mappings = 'HUMAN'
 let g:vimtex_view_general_viewer = 'zathura'
-" The last two lines configure the concealment.
+" The last two lines configure the concealment. focus
+" LaTeX code is replaced or made invisible when your cursor is not on that line.
+" e.g, conceal link on `[name](link)`, replaces `\bigcap` by ∩, \in by ∈ etc.
 set conceallevel=1
 let g:tex_conceal='abdmg'
 
@@ -1046,8 +1063,10 @@ let g:which_key_map.f = {
     \}
 let g:which_key_map.w = {
     \ 'name' : '+windows' ,
-    \ '=' : ['<C-W>='     , 'balance-window']        ,
-    \ '/' : ['Windows'    , 'fzf-window']            ,
+    \ 'm' : 'minimize-windows'  ,
+    \ 'M' : 'maximize-window'   ,
+    \ '=' : ['\<C-W>=' , 'balance-window'   ] ,
+    \ '/' : ['Windows' , 'fzf-window'       ] ,
     \ }
 let g:which_key_map.b = {
     \ 'name' : '+buffer' ,
@@ -1066,5 +1085,6 @@ nnoremap <silent> , :WhichKey  ','<CR>
 nnoremap <silent> g :WhichKey  'g'<CR>
 nnoremap <silent> [ :WhichKey  '['<CR>
 nnoremap <silent> ] :WhichKey  ']'<CR>
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+nnoremap <silent> <F1> :WhichKey! g:which_key_help_map<CR>
+nnoremap <silent> <LEADER> :WhichKey '<Space>'<CR>
 nnoremap <silent> <Bslash> :WhichKey  '<Bslash>'<CR>

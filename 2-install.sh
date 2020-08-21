@@ -33,6 +33,8 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S jq --noconfirm
 	# Dependency for Archive Compression/Extraction in ranger
 	sudo pacman -S atool --noconfirm
+    # Offline Documentation Browser
+    sudo pacman -S zeal --noconfirm
 	sudo pacman -S pandoc --noconfirm
 	sudo pacman -S texlive-core --noconfirm
 	sudo pacman -S feh --noconfirm
