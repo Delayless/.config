@@ -10,7 +10,7 @@ fi
 #===change these config start===
 
 #wallpapers directory
-path=~/Pictures/wallpapers
+path=~/Pictures/Wallpapers
 
 #time interval
 interval=15m

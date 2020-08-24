@@ -13,9 +13,13 @@ set t_RB= t_RF= t_RV= t_u7= t_ut=
 " when opening vim have latency and Dispaly >4;2m.Maybe it's because of Xmodmap .
 let &t_TI = ""
 let &t_TE = ""
-" set t_ut=
+" Change cursor shape in different modes
+" [Refer](https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modes)
+let &t_SI.="\e[6 q" "SI = INSERT mode  6 -> solid vertical bar
+let &t_SR.="\e[4 q" "SR = REPLACE mode 4 -> solid underscore
+let &t_EI.="\e[2 q" "EI = NORMAL mode  2 -> solid block
 
-" Vim overrule your settings with the defaults, use: > `:syntax on`
+" Vim overrule your settings(Highlight colors) with the defaults, use: > `:syntax on`
 syntax enable
 set nocompatible
 filetype on
@@ -124,18 +128,31 @@ map <LEADER>h <C-w>h
 map <LEADER>j <C-w>j
 map <LEADER>k <C-w>k
 map <LEADER>l <C-w>l
+map <LEADER>1 1<C-w><C-w>
+map <LEADER>2 2<C-w><C-w>
+map <LEADER>3 3<C-w><C-w>
+map <LEADER>4 4<C-w><C-w>
+map <LEADER>5 5<C-w><C-w>
+map <LEADER>6 6<C-w><C-w>
+map <LEADER>7 7<C-w><C-w>
+map <LEADER>8 8<C-w><C-w>
+map <LEADER>9 9<C-w><C-w>
+map <LEADER>0 10<C-w><C-w>
 
 " Resize splits with arrow keys
 map <up> :res +5<CR>
 map <down> :res -5<CR>
 map <left> :vertical resize-5<CR>
 map <right> :vertical resize+5<CR>
+" use 'M' to maximize and 'm' to minimize
+nnoremap <LEADER>wM <C-W>\| <C-W>_
+nnoremap <LEADER>wm <C-W>=
 
 noremap sv <C-w>t<C-w>H
 noremap su <C-w>t<C-w>K
 " Rotate screens
-noremap sru <C-w>b<C-w>K
-noremap srv <C-w>b<C-w>H
+noremap srv <C-w>b<C-w>K
+noremap sru <C-w>b<C-w>H
 
 " ===
 " === Tab Management
@@ -155,14 +172,15 @@ noremap U <C-r>
 noremap ` ~
 nnoremap < <<
 nnoremap > >>
-noremap <LEADER>bh :bN<cr>
-noremap <LEADER>bl :bn<cr>
+noremap [f :bn<cr>
+noremap ]f :bN<cr>
 
 map S :w<CR>
 map Q :q<CR>
-map R S:source $MYVIMRC<CR>
+map R :source $MYVIMRC<CR>
 map <LEADER>S :w !sudo tee %<CR><CR>
 map <LEADER>Q :q!<CR>
+map <LEADER>R S:source $MYVIMRC<CR>
 map <LEADER>rc :vsp ~/.config/.vimrc<CR>
 map <LEADER><CR> :nohlsearch<CR>
 map <LEADER>n :set nonu<CR>:set norelativenumber<CR>
@@ -228,7 +246,7 @@ func SetTitle()
         call append(line(".")+5, "#include<stdio.h>")
         call append(line(".")+6, "")
     endif
-	"Edit at the endline of file
+    "Edit at the endline of file
     autocmd BufNewFile * normal G
 endfunc
 
@@ -236,15 +254,16 @@ call plug#begin('~/.vim/plugged')
 " Option 'on', means On-demand loading: Commands or <Plug>-mappings
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'airblade/vim-gitgutter'
 
 " Markdown, It only works on vim >= 8.1 and neovim
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'Delayless/bullets.vim'  " automated bullet lists, :RenumberSelection.
+Plug 'mzlogin/vim-markdown-toc'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 "Modified by vim-markdown. You can look plasticboy/vim-markdown's documentation for help.
-Plug 'mzlogin/vim-markdown-toc'
 Plug 'lervag/vimtex'
 
 " Optimize Chinese input experience
@@ -263,17 +282,17 @@ Plug 'majutsushi/tagbar'
 Plug 'liuchengxu/vista.vim'
 
 " Plug 'Konfekt/FastFold'
-" Plug 'tpope/vim-capslock'	" Ctrl+L (insert) to toggle capslock
+" Plug 'tpope/vim-capslock' " Ctrl+L (insert) to toggle capslock
 
 " Pretty Dress
 Plug 'liuchengxu/eleline.vim'
 Plug 'chrisbra/Colorizer' " Show colors with :ColorHighlight
-Plug 'ajmwagar/vim-deus'  " It only works on vim >=8.1 and neovim
+Plug 'Delayless/vim-deus'  " It only works on vim >=8.1 and neovim
 Plug 'bling/vim-bufferline'
 Plug 'sheerun/vim-polyglot' " language packages for highlight
 Plug 'ryanoasis/vim-devicons'
 Plug 'MattesGroeger/vim-bookmarks'
-Plug 'mg979/vim-xtabline'	"Tab manager in the top of windows
+Plug 'mg979/vim-xtabline'   "Tab manager in the top of windows
 " fades your inactive buffers and preserves syntax highlighting.
 Plug 'TaDaa/vimade'
 
@@ -282,8 +301,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-Plug 'vuciv/vim-bujo'	"TODO
-" Plug 'vimwiki/vimwiki'
+Plug 'vuciv/vim-bujo'   "TODO
+Plug 'vimwiki/vimwiki'
+Plug 'mattn/calendar-vim'  " vimwiki daily Index in calendar.
 " Plug 'prettier/vim-prettier', {
 "   \ 'do': 'yarn install',
 "   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
@@ -293,19 +313,19 @@ Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs' " better than coc-pairs
 Plug 'godlygeek/tabular' "Align, :Tabularize /:\zs
 Plug 'tpope/vim-repeat' " The . command will work with ds, cs, yss
-Plug 'junegunn/vim-after-object' " copy, change, delete, yank after =/:/-/#/<space>
-Plug 'chrisbra/NrrwRgn'		"display narrow region(focus)
+Plug 'junegunn/vim-after-object' " copy, change, delete, yank after some symbols like `=/:/-/#/<space>`
+Plug 'chrisbra/NrrwRgn'     "display narrow region(focus)
 Plug 'puremourning/vimspector', { 'do': './install_gadget.py --force-enable-chrome --enable-c' }
 Plug 'liuchengxu/vim-which-key'
 
 if has('nvim')
-	" Ranger in a floating window. Only support neovim for now 2020-07-08 21:43.
-	" `:checkhealth` Run all healthchecks.
-	Plug 'kevinhwang91/rnvimr'
-	" Plug 'cpiger/NeoDebug'
+    " Ranger in a floating window. Only support neovim for now 2020-07-08 21:43.
+    " `:checkhealth` Run all healthchecks.
+    Plug 'kevinhwang91/rnvimr'
+    " Plug 'cpiger/NeoDebug'
 else
-	" ranger's dependency for neovim   "Plug 'rbgrouleff/bclose.vim'
-	Plug 'francoiscabrol/ranger.vim'
+    " ranger's dependency for neovim   "Plug 'rbgrouleff/bclose.vim'
+    Plug 'francoiscabrol/ranger.vim'
 endif
 
 call plug#end()
@@ -389,20 +409,20 @@ let g:mkdp_browser = ''    "spcify brower
 let g:mkdp_browserfunc = ''
 
 let g:mkdp_auto_start = 0
-let g:mkdp_auto_close = 0
+let g:mkdp_auto_close = 1
 let g:mkdp_refresh_slow = 0
 " set to 1, the MarkdownPreview command can be use for all files,
 " by default it can be use in markdown file
 let g:mkdp_command_for_global = 0
 let g:mkdp_preview_options = {
-			\ 'mkit': {},
-			\ 'katex': {},
-			\ 'uml': {},
-			\ 'maid': {},
-			\ 'disable_sync_scroll': 0,
-			\ 'sync_scroll_type': 'middle',
-			\ 'hide_yaml_meta': 1
-			\ }
+            \ 'mkit': {},
+            \ 'katex': {},
+            \ 'uml': {},
+            \ 'maid': {},
+            \ 'disable_sync_scroll': 0,
+            \ 'sync_scroll_type': 'middle',
+            \ 'hide_yaml_meta': 1
+            \ }
 let g:mkdp_markdown_css = ''
 let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
@@ -495,34 +515,34 @@ let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %
 "   :Rg! - Start fzf in fullscreen and display the preview window above
 
 " the dot\. at end of command means regrex's everychar.
-	"\   'rg --column --line-number --no-heading --color=always --smart-case --hidden .'.shellescape(<q-args>), 1,
+    "\   'rg --column --line-number --no-heading --color=always --smart-case --hidden .'.shellescape(<q-args>), 1,
 " set the preview window to hidden by default(add ':hidden'), e.g:
-	"\          : fzf#vim#with_preview('right:50%:hidden', '?'),
+    "\          : fzf#vim#with_preview('right:50%:hidden', '?'),
 " search code in current file.
 command! -bang -nargs=* RgCurrentFile
-	\ call fzf#vim#grep(
-	\   'rg --column --line-number --no-heading --color=always --smart-case --with-filename . '.fnameescape(expand('%')), 1,
-	\   <bang>0 ? fzf#vim#with_preview('up:40%')
-	\           : fzf#vim#with_preview('right:50%', '?'),
-	\   <bang>0)
+    \ call fzf#vim#grep(
+    \   'rg --column --line-number --no-heading --color=always --smart-case --with-filename . '.fnameescape(expand('%')), 1,
+    \   <bang>0 ? fzf#vim#with_preview('up:40%')
+    \           : fzf#vim#with_preview('right:50%', '?'),
+    \   <bang>0)
 
 command! -bang -nargs=* Rg
-	\ call fzf#vim#grep(
-	\   'rg --column --line-number --no-heading --color=always --smart-case --hidden .'.shellescape(<q-args>), 1,
-	\   <bang>0 ? fzf#vim#with_preview('up:40%')
-	\           : fzf#vim#with_preview('right:50%', '?'),
-	\   <bang>0)
+    \ call fzf#vim#grep(
+    \   'rg --column --line-number --no-heading --color=always --smart-case --hidden .'.shellescape(<q-args>), 1,
+    \   <bang>0 ? fzf#vim#with_preview('up:40%')
+    \           : fzf#vim#with_preview('right:50%', '?'),
+    \   <bang>0)
 
 " Default options are --nogroup --column --color
 let s:ag_options = ' --column --one-device --skip-vcs-ignores --smart-case '
 command! -bang -nargs=* Ag
-	\ call fzf#vim#ag(
-	\   <q-args>,
-	\   s:ag_options,
-	\  <bang>0 ? fzf#vim#with_preview('up:60%')
-	\          : fzf#vim#with_preview('right:50%', '?'),
-	\   <bang>0
-	\ )
+    \ call fzf#vim#ag(
+    \   <q-args>,
+    \   s:ag_options,
+    \  <bang>0 ? fzf#vim#with_preview('up:60%')
+    \          : fzf#vim#with_preview('right:50%', '?'),
+    \   <bang>0
+    \ )
 
 command! -bang -nargs=* History call fzf#vim#history(fzf#vim#with_preview())
 
@@ -564,7 +584,7 @@ noremap <silent> <Bslash>F :FZF<CR>
 nnoremap <silent> <Bslash>f :RgCurrentFile<CR>
 " The history of the opened files.
 noremap <silent> <Bslash>h :History<CR>
-noremap <silent> <Bslash>bt :BTags<CR>	" the current file's variables
+noremap <silent> <Bslash>bt :BTags<CR>  " the current file's variables
 " Project tags, save all variables.
 noremap <silent> <C-t> :Tags<CR>
 noremap <silent> <Bslash>bu :Buffers<CR>
@@ -573,7 +593,7 @@ noremap <silent> <Bslash>bu :Buffers<CR>
 " ===
 " === vim-bujo
 " ===
-nmap ,l :Todo<CR>
+nmap <Bslash>l :Todo<CR>
 " Insert a new task:
 nmap <c-s> <Plug>BujoAddnormal
 imap <c-s> <Plug>BujoAddinsert
@@ -587,44 +607,65 @@ let g:bujo#window_width = 50
 
 
 " ===
+" === vimwiki
+" ===
+let g:vimwiki_table_mappings = 0
+" let g:vimwiki_tab_key = '<F7>'
+" let g:vimwiki_shift_tab_key = '<F8>'
+" One or more wikis can be registered using the `g:vimwiki_list` variable.
+" let g:vimwiki_list = [{'path': '~/my_site/', 'path_html': '~/public_html/'},
+"     \ {'path': '~/my_docs/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'auto_toc': 1}]
+"  ,'syntax': 'markdown', 'ext': '.md'}]
+nmap <LEADER>wj <Plug>VimwikiNextLink
+nmap <LEADER>wk <Plug>VimwikiPrevLink
+nmap <LEADER>wha <Plug>VimwikiAll2HTML
+" the same as glp and gln.
+" At the same time, only one shortcut can take effect.
+" after the map <Plug>, the original shortcut keys will be invalid.
+" nmap <LEADER>w- <Plug>VimwikiDecrementListItem
+" nmap <LEADER>w= <Plug>VimwikiIncrementListItem
+
+
+" ===
 " === Different between nvim and vim
 " ===
 if has('nvim')
-	" ===
-	" === rnvimr
-	" ===
-	let g:rnvimr_enable_ex = 1
-	let g:rnvimr_enable_picker = 1
-	let g:rnvimr_draw_border = 0
-	highlight link RnvimrNormal CursorLine
-	tnoremap <silent> <M-i> <C-\><C-n>:RnvimrResize<CR>
-	nnoremap <silent> <M-o> :RnvimrToggle<CR>
-	" nnoremap <silent> <Bslash>r :RnvimrToggle<CR>
-	tnoremap <silent> <M-o> <C-\><C-n>:RnvimrToggle<CR>
-	" Map Rnvimr action
-	let g:rnvimr_action = {
-				\ '<C-t>': 'NvimEdit tabedit',
-				\ '<C-x>': 'NvimEdit split',
-				\ '<C-v>': 'NvimEdit vsplit',
-				\ 'gw': 'JumpNvimCwd',
-				\ 'yw': 'EmitRangerCwd'
-				\ }
-	" Customize the initial layout
-	let g:rnvimr_layout = { 'relative': 'editor',
-				\ 'width': &columns,
-				\ 'height': &lines,
-				\ 'col': 0,
-				\ 'row': 0,
-				\ 'style': 'minimal' }
-	let g:rnvimr_presets = [{'width': 1.0, 'height': 1.0},
-						  \ {'width': 0.500, 'height': 0.500, 'col': 0.5, 'row': 0}]
+    " ===
+    " === rnvimr
+    " ===
+    let g:rnvimr_enable_ex = 1
+    let g:rnvimr_enable_picker = 1
+    let g:rnvimr_draw_border = 0
+    highlight link RnvimrNormal CursorLine
+    tnoremap <silent> <M-i> <C-\><C-n>:RnvimrResize<CR>
+    nnoremap <silent> <M-o> :RnvimrToggle<CR>
+    " nnoremap <silent> <Bslash>r :RnvimrToggle<CR>
+    tnoremap <silent> <M-o> <C-\><C-n>:RnvimrToggle<CR>
+    " Map Rnvimr action
+    let g:rnvimr_action = {
+                \ '<C-t>': 'NvimEdit tabedit',
+                \ '<C-x>': 'NvimEdit split',
+                \ '<C-v>': 'NvimEdit vsplit',
+                \ 'gw': 'JumpNvimCwd',
+                \ 'yw': 'EmitRangerCwd'
+                \ }
+    " Customize the initial layout
+    let g:rnvimr_layout = { 'relative': 'editor',
+                \ 'width': &columns,
+                \ 'height': &lines,
+                \ 'col': 0,
+                \ 'row': 0,
+                \ 'style': 'minimal' }
+    let g:rnvimr_presets = [{'width': 1.0, 'height': 1.0},
+                          \ {'width': 0.500, 'height': 0.500, 'col': 0.5, 'row': 0}]
 else
-	" ===
-	" === Ranger.vim
-	" ===
-	execute "set <M-o>=\eo"
-	nnoremap <M-o> :Ranger<CR>
-	let g:ranger_map_keys = 0
+    " ===
+    " === Ranger.vim
+    " ===
+    execute "set <M-o>=\eo"
+    nnoremap <M-o> :Ranger<CR>
+    let g:ranger_map_keys = 0
 endif
 
 
@@ -672,37 +713,37 @@ autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 "compile function
 noremap <F5> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
-	exec "w"
-	if &filetype == 'c'
-		exec "!g++ % -o %<"
-		exec "!time ./%<"
-	elseif &filetype == 'cpp'
-		set splitbelow
-		exec "!g++ -std=c++11 % -Wall -o %<"
-		:sp
-		:res -15
-		:term ./%<
-	elseif &filetype == 'java'
-		exec "!javac %"
-		exec "!time java %<"
-	elseif &filetype == 'sh'
-		:!time bash %
-	elseif &filetype == 'python'
-		set splitbelow
-		:sp
-		:term python3 %
-	elseif &filetype == 'html'
-		silent! exec "!google-chrome-stable % &"
-	elseif &filetype == 'markdown'
-		exec "MarkdownPreview"
-	elseif &filetype == 'tex'
-		silent! exec "VimtexStop"
-		silent! exec "VimtexCompile"
-	elseif &filetype == 'go'
-		set splitbelow
-		:sp
-		:term go run %
-	endif
+    exec "w"
+    if &filetype == 'c'
+        exec "!g++ % -o %<"
+        exec "!time ./%<"
+    elseif &filetype == 'cpp'
+        set splitbelow
+        exec "!g++ -std=c++11 % -Wall -o %<"
+        :sp
+        :res -15
+        :term ./%<
+    elseif &filetype == 'java'
+        exec "!javac %"
+        exec "!time java %<"
+    elseif &filetype == 'sh'
+        :!time bash %
+    elseif &filetype == 'python'
+        set splitbelow
+        :sp
+        :term python3 %
+    elseif &filetype == 'html'
+        silent! exec "!google-chrome-stable % &"
+    elseif &filetype == 'markdown'
+        exec "MarkdownPreview"
+    elseif &filetype == 'tex'
+        silent! exec "VimtexStop"
+        silent! exec "VimtexCompile"
+    elseif &filetype == 'go'
+        set splitbelow
+        :sp
+        :term go run %
+    endif
 endfunc
 
 
@@ -776,7 +817,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 hi CocHighlightText cterm=bold ctermfg=235 ctermbg=109 gui=bold guifg=#2C323B guibg=#83a598
 " Python PEP8: Error: line too long (183 > 79 characters). So set colorcolumn=80
 highlight ColorColumn ctermbg=red ctermfg=white guibg=#592929
-call matchadd('ColorColumn', '\%80v', 100)
+autocmd FileType python call matchadd('ColorColumn', '\%80v', 100)
 " OR
 " set colorcolumn=81
 " highlight ColorColumn term=reverse cterm=reverse
@@ -791,8 +832,8 @@ augroup END
 " Press space twice to jump to the next '<++>' and edit it
 map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 source ~/.config/snippits.vim
-"markdown auto spell
-autocmd BufRead,BufNewFile *.md setlocal spell
+" markdown auto spell
+" autocmd BufRead,BufNewFile *.md setlocal spell
 
 
 " ===
@@ -805,6 +846,9 @@ autocmd BufRead,BufNewFile *.md setlocal spell
 " === vim-bookmarks
 " ===
 let g:bookmark_no_default_key_mappings = 1
+let g:bookmark_center = 1
+let g:bookmark_auto_close = 1
+let g:bookmark_highlight_lines = 1
 function! BookmarkMapKeys()
     nmap mm :BookmarkToggle<CR>
     nmap mi :BookmarkAnnotate<CR>
@@ -813,8 +857,8 @@ function! BookmarkMapKeys()
     nmap ma :BookmarkShowAll<CR>
     nmap mc :BookmarkClear
     nmap mx :BookmarkClearAll
-    nmap mp :BookmarkMoveUp
-    nmap mn :BookmarkMoveDown
+    nmap mp :BookmarkMoveUp<CR>
+    nmap mn :BookmarkMoveDown<CR>
 endfunction
 function! BookmarkUnmapKeys()
     unmap mm
@@ -835,8 +879,14 @@ autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
 " === vimade
 " ===
 let g:vimade = {}
-let g:vimade.fadelevel = 0.7
-let g:vimade.enablesigns = 0
+let g:vimade = {
+    \ "fadelevel": 0.6,
+    \ "colbufsize": 1,
+    \ "rowbufsize": 1,
+    \ "enablesigns": 0,
+    \}
+" let g:vimade.fadelevel = 0.7
+" let g:vimade.enablesigns = 0
 
 
 " ===
@@ -861,14 +911,14 @@ silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
 autocmd FileType json syntax match Comment +\/\/.\+$+
 " You can automatically install multiple extensions when the coc.nvim service starts by defining global variable `g:coc_global_extensions`
 let g:coc_global_extensions = ['coc-python', 'coc-pyls', 'coc-vimlsp', 'coc-translator',
-	\ 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-tailwindcss', 'coc-stylelint',
-	\ 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-highlight', 'coc-snippets',
-	\ 'coc-cmake', 'coc-clangd', 'coc-explorer', 'coc-emoji', 'coc-dictionary']
+    \ 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-tailwindcss', 'coc-stylelint',
+    \ 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-highlight', 'coc-snippets',
+    \ 'coc-cmake', 'coc-clangd', 'coc-emoji', 'coc-dictionary', 'coc-word' ]
 " use <tab> for trigger completion and navigate to the next complete item
 inoremap <silent><expr> <Tab>
-   		\ pumvisible() ? "\<C-n>" :
-   		\ <SID>check_back_space() ? "\<Tab>" :
-   		\ coc#refresh()
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<Tab>" :
+        \ coc#refresh()
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 function! s:check_back_space() abort
@@ -916,8 +966,8 @@ function! s:show_documentation()
   endif
 endfunction
 " Formatting selected code.
-xmap <leader>fm  <Plug>(coc-format-selected)
-nmap <leader>fm  <Plug>(coc-format-selected)
+xmap <LEADER>fm  <Plug>(coc-format-selected)
+nmap <LEADER>fm  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -951,7 +1001,7 @@ vmap <LEADER>r <Plug>(coc-translator-rv)
 " If you don’t like stacking the colons in a column, you could use the \zs atom to exclude the : character from the search match.
 " :Tabularize /:\zs<CR>.
 " a(mnemonic for align)
-vmap ga :Tabularize /
+vmap <leader>a :Tabularize /
 "If you put [this gist](https://gist.github.com/tpope/287147#file-cucumbertables-vim) in your vimrc file, then it will call the :Tabularize command each time you insert a | character.
 
 
@@ -995,7 +1045,9 @@ let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
 let g:vimspector_enable_mappings = 'HUMAN'
 let g:vimtex_view_general_viewer = 'zathura'
-" The last two lines configure the concealment.
+" The last two lines configure the concealment. focus
+" LaTeX code is replaced or made invisible when your cursor is not on that line.
+" e.g, conceal link on `[name](link)`, replaces `\bigcap` by ∩, \in by ∈ etc.
 set conceallevel=1
 let g:tex_conceal='abdmg'
 
@@ -1015,7 +1067,11 @@ command! -register CopyMatches call CopyMatches(<q-reg>)
 " ===
 " === vim-which-key
 " ===
-set timeoutlen=500
+set timeoutlen=800
+" Executes native commands if keymap is not defined.
+" use `:WhichKey 'g'` and get `gg` work correct:
+let g:which_key_fallback_to_native_key=1
+let g:which_key_display_names = {'<CR>': '↵', '<TAB>': '⇆'}
 
 let g:which_key_map = {}
 let g:which_key_map.s = {
@@ -1029,36 +1085,36 @@ let g:which_key_map.f = {
     \}
 let g:which_key_map.w = {
     \ 'name' : '+windows' ,
-    \ 'w' : ['<C-W>w'     , 'other-window']          ,
-    \ 'd' : ['<C-W>c'     , 'delete-window']         ,
-    \ '-' : ['<C-W>s'     , 'split-window-below']    ,
-    \ '|' : ['<C-W>v'     , 'split-window-right']    ,
-    \ '2' : ['<C-W>v'     , 'layout-double-columns'] ,
-    \ 'k' : ['<C-W>k'     , 'window-up']             ,
-    \ 'j' : ['<C-W>j'     , 'window-below']          ,
-    \ 'h' : ['<C-W>h'     , 'window-left']           ,
-    \ 'l' : ['<C-W>l'     , 'window-right']          ,
-    \ 'K' : [':resize -5'  , 'expand-window-up']      ,
-    \ 'J' : [':resize +5'  , 'expand-window-below']   ,
-    \ 'H' : ['<C-W>5<'    , 'expand-window-left']    ,
-    \ 'L' : ['<C-W>5>'    , 'expand-window-right']   ,
-    \ 's' : ['<C-W>s'     , 'split-window-below']    ,
-    \ '=' : ['<C-W>='     , 'balance-window']        ,
-    \ 'v' : ['<C-W>v'     , 'split-window-below']    ,
-    \ '/' : ['Windows'    , 'fzf-window']            ,
+    \ 'm' : 'minimize-windows'  ,
+    \ 'M' : 'maximize-window'   ,
+    \ '+' : ['\<C-W>=' , 'balance-window'   ] ,
+    \ '/' : ['Windows' , 'fzf-window'       ] ,
     \ }
 let g:which_key_map.b = {
     \ 'name' : '+buffer' ,
-    \ '1' : ['b1'        , 'buffer 1']        ,
-    \ 'd' : ['bd'        , 'delete-buffer']   ,
-    \ 'H' : ['bfirst'    , 'first-buffer']    ,
-    \ 'L' : ['blast'     , 'last-buffer']     ,
-    \ 'l' : ['bnext'     , 'next-buffer']     ,
-    \ 'h' : ['bprevious' , 'previous-buffer'] ,
-    \ '?' : ['Buffers'   , 'fzf-buffer']      ,
+    \ '1' : ['b1'        , 'buffer 1'            ] ,
+    \ 'd' : ['bd'        , 'delete-buffer'       ] ,
+    \ 'W' : ['bw!'       , 'force-delete-buffer' ] ,
+    \ 'H' : ['bfirst'    , 'first-buffer'        ] ,
+    \ 'L' : ['blast'     , 'last-buffer'         ] ,
+    \ 'l' : ['bnext'     , 'next-buffer'         ] ,
+    \ 'h' : ['bprevious' , 'previous-buffer'     ] ,
+    \ '?' : ['Buffers'   , 'fzf-buffer'          ] ,
     \ }
 call which_key#register('<Space>', "g:which_key_map")
 
 nnoremap <silent> , :WhichKey  ','<CR>
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+nnoremap <silent> [ :WhichKey  '['<CR>
+nnoremap <silent> ] :WhichKey  ']'<CR>
+" nnoremap <silent> <F1> :WhichKey! g:which_key_help_map<CR>
+nnoremap <silent> <LEADER> :WhichKey '<Space>'<CR>
 nnoremap <silent> <Bslash> :WhichKey  '<Bslash>'<CR>
+
+
+" :r !w3m -dump https://xxx.com/
+" :ViewHtml<CR> view the current html file.
+command! ViewHtml execute ':!w3m -dump % | less'
+
+" fast scrolling?
+" set lazyredraw
+" set regexpengine=1

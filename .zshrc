@@ -94,6 +94,14 @@ alias sz='source ~/.zshrc'
 alias gs='git status'
 alias gp='git pull'
 alias gd='git difftool'
+alias gc='gitclone'
+gitclone() {
+    git clone https://github.com/$@
+    if (( $? == 0 )); then
+        repo=`echo $@ | cut -d '/' -f2`
+        cd $repo
+    fi
+}
 
 alias s="neofetch"
 alias ssr="sudo python ~/Desktop/shadowsocksr/shadowsocks/local.py -c ~/Desktop/shadowsocksr/shadowsocks/config.json -d start"
@@ -136,6 +144,8 @@ rangercd () {
     fi
 }
 bindkey -s '^o' 'rangercd\n'
+
+mkcd() {mkdir $@ && cd $@}
 
 cdls() {cd "$@" && ls; }
 

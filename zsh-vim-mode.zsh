@@ -28,14 +28,23 @@ bindkey -M vicmd '\e[3~' delete-char
 bindkey -M vicmd 'H' beginning-of-line
 bindkey -M vicmd 'L' end-of-line
 # use '/' to search command history, and '=' to repeat. But fzf is more convenient.
+bindkey -M vicmd '/' history-incremental-search-backward
 bindkey -M vicmd '=' vi-repeat-search
 # if not use fzf, uncomment the following command.
 # bindkey -M vicmd '^r' history-incremental-search-backward
 
 # Allows you to open the in-progress command inside of $EDITOR
 autoload -Uz edit-command-line
-bindkey -M vicmd 'v' edit-command-line
 zle -N edit-command-line
+bindkey -M vicmd 'v' edit-command-line
+
+# Yank to the system clipboard
+function vi-yank-xclip {
+    zle vi-yank
+    echo "$CUTBUFFER" | xclip -selection clipboard
+}
+zle -N vi-yank-xclip
+bindkey -M vicmd 'Y' vi-yank-xclip
 
 # Prefer vi shortcuts
 __set_cursor() {
