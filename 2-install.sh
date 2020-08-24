@@ -23,6 +23,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	# Scrot is a minimalist command line screen capturing application.
 	sudo pacman -S scrot --noconfirm
 	sudo pacman -S baidunetdisk-bin --noconfirm
+	sudo pacman -S audacious --noconfirm
 	sudo pacman -S netease-cloud-music --noconfirm
 	sudo pacman -S google-chrome --noconfirm
 	sudo pacman -S w3m --noconfirm
@@ -33,6 +34,11 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S jq --noconfirm
 	# Dependency for Archive Compression/Extraction in ranger
 	sudo pacman -S atool --noconfirm
+    sudo pacman -S mediainfo --noconfirm
+    sudo pacman -S perl-image-exiftool --noconfirm
+    sudo pacman -S catdoc --noconfirm
+    # preview xlsx in ranger
+    sudo pip3 install xlsx2csv
     # Offline Documentation Browser
     sudo pacman -S zeal --noconfirm
 	sudo pacman -S pandoc --noconfirm
@@ -84,3 +90,5 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo npm install -g p3x-onenote --unsafe-perm=true --allow-root
 	# p3x-onenote &
 fi
+
+

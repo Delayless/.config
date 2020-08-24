@@ -13,7 +13,11 @@ set t_RB= t_RF= t_RV= t_u7= t_ut=
 " when opening vim have latency and Dispaly >4;2m.Maybe it's because of Xmodmap .
 let &t_TI = ""
 let &t_TE = ""
-" set t_ut=
+" Change cursor shape in different modes
+" [Refer](https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modes)
+let &t_SI.="\e[6 q" "SI = INSERT mode  6 -> solid vertical bar
+let &t_SR.="\e[4 q" "SR = REPLACE mode 4 -> solid underscore
+let &t_EI.="\e[2 q" "EI = NORMAL mode  2 -> solid block
 
 " Vim overrule your settings(Highlight colors) with the defaults, use: > `:syntax on`
 syntax enable
@@ -147,8 +151,8 @@ nnoremap <LEADER>wm <C-W>=
 noremap sv <C-w>t<C-w>H
 noremap su <C-w>t<C-w>K
 " Rotate screens
-noremap sru <C-w>b<C-w>K
-noremap srv <C-w>b<C-w>H
+noremap srv <C-w>b<C-w>K
+noremap sru <C-w>b<C-w>H
 
 " ===
 " === Tab Management
@@ -283,7 +287,7 @@ Plug 'liuchengxu/vista.vim'
 " Pretty Dress
 Plug 'liuchengxu/eleline.vim'
 Plug 'chrisbra/Colorizer' " Show colors with :ColorHighlight
-Plug 'ajmwagar/vim-deus'  " It only works on vim >=8.1 and neovim
+Plug 'Delayless/vim-deus'  " It only works on vim >=8.1 and neovim
 Plug 'bling/vim-bufferline'
 Plug 'sheerun/vim-polyglot' " language packages for highlight
 Plug 'ryanoasis/vim-devicons'
@@ -608,10 +612,19 @@ let g:bujo#window_width = 50
 let g:vimwiki_table_mappings = 0
 " let g:vimwiki_tab_key = '<F7>'
 " let g:vimwiki_shift_tab_key = '<F8>'
+" One or more wikis can be registered using the `g:vimwiki_list` variable.
+" let g:vimwiki_list = [{'path': '~/my_site/', 'path_html': '~/public_html/'},
+"     \ {'path': '~/my_docs/', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'auto_toc': 1}]
 "  ,'syntax': 'markdown', 'ext': '.md'}]
-nmap <Leader>wj <Plug>VimwikiNextLink
-nmap <Leader>wk <Plug>VimwikiPrevLink
+nmap <LEADER>wj <Plug>VimwikiNextLink
+nmap <LEADER>wk <Plug>VimwikiPrevLink
+nmap <LEADER>wha <Plug>VimwikiAll2HTML
+" the same as glp and gln.
+" At the same time, only one shortcut can take effect.
+" after the map <Plug>, the original shortcut keys will be invalid.
+" nmap <LEADER>w- <Plug>VimwikiDecrementListItem
+" nmap <LEADER>w= <Plug>VimwikiIncrementListItem
 
 
 " ===
@@ -833,6 +846,9 @@ source ~/.config/snippits.vim
 " === vim-bookmarks
 " ===
 let g:bookmark_no_default_key_mappings = 1
+let g:bookmark_center = 1
+let g:bookmark_auto_close = 1
+let g:bookmark_highlight_lines = 1
 function! BookmarkMapKeys()
     nmap mm :BookmarkToggle<CR>
     nmap mi :BookmarkAnnotate<CR>
@@ -841,8 +857,8 @@ function! BookmarkMapKeys()
     nmap ma :BookmarkShowAll<CR>
     nmap mc :BookmarkClear
     nmap mx :BookmarkClearAll
-    nmap mp :BookmarkMoveUp
-    nmap mn :BookmarkMoveDown
+    nmap mp :BookmarkMoveUp<CR>
+    nmap mn :BookmarkMoveDown<CR>
 endfunction
 function! BookmarkUnmapKeys()
     unmap mm
@@ -863,8 +879,14 @@ autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
 " === vimade
 " ===
 let g:vimade = {}
-let g:vimade.fadelevel = 0.7
-let g:vimade.enablesigns = 0
+let g:vimade = {
+    \ "fadelevel": 0.6,
+    \ "colbufsize": 1,
+    \ "rowbufsize": 1,
+    \ "enablesigns": 0,
+    \}
+" let g:vimade.fadelevel = 0.7
+" let g:vimade.enablesigns = 0
 
 
 " ===
@@ -891,7 +913,7 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 let g:coc_global_extensions = ['coc-python', 'coc-pyls', 'coc-vimlsp', 'coc-translator',
     \ 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-tailwindcss', 'coc-stylelint',
     \ 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-highlight', 'coc-snippets',
-    \ 'coc-cmake', 'coc-clangd', 'coc-emoji', 'coc-dictionary']
+    \ 'coc-cmake', 'coc-clangd', 'coc-emoji', 'coc-dictionary', 'coc-word' ]
 " use <tab> for trigger completion and navigate to the next complete item
 inoremap <silent><expr> <Tab>
         \ pumvisible() ? "\<C-n>" :
@@ -979,7 +1001,7 @@ vmap <LEADER>r <Plug>(coc-translator-rv)
 " If you don’t like stacking the colons in a column, you could use the \zs atom to exclude the : character from the search match.
 " :Tabularize /:\zs<CR>.
 " a(mnemonic for align)
-vmap ga :Tabularize /
+vmap <leader>a :Tabularize /
 "If you put [this gist](https://gist.github.com/tpope/287147#file-cucumbertables-vim) in your vimrc file, then it will call the :Tabularize command each time you insert a | character.
 
 
@@ -1045,7 +1067,7 @@ command! -register CopyMatches call CopyMatches(<q-reg>)
 " ===
 " === vim-which-key
 " ===
-set timeoutlen=500
+set timeoutlen=800
 " Executes native commands if keymap is not defined.
 " use `:WhichKey 'g'` and get `gg` work correct:
 let g:which_key_fallback_to_native_key=1
@@ -1065,7 +1087,7 @@ let g:which_key_map.w = {
     \ 'name' : '+windows' ,
     \ 'm' : 'minimize-windows'  ,
     \ 'M' : 'maximize-window'   ,
-    \ '=' : ['\<C-W>=' , 'balance-window'   ] ,
+    \ '+' : ['\<C-W>=' , 'balance-window'   ] ,
     \ '/' : ['Windows' , 'fzf-window'       ] ,
     \ }
 let g:which_key_map.b = {
@@ -1082,9 +1104,17 @@ let g:which_key_map.b = {
 call which_key#register('<Space>', "g:which_key_map")
 
 nnoremap <silent> , :WhichKey  ','<CR>
-nnoremap <silent> g :WhichKey  'g'<CR>
 nnoremap <silent> [ :WhichKey  '['<CR>
 nnoremap <silent> ] :WhichKey  ']'<CR>
-nnoremap <silent> <F1> :WhichKey! g:which_key_help_map<CR>
+" nnoremap <silent> <F1> :WhichKey! g:which_key_help_map<CR>
 nnoremap <silent> <LEADER> :WhichKey '<Space>'<CR>
 nnoremap <silent> <Bslash> :WhichKey  '<Bslash>'<CR>
+
+
+" :r !w3m -dump https://xxx.com/
+" :ViewHtml<CR> view the current html file.
+command! ViewHtml execute ':!w3m -dump % | less'
+
+" fast scrolling?
+" set lazyredraw
+" set regexpengine=1

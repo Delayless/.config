@@ -23,9 +23,14 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 
+#reverse the mouse button
+#exec --no-startup-id xmodmap -e "pointer = 3 2 1"
+##change keyboard map
+exec_always --no-startup-id sleep 1; xmodmap ~/.Xmodmap
+
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
-exec fcitx
+exec --no-startup-id fcitx
 
 #################################################################
 ######################自添加开机启动项###########################
@@ -39,28 +44,29 @@ exec fcitx
 #exec_always --no-startup-id ~/.config/i3/polybar.sh &
 
 # random mode
-# exec --no-startup-id  ~/.config/i3/wallpaper.sh &
+# exec --no-startup-id  ~/.config/i3/feh.sh &
 #exec_always --no-startup-id variety		# wallpaper
 # change wallpaper
 #bindsym $mod+b exec variety -n
 #bindsym $mod+shift+b exec variety -p
 
 # like mac spotlight
-#exec_always albert
+#exec_always --no-startup-id albert
+exec --no-startup-id goldendict
 exec_always --no-startup-id ~/.config/i3/tap-to-click.sh
 exec_always --no-startup-id ~/.config/i3/inverse-scroll.sh
 #################################################################
 #################################################################
 ## External expansion screen,set vertical screen
-exec_always xrandr --output eDP-1 --primary
-exec_always xrandr --output HDMI-1 --mode 1920x1080
-exec_always sleep 1; xrandr --output eDP-1 --right-of HDMI-1
-# exec_always xrandr --output HDMI-1 --rotate left
+exec_always --no-startup-id xrandr --output eDP-1 --primary
+exec_always --no-startup-id xrandr --output HDMI-1 --mode 1920x1080
+exec_always --no-startup-id sleep 1; xrandr --output eDP-1 --right-of HDMI-1
+# exec_always --no-startup-id xrandr --output HDMI-1 --rotate left
 
 #---wallpaper---
 # static mode
-# exec_always sleep 1;feh --bg-fill ~/Pictures/Wallpapers/Girlfriend-HorizontalView.jpg ~/Pictures/Wallpapers/Girlfriend-VerticalView.jpg
-exec_always sleep 1;feh --bg-fill ~/Pictures/Wallpapers/Girlfriend-HorizontalView.jpg ~/Pictures/Wallpapers/Girlfriend-HorizontalView.jpg
+# exec_always --no-startup-id sleep 1;feh --bg-fill ~/Pictures/Wallpapers/Girlfriend-HorizontalView.jpg ~/Pictures/Wallpapers/Girlfriend-VerticalView.jpg
+exec_always --no-startup-id sleep 1;feh --bg-fill ~/Pictures/Wallpapers/Girlfriend-HorizontalView.jpg ~/Pictures/Wallpapers/Girlfriend-HorizontalView.jpg
 exec_always --no-startup-id killall compton; compton -b
 
 # Open applications on specific workspaces
@@ -301,6 +307,7 @@ for_window [class="^.*"] border pixel 2
 #for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="ranger"] floating enable enable border pixel 1
 for_window [class='vlc'] floating enable
+#for_window [class="^jetbrains-.+"][window_type=dialog] focus
 #for_window [class="albert"] floating enable border pixel 0
 gaps inner 8
 gaps outer 4
@@ -324,9 +331,4 @@ bindsym $mod+F3 exec --no-startup-id ~/.config/i3/set_volume.sh --up
 # Sreen brightness controls
 bindsym $mod+F11 exec --no-startup-id brightnessctl set 20%- # decrease screen brightness
 bindsym $mod+F12 exec --no-startup-id brightnessctl set +20% # increase screen brightness
-
-#reverse the mouse button
-#exec xmodmap -e "pointer = 3 2 1"
-##change keyboard map
-exec_always sleep 1; xmodmap ~/.Xmodmap
 

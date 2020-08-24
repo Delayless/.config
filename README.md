@@ -1,39 +1,39 @@
 
 <!-- TOC GFM -->
 
-+ [Download the Repository](#download-the-repository)
++ [Download-the-Repository](#download-the-repository)
 + [config](#config)
-    * [config environment](#config-environment)
-    * [config joplin CLI](#config-joplin-cli)
-    * [Install Software](#install-software)
-        - [python3 for vim](#python3-for-vim)
+    * [config-environment](#config-environment)
+    * [config-joplin-CLI](#config-joplin-cli)
+    * [Install-Software](#install-software)
+        - [python3-for-vim](#python3-for-vim)
         - [Goldendict](#goldendict)
-+ [Key Map](#key-map)
++ [Key-Map](#key-map)
 + [vim-plug](#vim-plug)
     * [markdown-preview](#markdown-preview)
-+ [vimium(Chrome plugin)](#vimiumchrome-plugin)
++ [vimium(Chrome-plugin)](#vimiumchrome-plugin)
 + [ctag](#ctag)
 + [coc](#coc)
-    * [test code block](#test-code-block)
+    * [test-code-block](#test-code-block)
 + [PS](#ps)
 
 <!-- /TOC -->
 
 > Some plugs only work on vim >= 8.1 or neovim. e.g, markdown-preview, vim-deus, coc
 
-# Download the Repository
+# Download-the-Repository
 1. Download my config file by `git clone https://github.com/Delayless/.config`
 2. copy config file by`cp -rf ./.config/* ~/.config/`, and open the directory`cd ~/.config`
 
 # config
-## config environment
+## config-environment
 `sudo ./config-env.sh`
 1. Checking the shell is zsh or no.
 2. map the Keyboard, Caps--->Ctrl, Swap the Left_Command and Left_Alt, Left_Crtl --->Esc, Right_Alt--->Command, Right_menu--->Alt.
 3. Add the config for Chinese Input.
 4. Creat the soft link about the vimrc and zshrc on /home.
 5. Add Source about the Archlinuxcn of Tsinghua.
-## config joplin CLI
+## config-joplin-CLI
 ```
 sudo pacman -S nodejs npm
 NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin
@@ -46,9 +46,9 @@ It is possible to also synchronise outside of the user interface by typing jopli
 */30 * * * * /path/to/joplin sync
 ```
 
-## Install Software
+## Install-Software
 `sudo ./install.sh`
-### python3 for vim
+### python3-for-vim
 ultisnips needs vim to support vim-python3,
 Compile Vim
 ```
@@ -67,7 +67,7 @@ Edit -- Preferences -- Audio -- Use external program:
 `cvlc  --play-and-stop -Vdummy`
 
 
-# Key Map
+# Key-Map
 `setxkbmap us -variant colemak` set colemak keyboard layout or modify xmodmap.
 `xmodmap -pke` print keycodes.
 'xev': press key to print its keycode. some distro linux need to install `xorg-xev`.
@@ -109,7 +109,7 @@ Modified from`theniceboy/nvim`
 `,w` to go to the next `<++>` (placeholder) and then press `Enter` for you
 
 
-# vimium(Chrome plugin)
+# vimium(Chrome-plugin)
 Add a Google Chrome plugin: vimium(Control Chrome using vim's hotkey)
 
 | Shotcut         | Action                                         |
@@ -177,7 +177,7 @@ private:
 };
 endsnippet
 ```
-## test code block
+## test-code-block
 ```python
 import url
 
@@ -198,3 +198,4 @@ sudo pacman -U https://archive.archlinux.org/packages/t/ttf-inconsolata/ttf-inco
 # Tell pacman to ignore auto-upgrading ttf-inconsolata in the future.
 echo "IgnorePkg = ttf-inconsolata" >> /etc/pacman.conf
 ```
+2.` ~/.config/mimeapps.list`: define default application for a filetype.
