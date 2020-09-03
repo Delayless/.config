@@ -5,9 +5,10 @@
 export FZF_DEFAULT_OPTS='--bind ctrl-j:down,ctrl-k:up,?:toggle-preview --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || coderay {} || rougify {} || cat {}) 2> /dev/null | head -500"'
 export FZF_TMUX_HEIGHT='80%'
 export FZF_COMPLETION_TRIGGER='\'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' --bind '?:toggle-preview'"
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!node_modules/*" --glob "!vendor/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd -t d --hidden --follow --exclude \".git\" ."
 
 #######################################
 ############ keybind of fzf ############

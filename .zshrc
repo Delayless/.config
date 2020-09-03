@@ -1,20 +1,8 @@
-# # Enable colors and change prompt:
-autoload -U colors && colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-
 # History in cache directory:
 export EDITOR=nvim
-export HISTSIZE=10000
-export SAVEHIST=10000
+export HISTSIZE=8000
+export SAVEHIST=8000
 export HISTFILE=~/.zsh_history
-
-# Basic auto/tab complete:
-autoload -U compinit
-zstyle ':completion:*' menu select
-zmodload -i zsh/complist
-setopt globdots
-compinit
-_comp_options+=(globdots)		# Include hidden files.
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -24,9 +12,7 @@ export ZSH="/home/lenovo/.oh-my-zsh"
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="agnoster"
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+# ZSH_THEME="gnzh"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
@@ -35,50 +21,32 @@ export ZSH="/home/lenovo/.oh-my-zsh"
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS=true
 
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+ZSH_CUSTOM=~/.config/zsh
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+# web-search support `google`, `baidu`, `github`, etc.
+# e.g, `google zsh`, open a brower to search zsh in google
+plugins=(git zsh-completions zsh-autosuggestions zsh-syntax-highlighting web-search you-should-use)
+
+######## zsh-completions #########
+# Basic auto/tab complete:
+autoload -U compinit && compinit
+# Include hidden files.
+setopt globdots
+_comp_options+=(globdots)
+
+######## zsh-autosuggestions ##############
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=white'
+# ctrl+v then press ctrl+l to get ^L in terminal.
+# ctrl+l expand the suggestion.
+bindkey '^L' autosuggest-accept
+# Ctrl+Enter to excute the suggested command, alacritty.
+bindkey '[13;5u' autosuggest-execute
 
 source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
 
 # if not set the follow alias, aliases not available when using sudo
 # I want to 'sudo cp' == "sudo cp -i", so this setting is necessary.
@@ -87,16 +55,22 @@ alias sudo='sudo -E '
 alias cp="cp -i"
 alias mv="mv -i"
 
+alias vim='nvim'
 alias vb='vim ~/.bashrc'
 alias sb='source ~/.bashrc'
 alias vz='vim ~/.zshrc'
 alias sz='source ~/.zshrc'
+alias vr="vim ~/.config/README.md"
 alias gs='git status'
 alias gp='git pull'
 alias gd='git difftool'
+# clone repository by `author/repo_name` and enter.
+# e.g: `gc Delayless/.config`
+# --depth=1 just create a shallow clone
+# `git fetch --unshallow` to convert to a complete repository.
 alias gc='gitclone'
 gitclone() {
-    git clone https://github.com/$@
+    git clone --depth=1 https://github.com/$@
     if (( $? == 0 )); then
         repo=`echo $@ | cut -d '/' -f2`
         cd $repo
@@ -111,6 +85,7 @@ alias ssrstop="cd ~/Desktop/shadowsocksr/shadowsocks/ && sudo python local.py -d
 alias setproxy="export ALL_PROXY=socks5://127.0.0.1:1080"
 alias unsetproxy="unset ALL_PROXY"
 alias getip="curl -i https://ip.cn"
+# echo $(curl http://icanhazip.com) | xclip -selection clipboard
 alias i3config="vim ~/.config/i3/config"
 alias comptonconfig="vim ~/.config/compton.conf"
 alias vimrc="vim ~/.config/.vimrc"
@@ -119,10 +94,11 @@ alias ra="ranger"
 alias ag='ag --hidden --ignore .git'
 alias cat=ccat
 alias lg=lazygit
-# Help Config
-alias helpconfig="vim ~/.config/README.md"
+alias caps="xdotool key Caps_Lock"
 # alias gdb="gdb -tui"
 # alias getip="getent hosts unix.stackexchange.com | awk '{ print $1 }'"
+alias study="vim -M ~/Downloads/linux-c/docs/_sidebar.md"
+alias truecolor="curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash"
 
 source ~/.config/zsh-vim-mode.zsh
 source ~/.config/agnoster-modified.zsh-theme
@@ -149,5 +125,11 @@ mkcd() {mkdir $@ && cd $@}
 
 cdls() {cd "$@" && ls; }
 
-# Load zsh-syntax-highlighting; should be last.
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+# the followed command to test the speed of my shell startup time
+# for i in $(seq 1 10); do time $SHELL -i -c exit; done
+fuck() {
+    unfunction "fuck"
+    eval $(thefuck --alias)
+    fuck "$@"
+}
+

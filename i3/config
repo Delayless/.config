@@ -8,7 +8,8 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 10
+# font pango:monospace 10
+font pango:FiraCode Nerd Font 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -67,7 +68,7 @@ exec_always --no-startup-id sleep 1; xrandr --output eDP-1 --right-of HDMI-1
 # static mode
 # exec_always --no-startup-id sleep 1;feh --bg-fill ~/Pictures/Wallpapers/Girlfriend-HorizontalView.jpg ~/Pictures/Wallpapers/Girlfriend-VerticalView.jpg
 exec_always --no-startup-id sleep 1;feh --bg-fill ~/Pictures/Wallpapers/Girlfriend-HorizontalView.jpg ~/Pictures/Wallpapers/Girlfriend-HorizontalView.jpg
-exec_always --no-startup-id killall compton; compton -b
+exec_always --no-startup-id killall picom; picom -b
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] 1
@@ -94,7 +95,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+m exec netease-cloud-music
 
 # printscreen--scrot(Print), need to install scrot
-bindsym $mod+Print exec scrot
+bindsym $mod+p exec scrot
 
 # Dictionary GoldenDict
 bindsym $mod+Shift+d exec goldendict
@@ -105,9 +106,12 @@ bindsym $mod+Shift+d exec goldendict
 # sudo pacman -U https://archive.archlinux.org/packages/t/ttf-inconsolata/ttf-inconsolata-1%3A2.0.0.1-3-any.pkg.tar.xz
 # Tell pacman to ignore auto-upgrading ttf-inconsolata in the future.
 # echo "IgnorePkg = ttf-inconsolata" >> /etc/pacman.conf
-bindsym $mod+d exec --no-startup-id dmenu_recency
+# bindsym $mod+d exec --no-startup-id dmenu_recency
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 # bindsym $mod+d exec --no-startup-id dmenu_run -fn monaco-15
+bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+w exec --no-startup-id rofi -show window
+for_window [title="fzf-menu"] floating enable
 
 # google chrome
 #bindsym $mod+Shift+c exec google-chrome --proxy-server="socks://127.0.0.1:1080"
@@ -305,8 +309,8 @@ for_window [class="^.*"] border pixel 2
 #for_window [class="Lxappearance"] floating enable sticky enable border normal
 #for_window [class="Skype"] floating enable border normal
 #for_window [class="(?i)virtualbox"] floating enable border normal
-for_window [class="ranger"] floating enable enable border pixel 1
-for_window [class='vlc'] floating enable
+for_window [class="netease-cloud-music"] floating enable border pixel 2
+for_window [class=".*vlc.*"] floating enable
 #for_window [class="^jetbrains-.+"][window_type=dialog] focus
 #for_window [class="albert"] floating enable border pixel 0
 gaps inner 8
@@ -331,4 +335,3 @@ bindsym $mod+F3 exec --no-startup-id ~/.config/i3/set_volume.sh --up
 # Sreen brightness controls
 bindsym $mod+F11 exec --no-startup-id brightnessctl set 20%- # decrease screen brightness
 bindsym $mod+F12 exec --no-startup-id brightnessctl set +20% # increase screen brightness
-

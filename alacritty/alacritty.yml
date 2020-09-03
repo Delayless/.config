@@ -102,19 +102,19 @@ window:
 font:
   # The normal (roman) font face to use.
   normal:
-    family: Source Code Pro
+    family: FiraCode Nerd Font
     # Style can be specified to pick a specific face.
     # style: Regular
 
   # The bold font face
   bold:
-    family: Source Code Pro
+    family: FiraCode Nerd Font
     # Style can be specified to pick a specific face.
     # style: Bold
 
   # The italic font face
   italic:
-    family: Source Code Pro
+    family: FiraCode Nerd Font
     # Style can be specified to pick a specific face.
     # style: Italic
 
@@ -585,13 +585,13 @@ key_bindings:
   - { key: End,                     chars: "\x1bOF",        mode: AppCursor  }
   - { key: End,                     chars: "\x1b[F",        mode: ~AppCursor }
   - { key: PageUp,   mods: Shift,   action: ScrollPageUp,   mode: ~Alt       }
-  - { key: K,   mods: Alt,   action: ScrollPageUp                          }
   - { key: PageUp,   mods: Shift,   chars: "\x1b[5;2~",     mode: Alt        }
   - { key: PageUp,   mods: Control, chars: "\x1b[5;5~"                       }
   - { key: PageUp,   mods: Alt,     chars: "\x1b[5;3~"                       }
   - { key: PageUp,                  chars: "\x1b[5~"                         }
   - { key: PageDown, mods: Shift,   action: ScrollPageDown, mode: ~Alt       }
-  - { key: J, mods: Alt,   action: ScrollPageDown                          }
+    # - { key: J,        mods: Alt,   action: ScrollPageDown                    }
+    # - { key: K,        mods: Alt,   action: ScrollPageUp                      }
   - { key: PageDown, mods: Shift,   chars: "\x1b[6;2~",     mode: Alt        }
   - { key: PageDown, mods: Control, chars: "\x1b[6;5~"                       }
   - { key: PageDown, mods: Alt,     chars: "\x1b[6;3~"                       }
@@ -683,5 +683,8 @@ key_bindings:
   - { key: F12,      mods: Super,   chars: "\x1b[24;3~"                      }
   - { key: NumpadEnter,             chars: "\n"                              }
   # Solved alacritty can't recognize shift+enter.
+  # https://stackoverflow.com/questions/16359878/vim-how-to-map-shift-enter
   - { key: Return,   mods: Shift,   chars: "\x1b[13;2u"                      }
   - { key: Return,   mods: Control, chars: "\x1b[13;5u"                      }
+  - { key: J,        mods: Control|Alt,   action: ScrollPageDown                   }
+  - { key: K,        mods: Control|Alt,   action: ScrollPageUp                     }

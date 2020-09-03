@@ -20,13 +20,13 @@
 !/alacritty/
 !/neofetch/
 !/zathura/
-!/compton.conf
+!/picom.conf
 !/.Xmodmap
 !/.zshrc
 !/.gitignore
 !/README.md
 !/my-packages.txt
-!/zsh
+# !/zsh
 !/.vimrc
 !/vimium-options.json
 !/1-config-env.sh

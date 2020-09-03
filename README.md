@@ -1,44 +1,43 @@
-
 <!-- TOC GFM -->
 
-+ [Download-the-Repository](#download-the-repository)
++ [Download the Repository](#download-the-repository)
 + [config](#config)
-    * [config-environment](#config-environment)
-    * [config-joplin-CLI](#config-joplin-cli)
-    * [Install-Software](#install-software)
-        - [python3-for-vim](#python3-for-vim)
+    * [config environment](#config-environment)
+    * [config joplin CLI](#config-joplin-cli)
+    * [Install Software](#install-software)
+        - [python3 for vim](#python3-for-vim)
         - [Goldendict](#goldendict)
-+ [Key-Map](#key-map)
-+ [vim-plug](#vim-plug)
-    * [markdown-preview](#markdown-preview)
-+ [vimium(Chrome-plugin)](#vimiumchrome-plugin)
++ [Key Map](#key-map)
++ [vim plug](#vim-plug)
+    * [markdown preview](#markdown-preview)
++ [vimium(Chrome plugin)](#vimiumchrome-plugin)
 + [ctag](#ctag)
 + [coc](#coc)
-    * [test-code-block](#test-code-block)
+    * [test code block](#test-code-block)
 + [PS](#ps)
 
 <!-- /TOC -->
-
 > Some plugs only work on vim >= 8.1 or neovim. e.g, markdown-preview, vim-deus, coc
 
-# Download-the-Repository
+# Download the Repository
 1. Download my config file by `git clone https://github.com/Delayless/.config`
 2. copy config file by`cp -rf ./.config/* ~/.config/`, and open the directory`cd ~/.config`
 
 # config
-## config-environment
+## config environment
 `sudo ./config-env.sh`
 1. Checking the shell is zsh or no.
 2. map the Keyboard, Caps--->Ctrl, Swap the Left_Command and Left_Alt, Left_Crtl --->Esc, Right_Alt--->Command, Right_menu--->Alt.
 3. Add the config for Chinese Input.
 4. Creat the soft link about the vimrc and zshrc on /home.
 5. Add Source about the Archlinuxcn of Tsinghua.
-## config-joplin-CLI
-```
-sudo pacman -S nodejs npm
-NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin
-sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin
-```
+
+## config joplin CLI
+    ```bash
+    sudo pacman -S nodejs npm
+    NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin
+    sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin
+    ```
 For Dropbox, type `:config sync.target 7`. Then type `sync` to login to the service and start the synchronisation process.
 
 It is possible to also synchronise outside of the user interface by typing joplin sync from the terminal. This can be used to setup a cron script to synchronise at regular interval. For example, this would do it every 30 minutes:
@@ -46,19 +45,19 @@ It is possible to also synchronise outside of the user interface by typing jopli
 */30 * * * * /path/to/joplin sync
 ```
 
-## Install-Software
+## Install Software
 `sudo ./install.sh`
-### python3-for-vim
+### python3 for vim
 ultisnips needs vim to support vim-python3,
 Compile Vim
-```
-git clone https://github.com/vim/vim
-cd vim/src
-./configure  --enable-python3interp=yes
-make
-sudo make install
-# vim --version, to check `+python3` or not
-```
+    ```bash
+        git clone https://github.com/vim/vim
+        cd vim/src
+        ./configure  --enable-python3interp=yes
+        make
+        sudo make install
+        # vim --version, to check `+python3` or not
+    ```
 See [my-packages.txt](./my-packages.txt) for detail.
 ### Goldendict
 > Audio player
@@ -67,50 +66,62 @@ Edit -- Preferences -- Audio -- Use external program:
 `cvlc  --play-and-stop -Vdummy`
 
 
-# Key-Map
+# Key Map
 `setxkbmap us -variant colemak` set colemak keyboard layout or modify xmodmap.
 `xmodmap -pke` print keycodes.
 'xev': press key to print its keycode. some distro linux need to install `xorg-xev`.
 
 <LEADER> is <Space>
-| Shortcut | Action                     |   |   | Shortcut            | Action                                               |
-| -------- | ------------------------   | - | - | ------------------- | ---------------------------------------------------- |
-| F5       | Compile sourcefile         | - | - | <LEADER>S           | Save file as root after editing as non-root          |
-| F8       | Regenerate the tag file    | - | - | <LEADER>sp          | Spell check swith                                    |
-| F12      | MarkdownPreview            | - | - | <LEADER><Enter>     | Set nohightlight                                     |
-| Ctrl+j   | Scroll a half page down    | - | - | <F10> or <LEADER>sp | Grdapeieater Indent format for copying from Internet |
-| Ctrl+k   | Scroll a half page up      | - | - | Y or <C-c>          | Copy to system clipboard                             |
-| Ctrl+a   | add 1                      | - | - | <C-v>               | paste from system clipboard                          |
-| Ctrl+x   | subtract 1                 | - | - | U or <C-r>          | Undo                                                 |
-| gf       | open the file under cursor | - | - |
-
+| Shortcut            | Action                                               |
+| ------------------- | ---------------------------------------------------- |
+| F5                  | Compile sourcefile                                   |
+| F8                  | Regenerate the tag file                              |
+| F12                 | MarkdownPreview                                      |
+| Ctrl+j              | Scroll a half page down                              |
+| Ctrl+k              | Scroll a half page up                                |
+| Ctrl+a              | add 1                                                |
+| Ctrl+x              | subtract 1                                           |
+| gf                  | open the file under cursor                           |
+| <LEADER>S           | Save file as root after editing as non-root          |
+| <LEADER>sp          | Spell check swith                                    |
+| <LEADER><Enter>     | Set nohightlight                                     |
+| <F10> or <LEADER>sp | Grdapeieater Indent format for copying from Internet |
+| Y or <C-c>          | Copy to system clipboard                             |
+| <C-v>               | paste from system clipboard                          |
+| U or <C-r>          | Undo                                                 |
 
 
 PS: Command `xdotool key Caps_Lock` to toggle Caps_Lock status.
 
-# vim-plug
-Modified from`theniceboy/nvim`
+# vim plug
+Modified from `theniceboy/nvim`
 
-## markdown-preview
+## markdown preview
 > b-bold, s-sliced, i-italic, \`-block, c-big block code, t-todo(check mark), p-picture, a-link, l-link, f-forward
 
-| Shortcut   | Output            |   |   | Shortcut   | Output     |
-| ---------- | ----------------- | - | - | ---------- | ---------- |
-| `,n`       | ---               |   |   | `,p`       | picture    |
-| `,b`       | **Bold** text     |   |   | `,l`       | [link]()   |
-| `,s`       | ~~sliced~~ text   |   |   | `,1`       | # H1       |
-| `,i`       | *italic* text     |   |   | `,2`       | ## H2      |
-| ,\`        | code slice        |   |   | `,3`       | ### H3     |
-| `,c`       | block of code     |   |   | `,4`       | #### H4    |
-| `,t`       | - [ ] Todo list   |   |   | `,a`       | --------   |
+| Shortcut | Output            |
+| -------- | ----------------- |
+| `,n`     | ---               |
+| `,b`     | **Bold** text     |
+| `,s`     | ~~sliced~~ text   |
+| `,i`     | *italic* text     |
+| `,\`     | code slice        |
+| `,c`     | block of code     |
+| `,t`     | - [ ] Todo list   |
+| `,p`     | picture           |
+| `,l`     | [link]()          |
+| `,1`     | # H1              |
+| `,2`     | ## H2             |
+| `,3`     | ### H3            |
+| `,4`     | #### H4           |
+| `,a`     | --------          |
 
 `,f` to go to the next `<++>` (placeholder)
-
 `,w` to go to the next `<++>` (placeholder) and then press `Enter` for you
 
 
-# vimium(Chrome-plugin)
-Add a Google Chrome plugin: vimium(Control Chrome using vim's hotkey)
+# vimium(Chrome plugin)
+Add a [Google](Google) Chrome plugin: vimium(Control Chrome using vim's hotkey)
 
 | Shotcut         | Action                                         |
 |-----------------|------------------------------------------------|
@@ -177,7 +188,7 @@ private:
 };
 endsnippet
 ```
-## test-code-block
+## test code block
 ```python
 import url
 
@@ -199,3 +210,4 @@ sudo pacman -U https://archive.archlinux.org/packages/t/ttf-inconsolata/ttf-inco
 echo "IgnorePkg = ttf-inconsolata" >> /etc/pacman.conf
 ```
 2.` ~/.config/mimeapps.list`: define default application for a filetype.
+3. You can retrieve the key sequence for a key combination by pressing Ctrl+v followed by the key combination, e.g. Shift+Enter. these key sequence can be used to keymap by zsh, etc.(Different terminator has different key sequence. ctrl+enter, in st: `^M`. In alacritty: `[13;5u`.

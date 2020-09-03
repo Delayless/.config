@@ -1,14 +1,21 @@
 {
-	"coc.preferences.extensionUpdateCheck": "daily",
+	"coc.preferences.colorSupport": true,
+	"coc.preferences.snippetStatusText": "Ⓢ ",
 	"coc.preferences.enableFloatHighlight": true,
-	"diagnostic.errorSign": "×",
+	"coc.preferences.extensionUpdateCheck": "daily",
+	"coc.preferences.formatOnSaveFiletypes": ["html", "python", "json", "css"],
 	"suggest.snippetIndicator": "",
 	// Preview of a function
-	"suggest.maxPreviewWidth":50,
+	"suggest.maxPreviewWidth": 50,
 	// Detail on the right side of popup window
-	"suggest.detailMaxLength":30,
+	"suggest.detailMaxLength": 50,
 	// popup window's width
-	"suggest.labelMaxLength":50,
+	"suggest.labelMaxLength": 50,
+	"suggest.triggerAfterInsertEnter": true,
+	"suggest.autoTrigger": "always",
+	"suggest.enablePreview": true,
+	"suggest.detailField": "preview",
+	"suggest.echodocSupport": true,
 	"suggest.completionItemKindLabels": {
 		"class": "\uf0e8",
 		"color": "\ue22b",
@@ -22,29 +29,71 @@
 		"folder": "\uf115",
 		"function": "\u0192",
 		"interface": "\uf417",
-		"keyword": "\uf1de",
+		"keyword": "\uf80a",
 		"method": "\uf6a6",
 		"module": "\uf40d",
-		"operator": "\u00b1",
-		"property": "\ufab6",
+		"operator": "\uf915",
+		"property": "\ue624",
 		"reference": "\uf87a",
 		"snippet": "\ue60b",
 		"struct": "\ufb44",
-		"text": "\ue612",
-		"typeParameter": "\uf278",
+		"text": "\uf783",
+		"typeParameter": "\uf728",
 		"unit": "\uf475",
-		"value": "\uf8a3",
+		"value": "\uf89f",
 		"variable": "\uf71b"
 	},
+	// extends vimwiki(filetype) to use markdown's snippets.
+	"snippets.extends": { "vimwiki": ["markdown"] },
 	"snippets.userSnippetsDirectory": "~/.config/UltiSnips/",
 	"snippets.ultisnips.directories": [
 		"UltiSnips",
 		"~/.config/UltiSnips/",
 		"$HOME/.config/nvim/Ultisnips/"
 	],
+	"typescript.suggestionActions.enabled": true,
+	"typescript.format.enabled": true,
+	"javascript.referencesCodeLens.enable": true,
+	"javascript.showUnused": true,
+	"javascript.suggest.names": true,
+	"javascript.suggestionActions.enabled": true,
+	"json.format.enable": true,
+	"eslint.autoFixOnSave": false,
+	"tslint.autoFixOnSave": true,
+	"prettier.printWidth": 100,
+	"prettier.eslintIntegration": true,
+	"prettier.disableLanguages": ["vue"],
+	"prettier.formatterPriority": 1,
+	"prettier.useTabs": true,
+	"prettier.trailingComma": "all",
+	"prettier.singleQuote": false,
+	"diagnostic.errorSign": "✘",
+	"diagnostic.warningSign": "⚠",
+	"diagnostic.infoSign": "i",
+	"diagnostic.hintSign": "➤",
+	"diagnostic.virtualText": true,
+	"diagnostic.enableMessage": "jump",
+	"diagnostic.virtualTextPrefix": ">>",
 	"yank.enableCompletion": false,
-	"python.linting.pylintEnabled": false,
-	"python.linting.flake8Enabled": true,
-	"python.linting.enabled": true,
-	"python.jediEnabled": false
+	"python.jediEnabled": false,
+	"python.formatting.provider": "autopep8",
+	"translator.engines": ["bing", "google", "haici"],
+	"languageserver": {
+		"ccls": {
+			"command": "ccls",
+			"filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp", "cuda"],
+			"rootPatterns": [".ccls", "compile_commands.json", ".git/", ".hg/"],
+			"initializationOptions": {
+				"cache": {
+					"directory": "/tmp/ccls"
+				}
+			}
+		},
+		"bash": {
+			"command": "bash-language-server",
+			"args": ["start"],
+			"filetypes": ["sh"],
+			"ignoredRootPaths": ["~"]
+		}
+	}
 }

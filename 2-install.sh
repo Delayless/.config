@@ -8,6 +8,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	# sudo pacman -S gvim --noconfirm
 	sudo pacman -S xclip --noconfirm
 	sudo pacman -S clang --noconfirm
+	sudo pacman -S ccls --noconfirm
 	# joplin-desktop, directory: ~/.joplin-bin
 	wget -O - https://raw.githubusercontent.com/laurent22/joplin/master/Joplin_install_and_update.sh | bash
 	sudo pacman -S joplin --noconfirm
@@ -19,6 +20,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S pikaur --noconfirm
 	sudo pacman -S i3 --noconfirm
 	sudo pacman -S dmenu --noconfirm
+	sudo pacman -S rofi --noconfirm
 	sudo pacman -S powerline-fonts --noconfirm
 	# Scrot is a minimalist command line screen capturing application.
 	sudo pacman -S scrot --noconfirm
@@ -67,25 +69,20 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S zathura --noconfirm
 	sudo pacman -S zathura-pdf-mupdf --noconfirm
 	sudo pacman -S zathura-djvu --noconfirm
+	sudo pacman -S bash-language-server --noconfirm
 	##############compton###############
-	sudo pacman -S libx11 libxcomposite libxdamage libxfixes libxext libxrender libxrandr libxinerama ruby-pkg-config xorg-xwininfo libconfig libdrm libdbusmenu-glib asciidoc --noconfirm
-	sudo pacman -S nvidia-utils --noconfirm
-	mkdir -p ~/Desktop/tmp/
-	cd ~/Desktop/tmp/
-	git clone https://github.com/tryone144/compton.git
-	cd compton
-	sudo make
-	sudo make docs
-	sudo make install
-	cd .. && rm -rf compton && cd ~/
+	# sudo pacman -S libx11 libxcomposite libxdamage libxfixes libxext libxrender libxrandr libxinerama ruby-pkg-config xorg-xwininfo libconfig libdrm libdbusmenu-glib asciidoc --noconfirm
+	# sudo pacman -S nvidia-utils --noconfirm
+	sudo pacman -S picom --noconfirm
 	#############################
-	sudo pacman -S ctags --noconfirm
 	sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-	sudo pikaur -S ccat
 	sudo pikaur -S ccat-git
+    sudo pacman -S thefuck --noconfirm
 	# if install fzf using pacman, it's not be enabled by default key bindings in terminal.
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 	~/.fzf/install
+    # fzf alt-c find directory
+    sudo pacman -S fd -no-confirm
 	sudo pacman -S npm --noconfirm
 	sudo npm install -g p3x-onenote --unsafe-perm=true --allow-root
 	# p3x-onenote &
