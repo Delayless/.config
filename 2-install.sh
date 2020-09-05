@@ -19,6 +19,8 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S fcitx fcitx-im fcitx-configtool fcitx-googlepinyin --noconfirm
 	sudo pacman -S pikaur --noconfirm
 	sudo pacman -S i3 --noconfirm
+    # auto-hide mouse cursor
+    sudo pacman -S unclutter --noconfirm
 	sudo pacman -S dmenu --noconfirm
 	sudo pacman -S rofi --noconfirm
 	sudo pacman -S powerline-fonts --noconfirm
@@ -44,7 +46,9 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
     # Offline Documentation Browser
     sudo pacman -S zeal --noconfirm
 	sudo pacman -S pandoc --noconfirm
-	sudo pacman -S texlive-core --noconfirm
+	# sudo pacman -S texlive-full --noconfirm
+    sudo pikaur -S texlive-core texlive-bin texlive-langchinese  texlive-latexextra texlive-pictures --noconfirm
+    # sudo pikaur -S texlive-fontsextra --noconfirm
 	sudo pacman -S feh --noconfirm
 	sudo pacman -S code --noconfirm
 	sudo pacman -S kicad --noconfirm

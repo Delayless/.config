@@ -348,7 +348,7 @@ Plug 'godlygeek/tabular' "Align, :Tabularize /:\zs
 Plug 'tpope/vim-repeat' " The . command will work with ds, cs, yss
 Plug 'junegunn/vim-after-object' " copy, change, delete, yank after some symbols like `=/:/-/#/<space>`
 Plug 'chrisbra/NrrwRgn'     "display narrow region(focus)
-Plug 'puremourning/vimspector', { 'do': './install_gadget.py --force-enable-chrome --enable-c' }
+" Plug 'puremourning/vimspector', { 'do': './install_gadget.py --force-enable-chrome --enable-c' }
 Plug 'liuchengxu/vim-which-key'
 Plug 'mboughaba/i3config.vim'
 Plug 'ron89/thesaurus_query.vim'
@@ -507,7 +507,7 @@ let g:mkdx#settings = { 'highlight' : { 'enable': 1 },
                       \ 'tab'       : { 'enable': 1 },
                       \ 'links'     : { 'external': { 'enable': 1 } },
                       \ 'image_extension_pattern': 'a\?png\|jpe\?g\|gif',
-                      \ 'fold'      : { 'enable': 1, 'components': ['fence', 'toc']},
+                      \ 'fold'      : { 'enable': 0, 'components': ['fence', 'toc']},
                       \ 'auto_update': { 'enable': 0 },
                       \ 'toc': { 'details': { 'summary': 'Click to expand {{toc.text}}' }} }
 let g:mkdx#settings.gf_on_steroids = 1
@@ -973,7 +973,7 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 " You can automatically install multiple extensions when the coc.nvim service starts by defining global variable `g:coc_global_extensions`
 let g:coc_global_extensions = [  'coc-dictionary', 'coc-word', 'coc-emoji', 'coc-marketplace', 'coc-diagnostic',
             \ 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-highlight', 'coc-snippets', 'coc-actions',
-            \ 'coc-cmake', 'coc-python', 'coc-pyright', 'coc-vimlsp', 'coc-translator',
+            \ 'coc-cmake', 'coc-python', 'coc-pyright', 'coc-vimlsp', 'coc-translator', 'coc-texlab',
             \ 'coc-html', 'coc-prettier', 'coc-css', 'coc-tailwindcss', 'coc-stylelint',
             \ 'coc-json', 'coc-tsserver', 'coc-tslint-plugin', 'coc-eslint']
 " use <tab> for trigger completion and navigate to the next complete item
@@ -1132,12 +1132,42 @@ autocmd BufWritePre * :call TrimWhitespace()
 
 
 " ===
+" === vimtex
+" ===
+let g:tex_flavor = 'latex'
+let g:vimtex_quickfix_mode = 0
+let g:vimtex_view_use_temp_files = 1
+" Backward search requires `xdotool` for zathura
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_view_general_viewer = 'zathura'
+let g:vimtex_compiler_progname = 'nvr'
+nmap <leader>vi  <plug>(vimtex-info)
+nmap <leader>vI  <plug>(vimtex-info-full)
+nmap <leader>vt  <plug>(vimtex-toc-open)
+nmap <leader>vT  <plug>(vimtex-toc-toggle)
+nmap <leader>vq  <plug>(vimtex-log)
+nmap <leader>vv  <plug>(vimtex-view)
+nmap <leader>vr  <plug>(vimtex-reverse-search)
+nmap <leader>vl  <plug>(vimtex-compile)
+nmap <leader>vL  <plug>(vimtex-compile-selected)
+nmap <leader>vk  <plug>(vimtex-stop)
+nmap <leader>vK  <plug>(vimtex-stop-all)
+nmap <leader>ve  <plug>(vimtex-errors)
+nmap <leader>vo  <plug>(vimtex-compile-output)
+nmap <leader>vg  <plug>(vimtex-status)
+nmap <leader>vG  <plug>(vimtex-status-all)
+nmap <leader>vc  <plug>(vimtex-clean)
+nmap <leader>vC  <plug>(vimtex-clean-full)
+nmap <leader>vm  <plug>(vimtex-imaps-list)
+nmap <leader>vx  <plug>(vimtex-reload)
+nmap <leader>vX  <plug>(vimtex-reload-state)
+nmap <leader>vs  <plug>(vimtex-toggle-main)
+
+
+" ===
 " === vimspector
 " ===
-let g:vimtex_view_method='zathura'
-let g:vimtex_quickfix_mode=0
 let g:vimspector_enable_mappings = 'HUMAN'
-let g:vimtex_view_general_viewer = 'zathura'
 
 
 " http://vim.wikia.com/wiki/Copy_search_matches

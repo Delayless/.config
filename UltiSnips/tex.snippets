@@ -103,3 +103,39 @@ snippet box "Box"
 $0
 endsnippet
 
+# Chinese Supported
+# 需要加载宏包`\usepackage{CJKutf8}`
+snippet gbsn "简体中文宋体" b
+\begin{CJK*}{UTF8}{gbsn}
+	$1
+\end{CJK*}
+$0
+endsnippet
+
+snippet ch "简体中文楷体" b
+\begin{CJK*}{UTF8}{gkai}
+	$1
+\end{CJK*}
+$0
+endsnippet
+
+snippet bsmi "繁體中文宋體" b
+\begin{CJK*}{UTF8}{bsmi}
+	$1
+\end{CJK*}
+$0
+endsnippet
+
+snippet bkai "繁體中文楷體" b
+\begin{CJK*}{UTF8}{bkai}
+	$1
+\end{CJK*}
+$0
+endsnippet
+
+snippet box "Box"
+`!p snip.rv = '┌' + '─' * (len(t[1]) + 2) + '┐'`
+│ $1 │
+`!p snip.rv = '└' + '─' * (len(t[1]) + 2) + '┘'`
+$0
+endsnippet

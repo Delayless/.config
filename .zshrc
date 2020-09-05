@@ -56,6 +56,8 @@ alias cp="cp -i"
 alias mv="mv -i"
 
 alias vim='nvim'
+# use vim for vimtex
+# alias vim='vim --servername VIM'
 alias vb='vim ~/.bashrc'
 alias sb='source ~/.bashrc'
 alias vz='vim ~/.zshrc'
