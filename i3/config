@@ -18,7 +18,7 @@ font pango:FiraCode Nerd Font 10
 
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-exec --no-startup-id unclutter --timeout 2
+exec --no-startup-id unclutter --timeout 3
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.

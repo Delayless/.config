@@ -336,6 +336,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 Plug 'Delayless/vim-bujo'   "TODO
+Plug 'mtth/scratch.vim'  " Open a scratch window.
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'mattn/calendar-vim'  " vimwiki daily Index in calendar.
 
@@ -445,7 +446,6 @@ let g:mkdp_echo_preview_url = 1
 let g:mkdp_port = ''
 let g:mkdp_browser = ''    "spcify brower
 let g:mkdp_browserfunc = ''
-
 let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 1
 let g:mkdp_refresh_slow = 0
@@ -503,7 +503,7 @@ let g:tex_conceal='abdmg'
 let g:mkdx#settings = { 'highlight' : { 'enable': 1 },
                       \ 'enter'     : { 'enable': 1, 'o': 0 },
                       \ 'checkbox'  : { 'toggles': [' ', 'o', 'x'] } ,
-                      \ 'map'       : { 'enable': 1, 'prefix': ','},
+                      \ 'map'       : { 'enable': 1, 'prefix': '<leader>m'},
                       \ 'tab'       : { 'enable': 1 },
                       \ 'links'     : { 'external': { 'enable': 1 } },
                       \ 'image_extension_pattern': 'a\?png\|jpe\?g\|gif',
@@ -835,11 +835,11 @@ let g:colorizer_syntax = 1
 
 
 " Press F8 to regenerate the tag file
-map <F8> :!ctags -R --c++-kinds=+p --fields=+iaS --extras=+q .<CR><CR>
-imap <F8> <ESC>:!ctags -R --c++-kinds=+p --fields=+iaS --extras=+q .<CR><CR>
-set tags=tags
-set tags+=./tags "Search the tags in current filefolder
-set tags+=~/ctags/tags "When searching the tags, search the ~/ctags/tags at the same time. Don't move the tags file after 'ctags -R'. Otherwise, prompt the warning "Can't find any souce file" when you press Ctrl+]
+" map <F8> :!ctags -R --c++-kinds=+p --fields=+iaS --extras=+q .<CR><CR>
+" imap <F8> <ESC>:!ctags -R --c++-kinds=+p --fields=+iaS --extras=+q .<CR><CR>
+" set tags=tags
+" set tags+=./tags "Search the tags in current filefolder
+" set tags+=~/ctags/tags "When searching the tags, search the ~/ctags/tags at the same time. Don't move the tags file after 'ctags -R'. Otherwise, prompt the warning "Can't find any souce file" when you press Ctrl+]
 
 
 " ===
