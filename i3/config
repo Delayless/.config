@@ -28,7 +28,7 @@ exec --no-startup-id blueman-applet
 #reverse the mouse button
 #exec --no-startup-id xmodmap -e "pointer = 3 2 1"
 ##change keyboard map
-exec_always --no-startup-id sleep 1; xmodmap ~/.Xmodmap
+exec_always --no-startup-id xmodmap ~/.Xmodmap
 
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
@@ -96,8 +96,8 @@ bindsym $mod+Shift+q kill
 bindsym $mod+m exec netease-cloud-music
 
 # printscreen--scrot(Print), need to install scrot
-bindsym $mod+p exec scrot
-
+bindsym --release $mod+p exec scrot --select
+bindsym --release $mod+Shift+p exec scrot --select -e 'xclip -selection c -t image/png $f'
 # Dictionary GoldenDict
 bindsym $mod+Shift+d exec goldendict
 
@@ -213,7 +213,8 @@ bindsym $mod+Shift+9 move container to workspace 9; workspace 9
 
 
 # reload the configuration file,default m+S+c
-bindsym $mod+Shift+r reload
+# bindsym $mod+Shift+r reload
+bindsym $mod+Shift+r exec xmodmap ~/.Xmodmap
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3),default m+S+r
 bindsym $mod+Shift+s restart
 # exit i3 (logs you out of your X session)

@@ -488,10 +488,6 @@ let g:bullets_enabled_file_types = [
 " ===
 " === mkdx
 " ===
-" auto_update has BUG.
-" so must disable it, as long as use the toc related settings.
-" BUG2
-" let g:mkdx#settings = { 'tokens'    : { 'strike': '~~' } }
 " The last two lines configure the concealment. focus
 " LaTeX code is replaced or made invisible when your cursor is not on that line.
 " e.g, conceal link on `[name](link)`, replaces `\bigcap` by ∩, \in by ∈ etc.
@@ -508,6 +504,7 @@ let g:mkdx#settings = { 'highlight' : { 'enable': 1 },
                       \ 'links'     : { 'external': { 'enable': 1 } },
                       \ 'image_extension_pattern': 'a\?png\|jpe\?g\|gif',
                       \ 'fold'      : { 'enable': 0, 'components': ['fence', 'toc']},
+                      \ 'tokens'    : { 'strike': '~~' },
                       \ 'auto_update': { 'enable': 0 },
                       \ 'toc': { 'details': { 'summary': 'Click to expand {{toc.text}}' }} }
 let g:mkdx#settings.gf_on_steroids = 1
@@ -1141,6 +1138,7 @@ let g:vimtex_view_use_temp_files = 1
 let g:vimtex_view_method = 'zathura'
 let g:vimtex_view_general_viewer = 'zathura'
 let g:vimtex_compiler_progname = 'nvr'
+let g:vimtex_quickfix_autoclose_after_keystrokes=1
 nmap <leader>vi  <plug>(vimtex-info)
 nmap <leader>vI  <plug>(vimtex-info-full)
 nmap <leader>vt  <plug>(vimtex-toc-open)

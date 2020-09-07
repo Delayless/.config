@@ -57,12 +57,13 @@ set notification-fg "#151515" #00
 set recolor "true"
 set recolor-lightcolor "#2A2F3B" #00
 set recolor-darkcolor "#E0E0E0" #06
-set recolor-reverse-video "true"
+set recolor-reverse-video "false"
 set recolor-keephue "true"
 
-set highlight-transparency 0.4
+set highlight-transparency 0.1
 
 set render-loading "false"
+set reder
 set scroll-step 50
 unmap f
 map f toggle_fullscreen

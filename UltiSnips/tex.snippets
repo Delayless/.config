@@ -35,9 +35,8 @@ else:
 endsnippet
 
 snippet dm "Display math" wA
-\[
-$1
-.\] $0
+\[ $1. \]
+$0
 endsnippet
 
 snippet '([A-Za-z])(\d)' "auto subscript" wrA
@@ -68,9 +67,9 @@ snippet // "Fraction" iA
 \\frac{$1}{$2}$0
 endsnippet
 
-snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Fraction" wrA
-\\frac{`!p snip.rv = match.group(1)`}{$1}$0
-endsnippet
+# snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Fraction" wrA
+# \\frac{`!p snip.rv = match.group(1)`}{$1}$0
+# endsnippet
 
 priority 1000
 snippet '^.*\)/' "() Fraction" wrA
@@ -95,7 +94,7 @@ $0
 endsnippet
 
 # Chinese Supported
-# 需要加载宏包`\usepackage{CJKutf8}`
+# need load packages `\usepackage{CJKutf8}`
 snippet gbsn "简体中文宋体" b
 \begin{CJK*}{UTF8}{gbsn}
 	$1
@@ -124,3 +123,38 @@ snippet bkai "繁體中文楷體" b
 $0
 endsnippet
 
+
+snippet cframe "Chinese framework" b
+${1:Comment}
+\documentclass{article}
+\usepackage{xeCJK}
+${2:Use Some Packages}
+\setCJKmainfont{SimSun}
+\begin{document}
+$3
+\end{document}
+endsnippet
+
+global !p
+texMathZones = ['texMathZone'+x for x in ['A', 'AS', 'B', 'BS', 'C',
+'CS', 'D', 'DS', 'E', 'ES', 'F', 'FS', 'G', 'GS', 'H', 'HS', 'I', 'IS',
+'J', 'JS', 'K', 'KS', 'L', 'LS', 'DS', 'V', 'W', 'X', 'Y', 'Z']]
+
+texIgnoreMathZones = ['texMathText']
+
+texMathZoneIds = vim.eval('map('+str(texMathZones)+", 'hlID(v:val)')")
+texIgnoreMathZoneIds = vim.eval('map('+str(texIgnoreMathZones)+", 'hlID(v:val)')")
+
+ignore = texIgnoreMathZoneIds[0]
+
+def math():
+    synstackids = vim.eval("synstack(line('.'), col('.') - (col('.')>=2 ? 1 : 0))")
+    try:
+        first = next(
+            i for i in reversed(synstackids)
+            if i in texIgnoreMathZoneIds or i in texMathZoneIds
+        )
+        return first != ignore
+    except StopIteration:
+        return False
+endglobal
