@@ -62,13 +62,13 @@ exec_always --no-startup-id ~/.config/i3/inverse-scroll.sh
 ## External expansion screen,set vertical screen
 exec_always --no-startup-id xrandr --output eDP-1 --primary
 exec_always --no-startup-id xrandr --output HDMI-1 --mode 1920x1080
-exec_always --no-startup-id sleep 1; xrandr --output eDP-1 --right-of HDMI-1
+exec_always --no-startup-id xrandr --output eDP-1 --right-of HDMI-1
 # exec_always --no-startup-id xrandr --output HDMI-1 --rotate left
 
 #---wallpaper---
 # static mode
 # exec_always --no-startup-id sleep 1;feh --bg-fill ~/Pictures/Wallpapers/Girlfriend-HorizontalView.jpg ~/Pictures/Wallpapers/Girlfriend-VerticalView.jpg
-exec_always --no-startup-id sleep 1;feh --bg-fill ~/Pictures/Wallpapers/Girlfriend-HorizontalView.jpg ~/Pictures/Wallpapers/Girlfriend-HorizontalView.jpg
+exec_always --no-startup-id sleep 1;feh --bg-fill ~/Pictures/Wallpapers/Girlfriend-HorizontalView.jpg
 exec_always --no-startup-id killall picom; picom -b
 
 # Open applications on specific workspaces

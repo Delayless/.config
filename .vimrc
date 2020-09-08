@@ -86,6 +86,9 @@ set foldmethod=manual
 "use z=, open suggest list.
 "use zg, add the word to vim dictionary. zw to mark words as incorrect.
 set spell spelllang=en_us
+""" setlocal spell
+""" set spelllang=nl,en_gb
+""" inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 " spell checking
 noremap <LEADER>ss :set spell!<CR>
 set nospell
@@ -492,6 +495,7 @@ let g:bullets_enabled_file_types = [
 " LaTeX code is replaced or made invisible when your cursor is not on that line.
 " e.g, conceal link on `[name](link)`, replaces `\bigcap` by ∩, \in by ∈ etc.
 set conceallevel=2
+" hi Conceal ctermbg=none
 let g:tex_conceal='abdmg'
 " folding function conflicts with tpope/vim-markdown.
 " disable mkdx's folding by `let g:markdown_folding = 1`

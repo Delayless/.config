@@ -1,6 +1,8 @@
 #!/bin/sh
 
 if [ "${HOSTNAME}" == "Manjaro" ]; then
+    sudo pacman -S git --noconfirm
+    sudo pacman -S git-annex --noconfirm
 	sudo pacman -S openssl --noconfirm
 	sudo pacman -S make --noconfirm
 	sudo pacman -S cmake --noconfirm
@@ -81,8 +83,11 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	#############################
 	sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	sudo pikaur -S ccat-git --noconfirm
+    sudo pacman -S inkescape --noconfirm
     sudo pikaur -S mathpix-snipping-tool --noconfirm
     sudo pacman -S thefuck --noconfirm
+    # Desktop annotation.
+    sudo pikaur -S gromit-mpx --noconfirm
 	# if install fzf using pacman, it's not be enabled by default key bindings in terminal.
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 	~/.fzf/install
