@@ -21,6 +21,8 @@
 !/neofetch/
 !/zathura/
 !/picom.conf
+!/.xprofile
+!/fcitx5
 !/.Xmodmap
 !/.zshrc
 !/.gitignore

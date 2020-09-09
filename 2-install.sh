@@ -18,7 +18,15 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S vlc --noconfirm
 	sudo pacman -S alacritty --noconfirm
 	sudo pacman -S brightnessctl --noconfirm
-	sudo pacman -S fcitx fcitx-im fcitx-configtool fcitx-googlepinyin --noconfirm
+    sudo pacman -S fcitx5-git --noconfirm
+    # Chinese input support and lexicons.
+    sudo pacman -S fcitx5-chinese-addons-git fcitx5-pinyin-zhwiki fcitx5-pinyin-moegirl --noconfirm
+    # For obtain a better experience in gtk/qt4/qt5 programs
+    sudo pacman -S fcitx5-gtk-git fcitx5-qt4-git fcitx5-qt5-git --noconfirm
+    # fcitx theme
+    sudo pacman -S fcitx5-material-color --noconfirm
+    # GUI configuration tools, and For tranditional chinese
+    sudo pacman -S fcitx5-config-qt-git fcitx5-chewing --noconfirm
 	sudo pacman -S pikaur --noconfirm
 	sudo pacman -S i3 --noconfirm
     # auto-hide mouse cursor

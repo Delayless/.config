@@ -25,14 +25,14 @@ exec --no-startup-id unclutter --timeout 3
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 
+# X core fonts rendering does not support right-to-left and this being a bitmap
+# font, it doesn’t scale on retina/hidpi displays.
+exec --no-startup-id fcitx5
+
 #reverse the mouse button
 #exec --no-startup-id xmodmap -e "pointer = 3 2 1"
 ##change keyboard map
-exec_always --no-startup-id xmodmap ~/.Xmodmap
-
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
-exec --no-startup-id fcitx
+exec_always --no-startup-id sleep 1;xmodmap ~/.Xmodmap
 
 #################################################################
 ######################自添加开机启动项###########################
