@@ -1,0 +1,71 @@
+{
+	"configurations": {
+		"vscode-python": {
+			"adapter": "vscode-python",
+			"configuration": {
+				"request": "launch",
+				"type": "python",
+				"cwd": "${workspaceRoot}",
+				"program": "${file}",
+				"stopOnEntry": true,
+				"console": "integratedTerminal"
+			},
+			"breakpoints": {
+				"exception": {
+					"raised": "N",
+					"uncaught": "",
+					"userUnhandled": ""
+				}
+			}
+		},
+		"python:attach": {
+			"adapter": "multi-session",
+			"configuration": {
+				"request": "attach"
+			},
+			"breakpoints": {
+				"exception": {
+					"raised": "N",
+					"uncaught": "",
+					"userUnhandled": ""
+				}
+			}
+		},
+		"python:launch": {
+			"adapter": "debugpy",
+			"configuration": {
+				"request": "launch",
+				"type": "python",
+				"cwd": "${workspaceRoot}",
+				"program": "${file}",
+				"stopOnEntry": false,
+				"console": "integratedTerminal"
+			},
+			"breakpoints": {
+				"exception": {
+					"raised": "N",
+					"uncaught": "",
+					"userUnhandled": ""
+				}
+			}
+		},
+		"python:launch main.py": {
+			"adapter": "debugpy",
+			"configuration": {
+				"request": "launch",
+				"type": "python",
+				"cwd": "${workspaceRoot}",
+				"program": "${workspaceRoot}/main.py",
+				"stopOnEntry": false,
+				"console": "integratedTerminal"
+			},
+			"breakpoints": {
+				"exception": {
+					"raised": "N",
+					"uncaught": "",
+					"userUnhandled": ""
+				}
+			}
+		}
+	}
+}

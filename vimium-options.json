@@ -1,11 +1,11 @@
 {
   "settingsVersion": "1.66",
   "exclusionRules": [],
-  "filterLinkHints": true,
+  "filterLinkHints": false,
   "waitForEnterForFilteredHints": false,
   "hideHud": false,
   "keyMappings": "map K scrollPageUp\nmap J scrollPageDown\nmap R reload hard\nmap g^ firstTab\nmap <a-h> firstTab\nmap <a-l> lastTab\nmap <C-j> scrollFullPageDown\nmap <C-k> scrollFullPageUp\nmap yl LinkHints.activateModeToCopyLinkUrl\n# Search through your opened tabs\nmap t Vomnibar.activateTabSelection\nmap T createTab https://www.google.com/\n# Open multiple links in new tabs\nmap gl LinkHints.activateModeWithQueue\nunmap >>\nunmap <<\nmap < moveTabLeft\nmap > moveTabRight\nunmap d\nmap dd removeTab\nmap <C-r> restoreTab\nmap u goBack\nmap U goForward\n\" Open a Link in current tab using a new tab\nmap F LinkHints.activateModeToOpenInNewForegroundTab\nmap H previousTab\nmap L nextTab",
-  "linkHintCharacters": "sadfjklewcmpgh",
+  "linkHintCharacters": "fsdajklmnv",
   "linkHintNumbers": "0123456789",
   "newTabUrl": "about:newtab",
   "nextPatterns": "next,more,newer,>,›,→,»,≫,>>",
@@ -15,7 +15,7 @@
   "scrollStepSize": 60,
   "smoothScroll": true,
   "grabBackFocus": false,
-  "searchEngines": "bai: https://www.baidu.com/s?wd=%s Baidu\ngit: https://github.com/search?q=%s GitHub\ng: https://www.google.com/search?q=%s Google\nyt: https://www.youtube.com/results?search_query=%s Youtube\nwiki: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia\nl: https://www.google.com/search?q=%s&btnI I'm feeling lucky...\nzh: https://www.zhihu.com/search?type=content&q=%s 知乎\ntb https://s.taobao.com/search?q=%s 淘宝\nbz https://search.bilibili.com/all?keyword=%s b站\njd https://search.jd.com/Search?keyword=%s 京东",
+  "searchEngines": "baidu: https://www.baidu.com/s?wd=%s Baidu\nfanyi: https://fanyi.baidu.com/#en/zh/%s 百度翻译\ndeepl: https://www.deepl.com/translator#auto/zh/%s DeepL\ngit: https://github.com/search?q=%s GitHub\ng: https://www.google.com/search?q=%s Google\nyt: https://www.youtube.com/results?search_query=%s Youtube\nwiki: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia\nl: https://www.google.com/search?q=%s&btnI I'm feeling lucky...\nzhihu: https://www.zhihu.com/search?type=content&q=%s 知乎\ntb https://s.taobao.com/search?q=%s 淘宝\nbilibili https://search.bilibili.com/all?keyword=%s b站\njd https://search.jd.com/Search?keyword=%s 京东",
   "searchUrl": "https://www.google.com/search?q=",
   "userDefinedLinkHintCss": "div > .vimiumHintMarker {\n/* linkhint boxes */\nbackground: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFF785),\n  color-stop(100%,#FFC542));\nborder: 1px solid #E3BE23;\n}\n\ndiv > .vimiumHintMarker span {\n/* linkhint text */\ncolor: black;\nfont-weight: bold;\nfont-size: 12px;\n}\n\ndiv > .vimiumHintMarker > .matchingCharacter {\n}"
 }

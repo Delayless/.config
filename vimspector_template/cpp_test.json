@@ -1,0 +1,12 @@
+{
+	"configurations": {
+		"cpp:Launch": {
+			"adapter": "vscode-cpptools",
+			"configuration": {
+				"request": "launch",
+				"program": "${workspaceRoot}/main.out",
+				"stopAtEntry": true
+			}
+		}
+	}
+}

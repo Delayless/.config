@@ -24,6 +24,7 @@
 !/.xprofile
 !/fcitx5
 !/.Xmodmap
+!/vimspector_template
 !/.zshrc
 !/.gitignore
 !/README.md

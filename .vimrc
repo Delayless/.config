@@ -329,7 +329,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'Delayless/vim-bookmarks'
 Plug 'mg979/vim-xtabline'   "Tab manager in the top of windows
 " fades your inactive buffers and preserves syntax highlighting.
-Plug 'TaDaa/vimade'
+" Plug 'TaDaa/vimade'
 Plug 'mhinz/vim-startify'   " StartPage
 Plug 'junegunn/goyo.vim'    " focus read/write
 
@@ -352,7 +352,7 @@ Plug 'godlygeek/tabular' "Align, :Tabularize /:\zs
 Plug 'tpope/vim-repeat' " The . command will work with ds, cs, yss
 Plug 'junegunn/vim-after-object' " copy, change, delete, yank after some symbols like `=/:/-/#/<space>`
 Plug 'chrisbra/NrrwRgn'     "display narrow region(focus)
-" Plug 'puremourning/vimspector', { 'do': './install_gadget.py --force-enable-chrome --enable-c' }
+Plug 'puremourning/vimspector', { 'do': './install_gadget.py --force-enable-chrome --force-enable-python --enable-c' }
 Plug 'liuchengxu/vim-which-key'
 Plug 'mboughaba/i3config.vim'
 Plug 'ron89/thesaurus_query.vim'
@@ -382,7 +382,7 @@ set viewoptions=cursor,folds,slash,unix  " autosave cursor position and fold inf
 " === NERDtree
 " ===
 " debug
-map ff :NERDTreeToggle<CR>
+map tt :NERDTreeToggle<CR>
 " open NERDTree automatically when vim starts up on opening a directory
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
@@ -400,6 +400,7 @@ let NERDTreeMapPreview = ""
 let NERDTreeMapCloseDir = "h"
 let NERDTreeMapChangeRoot = "o"
 let NERDTreeMapToggleHidden="I"
+let NERDTreeMapMenu = ","
 let NERDTreeIgnore = ['\~$', '\.pyc$', '\.swp$']
 
 
@@ -1050,7 +1051,7 @@ nnoremap <silent> <Bslash>y :<C-u>CocList -A --normal yank<cr>
 nnoremap <silent> <Bslash>a :CocList marketplace<CR>
 " coc-diagnostic
 " `:CocDiagnostics` to check for syntax errors(warning).
-noremap <silent><nowait> <LEADER>d :CocList diagnostics<cr>
+noremap <silent><nowait> <LEADER>dd :CocList diagnostics<cr>
 nmap <silent> <LEADER>ek <Plug>(coc-diagnostic-prev)
 nmap <silent> <LEADER>ej <Plug>(coc-diagnostic-next)
 " coc-snippets
@@ -1169,7 +1170,46 @@ nmap <leader>vs  <plug>(vimtex-toggle-main)
 " ===
 " === vimspector
 " ===
-let g:vimspector_enable_mappings = 'HUMAN'
+" let g:vimspector_enable_mappings = 'HUMAN'
+let g:ycm_semantic_triggers =  {'VimspectorPrompt': [ '.', '->', ':', '<']}
+" the mapping refers to the abbreviation of gdb commands
+" When debugging, continue. Otherwise start debugging.
+nmap <leader>dc  <Plug>VimspectorContinue
+nmap <leader>dq  <Plug>VimspectorStop
+" equal gdb command `run`
+nmap <leader>dr  <Plug>VimspectorRestart
+nmap <leader>dP  <Plug>VimspectorPause
+" Toggle line breakpoint on the current line.
+nmap <leader>db  <Plug>VimspectorToggleBreakpoint
+" set a conditional breakpoint
+nmap <leader>dif  <Plug>VimspectorToggleConditionalBreakpoint
+" Add a function breakpoint for the expression under cursor
+nmap <leader>dB  <Plug>VimspectorAddFunctionBreakpoint
+nmap <leader>dn  <Plug>VimspectorStepOver
+nmap <leader>ds  <Plug>VimspectorStepInto
+" equal gdb command `finish`
+nmap <leader>df  <Plug>VimspectorStepOut
+nmap <leader>dw :VimspectorWatch
+nmap <leader>de :VimspectorEval
+nmap <leader>do :VimspectorShowOutput
+let g:vimspector_json_path=$HOME . "/.config/vimspector_template/"
+" command! -bang -nargs=* LoadVimSpectorJson call fzf#run({
+"             \   'source': 'ls -d ' . vimspector_json_path . '*',
+"             \   'sink': 'e .vimspector.json | 0r',
+"             \   'down': '25%',
+"             \   'options': '--preview-window=hidden'
+"             \ })
+
+command! -bar -nargs=1 LoadVimSpectorTemplate
+    \ execute "0r ".g:vimspector_json_path.<q-args>
+command! -bang -nargs=* LoadVimSpectorJson call fzf#run({
+            \   'source': 'ls ' . vimspector_json_path,
+            \   'sink': 'e .vimspector.json | LoadVimSpectorTemplate',
+            \   'down': '25%',
+            \   'options': '--preview-window=hidden'
+            \ })
+noremap <leader>vs :LoadVimSpectorJson<CR>
+
 
 
 " http://vim.wikia.com/wiki/Copy_search_matches
