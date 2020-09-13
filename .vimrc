@@ -98,21 +98,28 @@ set ttimeoutlen=100 " reduce latency of swithing input method for Plug fcitx.vim
 " :help keycode
 " <m-s> == Alt+s ?, they are unequal in ubuntu.
 " j/k will move virtual lines (lines that wrap)
-noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
-noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
-" nnoremap j jzz
-" nnoremap k kzz
-noremap J 5j
-noremap K 5k
+" noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+" noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 " ^ to first non-blank character, 0 to first character.
-noremap H 0
-noremap L $
-noremap W 5w
-noremap B 5b
+noremap H ^
+noremap n j
+noremap N 5j
+noremap e k
+noremap E 5k
+noremap i l
+noremap I $
+noremap k n
+noremap K N
+noremap l u
+noremap L <c-r>
+noremap j e
+noremap J E
+noremap <silent> ge gk
+noremap <silent> gn gj
 " nnoremap <CR> o<Esc>
 nnoremap <S-CR> i<CR><Esc>
-nnoremap <C-k> Hzz
-nnoremap <C-j> Lzz
+nnoremap <C-e> Hzz
+nnoremap <C-n> Lzz
 
 " it would be prone to bugs if mapping : ;.
 noremap ; :
@@ -126,10 +133,10 @@ noremap ; :
 " Disable the default s key
 noremap s <nop>
 " split the screens
-map sk :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
-map sj :set splitbelow<CR>:split<CR>
+map se :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
+map sn :set splitbelow<CR>:split<CR>
 map sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
-map sl :set splitright<CR>:vsplit<CR>
+map si :set splitright<CR>:vsplit<CR>
 
 " has() is a system command. use it  as little as possible. Maybe, not sure.
 " Maybe conflict with your terminator's shortcuts.
@@ -137,9 +144,9 @@ map sl :set splitright<CR>:vsplit<CR>
 if !has('nvim')
     execute "set <M-w>=\ew"
     execute "set <M-h>=\eh"
-    execute "set <M-j>=\ej"
-    execute "set <M-k>=\ek"
-    execute "set <M-l>=\el"
+    execute "set <M-n>=\en"
+    execute "set <M-e>=\ee"
+    execute "set <M-i>=\ei"
     execute "set <M-0>=\e0"
     execute "set <M-1>=\e1"
     execute "set <M-2>=\e2"
@@ -153,25 +160,25 @@ if !has('nvim')
 endif
 " Terminal mode:
 tnoremap <M-h> <c-\><c-n><c-w>h
-tnoremap <M-j> <c-\><c-n><c-w>j
-tnoremap <M-k> <c-\><c-n><c-w>k
-tnoremap <M-l> <c-\><c-n><c-w>l
+tnoremap <M-n> <c-\><c-n><c-w>j
+tnoremap <M-e> <c-\><c-n><c-w>k
+tnoremap <M-i> <c-\><c-n><c-w>l
 " Insert mode:
 inoremap <M-h> <Esc><c-w>h
-inoremap <M-j> <Esc><c-w>j
-inoremap <M-k> <Esc><c-w>k
-inoremap <M-l> <Esc><c-w>l
+inoremap <M-n> <Esc><c-w>j
+inoremap <M-e> <Esc><c-w>k
+inoremap <M-i> <Esc><c-w>l
 " Visual mode:
 vnoremap <M-w> <Esc><c-w>w
 vnoremap <M-h> <Esc><c-w>h
-vnoremap <M-j> <Esc><c-w>j
-vnoremap <M-k> <Esc><c-w>k
-vnoremap <M-l> <Esc><c-w>l
+vnoremap <M-n> <Esc><c-w>j
+vnoremap <M-e> <Esc><c-w>k
+vnoremap <M-i> <Esc><c-w>l
 " Normal mode:
 nnoremap <LEADER>h <c-w>h
-nnoremap <LEADER>j <c-w>j
-nnoremap <LEADER>k <c-w>k
-nnoremap <LEADER>l <c-w>l
+nnoremap <LEADER>n <c-w>j
+nnoremap <LEADER>e <c-w>k
+nnoremap <LEADER>i <c-w>l
 map <LEADER>1 1<C-w><C-w>
 map <LEADER>2 2<C-w><C-w>
 map <LEADER>3 3<C-w><C-w>
@@ -218,18 +225,16 @@ noremap sru <C-w>b<C-w>H
 " ===
 " `N Backpack` go to N tab or N buffer
 " Create a new tab with tu
-noremap ti :tabe<CR>
+noremap tu :tabe<CR>
 noremap tc :tabclose<CR>
 noremap tC :tabonly<CR>
 " Move around tabs with th and tl
 noremap th :-tabnext<CR>
-noremap tl :+tabnext<CR>
+noremap ti :+tabnext<CR>
 " Move the tabs with tmh and tml
 noremap tmh :-tabmove<CR>
-noremap tml :+tabmove<CR>
+noremap tmi :+tabmove<CR>
 
-"noremap <LEADER>j 20J
-noremap U <C-r>
 noremap ` ~
 nnoremap < <<
 nnoremap > >>
@@ -243,8 +248,8 @@ map <LEADER>Q :q!<CR>
 map <LEADER>R S:source $MYVIMRC<CR>
 map <LEADER>rc :tabedit ~/.config/.vimrc<CR>
 map <LEADER><CR> :nohlsearch<CR>
-map <LEADER>n :set nonu<CR>:set norelativenumber<CR>
-map <LEADER>N :set nu<CR>:set relativenumber<CR>
+" map <LEADER>n :set nonu<CR>:set norelativenumber<CR>
+" map <LEADER>N :set nu<CR>:set relativenumber<CR>
 "Greater Indent format for copying from Internet or no
 set pastetoggle=<F10>
 map <LEADER>sp :set paste!<CR>
@@ -273,14 +278,12 @@ tnoremap <C-v><Esc> <C-\><C-n>
 " ===
 cnoremap <c-a> <Home>
 cnoremap <c-e> <End>
-cnoremap <c-l> <Right>
+cnoremap <c-i> <Right>
 cnoremap <c-h> <Left>
 " words backward.
 cnoremap <c-b> <S-Left>
 " words forward.
 cnoremap <c-f> <S-Right>
-inoremap <c-a> <HOME>
-inoremap <c-e> <END>
 
 
 call plug#begin('~/.vim/plugged')
@@ -389,17 +392,17 @@ map tt :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 let NERDTreeQuitOnOpen=1
 let NERDTreeMapOpenExpl = ""
-let NERDTreeMapUpdir = "u"
-let NERDTreeMapUpdirKeepOpen = "U"
+let NERDTreeMapUpdir = "h"
+let NERDTreeMapUpdirKeepOpen = "H"
 let NERDTreeMapOpenSplit = ""
-let NERDTreeMapOpenVSplit = "L"
-let NERDTreeOpenVSplit = ""
-let NERDTreeMapActivateNode = "l"
-let NERDTreeMapOpenInTab = "O"
+let NERDTreeMapOpenVSplit = "I"
+let NERDTreeMapActivateNode = "i"
+let NERDTreeMapOpenInTab = "o"
+let NERDTreeMapOpenInTabSilent = "O"
 let NERDTreeMapPreview = ""
 let NERDTreeMapCloseDir = "h"
-let NERDTreeMapChangeRoot = "o"
-let NERDTreeMapToggleHidden="I"
+let NERDTreeMapChangeRoot = "l"
+let NERDTreeMapToggleHidden="zh"
 let NERDTreeMapMenu = ","
 let NERDTreeIgnore = ['\~$', '\.pyc$', '\.swp$']
 
@@ -431,8 +434,8 @@ let g:gitgutter_preview_win_floating = 1
 autocmd BufWritePost * GitGutter
 nnoremap <LEADER>gf :GitGutterFold<CR>
 nnoremap <LEADER>gd :GitGutterPreviewHunk<CR>
-nnoremap <LEADER>gk :GitGutterPrevHunk<CR>
-nnoremap <LEADER>gj :GitGutterNextHunk<CR>
+nnoremap <LEADER>ge :GitGutterPrevHunk<CR>
+nnoremap <LEADER>gn :GitGutterNextHunk<CR>
 " Git add(stage) this change
 nnoremap <LEADER>ga :GitGutterStageHunk<CR>
 " Undo Changed Context
@@ -717,8 +720,8 @@ let g:vimwiki_global_ext = 0
 " use my custom folder, markdown syntax and custom extension
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'path_html': '~/vimwiki_html/', 'auto_toc': 1 },
 					\ {'path': '~/mdwiki/', 'syntax': 'markdown', 'ext': '.mdvimwiki'}]
-nmap <LEADER>wj <Plug>VimwikiNextLink
-nmap <LEADER>wk <Plug>VimwikiPrevLink
+nmap <LEADER>wn <Plug>VimwikiNextLink
+nmap <LEADER>we <Plug>VimwikiPrevLink
 nmap <LEADER>wha <Plug>VimwikiAll2HTML
 " the same as glp and gln.
 " At the same time, only one shortcut can take effect.
@@ -836,14 +839,6 @@ let g:eleline_powerline_fonts = 1
 let g:colorizer_syntax = 1
 
 
-" Press F8 to regenerate the tag file
-" map <F8> :!ctags -R --c++-kinds=+p --fields=+iaS --extras=+q .<CR><CR>
-" imap <F8> <ESC>:!ctags -R --c++-kinds=+p --fields=+iaS --extras=+q .<CR><CR>
-" set tags=tags
-" set tags+=./tags "Search the tags in current filefolder
-" set tags+=~/ctags/tags "When searching the tags, search the ~/ctags/tags at the same time. Don't move the tags file after 'ctags -R'. Otherwise, prompt the warning "Can't find any souce file" when you press Ctrl+]
-
-
 " ===
 " === Pretty Dress, Highlight Settings
 " ===
@@ -889,24 +884,20 @@ let g:bookmark_highlight_lines = 1
 function! BookmarkMapKeys()
     nmap mm :BookmarkToggle<CR>
     nmap mi :BookmarkAnnotate<CR>
-    nmap mj :BookmarkNext<CR>
-    nmap mk :BookmarkPrev<CR>
+    nmap mn :BookmarkNext<CR>
+    nmap me :BookmarkPrev<CR>
     nmap ma :BookmarkShowAll<CR>
     nmap mc :BookmarkClear
     nmap mx :BookmarkClearAll
-    nmap mp :BookmarkMoveUp<CR>
-    nmap mn :BookmarkMoveDown<CR>
 endfunction
 function! BookmarkUnmapKeys()
     unmap mm
     unmap mi
-    unmap mj
-    unmap mk
+    unmap mn
+    unmap me
     unmap ma
     unmap mc
     unmap mx
-    unmap mp
-    unmap mn
 endfunction
 autocmd BufEnter * :call BookmarkMapKeys()
 autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
@@ -950,6 +941,7 @@ function! s:goyo_leave()
 endfunction
 autocmd! User GoyoEnter call <SID>goyo_enter()
 autocmd! User GoyoLeave call <SID>goyo_leave()
+
 
 " ===
 " === coc.nvim
@@ -1052,25 +1044,21 @@ nnoremap <silent> <Bslash>a :CocList marketplace<CR>
 " coc-diagnostic
 " `:CocDiagnostics` to check for syntax errors(warning).
 noremap <silent><nowait> <LEADER>dd :CocList diagnostics<cr>
-nmap <silent> <LEADER>ek <Plug>(coc-diagnostic-prev)
-nmap <silent> <LEADER>ej <Plug>(coc-diagnostic-next)
+nmap <silent> <LEADER>ee <Plug>(coc-diagnostic-prev)
+nmap <silent> <LEADER>en <Plug>(coc-diagnostic-next)
 " coc-snippets
 " supported .tex not only .latex
 let g:tex_flavor = "latex"
 " Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)
-" Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
-let g:coc_snippet_next = '<c-j>'
-let g:coc_snippet_prev = '<c-k>'
+let g:coc_snippet_next = '<c-e>'
+let g:coc_snippet_prev = '<c-u>'
 " Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
+" imap <C-n> <Plug>(coc-snippets-expand-jump)
 let g:snips_author = 'Delayless'
 " Press space twice to jump to the next '<++>' and edit it
 map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 source ~/.config/snippits.vim
-" remap Ctrl+j to trigger completion.
-inoremap <expr> <c-l> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 
 " ===
@@ -1098,12 +1086,6 @@ vmap <nowait> <LEADER>tt <Plug>(coc-translator-pv)
 " a(mnemonic for align)
 vmap <LEADER>tb :Tabularize /
 "If you put [this gist](https://gist.github.com/tpope/287147#file-cucumbertables-vim) in your vimrc file, then it will call the :Tabularize command each time you insert a | character.
-
-
-" ===
-" === vim-repeat
-" ===
-silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 
 
 " ===
@@ -1281,8 +1263,8 @@ let g:which_key_map.b = {
     \ 'd' : [':bd'        , 'delete-buffer'       ] ,
     \ 'W' : [':bw!'       , 'force-delete-buffer' ] ,
     \ 'H' : ['bfirst'    , 'first-buffer'        ] ,
-    \ 'L' : ['blast'     , 'last-buffer'         ] ,
-    \ 'l' : ['bnext'     , 'next-buffer'         ] ,
+    \ 'I' : ['blast'     , 'last-buffer'         ] ,
+    \ 'i' : ['bnext'     , 'next-buffer'         ] ,
     \ 'h' : ['bprevious' , 'previous-buffer'     ] ,
     \ '?' : ['Buffers'   , 'fzf-buffer'          ] ,
     \ }
@@ -1372,3 +1354,10 @@ func SetTitle()
     autocmd BufNewFile * normal G
 endfunc
 
+
+" ===
+" === vim-repeat
+" ===
+silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
+noremap u i
+noremap U I

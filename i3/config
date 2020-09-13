@@ -32,10 +32,8 @@ exec --no-startup-id fcitx5
 #reverse the mouse button
 #exec --no-startup-id xmodmap -e "pointer = 3 2 1"
 ##change keyboard map
-exec_always --no-startup-id sleep 1;xmodmap ~/.Xmodmap
+exec_always --no-startup-id sleep 1;xmodmap ~/.config/colemak
 
-#################################################################
-######################自添加开机启动项###########################
 # exec commands will not run when restarting i3, if you need a command to run also when restarting i3 you should use the exec_always keyword. These commands will be run in order.
 # The --no-startup-id parameter disables startup-notification support for this particular exec command.
 # Shift,Ctrl
@@ -121,9 +119,9 @@ for_window [title="fzf-menu"] floating enable
 bindsym $mod+Shift+c exec google-chrome-stable
 
 # change focus
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+n focus down
+bindsym $mod+e focus up
+bindsym $mod+i focus right
 bindsym $mod+h focus left
 
 # alternatively, you can use the cursor keys:
@@ -133,9 +131,9 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+n move down
+bindsym $mod+Shift+e move up
+bindsym $mod+Shift+i move right
 bindsym $mod+Shift+h move left
 
 # alternatively, you can use the cursor keys:
@@ -214,11 +212,11 @@ bindsym $mod+Shift+9 move container to workspace 9; workspace 9
 
 # reload the configuration file,default m+S+c
 # bindsym $mod+Shift+r reload
-bindsym $mod+Shift+r exec xmodmap ~/.Xmodmap
+# bindsym $mod+Shift+r exec xmodmap ~/.Xmodmap
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3),default m+S+r
 bindsym $mod+Shift+s restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -229,15 +227,15 @@ mode "resize" {
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
         bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+        bindsym n resize grow height 10 px or 10 ppt
+        bindsym e resize shrink height 10 px or 10 ppt
+        bindsym i resize grow width 10 px or 10 ppt
 
         # Move Floating Windows using upcase hjkl.
         bindsym Shift+h move left
-        bindsym Shift+j move down
-        bindsym Shift+k move up
-        bindsym Shift+l move right
+        bindsym Shift+n move down
+        bindsym Shift+e move up
+        bindsym Shift+i move right
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt

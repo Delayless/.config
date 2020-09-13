@@ -686,5 +686,5 @@ key_bindings:
   # https://stackoverflow.com/questions/16359878/vim-how-to-map-shift-enter
   - { key: Return,   mods: Shift,   chars: "\x1b[13;2u"                      }
   - { key: Return,   mods: Control, chars: "\x1b[13;5u"                      }
-  - { key: J,        mods: Control|Alt,   action: ScrollPageDown                   }
-  - { key: K,        mods: Control|Alt,   action: ScrollPageUp                     }
+  - { key: N,        mods: Control|Alt,   action: ScrollPageDown                   }
+  - { key: E,        mods: Control|Alt,   action: ScrollPageUp                     }

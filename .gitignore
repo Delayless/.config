@@ -16,6 +16,7 @@
 # ... but these:
 !/i3/
 /i3/log/
+!/colemak
 !/polybar/
 !/alacritty/
 !/neofetch/
