@@ -15,7 +15,6 @@ set pages-per-row 1
 
 #stop at page boundries
 set scroll-page-aware "true"
-set smooth-scroll "true"
 set scroll-full-overlap 0.01
 set scroll-step 100
 
@@ -63,7 +62,6 @@ set recolor-keephue "true"
 set highlight-transparency 0.1
 
 set render-loading "false"
-set reder
 set scroll-step 50
 unmap f
 map f toggle_fullscreen
