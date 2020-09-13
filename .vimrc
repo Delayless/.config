@@ -278,7 +278,8 @@ tnoremap <C-v><Esc> <C-\><C-n>
 " ===
 cnoremap <c-a> <Home>
 cnoremap <c-e> <End>
-cnoremap <c-i> <Right>
+" <c-l> equal <Tab> for autocompletion.
+cnoremap <c-l> <Right>
 cnoremap <c-h> <Left>
 " words backward.
 cnoremap <c-b> <S-Left>
