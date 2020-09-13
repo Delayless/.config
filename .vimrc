@@ -1059,8 +1059,6 @@ nmap <silent> <LEADER>ej <Plug>(coc-diagnostic-next)
 let g:tex_flavor = "latex"
 " Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)
-" Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
 let g:coc_snippet_next = '<c-j>'
 let g:coc_snippet_prev = '<c-k>'
 " Use <C-j> for both expand and jump (make expand higher priority.)
@@ -1069,8 +1067,6 @@ let g:snips_author = 'Delayless'
 " Press space twice to jump to the next '<++>' and edit it
 map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 source ~/.config/snippits.vim
-" remap Ctrl+j to trigger completion.
-inoremap <expr> <c-l> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 
 " ===
