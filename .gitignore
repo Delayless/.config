@@ -44,3 +44,7 @@
 !/joplin
 /joplin/*
 !/joplin/keymap.json
+
+!/jesseduffield/
+/jesseduffield/lazygit/*
+!/jesseduffield/lazygit/config.yml
