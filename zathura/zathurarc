@@ -3,6 +3,33 @@
 
 map <C-s> feedkeys ":exec /home/lenovo/.config/zathura/zathura_backward_search.sh<Return>"
 map <C-l> focus_inputbar ":exec /home/lenovo/.config/zathura/zathura_backward_search.sh"
+map h scroll left
+map n scroll down
+map e scroll up
+map i scroll right
+map N scroll half-down
+map E scroll half-up
+map H scroll page-top
+map I scroll page-bottom
+
+map k search forward
+map K search backward
+# For TOC navigation
+map [index] o toggle_index
+
+# hjkl →  hnei
+map [index] n navigate_index down
+map [index] e navigate_index up
+map [index] h navigate_index collapse
+map [index] i navigate_index expand
+
+map [index] H navigate_index collapse-all
+map [index] I navigate_index expand-all
+
+map - search previous
+map = search next
+map _ zoom out
+map + zoom in
 # map y focus_inputbar ":exec bash -c \"echo \\\"$FILE\\\" | xclip -selection c\""
 
 set selection-clipboard clipboard
