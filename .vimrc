@@ -362,6 +362,7 @@ Plug 'tpope/vim-commentary'
 Plug 'ap/vim-css-color'
 Plug 'rbgrouleff/bclose.vim'    "Dependency for ranger.vim
 Plug 'francoiscabrol/ranger.vim'
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 if has('nvim')
     " Plug 'cpiger/NeoDebug'
