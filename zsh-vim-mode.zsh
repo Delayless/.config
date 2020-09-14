@@ -25,8 +25,13 @@ bindkey '\e[3~' delete-char
 ###### keymap in the normal mode ######
 #######################################
 bindkey -M vicmd '\e[3~' delete-char
+bindkey -M vicmd 'h' vi-backward-char
 bindkey -M vicmd 'H' beginning-of-line
+bindkey -M vicmd 'i' vi-forward-char
 bindkey -M vicmd 'I' end-of-line
+bindkey -M vicmd 'u' vi-insert
+bindkey -M vicmd 'e' history-search-backward
+bindkey -M vicmd 'n' history-search-forward
 # use '/' to search command history, and '=' to repeat. But fzf is more convenient.
 bindkey -M vicmd '/' history-incremental-search-backward
 bindkey -M vicmd '=' vi-repeat-search
