@@ -135,3 +135,12 @@ fuck() {
     fuck "$@"
 }
 
+# vman() { vim <(man $1); }
+vman() {
+    export MANPAGER="col -b" # for FreeBSD/MacOS
+
+    # Make it read-only
+    eval 'man $@ | vim -MR +"set filetype=man" -'
+
+    unset MANPAGER
+}
