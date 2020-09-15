@@ -366,6 +366,7 @@ Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 if has('nvim')
     " Plug 'cpiger/NeoDebug'
+    Plug 'lambdalisue/suda.vim'
 else
 endif
 
