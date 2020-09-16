@@ -137,10 +137,20 @@ fuck() {
 
 # vman() { vim <(man $1); }
 vman() {
+    VIMALIAS=$(alias vim)
     export MANPAGER="col -b" # for FreeBSD/MacOS
 
-    # Make it read-only
-    eval 'man $@ | vim -MR +"set filetype=man" -'
+    # if $VIMALIAS is NULL.
+    if [ -z "$VIMALIAS" ]; then
+        # eval 'man $@ | vim -MR +"set filetype=man" -'
+        eval 'man $@ | vim -R +"set filetype=man" -'
+    else
+        unalias vim
+        # Make it read-only
+        eval 'man $@ | vim -R +"set filetype=man" -'
+        # eval 'man $@ | vim -MR +"set filetype=man" -'
+        alias $VIMALIAS
+    fi
 
     unset MANPAGER
 }

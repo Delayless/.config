@@ -238,7 +238,6 @@ map S :w<CR>
 " Alt+Shift+q to Switch to Ex mode.
 map Q :q<CR>
 map R :source $MYVIMRC<CR>
-map <LEADER>S :w !sudo tee %<CR><CR>
 map <LEADER>Q :q!<CR>
 map <LEADER>R S:source $MYVIMRC<CR>
 map <LEADER>rc :tabedit ~/.config/.vimrc<CR>
@@ -362,12 +361,14 @@ Plug 'tpope/vim-commentary'
 Plug 'ap/vim-css-color'
 Plug 'rbgrouleff/bclose.vim'    "Dependency for ranger.vim
 Plug 'francoiscabrol/ranger.vim'
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 if has('nvim')
     " Plug 'cpiger/NeoDebug'
     Plug 'lambdalisue/suda.vim'
+    Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+    map <LEADER>S :SudaWrite<CR>
 else
+    map <LEADER>S :w !sudo tee %<CR><CR>
 endif
 
 call plug#end()
