@@ -14,6 +14,7 @@
 + [ctag](#ctag)
 + [coc](#coc)
     * [test code block](#test-code-block)
++ [zathura](#zathura)
 + [PS](#ps)
 
 <!-- /TOC -->
@@ -200,6 +201,9 @@ def a():
 if __name__ == "__main__":
 	a()
 ```
+
+# zathura
+Ctrl+n: Toggle statusbar(title, page number)
 
 # PS
 1. dmenu font fullwidth

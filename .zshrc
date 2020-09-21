@@ -40,10 +40,12 @@ _comp_options+=(globdots)
 
 ######## zsh-autosuggestions ##############
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=white'
-# ctrl+v then press ctrl+l to get ^L in terminal.
+# ctrl+v then press ctrl+l to get  in terminal.
+# Straightly inputting ^ and L is also right.
 # ctrl+l expand the suggestion.
-bindkey '^L' autosuggest-accept
-# Ctrl+Enter to excute the suggested command, alacritty.
+bindkey '' autosuggest-accept
+# Ctrl+Enter to excute the suggested command,
+# Ctrl+v then press Esc to generate "".
 bindkey '[13;5u' autosuggest-execute
 
 source $ZSH/oh-my-zsh.sh

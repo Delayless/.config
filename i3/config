@@ -42,7 +42,7 @@ exec_always --no-startup-id sleep 1;xmodmap ~/.Xmodmap
 # The --no-startup-id parameter disables startup-notification support for this particular exec command.
 # Shift,Ctrl
 # Super=Mod4=$mod
-# Alt=Mod1，回车(Enter)=Return
+# Alt=Mod1，Enter=Return
 # /=slash
 # ;=semicolon
 #exec_always --no-startup-id ~/.config/i3/polybar.sh &

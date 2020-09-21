@@ -3,7 +3,7 @@
 
 map <C-s> feedkeys ":exec /home/lenovo/.config/zathura/zathura_backward_search.sh<Return>"
 map <C-l> focus_inputbar ":exec /home/lenovo/.config/zathura/zathura_backward_search.sh"
-# map y focus_inputbar ":exec bash -c \"echo \\\"$FILE\\\" | xclip -selection c\""
+map yp focus_inputbar ":exec bash -c \"echo \\\"$FILE\\\" | xclip -selection c\""
 
 set selection-clipboard clipboard
 
