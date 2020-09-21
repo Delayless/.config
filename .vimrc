@@ -676,15 +676,15 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete('cat /usr/share/dict/words')
 nmap <Bslash>c :Commits<cr>
 
 " [rg](BurntSushi/ripgrep)
-" search code in files.
-noremap <silent> <c-f> :Rg<CR>
+" search code in files. [s]ource code
+noremap <silent> <Bslash>s :Rg<CR>
 " [Ag](ggreer/the_silver_searcher)
 " A code searching tool similar to ack, with a focus on speed.
 " `sudo apt install the_silver_searcher`
 " search filename
 " setting in .bashrc for searching hidden files.:FZF actually would use the_silver_searcher's 'ag'.
-nnoremap <silent> <Bslash>F :FZF<CR>
-nnoremap <silent> <Bslash>f :RgCurrentFile<CR>
+nnoremap <silent> <Bslash>f :FZF<CR>
+nnoremap <silent> <c-f> :RgCurrentFile<CR>
 " `gr` go to references use coc.nvim.
 nnoremap <silent> gR :SearchVariableInProject<CR>
 " The history of the opened files.

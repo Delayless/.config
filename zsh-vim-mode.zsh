@@ -18,13 +18,13 @@ bindkey '^w' backward-kill-word
 
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
-# Delete key
-bindkey '\e[3~' delete-char
+# Delete key, alacritty
+bindkey '[P' delete-char
 
 #######################################
 ###### keymap in the normal mode ######
 #######################################
-bindkey -M vicmd '\e[3~' delete-char
+bindkey -M vicmd '[P' delete-char
 bindkey -M vicmd 'h' vi-backward-char
 bindkey -M vicmd 'H' beginning-of-line
 bindkey -M vicmd 'i' vi-forward-char

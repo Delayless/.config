@@ -30,7 +30,7 @@ map - search previous
 map = search next
 map _ zoom out
 map + zoom in
-# map y focus_inputbar ":exec bash -c \"echo \\\"$FILE\\\" | xclip -selection c\""
+map yp focus_inputbar ":exec bash -c \"echo \\\"$FILE\\\" | xclip -selection c\""
 
 set selection-clipboard clipboard
 

@@ -73,6 +73,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S kdenlive --noconfirm
 	# Screen recording and streaming
 	sudo pacman -S obs-studio --noconfirm
+	# sudo pacman -S simplescreenrecorder --noconfirm
 	# gif recording
 	sudo pacman -S simplescreenkey --noconfirm
 	sudo pacman -S screenkey --noconfirm
