@@ -263,14 +263,21 @@ set shell=zsh
 " :terminal can open a terminal at vim>=8.1
 " ctrl+d exit terminal at insert mode.
 if has('nvim')
+    autocmd TermOpen term://* startinsert
     noremap <Bslash>py :set splitbelow<CR>:split term://ipython3<CR>
     noremap <Bslash>t :set splitbelow<CR>:split term://zsh<CR>
+    noremap <c-g> :tabe term://lazygit<CR>
+
 else
     noremap <Bslash>py :belowright term ipython3<CR>
     noremap <Bslash>t :belowright term<CR>
+    noremap <c-g> :tab term lazygit<CR>
 endif
 " <C-v><Esc> exit insert mode into normal mode
 tnoremap <C-v><Esc> <C-\><C-n>
+" tnoremap <C-N> <C-\><C-N>
+tnoremap <C-o> <C-\><C-n><C-o>
+
 
 " ===
 " === Command line mode(cmdline)
