@@ -35,7 +35,8 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S rofi --noconfirm
 	sudo pacman -S powerline-fonts --noconfirm
 	# Scrot is a minimalist command line screen capturing application.
-	sudo pacman -S scrot --noconfirm
+	# sudo pacman -S scrot --noconfirm
+	sudo pacman -S flameshot --noconfirm
 	sudo pacman -S baidunetdisk-bin --noconfirm
 	sudo pacman -S audacious --noconfirm
 	sudo pacman -S netease-cloud-music --noconfirm
