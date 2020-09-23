@@ -33,7 +33,7 @@ set encoding=UTF-8
 set clipboard=unnamedplus
 " Copy/Paste. vim must be running when using shared clipboard.
 vnoremap Y "+y
-nnoremap <C-b> "*p
+" nnoremap <C-b> "*p
 
 " tab to indentation.
 vmap <tab> >gv
@@ -270,7 +270,7 @@ else
 endif
 " <C-v><Esc> exit insert mode into normal mode
 tnoremap <C-v><Esc> <C-\><C-n>
-" tnoremap <C-N> <C-\><C-N>
+tnoremap <C-q> <C-\><C-n>:bd!<CR>
 tnoremap <C-o> <C-\><C-n><C-o>
 
 
@@ -287,6 +287,8 @@ cnoremap <c-b> <S-Left>
 cnoremap <c-f> <S-Right>
 inoremap <c-a> <HOME>
 inoremap <c-e> <END>
+inoremap <c-f> <Right>
+inoremap <c-b> <Left>
 
 
 call plug#begin('~/.vim/plugged')

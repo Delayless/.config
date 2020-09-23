@@ -26,7 +26,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
     # fcitx theme
     sudo pacman -S fcitx5-material-color --noconfirm
     # GUI configuration tools, and For tranditional chinese
-    sudo pacman -S fcitx5-config-qt-git fcitx5-chewing --noconfirm
+    sudo pacman -S fcitx5-configtool-git fcitx5-chewing --noconfirm
 	sudo pacman -S pikaur --noconfirm
 	sudo pacman -S i3 --noconfirm
     # auto-hide mouse cursor
@@ -101,6 +101,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	# if install fzf using pacman, it's not be enabled by default key bindings in terminal.
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 	~/.fzf/install
+    # sudo pacman -S ripgrep -no-confirm
     # fzf alt-c find directory
     sudo pacman -S fd -no-confirm
 	sudo pacman -S npm --noconfirm
