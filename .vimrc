@@ -46,6 +46,7 @@ nnoremap <c-n> V:m '>+1<CR>gv=gv<esc>
 
 let mapleader=" "
 set scrolloff=3   "at least 3 lines on the screenup and screendown
+noremap <LEADER>sb :set scrollbind!<CR>
 set tabstop=4
 autocmd FileType python set expandtab
 set shiftwidth=4
