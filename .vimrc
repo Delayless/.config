@@ -1342,6 +1342,21 @@ au FileType gitcommit setlocal cc=+1
 " spell checking
 au FileType gitcommit setlocal spell
 
+
+" ===
+" === Searching for all characters as normal text
+" ===
+" `:SS content`: search characters without escape(ignore regex)
+command! -nargs=1 SS let @/ = '\V'.escape(<q-args>, '/\')|normal! /<C-R>/<CR>
+vnoremap * :SS<CR>
+" Search selected text in visual mode.
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+
+
 " fast scrolling?
 " set lazyredraw
 " set regexpengine=1
