@@ -526,6 +526,7 @@ let g:mkdx#settings = { 'highlight' : { 'enable': 1 },
                       \ 'toc': { 'details': { 'summary': 'Click to expand {{toc.text}}' }} }
 let g:mkdx#settings.gf_on_steroids = 1
 let g:mkdx#settings.restore_visual = 0
+let g:mkdx#settings.tab.enable = 0
 autocmd FileType markdown nmap <CR> <Plug>(mkdx-jump-to-header)
 
 
