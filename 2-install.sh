@@ -41,7 +41,10 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S audacious --noconfirm
 	sudo pacman -S netease-cloud-music --noconfirm
 	sudo pacman -S google-chrome --noconfirm
-	sudo pacman -S w3m --noconfirm
+	# w3m and ueberzug all are used to preview image.
+	# sudo pacman -S w3m --noconfirm
+	sudo pip3 install ueberzug
+	sudo pip3 install pillow
 	sudo pacman -S nerd-fonts-complete --noconfirm
 	# ranger_devicons Prerequisites https://github.com/ryanoasis/nerd-fonts
 	sudo pacman -S ranger --noconfirm
@@ -90,6 +93,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	# sudo pacman -S libx11 libxcomposite libxdamage libxfixes libxext libxrender libxrandr libxinerama ruby-pkg-config xorg-xwininfo libconfig libdrm libdbusmenu-glib asciidoc --noconfirm
 	# sudo pacman -S nvidia-utils --noconfirm
 	sudo pacman -S picom --noconfirm
+	sudo pacman -S dunst --noconfirm
 	#############################
 	sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	sudo pikaur -S ccat-git --noconfirm

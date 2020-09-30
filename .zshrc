@@ -12,7 +12,7 @@ export ZSH="/home/lenovo/.oh-my-zsh"
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="agnoster"
-# ZSH_THEME="gnzh"
+ZSH_THEME="gnzh"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
@@ -105,7 +105,7 @@ alias study="vim -M ~/Downloads/linux-c/docs/_sidebar.md"
 alias truecolor="curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash"
 
 source ~/.config/zsh-vim-mode.zsh
-source ~/.config/agnoster-modified.zsh-theme
+# source ~/.config/agnoster-modified.zsh-theme
 source ~/.config/fzf.zsh
 
 # Enable Italics of vim-dues
