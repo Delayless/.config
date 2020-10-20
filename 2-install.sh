@@ -93,6 +93,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	# sudo pacman -S libx11 libxcomposite libxdamage libxfixes libxext libxrender libxrandr libxinerama ruby-pkg-config xorg-xwininfo libconfig libdrm libdbusmenu-glib asciidoc --noconfirm
 	# sudo pacman -S nvidia-utils --noconfirm
 	sudo pacman -S picom --noconfirm
+	# notification daemon
 	sudo pacman -S dunst --noconfirm
 	#############################
 	sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
