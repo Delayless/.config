@@ -95,6 +95,8 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S picom --noconfirm
 	# notification daemon
 	sudo pacman -S dunst --noconfirm
+	# automount removable media. Included in the udisks2.
+	sudo pacman -S udiskie --noconfirm
 	#############################
 	sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	sudo pikaur -S ccat-git --noconfirm
