@@ -33,7 +33,6 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
     sudo pacman -S unclutter --noconfirm
 	sudo pacman -S dmenu --noconfirm
 	sudo pacman -S rofi --noconfirm
-	sudo pacman -S powerline-fonts --noconfirm
 	# Scrot is a minimalist command line screen capturing application.
 	# sudo pacman -S scrot --noconfirm
 	sudo pacman -S flameshot --noconfirm
@@ -45,7 +44,16 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	# sudo pacman -S w3m --noconfirm
 	sudo pip3 install ueberzug
 	sudo pip3 install pillow
-	sudo pacman -S nerd-fonts-complete --noconfirm
+	# sudo pacman -S nerd-fonts-complete --noconfirm
+	# sudo pacman -S powerline-fonts --noconfirm
+    sudo pacman -S nerd-fonts-fira-code ttf-inconsolata ttf-droid --noconfirm
+    # not nerd-fonts-noto, it's too bloated.
+    sudo pacman -S noto-fonts --noconfirm
+    ## Emoji
+    sudo pikaur -S noto-fonts-emoji ttf-joypixels ttf-twemoji ttf-twemoji-color ttf-symbola ttf-linux-libertine ttf-liberation
+    ## Chinese
+    sudo pikaur -S adobe-source-han-mono-cn-fonts adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts wqy-microhei wqy-zenhei wqy-bitmapfont
+	# sudo pacman -S nerd-fonts-dejavu-sans-mono --noconfirm
 	# ranger_devicons Prerequisites https://github.com/ryanoasis/nerd-fonts
 	sudo pacman -S ranger --noconfirm
 	# preview json file with color in ranger
@@ -111,6 +119,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
     # sudo pacman -S ripgrep -no-confirm
     # fzf alt-c find directory
     sudo pacman -S fd -no-confirm
+	curl -sL install-node.now.sh/lts | bash
 	sudo pacman -S npm --noconfirm
 	sudo npm install -g p3x-onenote --unsafe-perm=true --allow-root
 	# p3x-onenote &

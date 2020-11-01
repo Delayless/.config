@@ -320,6 +320,7 @@ Plug 'lilydjwg/fcitx.vim'
 Plug 'neoclide/coc.nvim'
 Plug 'tpope/vim-fugitive'
 
+Plug 'SirVer/ultisnips'
 Plug 'Delayless/vim-snippets'
 
 " Requestment: universal-ctags
@@ -1072,15 +1073,25 @@ nmap <silent> <LEADER>ej <Plug>(coc-diagnostic-next)
 " supported .tex not only .latex
 let g:tex_flavor = "latex"
 " Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
-let g:coc_snippet_next = '<c-j>'
-let g:coc_snippet_prev = '<c-k>'
+" imap <C-l> <Plug>(coc-snippets-expand)
+" let g:coc_snippet_next = '<c-j>'
+" let g:coc_snippet_prev = '<c-k>'
 " Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
-let g:snips_author = 'Delayless'
+" imap <C-j> <Plug>(coc-snippets-expand-jump)
+" let g:snips_author = 'Delayless'
 " Press space twice to jump to the next '<++>' and edit it
 map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 source ~/.config/snippits.vim
+
+
+" ===
+" === ultisnips
+" ===
+let g:UltiSnipsExpandTrigger="<c-l>"
+let g:UltiSnipsListSnippets="<c-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsSnippetDirectories = ['UltiSnips', $HOME.'/.config/nvim/Ultisnips/', $HOME.'/.config/nvim/plugged/vim-snippets/UltiSnips/', $HOME.'/.config/UltiSnips/']
 
 
 " ===

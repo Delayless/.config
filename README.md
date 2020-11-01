@@ -2,18 +2,18 @@
 
 + [Download the Repository](#download-the-repository)
 + [config](#config)
-    * [config environment](#config-environment)
-    * [config joplin CLI](#config-joplin-cli)
-    * [Install Software](#install-software)
-        - [python3 for vim](#python3-for-vim)
-        - [Goldendict](#goldendict)
+	* [config environment](#config-environment)
+	* [config joplin CLI](#config-joplin-cli)
+	* [Install Software](#install-software)
+		- [python3 for vim](#python3-for-vim)
+		- [Goldendict](#goldendict)
 + [Key Map](#key-map)
 + [vim plug](#vim-plug)
-    * [markdown preview](#markdown-preview)
+	* [markdown preview](#markdown-preview)
 + [vimium(Chrome plugin)](#vimiumchrome-plugin)
 + [ctag](#ctag)
 + [coc](#coc)
-    * [test code block](#test-code-block)
+	* [test code block](#test-code-block)
 + [zathura](#zathura)
 + [PS](#ps)
 
@@ -164,6 +164,7 @@ sudo make install
 ```
 
 # coc
+`curl -sL install-node.now.sh/lts | bash` for installing nodejs but not using pacman/apt. I'm not sure about this.
 - [Extensions](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions)
 coc-clangd:The extension does not install clangd for you! You must install clangd separately.sudo apt install clang<Tab>, version >=7.0
 
