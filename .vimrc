@@ -33,7 +33,7 @@ set encoding=UTF-8
 set clipboard=unnamedplus
 " Copy/Paste. vim must be running when using shared clipboard.
 vnoremap Y "+y
-nnoremap <C-b> "*p
+" nnoremap <C-b> "*p
 
 " tab to indentation.
 vmap <tab> >gv
@@ -46,8 +46,9 @@ nnoremap <c-n> V:m '>+1<CR>gv=gv<esc>
 
 let mapleader=" "
 set scrolloff=3   "at least 3 lines on the screenup and screendown
+noremap <LEADER>sb :set scrollbind!<CR>
 set tabstop=4
-set expandtab
+autocmd FileType python set expandtab
 set shiftwidth=4
 set softtabstop=4
 " :help 'whichwrap, [Automatically wrap left and right].
@@ -276,6 +277,7 @@ endif
 " <C-v><Esc> exit insert mode into normal mode
 tnoremap <C-v><Esc> <C-\><C-n>
 " tnoremap <C-N> <C-\><C-N>
+tnoremap <C-q> <C-\><C-n>:bd!<CR>
 tnoremap <C-o> <C-\><C-n><C-o>
 
 
@@ -291,6 +293,10 @@ cnoremap <c-h> <Left>
 cnoremap <c-b> <S-Left>
 " words forward.
 cnoremap <c-f> <S-Right>
+" inoremap <c-a> <HOME>
+" inoremap <c-e> <END>
+inoremap <c-f> <Right>
+inoremap <c-b> <Left>
 
 
 call plug#begin('~/.vim/plugged')
@@ -321,6 +327,7 @@ Plug 'lilydjwg/fcitx.vim'
 Plug 'neoclide/coc.nvim'
 Plug 'tpope/vim-fugitive'
 
+Plug 'SirVer/ultisnips'
 Plug 'Delayless/vim-snippets'
 
 " Requestment: universal-ctags
@@ -528,6 +535,7 @@ let g:mkdx#settings = { 'highlight' : { 'enable': 1 },
                       \ 'toc': { 'details': { 'summary': 'Click to expand {{toc.text}}' }} }
 let g:mkdx#settings.gf_on_steroids = 1
 let g:mkdx#settings.restore_visual = 0
+let g:mkdx#settings.tab.enable = 0
 autocmd FileType markdown nmap <CR> <Plug>(mkdx-jump-to-header)
 
 
@@ -1061,15 +1069,25 @@ nmap <silent> <LEADER>en <Plug>(coc-diagnostic-next)
 " supported .tex not only .latex
 let g:tex_flavor = "latex"
 " Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
-let g:coc_snippet_next = '<c-e>'
-let g:coc_snippet_prev = '<c-u>'
-" Use <C-j> for both expand and jump (make expand higher priority.)
-" imap <C-n> <Plug>(coc-snippets-expand-jump)
-let g:snips_author = 'Delayless'
+" imap <C-l> <Plug>(coc-snippets-expand)
+" let g:coc_snippet_next = '<c-e>'
+" let g:coc_snippet_prev = '<c-u>'
+" " Use <C-j> for both expand and jump (make expand higher priority.)
+" " imap <C-n> <Plug>(coc-snippets-expand-jump)
+" let g:snips_author = 'Delayless'
 " Press space twice to jump to the next '<++>' and edit it
 map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 source ~/.config/snippits.vim
+
+
+" ===
+" === ultisnips
+" ===
+let g:UltiSnipsExpandTrigger="<c-l>"
+let g:UltiSnipsListSnippets="<c-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-n>"
+let g:UltiSnipsJumpBackwardTrigger="<c-e>"
+let g:UltiSnipsSnippetDirectories = ['UltiSnips', $HOME.'/.config/nvim/Ultisnips/', $HOME.'/.config/nvim/plugged/vim-snippets/UltiSnips/', $HOME.'/.config/UltiSnips/']
 
 
 " ===
@@ -1325,6 +1343,21 @@ au FileType gitcommit setlocal tw=72
 au FileType gitcommit setlocal cc=+1
 " spell checking
 au FileType gitcommit setlocal spell
+
+
+" ===
+" === Searching for all characters as normal text
+" ===
+" `:SS content`: search characters without escape(ignore regex)
+command! -nargs=1 SS let @/ = '\V'.escape(<q-args>, '/\')|normal! /<C-R>/<CR>
+vnoremap * :SS<CR>
+" Search selected text in visual mode.
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+
 
 " fast scrolling?
 " set lazyredraw

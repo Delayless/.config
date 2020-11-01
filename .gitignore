@@ -26,12 +26,13 @@
 !/fcitx5
 !/.Xmodmap
 !/vimspector_template
+!/zsh
 !/.zshrc
 !/.gitignore
 !/README.md
 !/my-packages.txt
-# !/zsh
 !/.vimrc
+!/nvim
 !/vimium-options.json
 !/1-config-env.sh
 !/2-install.sh
@@ -49,3 +50,5 @@
 !/jesseduffield
 /jesseduffield/lazygit/*
 !/jesseduffield/lazygit/config.yml
+
+!/dwm.desktop

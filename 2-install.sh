@@ -26,14 +26,13 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
     # fcitx theme
     sudo pacman -S fcitx5-material-color --noconfirm
     # GUI configuration tools, and For tranditional chinese
-    sudo pacman -S fcitx5-config-qt-git fcitx5-chewing --noconfirm
+    sudo pacman -S fcitx5-configtool-git fcitx5-chewing --noconfirm
 	sudo pacman -S pikaur --noconfirm
 	sudo pacman -S i3 --noconfirm
     # auto-hide mouse cursor
     sudo pacman -S unclutter --noconfirm
 	sudo pacman -S dmenu --noconfirm
 	sudo pacman -S rofi --noconfirm
-	sudo pacman -S powerline-fonts --noconfirm
 	# Scrot is a minimalist command line screen capturing application.
 	# sudo pacman -S scrot --noconfirm
 	sudo pacman -S flameshot --noconfirm
@@ -41,8 +40,20 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S audacious --noconfirm
 	sudo pacman -S netease-cloud-music --noconfirm
 	sudo pacman -S google-chrome --noconfirm
-	sudo pacman -S w3m --noconfirm
-	sudo pacman -S nerd-fonts-complete --noconfirm
+	# w3m and ueberzug all are used to preview image.
+	# sudo pacman -S w3m --noconfirm
+	sudo pip3 install ueberzug
+	sudo pip3 install pillow
+	# sudo pacman -S nerd-fonts-complete --noconfirm
+	# sudo pacman -S powerline-fonts --noconfirm
+    sudo pacman -S nerd-fonts-fira-code ttf-inconsolata ttf-droid --noconfirm
+    # not nerd-fonts-noto, it's too bloated.
+    sudo pacman -S noto-fonts --noconfirm
+    ## Emoji
+    sudo pikaur -S noto-fonts-emoji ttf-joypixels ttf-twemoji ttf-twemoji-color ttf-symbola ttf-linux-libertine ttf-liberation
+    ## Chinese
+    sudo pikaur -S adobe-source-han-mono-cn-fonts adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts wqy-microhei wqy-zenhei wqy-bitmapfont
+	# sudo pacman -S nerd-fonts-dejavu-sans-mono --noconfirm
 	# ranger_devicons Prerequisites https://github.com/ryanoasis/nerd-fonts
 	sudo pacman -S ranger --noconfirm
 	# preview json file with color in ranger
@@ -90,6 +101,10 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	# sudo pacman -S libx11 libxcomposite libxdamage libxfixes libxext libxrender libxrandr libxinerama ruby-pkg-config xorg-xwininfo libconfig libdrm libdbusmenu-glib asciidoc --noconfirm
 	# sudo pacman -S nvidia-utils --noconfirm
 	sudo pacman -S picom --noconfirm
+	# notification daemon
+	sudo pacman -S dunst --noconfirm
+	# automount removable media. Included in the udisks2.
+	sudo pacman -S udiskie --noconfirm
 	#############################
 	sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	sudo pikaur -S ccat-git --noconfirm
@@ -101,8 +116,10 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	# if install fzf using pacman, it's not be enabled by default key bindings in terminal.
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 	~/.fzf/install
+    # sudo pacman -S ripgrep -no-confirm
     # fzf alt-c find directory
     sudo pacman -S fd -no-confirm
+	curl -sL install-node.now.sh/lts | bash
 	sudo pacman -S npm --noconfirm
 	sudo npm install -g p3x-onenote --unsafe-perm=true --allow-root
 	# p3x-onenote &

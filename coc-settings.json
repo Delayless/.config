@@ -4,6 +4,12 @@
 	"coc.preferences.enableFloatHighlight": true,
 	"coc.preferences.extensionUpdateCheck": "daily",
 	"coc.preferences.formatOnSaveFiletypes": ["html", "python", "json", "css"],
+	"list.insertMappings": {
+		// "<C-p>": "normal:k",
+		// "<C-n>": "normal:j",
+		"<C-e>": "normal:k",
+		"<C-n>": "normal:j"
+	},
 	"suggest.snippetIndicator": "",
 	// Preview of a function
 	"suggest.maxPreviewWidth": 50,

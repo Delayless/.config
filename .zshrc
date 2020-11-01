@@ -2,17 +2,18 @@
 export EDITOR=nvim
 export HISTSIZE=8000
 export SAVEHIST=8000
-export HISTFILE=~/.zsh_history
+export HISTFILE=$HOME/.zsh_history
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/lenovo/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
+# export LC_CTYPE=en_US.UTF-8
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="agnoster"
-# ZSH_THEME="gnzh"
+ZSH_THEME="gnzh"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
@@ -24,7 +25,7 @@ export ZSH="/home/lenovo/.oh-my-zsh"
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-ZSH_CUSTOM=~/.config/zsh
+ZSH_CUSTOM=$HOME/.config/zsh
 
 # Add wisely, as too many plugins slow down shell startup.
 # web-search support `google`, `baidu`, `github`, etc.
@@ -82,6 +83,7 @@ gitclone() {
 }
 
 alias s="neofetch"
+alias c="clear"
 alias ssr="sudo python ~/Desktop/shadowsocksr/shadowsocks/local.py -c ~/Desktop/shadowsocksr/shadowsocks/config.json -d start"
 alias ssrconfig="sudo python ~/Desktop/shadowsocksr/shadowsocks/local.py -d start -c"
 alias ssrstop="cd ~/Desktop/shadowsocksr/shadowsocks/ && sudo python local.py -d stop && cd -"
@@ -104,9 +106,9 @@ alias caps="xdotool key Caps_Lock"
 alias study="vim -M ~/Downloads/linux-c/docs/_sidebar.md"
 alias truecolor="curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash"
 
-source ~/.config/zsh-vim-mode.zsh
-source ~/.config/agnoster-modified.zsh-theme
-source ~/.config/fzf.zsh
+source $HOME/.config/zsh-vim-mode.zsh
+# source $HOME/.config/agnoster-modified.zsh-theme
+source $HOME/.config/fzf.zsh
 
 # Enable Italics of vim-dues
 export TERM_ITALICS=true

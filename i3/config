@@ -35,6 +35,8 @@ exec --no-startup-id fcitx5
 # exec_always --no-startup-id sleep 1;xmodmap ~/.config/colemak
 exec_always --no-startup-id ~/.config/i3/colemak.sh
 
+#################################################################
+######################custom startup###########################
 # exec commands will not run when restarting i3, if you need a command to run also when restarting i3 you should use the exec_always keyword. These commands will be run in order.
 # The --no-startup-id parameter disables startup-notification support for this particular exec command.
 # Shift,Ctrl
