@@ -8,3 +8,17 @@ snippet sec "comment block/section" b
   */
 $0
 endsnippet
+
+
+snippet dwmdebug "dwm debug" b
+FILE *dwm_log = fopen("/tmp/dwm.log", "a+");
+fprintf(dwm_log, "$1", $2);
+fclose(dwm_log);
+endsnippet
+
+snippet time "time" b
+#include <time.h>
+time_t t;
+time(&t);
+printf("Running at %s\n", ctime(&t));
+endsnippet
