@@ -82,6 +82,10 @@ gitclone() {
     fi
 }
 
+cman() {
+	curl cheat.sh/$@
+}
+
 alias s="neofetch"
 alias c="clear"
 alias ssr="sudo python ~/Desktop/shadowsocksr/shadowsocks/local.py -c ~/Desktop/shadowsocksr/shadowsocks/config.json -d start"
