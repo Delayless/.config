@@ -18,6 +18,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S vlc --noconfirm
 	sudo pacman -S alacritty --noconfirm
 	sudo pacman -S brightnessctl --noconfirm
+	# all the software of input method occupies 250MB of disk space.
     sudo pacman -S fcitx5-git --noconfirm
     # Chinese input support and lexicons.
     sudo pacman -S fcitx5-chinese-addons-git fcitx5-pinyin-zhwiki fcitx5-pinyin-moegirl --noconfirm
@@ -31,7 +32,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S i3 --noconfirm
     # auto-hide mouse cursor
     sudo pacman -S unclutter --noconfirm
-	sudo pacman -S dmenu --noconfirm
+	# sudo pacman -S dmenu --noconfirm
 	sudo pacman -S rofi --noconfirm
 	# Scrot is a minimalist command line screen capturing application.
 	# sudo pacman -S scrot --noconfirm

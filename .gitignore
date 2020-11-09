@@ -29,6 +29,7 @@
 !/.zshrc
 !/.gitignore
 !/README.md
+!/README_cn.md
 !/my-packages.txt
 !/.vimrc
 !/nvim
