@@ -106,8 +106,8 @@ noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 noremap J 5j
 noremap K 5k
 " ^ to first non-blank character, 0 to first character.
-noremap H 0
-noremap L $
+" noremap H 0
+" noremap L $
 noremap W 5w
 noremap B 5b
 " nnoremap <CR> o<Esc>
@@ -116,7 +116,7 @@ nnoremap <C-k> Hzz
 nnoremap <C-j> Lzz
 
 " it would be prone to bugs if mapping : ;.
-noremap ; :
+" noremap ; :
 
 " copy current filepath and line
 " nnoremap y. :let @+ = expand("%") . ':' . line(".")<cr>
@@ -314,7 +314,7 @@ Plug 'Yggdroot/indentLine'    " mess up vimwiki's conceallevel and highlight.
 " Optimize Chinese input experience
 " To avoid the Esc delay, please set 'ttimeoutlen' to 100 or some value.
 " It's also related to screens's maptimeout
-Plug 'lilydjwg/fcitx.vim'
+" Plug 'lilydjwg/fcitx.vim'
 
 " Install nodejs when necessary:  curl -sL install-node.now.sh/lts | bash
 Plug 'neoclide/coc.nvim'
@@ -355,6 +355,7 @@ Plug 'mattn/calendar-vim'  " vimwiki daily Index in calendar.
 
 " ysiw{ ysiw} yss<p1> cs ds{, Visual select and input S<p class="important">
 Plug 'tpope/vim-surround'
+Plug 'gcmt/wildfire.vim' " Enter to select the closest text object(brackets).
 Plug 'jiangmiao/auto-pairs' " better than coc-pairs, Alt+p toggle autopairs.
 Plug 'zef/vim-cycle' " toggle true/false....(ctrl+a, ctrl+x)
 Plug 'voldikss/vim-translator' " better than coc-translator in nvim.
@@ -1309,8 +1310,8 @@ let g:which_key_map.b = {
     \ }
 call which_key#register('<Space>', "g:which_key_map")
 
-nnoremap <silent> , :WhichKey  ','<CR>
-vnoremap <silent> , :WhichKeyVisual ','<CR>
+" nnoremap <silent> , :WhichKey  ','<CR>
+" vnoremap <silent> , :WhichKeyVisual ','<CR>
 nnoremap <silent> [ :WhichKey  '['<CR>
 nnoremap <silent> ] :WhichKey  ']'<CR>
 " nnoremap <silent> <F1> :WhichKey! g:which_key_help_map<CR>
