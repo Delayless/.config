@@ -373,6 +373,9 @@ Plug 'tpope/vim-commentary'
 Plug 'ap/vim-css-color'
 Plug 'rbgrouleff/bclose.vim'    "Dependency for ranger.vim
 Plug 'francoiscabrol/ranger.vim'
+Plug 'terryma/vim-multiple-cursors'
+
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 if has('nvim')
     " Plug 'cpiger/NeoDebug'
@@ -992,8 +995,8 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 let g:coc_global_extensions = [  'coc-dictionary', 'coc-word', 'coc-emoji', 'coc-marketplace', 'coc-diagnostic',
             \ 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-highlight', 'coc-snippets', 'coc-actions',
             \ 'coc-cmake', 'coc-python', 'coc-pyright', 'coc-vimlsp', 'coc-translator', 'coc-texlab',
-            \ 'coc-html', 'coc-prettier', 'coc-css', 'coc-tailwindcss', 'coc-stylelint',
-            \ 'coc-json', 'coc-tsserver', 'coc-tslint-plugin', 'coc-eslint']
+            \ 'coc-html', 'coc-prettier', 'coc-css', 'coc-tailwindcss', 'coc-stylelint', 'coc-go',
+            \ 'coc-json', 'coc-tsserver', 'coc-tslint-plugin', 'coc-eslint', 'coc-snippets']
 " use <tab> for trigger completion and navigate to the next complete item
 inoremap <silent><expr> <TAB>
         \ pumvisible() ? "\<C-n>" :
@@ -1327,6 +1330,28 @@ aug i3config_ft_detection
   au!
   au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
 aug end
+
+
+" ===
+" === vim-go
+" ===
+let g:go_doc_keywordprg_enabled = 0
+
+
+" ===
+" === vim-multiple-cursor
+" ===
+let g:multi_cursor_use_default_mapping=0
+
+" Default mapping
+let g:multi_cursor_start_word_key      = '<C-b>'
+let g:multi_cursor_select_all_word_key = '<M-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<M-n>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
 
 
 " ===

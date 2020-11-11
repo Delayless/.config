@@ -44,7 +44,10 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	# w3m and ueberzug all are used to preview image.
 	# sudo pacman -S w3m --noconfirm
 	sudo pip3 install ueberzug
+	# Python image library.(OCR)
 	sudo pip3 install pillow
+	# neovim debug python
+	# sudo pip3 install debugpy
 	# sudo pacman -S nerd-fonts-complete --noconfirm
 	# sudo pacman -S powerline-fonts --noconfirm
     sudo pacman -S nerd-fonts-fira-code ttf-inconsolata ttf-droid --noconfirm
