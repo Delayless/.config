@@ -29,6 +29,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
     # GUI configuration tools, and For tranditional chinese
     sudo pacman -S fcitx5-configtool-git fcitx5-chewing --noconfirm
 	sudo pacman -S pikaur --noconfirm
+	sudo pacman -S yay --noconfirm
 	sudo pacman -S i3 --noconfirm
     # auto-hide mouse cursor
     sudo pacman -S unclutter --noconfirm

@@ -1336,13 +1336,28 @@ aug end
 " === vim-go
 " ===
 let g:go_doc_keywordprg_enabled = 0
+let g:go_auto_type_info = 1
+let g:go_doc_popup_window = 1
+let g:go_def_mapping_enabled = 0
+let g:go_template_autocreate = 0
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_variable_assignments = 0
+let g:go_highlight_variable_declarations = 0
+let g:go_highlight_chan_whitespace_error = 1
+let g:go_highlight_array_whitespace_error = 1
 
 
 " ===
 " === vim-multiple-cursor
 " ===
 let g:multi_cursor_use_default_mapping=0
-
 " Default mapping
 let g:multi_cursor_start_word_key      = '<C-b>'
 let g:multi_cursor_select_all_word_key = '<M-n>'
