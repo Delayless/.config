@@ -376,6 +376,7 @@ Plug 'francoiscabrol/ranger.vim'
 Plug 'terryma/vim-multiple-cursors'
 
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'ctrlpvim/ctrlp.vim'
 
 if has('nvim')
     " Plug 'cpiger/NeoDebug'
@@ -400,7 +401,7 @@ set viewoptions=cursor,folds,slash,unix  " autosave cursor position and fold inf
 " === NERDtree
 " ===
 " debug
-map tt :NERDTreeToggle<CR>
+map ff :NERDTreeToggle<CR>
 " open NERDTree automatically when vim starts up on opening a directory
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
@@ -705,6 +706,13 @@ noremap <silent> <Bslash>bt :BTags<CR>  " the current file's variables
 " Project tags, save all variables.
 noremap <silent> <C-t> :Tags<CR>
 noremap <silent> <Bslash>bu :Buffers<CR>
+
+
+" ===
+" === ctrlp.vim
+" ===
+let g:ctrlp_map = '<M-f>'
+let g:ctrlp_cmd = 'CtrlP'
 
 
 " ===
@@ -1336,6 +1344,7 @@ aug end
 " === vim-go
 " ===
 let g:go_doc_keywordprg_enabled = 0
+let g:go_auto_sameids = 0
 let g:go_auto_type_info = 1
 let g:go_doc_popup_window = 1
 let g:go_def_mapping_enabled = 0
@@ -1358,12 +1367,11 @@ let g:go_highlight_array_whitespace_error = 1
 " === vim-multiple-cursor
 " ===
 let g:multi_cursor_use_default_mapping=0
-" Default mapping
 let g:multi_cursor_start_word_key      = '<C-b>'
 let g:multi_cursor_select_all_word_key = '<M-n>'
-let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_start_key           = 'g<C-b>'
 let g:multi_cursor_select_all_key      = 'g<M-n>'
-let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_next_key            = '<C-b>'
 let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
