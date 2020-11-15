@@ -314,7 +314,7 @@ Plug 'Yggdroot/indentLine'    " mess up vimwiki's conceallevel and highlight.
 " Optimize Chinese input experience
 " To avoid the Esc delay, please set 'ttimeoutlen' to 100 or some value.
 " It's also related to screens's maptimeout
-" Plug 'lilydjwg/fcitx.vim'
+Plug 'lilydjwg/fcitx.vim'
 
 " Install nodejs when necessary:  curl -sL install-node.now.sh/lts | bash
 Plug 'neoclide/coc.nvim'
