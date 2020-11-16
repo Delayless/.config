@@ -128,6 +128,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S npm --noconfirm
 	sudo npm install -g p3x-onenote --unsafe-perm=true --allow-root
 	# p3x-onenote &
+	# sudo pacman -S bc alsa-utils alsa-lib --noconfirm
 fi
 
 

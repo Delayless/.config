@@ -15,6 +15,8 @@
 + [coc](#coc)
 	* [test code block](#test-code-block)
 + [zathura](#zathura)
++ [ranger](#ranger)
+	* [Requirements](#requirements)
 + [PS](#ps)
 
 <!-- /TOC -->
@@ -205,6 +207,13 @@ if __name__ == "__main__":
 
 # zathura
 Ctrl+n: Toggle statusbar(title, page number)
+
+# ranger
+## Requirements
+Picture Preview: ueberzug
+Video Preview: ffmpegthumbnailer
+Gif: mpv
+
 
 # PS
 1. dmenu font fullwidth
