@@ -203,8 +203,7 @@ map <up> :res +5<CR>
 map <down> :res -5<CR>
 map <left> :vertical resize-5<CR>
 map <right> :vertical resize+5<CR>
-" use 'M' to maximize and 'm' to minimize
-" the plug vimade maybe effect this command.
+" use 'M' to maximize and 'm' to balance windows.
 nnoremap <LEADER>wM <C-W>\| <C-W>_
 nnoremap <LEADER>wm <C-W>=
 
@@ -339,7 +338,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'Delayless/vim-bookmarks'
 Plug 'mg979/vim-xtabline'   "Tab manager in the top of windows
 " fades your inactive buffers and preserves syntax highlighting.
-" Plug 'TaDaa/vimade'
+Plug 'TaDaa/vimade'
 Plug 'mhinz/vim-startify'   " StartPage
 Plug 'junegunn/goyo.vim'    " focus read/write
 
@@ -942,15 +941,15 @@ autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
 " ===
 " === vimade
 " ===
-" let g:vimade = {}
-" let g:vimade = {
-"     \ "fadelevel": 0.8,
-"     \ "colbufsize": 1,
-"     \ "rowbufsize": 1,
-"     \ "enablesigns": 0,
-"     \}
-" let g:vimade.fadelevel = 0.7
-" let g:vimade.enablesigns = 0
+let g:vimade = {}
+let g:vimade = {
+    \ "fadelevel": 0.8,
+    \ "colbufsize": 1,
+    \ "rowbufsize": 1,
+    \ "enablesigns": 0,
+    \}
+let g:vimade.fadelevel = 0.7
+let g:vimade.enablesigns = 0
 
 
 " ===
