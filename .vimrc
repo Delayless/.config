@@ -1363,6 +1363,10 @@ let g:go_highlight_array_whitespace_error = 1
 
 
 " ===
+" === coc-go
+" ===
+autocmd BufWritePre *.go :call CocAction('organizeImport')
+" ===
 " === vim-multiple-cursor
 " ===
 let g:multi_cursor_use_default_mapping=0
