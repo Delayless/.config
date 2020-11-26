@@ -362,7 +362,7 @@ Plug 'godlygeek/tabular' "Align, :Tabularize /:\zs
 Plug 'tpope/vim-repeat' " The . command will work with ds, cs, yss
 Plug 'junegunn/vim-after-object' " copy, change, delete, yank after some symbols like `=/:/-/#/<space>`
 Plug 'chrisbra/NrrwRgn'     "display narrow region(focus)
-Plug 'puremourning/vimspector', { 'do': './install_gadget.py --force-enable-chrome --force-enable-python --enable-c' }
+Plug 'puremourning/vimspector', { 'do': './install_gadget.py --force-enable-python --enable-c' }
 Plug 'liuchengxu/vim-which-key'
 Plug 'mboughaba/i3config.vim'
 Plug 'ron89/thesaurus_query.vim'
@@ -372,7 +372,8 @@ Plug 'tpope/vim-commentary'
 Plug 'ap/vim-css-color'
 Plug 'rbgrouleff/bclose.vim'    "Dependency for ranger.vim
 Plug 'francoiscabrol/ranger.vim'
-Plug 'terryma/vim-multiple-cursors'
+" Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi'
 
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'ctrlpvim/ctrlp.vim'

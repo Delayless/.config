@@ -5,6 +5,7 @@
 	* [config environment](#config-environment)
 	* [Install Software](#install-software)
 + [Keyboard layout](#keyboard-layout)
++ [zsh & ohmyzsh](#zsh--ohmyzsh)
 + [vim](#vim)
 	* [Install](#install)
 	* [ctags](#ctags)
@@ -47,6 +48,16 @@ See [my-packages.txt](./my-packages.txt) for detail.
 
 PS: Command `xdotool key Caps_Lock` to toggle Caps_Lock status.
 
+
+# zsh & ohmyzsh
+```
+sudo pacman -S zsh
+chsh -s /usr/bin/zsh
+# oh-my-zsh
+sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+ln -s ~/.config/.zshrc ~/
+```
 
 # vim
 ## Install
