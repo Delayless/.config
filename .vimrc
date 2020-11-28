@@ -102,13 +102,11 @@ set ttimeoutlen=100 " reduce latency of swithing input method for Plug fcitx.vim
 " noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 " noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 " ^ to first non-blank character, 0 to first character.
-noremap H ^
 noremap n j
 noremap N 5j
 noremap e k
 noremap E 5k
 noremap i l
-noremap I $
 noremap k n
 noremap K N
 noremap l u
@@ -117,13 +115,15 @@ noremap j e
 noremap J E
 noremap <silent> ge gk
 noremap <silent> gn gj
+noremap W 5w
+noremap B 5b
 " nnoremap <CR> o<Esc>
 nnoremap <S-CR> i<CR><Esc>
 nnoremap <C-e> Hzz
 nnoremap <C-n> Lzz
 
 " it would be prone to bugs if mapping : ;.
-noremap ; :
+" noremap ; :
 
 " copy current filepath and line
 " nnoremap y. :let @+ = expand("%") . ':' . line(".")<cr>
@@ -210,8 +210,7 @@ map <up> :res +5<CR>
 map <down> :res -5<CR>
 map <left> :vertical resize-5<CR>
 map <right> :vertical resize+5<CR>
-" use 'M' to maximize and 'm' to minimize
-" the plug vimade maybe effect this command.
+" use 'M' to maximize and 'm' to balance windows.
 nnoremap <LEADER>wM <C-W>\| <C-W>_
 nnoremap <LEADER>wm <C-W>=
 
@@ -346,7 +345,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'Delayless/vim-bookmarks'
 Plug 'mg979/vim-xtabline'   "Tab manager in the top of windows
 " fades your inactive buffers and preserves syntax highlighting.
-" Plug 'TaDaa/vimade'
+Plug 'TaDaa/vimade'
 Plug 'mhinz/vim-startify'   " StartPage
 Plug 'junegunn/goyo.vim'    " focus read/write
 
@@ -362,14 +361,16 @@ Plug 'mattn/calendar-vim'  " vimwiki daily Index in calendar.
 
 " ysiw{ ysiw} yss<p1> cs ds{, Visual select and input S<p class="important">
 Plug 'tpope/vim-surround'
+Plug 'gcmt/wildfire.vim' " Enter to select the closest text object(brackets).
 Plug 'jiangmiao/auto-pairs' " better than coc-pairs, Alt+p toggle autopairs.
+Plug 'airblade/vim-matchquote'  " %-style motion for single/double quotation mark, ` (backtick), and | (pipe).
 Plug 'zef/vim-cycle' " toggle true/false....(ctrl+a, ctrl+x)
 Plug 'voldikss/vim-translator' " better than coc-translator in nvim.
 Plug 'godlygeek/tabular' "Align, :Tabularize /:\zs
 Plug 'tpope/vim-repeat' " The . command will work with ds, cs, yss
 Plug 'junegunn/vim-after-object' " copy, change, delete, yank after some symbols like `=/:/-/#/<space>`
 Plug 'chrisbra/NrrwRgn'     "display narrow region(focus)
-Plug 'puremourning/vimspector', { 'do': './install_gadget.py --force-enable-chrome --force-enable-python --enable-c' }
+Plug 'puremourning/vimspector', { 'do': './install_gadget.py --force-enable-python --enable-c' }
 Plug 'liuchengxu/vim-which-key'
 Plug 'mboughaba/i3config.vim'
 Plug 'ron89/thesaurus_query.vim'
@@ -379,6 +380,11 @@ Plug 'tpope/vim-commentary'
 Plug 'ap/vim-css-color'
 Plug 'rbgrouleff/bclose.vim'    "Dependency for ranger.vim
 Plug 'francoiscabrol/ranger.vim'
+" Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi'
+
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'ctrlpvim/ctrlp.vim'
 
 if has('nvim')
     " Plug 'cpiger/NeoDebug'
@@ -403,7 +409,7 @@ set viewoptions=cursor,folds,slash,unix  " autosave cursor position and fold inf
 " === NERDtree
 " ===
 " debug
-map tt :NERDTreeToggle<CR>
+map ff :NERDTreeToggle<CR>
 " open NERDTree automatically when vim starts up on opening a directory
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
@@ -711,6 +717,13 @@ noremap <silent> <Bslash>bu :Buffers<CR>
 
 
 " ===
+" === ctrlp.vim
+" ===
+let g:ctrlp_map = '<M-f>'
+let g:ctrlp_cmd = 'CtrlP'
+
+
+" ===
 " === vim-bujo
 " ===
 nmap <Bslash>l :Todo<CR>
@@ -750,7 +763,7 @@ nmap <LEADER>wha <Plug>VimwikiAll2HTML
 
 
 " ===
-" === Ranger.vim
+" === ranger.vim
 " ===
 if !has("nvim")
     execute "set <M-o>=\eo"
@@ -925,15 +938,15 @@ autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
 " ===
 " === vimade
 " ===
-" let g:vimade = {}
-" let g:vimade = {
-"     \ "fadelevel": 0.8,
-"     \ "colbufsize": 1,
-"     \ "rowbufsize": 1,
-"     \ "enablesigns": 0,
-"     \}
-" let g:vimade.fadelevel = 0.7
-" let g:vimade.enablesigns = 0
+let g:vimade = {}
+let g:vimade = {
+    \ "fadelevel": 0.8,
+    \ "colbufsize": 1,
+    \ "rowbufsize": 1,
+    \ "enablesigns": 0,
+    \}
+let g:vimade.fadelevel = 0.7
+let g:vimade.enablesigns = 0
 
 
 " ===
@@ -987,8 +1000,8 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 let g:coc_global_extensions = [  'coc-dictionary', 'coc-word', 'coc-emoji', 'coc-marketplace', 'coc-diagnostic',
             \ 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-highlight', 'coc-snippets', 'coc-actions',
             \ 'coc-cmake', 'coc-python', 'coc-pyright', 'coc-vimlsp', 'coc-translator', 'coc-texlab',
-            \ 'coc-html', 'coc-prettier', 'coc-css', 'coc-tailwindcss', 'coc-stylelint',
-            \ 'coc-json', 'coc-tsserver', 'coc-tslint-plugin', 'coc-eslint']
+            \ 'coc-html', 'coc-prettier', 'coc-css', 'coc-tailwindcss', 'coc-stylelint', 'coc-go',
+            \ 'coc-json', 'coc-tsserver', 'coc-tslint-plugin', 'coc-eslint', 'coc-snippets']
 " use <tab> for trigger completion and navigate to the next complete item
 inoremap <silent><expr> <TAB>
         \ pumvisible() ? "\<C-n>" :
@@ -1115,6 +1128,20 @@ vmap <nowait> <LEADER>tt <Plug>(coc-translator-pv)
 " a(mnemonic for align)
 vmap <LEADER>tb :Tabularize /
 "If you put [this gist](https://gist.github.com/tpope/287147#file-cucumbertables-vim) in your vimrc file, then it will call the :Tabularize command each time you insert a | character.
+
+
+" ===
+" === wildfire.vim
+" ===
+let g:wildfire_fuel_map = "<ENTER>"
+let g:wildfire_water_map = "<BS>"
+let g:wildfire_objects =  ["i'", 'i"', "i)", "i]", "i}", "ip", "it", "i>", "i`"]
+
+
+" ===
+" === vim-repeat
+" ===
+silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 
 
 " ===
@@ -1299,8 +1326,8 @@ let g:which_key_map.b = {
     \ }
 call which_key#register('<Space>', "g:which_key_map")
 
-nnoremap <silent> , :WhichKey  ','<CR>
-vnoremap <silent> , :WhichKeyVisual ','<CR>
+" nnoremap <silent> , :WhichKey  ','<CR>
+" vnoremap <silent> , :WhichKeyVisual ','<CR>
 nnoremap <silent> [ :WhichKey  '['<CR>
 nnoremap <silent> ] :WhichKey  ']'<CR>
 " nnoremap <silent> <F1> :WhichKey! g:which_key_help_map<CR>
@@ -1316,6 +1343,57 @@ aug i3config_ft_detection
   au!
   au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
 aug end
+
+
+" ===
+" === vim-go
+" ===
+let g:go_doc_keywordprg_enabled = 0
+let g:go_auto_sameids = 0
+let g:go_auto_type_info = 1
+let g:go_doc_popup_window = 1
+let g:go_def_mapping_enabled = 0
+let g:go_template_autocreate = 0
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_variable_assignments = 0
+let g:go_highlight_variable_declarations = 0
+let g:go_highlight_chan_whitespace_error = 1
+let g:go_highlight_array_whitespace_error = 1
+
+
+" ===
+" === coc-go
+" ===
+autocmd BufWritePre *.go :call CocAction('organizeImport')
+
+
+" ===
+" === vim-multiple-cursor
+" ===
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_start_word_key      = '<C-b>'
+let g:multi_cursor_select_all_word_key = '<M-n>'
+let g:multi_cursor_start_key           = 'g<C-b>'
+let g:multi_cursor_select_all_key      = 'g<M-n>'
+let g:multi_cursor_next_key            = '<C-b>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
+
+
+" ===
+" === vim-visual-multi
+" ===
+let g:VM_maps = {}
+let g:VM_maps['Find Under']         = '<C-d>'           " replace C-n
+let g:VM_maps['Find Subword Under'] = '<C-d>'           " replace visual C-n
 
 
 " ===

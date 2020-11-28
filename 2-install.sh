@@ -18,6 +18,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S vlc --noconfirm
 	sudo pacman -S alacritty --noconfirm
 	sudo pacman -S brightnessctl --noconfirm
+	# all the software of input method occupies 250MB of disk space.
     sudo pacman -S fcitx5-git --noconfirm
     # Chinese input support and lexicons.
     sudo pacman -S fcitx5-chinese-addons-git fcitx5-pinyin-zhwiki fcitx5-pinyin-moegirl --noconfirm
@@ -28,10 +29,11 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
     # GUI configuration tools, and For tranditional chinese
     sudo pacman -S fcitx5-configtool-git fcitx5-chewing --noconfirm
 	sudo pacman -S pikaur --noconfirm
+	sudo pacman -S yay --noconfirm
 	sudo pacman -S i3 --noconfirm
     # auto-hide mouse cursor
     sudo pacman -S unclutter --noconfirm
-	sudo pacman -S dmenu --noconfirm
+	# sudo pacman -S dmenu --noconfirm
 	sudo pacman -S rofi --noconfirm
 	# Scrot is a minimalist command line screen capturing application.
 	# sudo pacman -S scrot --noconfirm
@@ -43,7 +45,10 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	# w3m and ueberzug all are used to preview image.
 	# sudo pacman -S w3m --noconfirm
 	sudo pip3 install ueberzug
+	# Python image library.(OCR)
 	sudo pip3 install pillow
+	# neovim debug python
+	# sudo pip3 install debugpy
 	# sudo pacman -S nerd-fonts-complete --noconfirm
 	# sudo pacman -S powerline-fonts --noconfirm
     sudo pacman -S nerd-fonts-fira-code ttf-inconsolata ttf-droid --noconfirm
@@ -123,6 +128,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S npm --noconfirm
 	sudo npm install -g p3x-onenote --unsafe-perm=true --allow-root
 	# p3x-onenote &
+	# sudo pacman -S bc alsa-utils alsa-lib --noconfirm
 fi
 
 
