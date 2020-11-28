@@ -356,6 +356,7 @@ Plug 'mattn/calendar-vim'  " vimwiki daily Index in calendar.
 Plug 'tpope/vim-surround'
 Plug 'gcmt/wildfire.vim' " Enter to select the closest text object(brackets).
 Plug 'jiangmiao/auto-pairs' " better than coc-pairs, Alt+p toggle autopairs.
+Plug 'airblade/vim-matchquote'  " %-style motion for single/double quotation mark, ` (backtick), and | (pipe).
 Plug 'zef/vim-cycle' " toggle true/false....(ctrl+a, ctrl+x)
 Plug 'voldikss/vim-translator' " better than coc-translator in nvim.
 Plug 'godlygeek/tabular' "Align, :Tabularize /:\zs
@@ -1132,6 +1133,13 @@ vmap <nowait> <LEADER>tt <Plug>(coc-translator-pv)
 vmap <LEADER>tb :Tabularize /
 "If you put [this gist](https://gist.github.com/tpope/287147#file-cucumbertables-vim) in your vimrc file, then it will call the :Tabularize command each time you insert a | character.
 
+
+" ===
+" === wildfire.vim
+" ===
+let g:wildfire_fuel_map = "<ENTER>"
+let g:wildfire_water_map = "<BS>"
+let g:wildfire_objects =  ["i'", 'i"', "i)", "i]", "i}", "ip", "it", "i>", "i`"]
 
 " ===
 " === vim-repeat
