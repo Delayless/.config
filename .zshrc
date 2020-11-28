@@ -94,7 +94,8 @@ alias ssrstop="cd ~/Desktop/shadowsocksr/shadowsocks/ && sudo python local.py -d
 
 alias setproxy="export ALL_PROXY=socks5://127.0.0.1:1080"
 alias unsetproxy="unset ALL_PROXY"
-alias getip="curl -i https://ip.cn"
+# alias getip="curl -i https://ip.cn"
+alias getip="wget -qO - icanhazip.com | awk '{ print "WAN:" $1 }'"
 # echo $(curl http://icanhazip.com) | xclip -selection clipboard
 alias i3config="vim ~/.config/i3/config"
 alias comptonconfig="vim ~/.config/compton.conf"
