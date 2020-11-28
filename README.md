@@ -186,6 +186,21 @@ It is possible to also synchronise outside of the user interface by typing jopli
 */30 * * * * /path/to/joplin sync
 ```
 
+**synchronize joplin cli with joplin desktop**
+```
+mv ~/.config/joplin ~/.config/joplin-terminal-bak
+ln -sfn ~/.config/joplin-desktop ~/.config/joplin
+```
+If the report is wrong:
+> Fatal error:
+>
+> Unknown profile version. Most likely this is an old version of Joplin, while the profile was created by a newer version. Please upgrade Joplin at https://joplinapp.org and try again.
+```
+sqlite3 \
+"~/.config/joplin-desktop/database.sqlite" \
+"UPDATE version SET version = 23;"
+```
+
 # Goldendict
 > Audio player
 > WARN: FFmpeg audio Player ao_open_live() failed: can not open the device alsa channel 1, rate 11025, bit 8
