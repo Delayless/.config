@@ -756,7 +756,7 @@ nmap <LEADER>wha <Plug>VimwikiAll2HTML
 
 
 " ===
-" === Ranger.vim
+" === ranger.vim
 " ===
 if !has("nvim")
     execute "set <M-o>=\eo"
@@ -1375,6 +1375,8 @@ let g:go_highlight_array_whitespace_error = 1
 " === coc-go
 " ===
 autocmd BufWritePre *.go :call CocAction('organizeImport')
+
+
 " ===
 " === vim-multiple-cursor
 " ===
@@ -1387,6 +1389,14 @@ let g:multi_cursor_next_key            = '<C-b>'
 let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
+
+
+" ===
+" === vim-visual-multi
+" ===
+let g:VM_maps = {}
+let g:VM_maps['Find Under']         = '<C-d>'           " replace C-n
+let g:VM_maps['Find Subword Under'] = '<C-d>'           " replace visual C-n
 
 
 " ===
