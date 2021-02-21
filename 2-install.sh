@@ -99,6 +99,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S vim-spell-en --noconfirm
 	# pdf viewer using vim shortcuts.
 	sudo pacman -S zathura --noconfirm
+	# if this is not installed, zathura will not open the pdf file.
 	sudo pacman -S zathura-pdf-mupdf --noconfirm
 	sudo pacman -S zathura-djvu --noconfirm
 	sudo pacman -S bash-language-server --noconfirm

@@ -165,6 +165,7 @@ coc-snippets configuration:
 
 # zathura
 Ctrl+n: Toggle statusbar(title, page number)
+For openning pdf, djvu file, please install these dependencies: zathura-djvu, zathura-pdf-mupdf.
 
 # ranger
 ## Requirements
