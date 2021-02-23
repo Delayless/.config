@@ -1467,12 +1467,12 @@ func SetTitle()
         call append(line(".")+4, "")
     endif
     if &filetype == 'cpp'
-        call append(line(".")+5, "#include<iostream>")
+        call append(line(".")+5, "# include <iostream>")
         call append(line(".")+6, "using namespace std;")
         call append(line(".")+7, "")
     endif
     if &filetype == 'c'
-        call append(line(".")+5, "#include<stdio.h>")
+        call append(line(".")+5, "# include <stdio.h>")
         call append(line(".")+6, "")
     endif
     "Edit at the endline of file
