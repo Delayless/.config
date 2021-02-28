@@ -798,14 +798,14 @@ noremap <F5> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
     exec "w"
     if &filetype == 'c'
-        exec "!g++ % -o %<"
-        exec "!time ./%<"
+        exec "!g++ % -o %<.o"
+        exec "!time ./%<.o"
     elseif &filetype == 'cpp'
         set splitbelow
-        exec "!g++ -std=c++11 % -Wall -o %<"
+        exec "!g++ -std=c++11 % -Wall -o %<.o"
         :sp
         :res -15
-        :term ./%<
+        :term ./%.o<
     elseif &filetype == 'java'
         exec "!javac %"
         exec "!time java %<"
