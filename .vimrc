@@ -799,7 +799,9 @@ func! CompileRunGcc()
     exec "w"
     if &filetype == 'c'
         exec "!g++ % -o %<.o"
-        exec "!time ./%<.o"
+        :below sp
+		:res -5
+        exec "term time ./%<.o"
     elseif &filetype == 'cpp'
         set splitbelow
         exec "!g++ -std=c++11 % -Wall -o %<.o"

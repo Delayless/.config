@@ -104,6 +104,8 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S zathura-djvu --noconfirm
 	sudo pacman -S bash-language-server --noconfirm
 	sudo pacman -S autorandr --noconfirm
+	# turns any device with a web browser into a secondary screen.
+	sudo pacman -S deskreen --noconfirm
 	##############compton###############
 	# sudo pacman -S libx11 libxcomposite libxdamage libxfixes libxext libxrender libxrandr libxinerama ruby-pkg-config xorg-xwininfo libconfig libdrm libdbusmenu-glib asciidoc --noconfirm
 	# sudo pacman -S nvidia-utils --noconfirm
