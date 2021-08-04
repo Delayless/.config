@@ -120,8 +120,10 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
     sudo pacman -S inkescape --noconfirm
     sudo pikaur -S mathpix-snipping-tool --noconfirm
     sudo pacman -S thefuck --noconfirm
+	sudo pacman -S tldr --noconfirm
     # Desktop annotation.
     sudo pikaur -S gromit-mpx --noconfirm
+	sudo pikaur -S v2raya --noconfirm
 	# if install fzf using pacman, it's not be enabled by default key bindings in terminal.
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 	~/.fzf/install

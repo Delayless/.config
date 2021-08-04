@@ -101,6 +101,7 @@ alias i3config="vim ~/.config/i3/config"
 alias comptonconfig="vim ~/.config/compton.conf"
 alias vimrc="vim ~/.config/.vimrc"
 alias ra="ranger"
+# alias ra='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 # Usage: "ag text ./search-path/"
 alias ag='ag --hidden --ignore .git'
 alias cat=ccat
