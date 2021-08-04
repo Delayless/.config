@@ -25,6 +25,7 @@ set nocompatible
 filetype on
 filetype plugin indent on
 set encoding=UTF-8
+set fileencodings=utf-8,gbk
 
 " Shift+insert paste from system clipboard without any dependency.
 " vim version feature must include clipboard. So install gvim or vim-gnome instead of vim.
@@ -359,7 +360,7 @@ Plug 'jiangmiao/auto-pairs' " better than coc-pairs, Alt+p toggle autopairs.
 Plug 'airblade/vim-matchquote'  " %-style motion for single/double quotation mark, ` (backtick), and | (pipe).
 Plug 'zef/vim-cycle' " toggle true/false....(ctrl+a, ctrl+x)
 Plug 'voldikss/vim-translator' " better than coc-translator in nvim.
-Plug 'godlygeek/tabular' "Align, :Tabularize /:\zs
+Plug 'godlygeek/tabular' "Align, :Tabularize /】\zs<CR>
 Plug 'tpope/vim-repeat' " The . command will work with ds, cs, yss
 Plug 'junegunn/vim-after-object' " copy, change, delete, yank after some symbols like `=/:/-/#/<space>`
 Plug 'chrisbra/NrrwRgn'     "display narrow region(focus)
@@ -798,7 +799,7 @@ noremap <F5> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
     exec "w"
     if &filetype == 'c'
-        exec "!g++ % -o %<.o"
+        exec "!g++ -g % -o %<.o"
         :below sp
 		:res -5
         exec "term time ./%<.o"
