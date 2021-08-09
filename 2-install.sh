@@ -103,6 +103,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S zathura-pdf-mupdf --noconfirm
 	sudo pacman -S zathura-djvu --noconfirm
 	sudo pacman -S bash-language-server --noconfirm
+	# autodetect connected screens/devices
 	sudo pacman -S autorandr --noconfirm
 	# turns any device with a web browser into a secondary screen.
 	sudo pacman -S deskreen --noconfirm

@@ -808,7 +808,7 @@ func! CompileRunGcc()
         exec "!g++ -std=c++11 % -Wall -o %<.o"
         :sp
         :res -15
-        :term ./%.o<
+        exec "term time ./%<.o"
     elseif &filetype == 'java'
         exec "!javac %"
         exec "!time java %<"
