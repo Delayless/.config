@@ -99,6 +99,10 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S vim-spell-en --noconfirm
 	# pdf viewer using vim shortcuts.
 	sudo pacman -S zathura --noconfirm
+	# pdf reverse search
+	# Maybe need to install libsynctex, neovim-remote
+	# sudo pacman -S libsynctex
+	sudo pacman -S xdotool --noconfirm
 	# if this is not installed, zathura will not open the pdf file.
 	sudo pacman -S zathura-pdf-mupdf --noconfirm
 	sudo pacman -S zathura-djvu --noconfirm
@@ -118,6 +122,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	#############################
 	sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	sudo pikaur -S ccat-git --noconfirm
+	sudo pacman -S bat --noconfirm
     sudo pacman -S inkescape --noconfirm
     sudo pikaur -S mathpix-snipping-tool --noconfirm
     sudo pacman -S thefuck --noconfirm
