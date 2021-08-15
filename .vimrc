@@ -314,7 +314,7 @@ Plug 'Yggdroot/indentLine'    " mess up vimwiki's conceallevel and highlight.
 " Optimize Chinese input experience
 " To avoid the Esc delay, please set 'ttimeoutlen' to 100 or some value.
 " It's also related to screens's maptimeout
-Plug 'lilydjwg/fcitx.vim'
+" Plug 'lilydjwg/fcitx.vim'
 
 " Install nodejs when necessary:  curl -sL install-node.now.sh/lts | bash
 Plug 'neoclide/coc.nvim'
@@ -1446,6 +1446,12 @@ vnoremap <silent> * :<C-U>
 " fast scrolling?
 " set lazyredraw
 " set regexpengine=1
+
+
+autocmd InsertLeave * :silent !fcitx5-remote -c
+autocmd BufCreate *  :silent !fcitx5-remote -c
+autocmd BufEnter *  :silent !fcitx5-remote -c
+autocmd BufLeave *  :silent !fcitx5-remote -c
 
 
 au BufNewFile *.cpp,*.[ch],*.sh,*.java :call SetTitle()
