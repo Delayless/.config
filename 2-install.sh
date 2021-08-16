@@ -61,6 +61,8 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	# sudo pacman -S nerd-fonts-dejavu-sans-mono --noconfirm
 	# ranger_devicons Prerequisites https://github.com/ryanoasis/nerd-fonts
 	sudo pacman -S ranger --noconfirm
+	# A better way to navigate directories
+	sudo pacman -S broot --noconfirm
 	# preview json file with color in ranger
 	sudo pacman -S jq --noconfirm
 	# Dependency for Archive Compression/Extraction in ranger
