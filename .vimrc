@@ -379,6 +379,7 @@ Plug 'mg979/vim-visual-multi'
 
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tenfyzhong/joplin.vim'
 
 if has('nvim')
     " Plug 'cpiger/NeoDebug'
@@ -1400,6 +1401,13 @@ let g:multi_cursor_quit_key            = '<Esc>'
 let g:VM_maps = {}
 let g:VM_maps['Find Under']         = '<C-b>'           " replace C-n
 let g:VM_maps['Find Subword Under'] = '<C-b>'           " replace visual C-n
+
+
+" ===
+" === joplin
+" ===
+let g:joplin_token = ''
+let g:joplin_port = 41184
 
 
 " ===

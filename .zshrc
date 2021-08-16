@@ -111,6 +111,7 @@ alias caps="xdotool key Caps_Lock"
 # alias getip="getent hosts unix.stackexchange.com | awk '{ print $1 }'"
 alias study="vim -M ~/Downloads/linux-c/docs/_sidebar.md"
 alias truecolor="curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash"
+alias joplin="\vim -c 'Joplin'"
 
 source $HOME/.config/zsh-vim-mode.zsh
 # source $HOME/.config/agnoster-modified.zsh-theme
