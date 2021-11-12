@@ -1,0 +1,25 @@
+{
+	"configurations": [
+		{
+			"name": "g++ - Build and debug active file",
+			"type": "cppdbg",
+			"request": "launch", // 或者attach
+			"program": "${fileDirname}/${fileBasenameNoExtension}",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${fileDirname}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"setupCommands": [
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				}
+			],
+			"preLaunchTask": "C/C++: g++ build active file", // 必须和tasks.json里面lable的相同
+			"miDebuggerPath": "/usr/bin/gdb"
+		}
+	]
+}

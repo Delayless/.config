@@ -386,6 +386,8 @@ if has('nvim')
     Plug 'lambdalisue/suda.vim'
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
     map <LEADER>S :SudaWrite<CR>
+	Plug 'nvim-lua/plenary.nvim'
+	Plug 'nvim-telescope/telescope.nvim'
 else
     map <LEADER>S :w !sudo tee %<CR><CR>
 endif
@@ -1222,7 +1224,7 @@ let g:ycm_semantic_triggers =  {'VimspectorPrompt': [ '.', '->', ':', '<']}
 nmap <leader>dc  <Plug>VimspectorContinue
 nmap <leader>dq  <Plug>VimspectorStop
 " equal gdb command `run`
-nmap <leader>dr  <Plug>VimspectorRestart
+nmap <leader>dr  :call CompileRunGcc()<CR><Esc>:q<CR><Plug>VimspectorRestart<CR><Esc><Esc>
 nmap <leader>dP  <Plug>VimspectorPause
 " Toggle line breakpoint on the current line.
 nmap <leader>db  <Plug>VimspectorToggleBreakpoint
@@ -1253,7 +1255,7 @@ command! -bang -nargs=* LoadVimSpectorJson call fzf#run({
             \   'down': '25%',
             \   'options': '--preview-window=hidden'
             \ })
-noremap <leader>vs :LoadVimSpectorJson<CR>
+noremap <leader>dvs :LoadVimSpectorJson<CR>
 
 
 
@@ -1378,7 +1380,7 @@ let g:go_highlight_array_whitespace_error = 1
 " ===
 " === coc-go
 " ===
-autocmd BufWritePre *.go :call CocAction('organizeImport')
+autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
 
 
 " ===
@@ -1401,6 +1403,15 @@ let g:multi_cursor_quit_key            = '<Esc>'
 let g:VM_maps = {}
 let g:VM_maps['Find Under']         = '<C-b>'           " replace C-n
 let g:VM_maps['Find Subword Under'] = '<C-b>'           " replace visual C-n
+
+
+" ===
+" === nvim-telescope/telescope.nvim
+" ===
+" nnoremap <leader>ff <cmd>Telescope find_files<cr>
+" nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+" nnoremap <leader>fb <cmd>Telescope buffers<cr>
+" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 
 " ===
@@ -1468,29 +1479,31 @@ func SetTitle()
     if &filetype == 'sh'
         call setline(1,"\#########################################################################")
         call append(line("."), "\# File Name: ".expand("%"))
-        call append(line(".")+1, "\# Author:<++>")
-        "call append(line(".")+2, "\# mail:<++>")
-        call append(line(".")+2, "\# Created Time: ".strftime("%c"))
-        call append(line(".")+3, "\#########################################################################")
-        call append(line(".")+4, "\#!/bin/bash")
-        call append(line(".")+5, "")
+        call append(line(".")+1, "\# Function: <++>")
+        call append(line(".")+2, "\# Author: <++>")
+        "call append(line(".")+2, "\# mail: <++>")
+        call append(line(".")+3, "\# Created Time: ".strftime("%c"))
+        call append(line(".")+4, "\#########################################################################")
+        call append(line(".")+5, "\#!/bin/bash")
+        call append(line(".")+6, "")
     else
         call setline(1, "/*************************************************************************")
         call append(line("."), "    > File Name: ".expand("%"))
-        call append(line(".")+1, "    > Author: <++>")
+        call append(line(".")+1, "    > Function: <++>")
+        call append(line(".")+2, "    > Author: <++>")
         "call append(line(".")+2, "    > Mail: <++>")
-        call append(line(".")+2, "    > Created Time: ".strftime("%c"))
-        call append(line(".")+3, " ************************************************************************/")
-        call append(line(".")+4, "")
+        call append(line(".")+3, "    > Created Time: ".strftime("%c"))
+        call append(line(".")+4, " ************************************************************************/")
+        call append(line(".")+5, "")
     endif
     if &filetype == 'cpp'
-        call append(line(".")+5, "# include <iostream>")
-        call append(line(".")+6, "using namespace std;")
-        call append(line(".")+7, "")
+        call append(line(".")+6, "# include <iostream>")
+        call append(line(".")+7, "using namespace std;")
+        call append(line(".")+8, "")
     endif
     if &filetype == 'c'
-        call append(line(".")+5, "# include <stdio.h>")
-        call append(line(".")+6, "")
+        call append(line(".")+6, "# include <stdio.h>")
+        call append(line(".")+7, "")
     endif
     "Edit at the endline of file
     autocmd BufNewFile * normal G

@@ -25,6 +25,15 @@ vmap <silent> <Leader>tl <Plug>TranslateWV
 " nmap <silent> <Leader>x <Plug>TranslateX
 
 
+" ===
+" === telescope.nvim
+" ===
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
 " press f10 to show hlgroup
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
