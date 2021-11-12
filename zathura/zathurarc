@@ -5,6 +5,7 @@ map <C-s> feedkeys ":exec /home/lenovo/.config/zathura/zathura_backward_search.s
 map <C-l> focus_inputbar ":exec /home/lenovo/.config/zathura/zathura_backward_search.sh"
 map yp focus_inputbar ":exec bash -c \"echo \\\"$FILE\\\" | xclip -selection c\""
 
+set synctex true
 set selection-clipboard clipboard
 
 # Open document in fit-width mode by default

@@ -39,3 +39,33 @@ class ${1:`!p snip.rv = snip.basename or "name"`}
 };
 endsnippet
 
+snippet algorithm "comment block/section" b
+/**
+  * @brief   ${1:Describe the funtion.
+  *          What does this funtion do?}
+  * @param   ${2:argument}
+  * @retval  ${3:None}
+  * @TimeComplexity  ${4:nlogn}
+  */
+$0
+endsnippet
+
+snippet generatearrayfuntion "Description" b
+# define random(a,b) (rand()%(b-a)+a)
+/**
+  * @brief  生成由N个ElementType数据组成的数组，记得自己free
+  * @param  N：生成长度为N的数组
+  * @retval 内存空间首地址
+  */
+ElementType * Generate_Array(int N) {
+	ElementType * Array = (ElementType *)malloc(N*sizeof(ElementType));
+	if (NULL != Array) {
+		for (int i=0; i<N; i++)
+			Array[i] = random(-200, 200);
+		return Array;
+	} else {
+		cout << "内存分配失败!" << endl;
+		exit(-1);
+	}
+}
+endsnippet

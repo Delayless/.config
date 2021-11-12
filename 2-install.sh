@@ -111,6 +111,13 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S bash-language-server --noconfirm
 	# autodetect connected screens/devices
 	sudo pacman -S autorandr --noconfirm
+	# laptop power saving settings
+	sudo pacman -S tlp --noconfirm
+	# Caps2Esc, Press and hold the CapsLk map to Ctrl.
+	# map CAPS to CTRL on hold and to ESC on quick press.
+	# but have some issues about latency
+	# 有些许延迟，不加进去了。
+	# sudo pacman -S interception-tools interception-caps2esc --noconfirm
 	# turns any device with a web browser into a secondary screen.
 	sudo pacman -S deskreen --noconfirm
 	##############compton###############

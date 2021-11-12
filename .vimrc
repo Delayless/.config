@@ -259,7 +259,8 @@ set shell=zsh
 " :terminal can open a terminal at vim>=8.1
 " ctrl+d exit terminal at insert mode.
 if has('nvim')
-    autocmd TermOpen term://* startinsert
+	" comment it because I expect that the vimspector's default debug window is normal mode instead of insert mode
+    " autocmd TermOpen term://* startinsert
     noremap <Bslash>py :set splitbelow<CR>:split term://ipython3<CR>
     noremap <Bslash>t :set splitbelow<CR>:split term://zsh<CR>
     noremap <c-g> :tabe term://lazygit<CR>

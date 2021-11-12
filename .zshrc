@@ -116,11 +116,13 @@ alias joplin="\vim -c 'Joplin'"
 source $HOME/.config/zsh-vim-mode.zsh
 # source $HOME/.config/agnoster-modified.zsh-theme
 source $HOME/.config/fzf.zsh
+source $HOME/.config/broot/launcher/bash/br
 
 # Enable Italics of vim-dues
 export TERM_ITALICS=true
 export RANGER_LOAD_DEFAULT_RC="false"
-export PATH=$HOME/go/bin:$PATH
+export PATH=$HOME/go/bin:$HOME/.local/bin:$PATH
+export NODE_OPTIONS="--max-old-space-size=8192"
 
 # Use ranger to switch directories and bind it to ctrl-o
 # q swith directory and cancel ranger.
