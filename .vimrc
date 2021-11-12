@@ -338,7 +338,6 @@ Plug 'joshdick/onedark.vim'
 Plug 'bling/vim-bufferline'
 Plug 'ryanoasis/vim-devicons'
 Plug 'Delayless/vim-bookmarks'
-Plug 'mg979/vim-xtabline'   "Tab manager in the top of windows
 " fades your inactive buffers and preserves syntax highlighting.
 Plug 'TaDaa/vimade'
 Plug 'mhinz/vim-startify'   " StartPage
@@ -386,11 +385,14 @@ if has('nvim')
     " Plug 'cpiger/NeoDebug'
     Plug 'lambdalisue/suda.vim'
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-    map <LEADER>S :SudaWrite<CR>
+	Plug 'kyazdani42/nvim-web-devicons'
+	Plug 'akinsho/nvim-bufferline.lua'
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim'
+	map <LEADER>S :SudaWrite<CR>
 else
     map <LEADER>S :w !sudo tee %<CR><CR>
+	Plug 'mg979/vim-xtabline'   "Tab manager in the top of windows
 endif
 
 call plug#end()
