@@ -14,6 +14,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	# joplin-desktop, directory: ~/.joplin-bin
 	wget -O - https://raw.githubusercontent.com/laurent22/joplin/master/Joplin_install_and_update.sh | bash
 	sudo pacman -S joplin --noconfirm
+	sudo pacman -S xtrlock --noconfirm
 	sudo pacman -S the_silver_searcher --noconfirm
 	sudo pacman -S vlc --noconfirm
 	sudo pacman -S alacritty --noconfirm
