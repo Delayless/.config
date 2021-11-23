@@ -331,9 +331,11 @@ Plug 'liuchengxu/vista.vim'
 " Plug 'tpope/vim-capslock' " Ctrl+L (insert) to toggle capslock
 
 " Pretty Dress
-Plug 'liuchengxu/eleline.vim'
+" Plug 'liuchengxu/eleline.vim' " statusbar
+Plug 'itchyny/lightline.vim' " Lightline statusbar
 Plug 'chrisbra/Colorizer' " Show colors with :ColorHighlight
 Plug 'Delayless/vim-deus'  " It only works on vim >=8.1 and neovim
+Plug 'frazrepo/vim-rainbow'
 Plug 'joshdick/onedark.vim'
 Plug 'bling/vim-bufferline'
 Plug 'ryanoasis/vim-devicons'
@@ -342,6 +344,7 @@ Plug 'Delayless/vim-bookmarks'
 Plug 'TaDaa/vimade'
 Plug 'mhinz/vim-startify'   " StartPage
 Plug 'junegunn/goyo.vim'    " focus read/write
+Plug 'junegunn/limelight.vim' " Hyperfocus on a range
 
 Plug 'vim-scripts/restore_view.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -868,6 +871,14 @@ let g:eleline_powerline_fonts = 1
 
 
 " ===
+" === lightline.vim
+" ===
+let g:lightline = {
+      \ 'colorscheme': 'darcula',
+      \ }
+
+
+" ===
 " === Colorizer
 " ===
 let g:colorizer_syntax = 1
@@ -913,6 +924,21 @@ highlight BookmarkSign ctermfg=33 guibg=#19202b guifg=#0d87d9
 highlight BookmarkLine cterm=italic ctermfg=232 ctermbg=33 guibg=#181a33
 highlight BookmarkAnnotationSign ctermfg=28 guibg=#19202b guifg=#09e017
 highlight BookmarkAnnotationLine ctermfg=232 ctermbg=28 gui=bold,italic guibg=#183319
+
+
+" ===
+" === vim-rainbow
+" ===
+au FileType c,cpp,hpp,h,objc,objcpp call rainbow#load()
+let g:rainbow_active = 1
+let g:rainbow_load_separately = [
+    \ [ '*' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+    \ [ '*.tex' , [['(', ')'], ['\[', '\]']] ],
+    \ [ '*.cpp' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+    \ [ '*.{html,htm}' , [['(', ')'], ['\[', '\]'], ['{', '}'], ['<\a[^>]*>', '</[^>]*>']] ],
+    \ ]
+let g:rainbow_guifgs = ['RoyalBlue3', 'DarkOrange3', 'DarkOrchid3', 'FireBrick']
+let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
 
 
 " ===
@@ -987,6 +1013,9 @@ function! s:goyo_leave()
 endfunction
 autocmd! User GoyoEnter call <SID>goyo_enter()
 autocmd! User GoyoLeave call <SID>goyo_leave()
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+
 
 " ===
 " === coc.nvim
