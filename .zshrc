@@ -48,6 +48,7 @@ bindkey '' autosuggest-accept
 # Ctrl+Enter to excute the suggested command,
 # Ctrl+v then press Esc to generate "".
 bindkey '[13;5u' autosuggest-execute
+bindkey '' autosuggest-execute
 
 source $ZSH/oh-my-zsh.sh
 
@@ -112,6 +113,8 @@ alias caps="xdotool key Caps_Lock"
 alias study="vim -M ~/Downloads/linux-c/docs/_sidebar.md"
 alias truecolor="curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash"
 alias joplin="\vim -c 'Joplin'"
+# tmux attach last detached sessions
+alias t="tmux attach"
 
 source $HOME/.config/zsh-vim-mode.zsh
 # source $HOME/.config/agnoster-modified.zsh-theme
@@ -122,7 +125,6 @@ source $HOME/.config/broot/launcher/bash/br
 export TERM_ITALICS=true
 export RANGER_LOAD_DEFAULT_RC="false"
 export PATH=$HOME/go/bin:$HOME/.local/bin:$PATH
-export NODE_OPTIONS="--max-old-space-size=8192"
 
 # Use ranger to switch directories and bind it to ctrl-o
 # q swith directory and cancel ranger.
