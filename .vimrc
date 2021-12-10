@@ -542,6 +542,7 @@ let g:mkdx#settings = { 'highlight' : { 'enable': 1 },
                       \ 'tokens'    : { 'strike': '~~' },
                       \ 'auto_update': { 'enable': 0 },
                       \ 'toc': { 'details': { 'summary': 'Click to expand {{toc.text}}' }} }
+" make sure the xdg-utils package is installed
 let g:mkdx#settings.gf_on_steroids = 1
 let g:mkdx#settings.restore_visual = 0
 let g:mkdx#settings.tab.enable = 0
@@ -930,7 +931,6 @@ highlight BookmarkAnnotationLine ctermfg=232 ctermbg=28 gui=bold,italic guibg=#1
 " === vim-rainbow
 " ===
 au FileType c,cpp,hpp,h,objc,objcpp call rainbow#load()
-let g:rainbow_active = 1
 let g:rainbow_load_separately = [
     \ [ '*' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
     \ [ '*.tex' , [['(', ')'], ['\[', '\]']] ],

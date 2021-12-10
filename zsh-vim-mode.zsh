@@ -1,5 +1,6 @@
 bindkey -v
 DEFAULT_VI_MODE=viins
+# set -o emacs
 KEYTIMEOUT=1
 
 #######################################

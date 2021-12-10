@@ -90,12 +90,14 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S axel --noconfirm
 	sudo pacman -S virtualbox --noconfirm
 	# Video Editor
+	# sudo pacman -S shotcut --noconfirm
 	sudo pacman -S kdenlive --noconfirm
 	# Screen recording and streaming
 	sudo pacman -S obs-studio --noconfirm
 	# sudo pacman -S simplescreenrecorder --noconfirm
 	# gif recording
 	sudo pacman -S simplescreenkey --noconfirm
+	sudo pacman -S peek --noconfirm
 	sudo pacman -S screenkey --noconfirm
 	sudo pacman -S lazygit --noconfirm
 	sudo pacman -S vim-plug --noconfirm
