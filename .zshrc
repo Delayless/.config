@@ -112,7 +112,7 @@ alias caps="xdotool key Caps_Lock"
 # alias getip="getent hosts unix.stackexchange.com | awk '{ print $1 }'"
 alias study="vim -M ~/Downloads/linux-c/docs/_sidebar.md"
 alias truecolor="curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash"
-alias joplin="\vim -c 'Joplin'"
+alias joplindesktop="\vim -c 'Joplin'"
 # tmux attach last detached sessions
 alias t="tmux attach"
 

@@ -74,7 +74,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
     # preview xlsx in ranger
     sudo pip3 install xlsx2csv
     # Offline Documentation Browser
-    sudo pacman -S zeal --noconfirm
+    sudo pacman -S zeal-git --noconfirm
 	sudo pacman -S pandoc --noconfirm
 	# sudo pacman -S texlive-full --noconfirm
     sudo pikaur -S texlive-core texlive-bin texlive-langchinese  texlive-latexextra texlive-pictures --noconfirm
@@ -116,6 +116,8 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S autorandr --noconfirm
 	# laptop power saving settings
 	sudo pacman -S tlp --noconfirm
+	# glance
+	sudo pacman -S glances --noconfirm
 	# Caps2Esc, Press and hold the CapsLk map to Ctrl.
 	# map CAPS to CTRL on hold and to ESC on quick press.
 	# but have some issues about latency

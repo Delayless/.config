@@ -930,7 +930,7 @@ highlight BookmarkAnnotationLine ctermfg=232 ctermbg=28 gui=bold,italic guibg=#1
 " ===
 " === vim-rainbow
 " ===
-au FileType c,cpp,hpp,h,objc,objcpp call rainbow#load()
+au FileType c,cpp,hpp,h,objc,objcpp,go call rainbow#load()
 let g:rainbow_load_separately = [
     \ [ '*' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
     \ [ '*.tex' , [['(', ')'], ['\[', '\]']] ],
@@ -1451,6 +1451,19 @@ let g:VM_maps['Find Subword Under'] = '<C-b>'           " replace visual C-n
 " ===
 let g:joplin_token = ''
 let g:joplin_port = 41184
+function CdParentDir()
+	" Error when open a root file, because index outbound.
+	" let parentDir=split(getcwd(), '\/')[-2]
+	let cwd=split(getcwd(), '\/')
+	for dir in cwd
+		if dir == "joplin" && cwd[-1] != "joplin"
+			echom dir
+			:lcd %:p:h
+			:lcd ..
+		endif
+	endfor
+endfunction
+autocmd FileReadPost,VimEnter *.md call CdParentDir()
 
 
 " ===
@@ -1499,10 +1512,10 @@ vnoremap <silent> * :<C-U>
 " set regexpengine=1
 
 
-autocmd InsertLeave * :silent !fcitx5-remote -c
-autocmd BufCreate *  :silent !fcitx5-remote -c
-autocmd BufEnter *  :silent !fcitx5-remote -c
-autocmd BufLeave *  :silent !fcitx5-remote -c
+" autocmd InsertLeave * :silent !fcitx5-remote -c
+autocmd BufCreate * :silent !fcitx5-remote -c
+autocmd BufEnter  * :silent !fcitx5-remote -c
+autocmd BufLeave  * :silent !fcitx5-remote -c
 
 
 au BufNewFile *.cpp,*.[ch],*.sh,*.java :call SetTitle()
