@@ -11,6 +11,13 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S xclip --noconfirm
 	sudo pacman -S clang --noconfirm
 	sudo pacman -S ccls --noconfirm
+	sudo pacman -S stow --noconfirm
+	# nmtui, nmtui-connect
+	# netctl, wpa_supplicant && dhcpcd/dhclient
+	sudo pacman -S networkmanager --noconfirm
+	sudo pacman -S acpi --noconfirm
+	# universal-ctags for Debian/Ubuntu instead of ctags.
+	sudo pacman -S ctags --noconfirm
 	# joplin-desktop, directory: ~/.joplin-bin
 	wget -O - https://raw.githubusercontent.com/laurent22/joplin/master/Joplin_install_and_update.sh | bash
 	sudo pacman -S joplin --noconfirm
@@ -19,6 +26,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S vlc --noconfirm
 	sudo pacman -S alacritty --noconfirm
 	sudo pacman -S brightnessctl --noconfirm
+	sudo pacman -S nfs-utils cifs-utils --noconfirm
 	# all the software of input method occupies 250MB of disk space.
     sudo pacman -S fcitx5-git --noconfirm
     # Chinese input support and lexicons.
@@ -32,6 +40,24 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S pikaur --noconfirm
 	sudo pacman -S yay --noconfirm
 	sudo pacman -S i3 --noconfirm
+	sudo pacman -S tmux --noconfirm
+	# display memory usage for tmux
+	yay -S rainbarf --noconfirm
+	# drive the mouse-driven envent by keyboard. mouse pointer mover
+	# configuration file ln to home path
+	sudo pacman -S keynav --noconfirm
+	# create ap(wifi) for sharing network to phone, create_ap alternatively
+	# sudo pacman -S linux-wifi-hotspot --noconfirm
+	sudo pacman -S wireshark-qt --noconfirm
+	# nice log file viewer. journalctl -u v2ray | lnav. lnav /path/to/log
+	sudo pacman -S lnav --noconfirm
+	# edit gigabit text file smoothly
+	yay -S joe --noconfirm
+	# docker monitor like top
+	sudo pacman -S ctop --noconfirm
+	sudo pacman -S kdeconnect --noconfirm
+	# Display and control Android device
+	sudo pacman -S scrcpy --noconfirm
     # auto-hide mouse cursor
     sudo pacman -S unclutter --noconfirm
 	# sudo pacman -S dmenu --noconfirm
@@ -43,6 +69,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S audacious --noconfirm
 	sudo pacman -S netease-cloud-music --noconfirm
 	sudo pacman -S google-chrome --noconfirm
+	sudo pacman -S wechat-uos --noconfirm
 	# w3m and ueberzug all are used to preview image.
 	# sudo pacman -S w3m --noconfirm
 	sudo pip3 install ueberzug
@@ -64,10 +91,12 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S ranger --noconfirm
 	# A better way to navigate directories
 	sudo pacman -S broot --noconfirm
+	# many extension for scope, read ~/.config/ranger/scope.sh
 	# preview json file with color in ranger
 	sudo pacman -S jq --noconfirm
 	# Dependency for Archive Compression/Extraction in ranger
 	sudo pacman -S atool --noconfirm
+	sudo pacman -S odt2txt --noconfirm
     sudo pacman -S mediainfo --noconfirm
     sudo pacman -S perl-image-exiftool --noconfirm
     sudo pacman -S catdoc --noconfirm
@@ -88,6 +117,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	# GoldenDict - Edit - Dictionary - Program
 	# type: html, command: `python -m googletranslate.googletranslate zh-CN %GDWORD%`
 	sudo pacman -S axel --noconfirm
+	# alternatively kvm, vmware-workstation
 	sudo pacman -S virtualbox --noconfirm
 	# Video Editor
 	# sudo pacman -S shotcut --noconfirm
@@ -100,10 +130,16 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S peek --noconfirm
 	sudo pacman -S screenkey --noconfirm
 	sudo pacman -S lazygit --noconfirm
-	sudo pacman -S vim-plug --noconfirm
+	sudo pacman -S neovim neovim-remote --noconfirm
 	sudo pacman -S vim-spell-en --noconfirm
+	# For dictionary completion
+	sudo pacman -S words --noconfirm
 	# pdf viewer using vim shortcuts.
 	sudo pacman -S zathura --noconfirm
+	# RSS reader web client
+	# yay -S yarr-git --noconfirm
+	# RSS reader
+	sudo pacman -S fluent-reader --noconfirm
 	# pdf reverse search
 	# Maybe need to install libsynctex, neovim-remote
 	# sudo pacman -S libsynctex
@@ -116,8 +152,10 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S autorandr --noconfirm
 	# laptop power saving settings
 	sudo pacman -S tlp --noconfirm
-	# glance
+	# glance like htop
 	sudo pacman -S glances --noconfirm
+	# btm system monitor like htop
+	sudo pacman -S bottom --noconfirm
 	# Caps2Esc, Press and hold the CapsLk map to Ctrl.
 	# map CAPS to CTRL on hold and to ESC on quick press.
 	# but have some issues about latency
@@ -134,6 +172,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	# automount removable media. Included in the udisks2.
 	sudo pacman -S udiskie --noconfirm
 	#############################
+	sudo pacman -S zsh --noconfirm
 	sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	sudo pikaur -S ccat-git --noconfirm
 	sudo pacman -S bat --noconfirm
@@ -141,6 +180,8 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
     sudo pikaur -S mathpix-snipping-tool --noconfirm
     sudo pacman -S thefuck --noconfirm
 	sudo pacman -S tldr --noconfirm
+	# manual cppman std::string
+	yay -S cppman --noconfirm
     # Desktop annotation.
     sudo pikaur -S gromit-mpx --noconfirm
 	sudo pikaur -S v2raya --noconfirm
@@ -150,6 +191,8 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
     # sudo pacman -S ripgrep -no-confirm
     # fzf alt-c find directory
     sudo pacman -S fd -no-confirm
+	# updatedb then locate filename to find file.
+	sudo pacman -S mlocate --no-confirm
 	curl -sL install-node.now.sh/lts | bash
 	sudo pacman -S npm --noconfirm
 	sudo npm install -g p3x-onenote --unsafe-perm=true --allow-root

@@ -305,6 +305,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'Delayless/bullets.vim'  " automated bullet lists, :RenumberSelection.
 Plug 'SidOfc/mkdx'  "used for jump headline from Toc.
 " Plug 'plasticboy/vim-markdown'
+Plug 'ferrine/md-img-paste.vim'
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
@@ -577,6 +578,24 @@ noremap <LEADER>tm :TableModeToggle<CR>
 " " e.g. `]]`, '[[`, `][', '[]', `]c`, ']u', ':Toc', 'InsertToc'
 " map ge <Plug>Markdown_EditUrlUnderCursor
 " map ]c <Plug>Markdown_MoveToCurHeader
+
+
+" ===
+" === md-img-paste.vim
+" ===
+autocmd FileType markdown nmap <buffer><silent> <leader>pi :call mdip#MarkdownClipboardImage()<CR>
+" there are some defaults for image directory and image name, you can change them
+" let g:mdip_imgdir = 'img'
+" let g:mdip_imgname = 'image'
+function! g:LatexPasteImage(relpath)
+    execute "normal! i\\includegraphics{" . a:relpath . "}\r\\caption{I"
+    let ipos = getcurpos()
+    execute "normal! a" . "mage}"
+    call setpos('.', ipos)
+    execute "normal! ve\<C-g>"
+endfunction
+autocmd FileType markdown let g:PasteImageFunction = 'g:MarkdownPasteImage'
+autocmd FileType tex let g:PasteImageFunction = 'g:LatexPasteImage'
 
 
 " ===
@@ -1451,19 +1470,9 @@ let g:VM_maps['Find Subword Under'] = '<C-b>'           " replace visual C-n
 " ===
 let g:joplin_token = ''
 let g:joplin_port = 41184
-function CdParentDir()
-	" Error when open a root file, because index outbound.
-	" let parentDir=split(getcwd(), '\/')[-2]
-	let cwd=split(getcwd(), '\/')
-	for dir in cwd
-		if dir == "joplin" && cwd[-1] != "joplin"
-			echom dir
-			:lcd %:p:h
-			:lcd ..
-		endif
-	endfor
-endfunction
-autocmd FileReadPost,VimEnter *.md call CdParentDir()
+let cwd = $HOME . '/.config/joplin/resources/img'
+let g:mdip_imgdir_absolute = cwd
+let g:mdip_imgdir_intext = '/resources/img'
 
 
 " ===
@@ -1512,7 +1521,7 @@ vnoremap <silent> * :<C-U>
 " set regexpengine=1
 
 
-" autocmd InsertLeave * :silent !fcitx5-remote -c
+autocmd InsertLeave * :silent !fcitx5-remote -c
 autocmd BufCreate * :silent !fcitx5-remote -c
 autocmd BufEnter  * :silent !fcitx5-remote -c
 autocmd BufLeave  * :silent !fcitx5-remote -c
