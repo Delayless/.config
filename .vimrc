@@ -587,6 +587,9 @@ autocmd FileType markdown nmap <buffer><silent> <leader>pi :call mdip#MarkdownCl
 " there are some defaults for image directory and image name, you can change them
 " let g:mdip_imgdir = 'img'
 " let g:mdip_imgname = 'image'
+" let cwd = $PWD . 'static/img'
+" let g:mdip_imgdir_absolute = cwd
+" let g:mdip_imgdir_intext = '/static/img'
 function! g:LatexPasteImage(relpath)
     execute "normal! i\\includegraphics{" . a:relpath . "}\r\\caption{I"
     let ipos = getcurpos()
@@ -1470,9 +1473,19 @@ let g:VM_maps['Find Subword Under'] = '<C-b>'           " replace visual C-n
 " ===
 let g:joplin_token = ''
 let g:joplin_port = 41184
-let cwd = $HOME . '/.config/joplin/resources/img'
-let g:mdip_imgdir_absolute = cwd
-let g:mdip_imgdir_intext = '/resources/img'
+function CdParentDir()
+    " Error when open a root file, because index outbound.
+    " let parentDir=split(getcwd(), '\/')[-2]
+    let cwd=split(getcwd(), '\/')
+    for dir in cwd
+        if dir == "joplin" && cwd[-1] != "joplin"
+            echom dir
+            :lcd %:p:h
+            :lcd ..
+        endif
+    endfor
+endfunction
+autocmd FileReadPost,VimEnter,UIEnter,InsertLeave *.md call CdParentDir()
 
 
 " ===
