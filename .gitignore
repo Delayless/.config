@@ -18,6 +18,7 @@
 /i3/log/
 !/polybar/
 !/alacritty/
+!/.keynavrc
 !/neofetch/
 !/zathura/
 !/picom.conf

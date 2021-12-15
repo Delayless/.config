@@ -555,6 +555,8 @@ autocmd FileType markdown nmap <CR> <Plug>(mkdx-jump-to-header)
 " ===
 " <Leader>tic insert column, <Leader>tdc delete column
 noremap <LEADER>tm :TableModeToggle<CR>
+noremap <LEADER>tM :TableModeRealign<CR>
+vmap <LEADER>tM :TableModeRealign<CR>
 
 
 " ===

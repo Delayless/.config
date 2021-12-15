@@ -115,6 +115,7 @@ alias truecolor="curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/
 alias joplindesktop="\vim -c 'Joplin'"
 # tmux attach last detached sessions
 alias t="tmux attach"
+alias obs="DRI_PRIME=1 obs"
 
 source $HOME/.config/zsh-vim-mode.zsh
 # source $HOME/.config/agnoster-modified.zsh-theme
