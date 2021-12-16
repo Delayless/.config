@@ -1,5 +1,5 @@
 # This is a keynavrc file. Yours should live in
-# $HOME/.keynavrc
+# $HOME/.config/keynav/keynavrc
 #
 # Lines beginning with '#' are comments.
 # Format is:
@@ -31,29 +31,23 @@ h cut-left
 j cut-down
 k cut-up
 l cut-right
-i cut-left,cut-up
 y cut-left,cut-up
-o cut-right,cut-up
 u cut-right,cut-up
-comma cut-left,cut-down
 n cut-left,cut-down
-period cut-right,cut-down
 m cut-right,cut-down
 shift+h move-left
 shift+j move-down
 shift+k move-up
 shift+l move-right
 shift+y move-left,move-up
-shift+i move-left,move-up
 shift+u move-right,move-up
-shift+o move-right,move-up
 shift+n move-left,move-down
 shift+m move-right,move-down
 space warp,click 1,end
 semicolon warp,end
-1 warp,click 1,end
-2 warp,click 2,end
-3 warp,click 3
+1 click 1
+2 click 2
+3 click 3
 
 # Zoom to the current window
 w windowzoom
@@ -67,22 +61,37 @@ ctrl+j cut-down
 ctrl+k cut-up
 ctrl+l cut-right
 ctrl+y cut-left,cut-up
-ctrl+i cut-left,cut-up
 ctrl+u cut-right,cut-up
-ctrl+o cut-right,cut-up
 ctrl+n cut-left,cut-down
 ctrl+m cut-right,cut-down
 
+# Arrow keys can move the grid as welll
+Left cut-left
+Down cut-down
+Up cut-up
+Right cut-right
+shift+Left move-left
+shift+Down move-down
+shift+Up move-up
+shift+Right move-right
+ctrl+Left cut-left
+ctrl+Down cut-down
+ctrl+Up cut-up
+ctrl+Right cut-right
+ctrl+shift+Left move-left
+ctrl+shift+Down move-down
+ctrl+shift+Up move-up
+ctrl+shift+Right move-right
+
 # Record keynav actions
 q record
-
 shift+at playback
 
 ### Example using the 'sh' command.
 # Make firefox the active window
-f sh "xdotool windowactivate $(xdotool search -title -- '- Mozilla Firefox')", end
+f sh "xdotool windowactivate $(xdotool search -name -- '- Mozilla Firefox')", end
 # Make a new tab in google chrome:
-t sh "xdotool windowactivate $(xdotool search --title -- '- Google Chrome' | head -1); xdotool key ctrl+t",end
+t sh "xdotool windowactivate $(xdotool search --name -- '- Google Chrome' | head -1); xdotool key ctrl+t",end
 # Paste
 v sh "xdotool key shift+Insert"
 
@@ -91,6 +100,11 @@ v sh "xdotool key shift+Insert"
 #q drag 1
 # Start drag holding middle mouse + control and shift
 #w drag 2 ctrl+shift
+# Dragging with modifiers
+#q drag 1
+#ctrl+q drag 1 ctrl
+#shift+q drag 1 shift
+#shift+ctrl+q drag 1 shift+ctrl
 
 ### History
 a history-back
@@ -117,12 +131,12 @@ a history-back
 
 ### Example using a 3x3 grid with nethack-vi keys
 #ctrl+semicolon start, grid 3x3
-#h cell-select 2x1      # left
-#j cell-select 3x2      # down
-#k cell-select 1x2      # up
-#l cell-select 2x3      # right
+#h cell-select 1x2      # left
+#j cell-select 2x3      # down
+#k cell-select 2x1      # up
+#l cell-select 3x2      # right
 #y cell-select 1x1      # up-left
-#u cell-select 1x3      # up-right
-#b cell-select 3x1      # down-left
+#u cell-select 3x1      # up-right
+#b cell-select 1x3      # down-left
 #n cell-select 3x3      # down-right
 #period cell-select 2x2 # center

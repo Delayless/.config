@@ -8,7 +8,7 @@ autocmd FileType vim setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Display translation in a window
 let g:translator_target_lang = 'zh'
 " 'youdao' will slow down the response speed.
-let g:translator_default_engines = ['google', 'bing', 'baicizhan', 'haici']
+let g:translator_default_engines = ['bing', 'google', 'haici', 'youdao']
 " let g:translator_window_borderchars = v:null
 let g:translator_history_enable = v:true
 " Echo translation in the cmdline
@@ -16,8 +16,8 @@ let g:translator_history_enable = v:true
 " vmap <silent> <Leader>w <Plug>TranslateV
 " Display translation in a window
 " type <Leader>w again to jump into it and again to jump back
-nmap <silent> <Leader>tl <Plug>TranslateW
-vmap <silent> <Leader>tl <Plug>TranslateWV
+nmap <silent> <Leader>tl :TranslateW --engines=bing<CR>
+vmap <silent> <Leader>tl :TranslateW --engines=google<CR>
 " Replace the text with translation
 " nmap <silent> <Leader>r <Plug>TranslateR
 " vmap <silent> <Leader>r <Plug>TranslateRV

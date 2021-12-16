@@ -83,7 +83,7 @@
 	"yank.enableCompletion": false,
 	"python.jediEnabled": false,
 	"python.formatting.provider": "autopep8",
-	"translator.engines": ["bing", "google", "haici"],
+	"translator.engines": ["bing", "youdao", "google"],
 	"languageserver": {
 		"ccls": {
 			"command": "ccls",
