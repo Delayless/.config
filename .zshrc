@@ -32,6 +32,8 @@ ZSH_CUSTOM=$HOME/.config/zsh
 # e.g, `google zsh`, open a brower to search zsh in google
 plugins=(git zsh-completions zsh-autosuggestions zsh-syntax-highlighting web-search you-should-use)
 
+source $ZSH/oh-my-zsh.sh
+
 ######## zsh-completions #########
 # Basic auto/tab complete:
 autoload -U compinit && compinit
@@ -49,8 +51,6 @@ bindkey '' autosuggest-accept
 # Ctrl+v then press Esc to generate "".
 bindkey '[13;5u' autosuggest-execute
 bindkey '' autosuggest-execute
-
-source $ZSH/oh-my-zsh.sh
 
 # if not set the follow alias, aliases not available when using sudo
 # I want to 'sudo cp' == "sudo cp -i", so this setting is necessary.

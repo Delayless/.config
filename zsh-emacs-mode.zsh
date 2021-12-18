@@ -1,3 +1,6 @@
+set -o emacs
+KEYTIMEOUT=1
+
 _fix_cursor() {
 	# set terminal cursor
 	# echo -ne "\x1b[\x32 q" # changes to steady block
@@ -11,5 +14,7 @@ precmd_functions+=(_fix_cursor)
 
 autoload -z edit-command-line
 zle -N edit-command-line
+bindkey '^xe' edit-command-line
 bindkey "^X^E" edit-command-line
 
+RPROMPT=''
