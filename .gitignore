@@ -38,6 +38,7 @@
 !/2-install.sh
 !/snippits.vim
 !/zsh-vim-mode.zsh
+!/zsh-emacs-mode.zsh
 !/agnoster-modified.zsh-theme
 !/fzf.zsh
 !/coc-settings.json

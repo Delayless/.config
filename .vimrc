@@ -312,6 +312,7 @@ Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 " Plug   'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
 Plug 'lervag/vimtex'
 Plug 'Yggdroot/indentLine'    " mess up vimwiki's conceallevel and highlight.
+Plug 'skywind3000/vim-rt-format', { 'do': 'pip3 install autopep8' }
 
 " Optimize Chinese input experience
 " To avoid the Esc delay, please set 'ttimeoutlen' to 100 or some value.
@@ -621,6 +622,17 @@ let g:vmt_cycle_list_item_markers = 1 " mark by *-+, not only *.
 " Otherwise, it will mess up vimwiki's conceallevel and highlight.
 let g:indentLine_setConceal = 0
 " let g:indentLine_concealcursor = ''
+
+
+" ===
+" === vim-rt-format
+" ===
+" By default, it will be triggered by `ENTER` in insert mode.
+" set this to 1 to use `CTRL+ENTER` instead, and keep the
+" default `ENTER` behavior unchanged.
+let g:rtf_ctrl_enter = 0
+" Enable formatting when leaving insert mode
+let g:rtf_on_insert_leave = 1
 
 
 " ===

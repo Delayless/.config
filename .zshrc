@@ -117,7 +117,8 @@ alias joplindesktop="\vim -c 'Joplin'"
 alias t="tmux attach"
 alias obs="DRI_PRIME=1 obs"
 
-source $HOME/.config/zsh-vim-mode.zsh
+# source $HOME/.config/zsh-vim-mode.zsh
+source $HOME/.config/zsh-emacs-mode.zsh
 # source $HOME/.config/agnoster-modified.zsh-theme
 source $HOME/.config/fzf.zsh
 source $HOME/.config/broot/launcher/bash/br
