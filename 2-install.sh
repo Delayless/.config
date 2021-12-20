@@ -60,6 +60,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S scrcpy --noconfirm
     # auto-hide mouse cursor
     sudo pacman -S unclutter --noconfirm
+	# dependency for urlhandler(copy/open url in st)
 	# sudo pacman -S dmenu --noconfirm
 	sudo pacman -S rofi --noconfirm
 	# Scrot is a minimalist command line screen capturing application.
@@ -85,7 +86,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
     ## Emoji
     sudo pikaur -S noto-fonts-emoji ttf-joypixels ttf-twemoji ttf-twemoji-color ttf-symbola ttf-linux-libertine ttf-liberation
     ## Chinese
-    sudo pikaur -S adobe-source-han-mono-cn-fonts adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts wqy-microhei wqy-zenhei wqy-bitmapfont
+    yay -S adobe-source-han-mono-cn-fonts adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts wqy-microhei wqy-zenhei wqy-bitmapfont
 	# sudo pacman -S nerd-fonts-dejavu-sans-mono --noconfirm
 	# ranger_devicons Prerequisites https://github.com/ryanoasis/nerd-fonts
 	sudo pacman -S ranger --noconfirm

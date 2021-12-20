@@ -1499,7 +1499,7 @@ function CdParentDir()
         endif
     endfor
 endfunction
-autocmd FileReadPost,VimEnter,UIEnter,InsertLeave *.md call CdParentDir()
+autocmd FileReadPost,VimEnter,InsertLeave *.md call CdParentDir()
 
 
 " ===

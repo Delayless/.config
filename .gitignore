@@ -56,3 +56,5 @@
 
 !/dunst/
 !/.latexmkrc
+!/tmux/
+!/.tmux.conf
