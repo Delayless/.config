@@ -58,10 +58,10 @@ init_powerline() {
 		)
 	fi
 
-	tmux set-option -g window-status-current-format "$(printf '%s' "${TMUX_POWERLINE_WINDOW_STATUS_CURRENT[@]}")"
-	tmux set-option -g window-status-format "$(printf '%s' "${TMUX_POWERLINE_WINDOW_STATUS_FORMAT[@]}")"
-	tmux set-option -g window-status-style "$(printf '%s' "${TMUX_POWERLINE_WINDOW_STATUS_STYLE[@]}")"
-	tmux set-option -g status-style "fg=colour$TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR,bg=colour$TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR"
+	# tmux set-option -g window-status-current-format "$(printf '%s' "${TMUX_POWERLINE_WINDOW_STATUS_CURRENT[@]}")"
+	# tmux set-option -g window-status-format "$(printf '%s' "${TMUX_POWERLINE_WINDOW_STATUS_FORMAT[@]}")"
+	# tmux set-option -g window-status-style "$(printf '%s' "${TMUX_POWERLINE_WINDOW_STATUS_STYLE[@]}")"
+	# tmux set-option -g status-style "fg=colour$TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR,bg=colour$TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR"
 }
 
 __process_segment_defaults() {

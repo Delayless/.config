@@ -22,6 +22,8 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	wget -O - https://raw.githubusercontent.com/laurent22/joplin/master/Joplin_install_and_update.sh | bash
 	sudo pacman -S joplin --noconfirm
 	sudo pacman -S xtrlock --noconfirm
+	# same as above
+	# sudo pacman -S slock --noconfirm
 	sudo pacman -S the_silver_searcher --noconfirm
 	sudo pacman -S vlc --noconfirm
 	sudo pacman -S alacritty --noconfirm
@@ -30,7 +32,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	# all the software of input method occupies 250MB of disk space.
     sudo pacman -S fcitx5-git --noconfirm
     # Chinese input support and lexicons.
-    sudo pacman -S fcitx5-chinese-addons-git fcitx5-pinyin-zhwiki fcitx5-pinyin-moegirl --noconfirm
+    sudo pacman -S fcitx5-chinese-addons fcitx5-pinyin-zhwiki fcitx5-pinyin-moegirl --noconfirm
     # For obtain a better experience in gtk/qt4/qt5 programs
     sudo pacman -S fcitx5-gtk-git fcitx5-qt4-git fcitx5-qt5-git --noconfirm
     # fcitx theme
