@@ -9,11 +9,11 @@ export HISTFILE=$HOME/.zsh_history
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-# export LC_CTYPE=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
-# ZSH_THEME="gnzh"
+# ZSH_THEME="agnoster"
+ZSH_THEME="gnzh"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
@@ -124,6 +124,7 @@ source $HOME/.config/fzf.zsh
 source $HOME/.config/broot/launcher/bash/br
 
 # Enable Italics of vim-dues
+export TERM=screen-256color-bce
 export TERM_ITALICS=true
 export RANGER_LOAD_DEFAULT_RC="false"
 export PATH=$HOME/go/bin:$HOME/.local/bin:$PATH

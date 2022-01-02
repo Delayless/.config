@@ -28,7 +28,7 @@ set encoding=UTF-8
 set fileencodings=utf-8,gbk
 
 " Shift+insert paste from system clipboard without any dependency.
-" vim version feature must include clipboard. So install gvim or vim-gnome instead of vim.
+" vim version feature must include clipboard.
 " I recommend nvim more.
 " `"+y` means to first press `"` release then press `+` finally press `y`
 set clipboard=unnamedplus
@@ -320,13 +320,13 @@ Plug 'skywind3000/vim-rt-format', { 'do': 'pip3 install autopep8' }
 " Plug 'lilydjwg/fcitx.vim'
 
 " Install nodejs when necessary:  curl -sL install-node.now.sh/lts | bash
-Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 
 Plug 'SirVer/ultisnips'
 Plug 'Delayless/vim-snippets'
 
-" Requestment: universal-ctags
+" Requestment: universal-ctags for debian family, ctags for arch
 Plug 'liuchengxu/vista.vim'
 
 " Plug 'Konfekt/FastFold'
@@ -369,7 +369,7 @@ Plug 'godlygeek/tabular' "Align, :Tabularize /】\zs<CR>
 Plug 'tpope/vim-repeat' " The . command will work with ds, cs, yss
 Plug 'junegunn/vim-after-object' " copy, change, delete, yank after some symbols like `=/:/-/#/<space>`
 Plug 'chrisbra/NrrwRgn'     "display narrow region(focus)
-Plug 'puremourning/vimspector', { 'do': './install_gadget.py --force-enable-python --enable-c' }
+Plug 'puremourning/vimspector', { 'do': './install_gadget.py --enable-python --enable-c --enable-go'}
 Plug 'liuchengxu/vim-which-key'
 Plug 'mboughaba/i3config.vim'
 Plug 'ron89/thesaurus_query.vim'
@@ -750,7 +750,8 @@ nnoremap <silent> <c-f> :RgCurrentFile<CR>
 nnoremap <silent> gR :SearchVariableInProject<CR>
 " The history of the opened files.
 noremap <silent> <Bslash>h :History<CR>
-noremap <silent> <Bslash>bt :BTags<CR>  " the current file's variables
+" the current file's variables
+noremap <silent> <Bslash>bt :BTags<CR>
 " Project tags, save all variables.
 noremap <silent> <C-t> :Tags<CR>
 noremap <silent> <Bslash>bu :Buffers<CR>
@@ -782,6 +783,7 @@ let g:bujo#window_width = 50
 " ===
 " === vimwiki
 " ===
+" :h vimwiki-local-mappings
 let g:vimwiki_table_mappings = 0
 " If set 1, vimwiki will set all markdown files' filetype to vimwiki.
 let g:vimwiki_global_ext = 0

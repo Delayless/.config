@@ -1,6 +1,7 @@
 #!/bin/sh
 
 if [ "${HOSTNAME}" == "Manjaro" ]; then
+	sudo pacman -S curl wget --noconfirm
     sudo pacman -S git --noconfirm
     sudo pacman -S git-annex --noconfirm
 	sudo pacman -S openssl --noconfirm
@@ -9,7 +10,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S tree --noconfirm
 	# sudo pacman -S gvim --noconfirm
 	sudo pacman -S xclip --noconfirm
-	sudo pacman -S clang --noconfirm
+	# clang included in ccls for coc-clangd
 	sudo pacman -S ccls --noconfirm
 	sudo pacman -S stow --noconfirm
 	# nmtui, nmtui-connect
@@ -29,10 +30,15 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S alacritty --noconfirm
 	sudo pacman -S brightnessctl --noconfirm
 	sudo pacman -S nfs-utils cifs-utils --noconfirm
+	# just install fcitx5-im
+	# fcitx5-im group provides fcitx5 ontology, #Configuration tool, and necessary #Input method module.
+	sudo pacman -S fcitx5-im
 	# all the software of input method occupies 250MB of disk space.
     sudo pacman -S fcitx5-git --noconfirm
     # Chinese input support and lexicons.
-    sudo pacman -S fcitx5-chinese-addons fcitx5-pinyin-zhwiki fcitx5-pinyin-moegirl --noconfirm
+    sudo pacman -S fcitx5-chinese-addons --noconfirm
+	# zhwiki dictionary for fcitx5-pinyin
+	sudo pacman -S fcitx5-pinyin-zhwiki --noconfirm
     # For obtain a better experience in gtk/qt4/qt5 programs
     sudo pacman -S fcitx5-gtk-git fcitx5-qt4-git fcitx5-qt5-git --noconfirm
     # fcitx theme
@@ -68,32 +74,38 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	# Scrot is a minimalist command line screen capturing application.
 	# sudo pacman -S scrot --noconfirm
 	sudo pacman -S flameshot --noconfirm
+	# Clouddrive mounts cloud storage services as local file system.
+	# https://hub.docker.com/r/cloudnas/clouddrive
 	sudo pacman -S baidunetdisk-bin --noconfirm
 	sudo pacman -S audacious --noconfirm
 	sudo pacman -S netease-cloud-music --noconfirm
 	sudo pacman -S google-chrome --noconfirm
-	sudo pacman -S wechat-uos --noconfirm
-	# w3m and ueberzug all are used to preview image.
-	# sudo pacman -S w3m --noconfirm
-	sudo pip3 install ueberzug
+	sudo pacman -S qutebrowser --noconfirm
+	yay -S wechat-uos --noconfirm
 	# Python image library.(OCR)
 	sudo pip3 install pillow
 	# neovim debug python
 	# sudo pip3 install debugpy
 	# sudo pacman -S nerd-fonts-complete --noconfirm
 	# sudo pacman -S powerline-fonts --noconfirm
-    sudo pacman -S nerd-fonts-fira-code ttf-inconsolata ttf-droid --noconfirm
+	sudo pacman -S ttf-fira-code --noconfirm
+	# icons for dwm
+    sudo pacman -S nerd-fonts-fira-code --noconfirm
+	sudo pacman -S ttf-inconsolata ttf-droid --noconfirm
     # not nerd-fonts-noto, it's too bloated.
     sudo pacman -S noto-fonts --noconfirm
     ## Emoji
-    sudo pikaur -S noto-fonts-emoji ttf-joypixels ttf-twemoji ttf-twemoji-color ttf-symbola ttf-linux-libertine ttf-liberation
+    yay -S noto-fonts-emoji ttf-joypixels ttf-twemoji ttf-twemoji-color ttf-symbola ttf-linux-libertine ttf-liberation
     ## Chinese
-    yay -S adobe-source-han-mono-cn-fonts adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts wqy-microhei wqy-zenhei wqy-bitmapfont
+    sudo pacman -S adobe-source-han-mono-cn-fonts adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts wqy-microhei wqy-zenhei wqy-bitmapfont --noconfirm
 	# sudo pacman -S nerd-fonts-dejavu-sans-mono --noconfirm
 	# ranger_devicons Prerequisites https://github.com/ryanoasis/nerd-fonts
 	sudo pacman -S ranger --noconfirm
 	# A better way to navigate directories
 	sudo pacman -S broot --noconfirm
+	# w3m and ueberzug all are used to preview image.
+	# sudo pacman -S w3m --noconfirm
+	sudo pip3 install ueberzug
 	# many extension for scope, read ~/.config/ranger/scope.sh
 	# preview json file with color in ranger
 	sudo pacman -S jq --noconfirm
@@ -196,7 +208,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
     sudo pacman -S fd -no-confirm
 	# updatedb then locate filename to find file.
 	sudo pacman -S mlocate --no-confirm
-	curl -sL install-node.now.sh/lts | bash
+	curl -sL https://install-node.vercel.app/lts | sudo bash
 	sudo pacman -S npm --noconfirm
 	sudo npm install -g p3x-onenote --unsafe-perm=true --allow-root
 	# p3x-onenote &
