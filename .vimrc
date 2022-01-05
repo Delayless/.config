@@ -797,6 +797,8 @@ let g:vimwiki_list = [{'path': '~/vimwiki/', 'path_html': '~/vimwiki_html/', 'au
 nmap <LEADER>wj <Plug>VimwikiNextLink
 nmap <LEADER>wk <Plug>VimwikiPrevLink
 nmap <LEADER>wha <Plug>VimwikiAll2HTML
+nmap <LEADER>wV <Plug>VimwikiSplitLink
+nmap <LEADER>wv <Plug>VimwikiVSplitLink
 " the same as glp and gln.
 " At the same time, only one shortcut can take effect.
 " after the map <Plug>, the original shortcut keys will be invalid.

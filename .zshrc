@@ -124,7 +124,8 @@ source $HOME/.config/fzf.zsh
 source $HOME/.config/broot/launcher/bash/br
 
 # Enable Italics of vim-dues
-export TERM=screen-256color-bce
+# export TERM=screen-256color-bce
+# export TERM=st-256color
 export TERM_ITALICS=true
 export RANGER_LOAD_DEFAULT_RC="false"
 export PATH=$HOME/go/bin:$HOME/.local/bin:$PATH

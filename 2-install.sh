@@ -65,7 +65,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S ctop --noconfirm
 	sudo pacman -S kdeconnect --noconfirm
 	# Display and control Android device
-	sudo pacman -S scrcpy --noconfirm
+	sudo pacman -S scrcpy adb --noconfirm
     # auto-hide mouse cursor
     sudo pacman -S unclutter --noconfirm
 	# dependency for urlhandler(copy/open url in st)
@@ -186,20 +186,25 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S dunst --noconfirm
 	# automount removable media. Included in the udisks2.
 	sudo pacman -S udiskie --noconfirm
+	# files/directories diff/compare
+	sudo pacman -S meld --noconfirm
 	#############################
 	sudo pacman -S zsh --noconfirm
 	sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-	sudo pikaur -S ccat-git --noconfirm
+	yay -S ccat-git --noconfirm
 	sudo pacman -S bat --noconfirm
+	# Drawing Figures
     sudo pacman -S inkescape --noconfirm
+	# Flowchart Maker
+	yay -S drawio --noconfirm
     sudo pikaur -S mathpix-snipping-tool --noconfirm
     sudo pacman -S thefuck --noconfirm
 	sudo pacman -S tldr --noconfirm
 	# manual cppman std::string
 	yay -S cppman --noconfirm
     # Desktop annotation.
-    sudo pikaur -S gromit-mpx --noconfirm
-	sudo pikaur -S v2raya --noconfirm
+    yay -S gromit-mpx --noconfirm
+	yay -S v2raya --noconfirm
 	# if install fzf using pacman, it's not be enabled by default key bindings in terminal.
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 	~/.fzf/install

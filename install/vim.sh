@@ -24,4 +24,5 @@ sudo pacman -S words --noconfirm
 # For fzf.vim search code(<Bslash>s)
 sudo pacman -S ripgrep --noconfirm
 
-
+# Autocomplete English words
+sudo pacman -S words --noconfirm

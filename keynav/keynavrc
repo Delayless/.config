@@ -33,8 +33,12 @@ k cut-up
 l cut-right
 y cut-left,cut-up
 u cut-right,cut-up
+i cut-left,cut-up
+o cut-right,cut-up
 n cut-left,cut-down
 m cut-right,cut-down
+, cut-left,cut-down
+. cut-right,cut-down
 shift+h move-left
 shift+j move-down
 shift+k move-up
@@ -43,6 +47,10 @@ shift+y move-left,move-up
 shift+u move-right,move-up
 shift+n move-left,move-down
 shift+m move-right,move-down
+shift+i move-left,move-up
+shift+o move-right,move-up
+shift+, move-left,move-down
+shift+. move-right,move-down
 space warp,click 1,end
 semicolon warp,end
 1 click 1
