@@ -13,4 +13,7 @@ sudo pacman -Sy archlinuxcn-keyring --noconfirm
 sudo pacman-mirrors -g
 sudo pacman -Syyu
 
+# wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/all/
+wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/?country=CN
+
 echo "Configue Complete! Restart to take effect."

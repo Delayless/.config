@@ -62,3 +62,6 @@
 
 !/install/
 !/install.sh
+!/vlc/
+/vlc/*
+!/vlc/vlcrc

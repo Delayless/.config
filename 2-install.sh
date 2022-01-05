@@ -149,12 +149,12 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S vim-spell-en --noconfirm
 	# For dictionary completion
 	sudo pacman -S words --noconfirm
-	# pdf viewer using vim shortcuts.
-	sudo pacman -S zathura --noconfirm
 	# RSS reader web client
 	# yay -S yarr-git --noconfirm
 	# RSS reader
 	sudo pacman -S fluent-reader --noconfirm
+	# pdf viewer using vim shortcuts.
+	sudo pacman -S zathura --noconfirm
 	# pdf reverse search
 	# Maybe need to install libsynctex, neovim-remote
 	# sudo pacman -S libsynctex
