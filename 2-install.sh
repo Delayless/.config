@@ -105,7 +105,11 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S broot --noconfirm
 	# w3m and ueberzug all are used to preview image.
 	# sudo pacman -S w3m --noconfirm
-	sudo pip3 install ueberzug
+	sudo pacman -S  ueberzug --noconfirm
+	# preview video
+	sudo pacman -S ffmpegthumbnailer --noconfirm
+	# Git preview
+	sudo pacman -S mpv --noconfirm
 	# many extension for scope, read ~/.config/ranger/scope.sh
 	# preview json file with color in ranger
 	sudo pacman -S jq --noconfirm

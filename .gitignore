@@ -65,3 +65,5 @@
 !/vlc/
 /vlc/*
 !/vlc/vlcrc
+
+!/mpv/

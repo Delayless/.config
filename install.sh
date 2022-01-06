@@ -15,6 +15,9 @@ else
 	git checkout dev
 fi
 
+# installation tools
+sudo pacman -S yay python python-pip --noconfirm
+
 sh -c $CONFIG_DIR/install/dwm.sh
 sh -c $CONFIG_DIR/install/st.sh
 sh -c $CONFIG_DIR/install/zsh.sh
