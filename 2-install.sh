@@ -83,9 +83,9 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S qutebrowser --noconfirm
 	yay -S wechat-uos --noconfirm
 	# Python image library.(OCR)
-	sudo pip3 install pillow
+	pip3 install pillow
 	# neovim debug python
-	# sudo pip3 install debugpy
+	# pip3 install debugpy
 	# sudo pacman -S nerd-fonts-complete --noconfirm
 	# sudo pacman -S powerline-fonts --noconfirm
 	sudo pacman -S ttf-fira-code --noconfirm
@@ -120,7 +120,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
     sudo pacman -S perl-image-exiftool --noconfirm
     sudo pacman -S catdoc --noconfirm
     # preview xlsx in ranger
-    sudo pip3 install xlsx2csv
+    pip3 install xlsx2csv
     # Offline Documentation Browser
     sudo pacman -S zeal-git --noconfirm
 	sudo pacman -S pandoc --noconfirm

@@ -4,6 +4,7 @@ sudo pacman -S ranger --noconfirm
 
 # all of w3m and ueberzug are used to preview image.
 # sudo pacman -S w3m --noconfirm
+# pip install ueberzug
 sudo pacman -S ueberzug --noconfirm
 
 # open Gif
@@ -23,4 +24,4 @@ sudo pacman -S mediainfo --noconfirm
 sudo pacman -S perl-image-exiftool --noconfirm
 sudo pacman -S catdoc --noconfirm
 # preview xlsx in ranger
-sudo pip3 install xlsx2csv --noconfirm
+pip3 install xlsx2csv --noconfirm
