@@ -259,8 +259,7 @@ set shell=zsh
 " :terminal can open a terminal at vim>=8.1
 " ctrl+d exit terminal at insert mode.
 if has('nvim')
-	" comment it because I expect that the vimspector's default debug window is normal mode instead of insert mode
-    " autocmd TermOpen term://* startinsert
+    autocmd TermOpen term://* startinsert
     noremap <Bslash>py :set splitbelow<CR>:split term://ipython3<CR>
     noremap <Bslash>t :set splitbelow<CR>:split term://zsh<CR>
     noremap <c-g> :tabe term://lazygit<CR>
@@ -944,6 +943,10 @@ if exists('+termguicolors')
     " ctrl+v then press <Esc> to generate 
     let &t_8f = "[38;2;%lu;%lu;%lum"
     let &t_8b = "[48;2;%lu;%lu;%lum"
+	let &t_Co = "256"
+	" set t_Co=256
+	" set t_8f=[38;2;%lu;%lu;%lum
+	" set t_8b=[48;2;%lu;%lu;%lum
 endif
 if (has("nvim"))
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -1328,7 +1331,9 @@ command! -bang -nargs=* LoadVimSpectorJson call fzf#run({
             \   'options': '--preview-window=hidden'
             \ })
 noremap <leader>dvs :LoadVimSpectorJson<CR>
-
+" The configuration(autocmd TermOpen term://* startinsert) lead to (the vimspector's default debug window) entering insert mode instead of normal mode
+" add the follow configuration
+autocmd BufEnter vimspector.Console stopinsert
 
 
 " http://vim.wikia.com/wiki/Copy_search_matches

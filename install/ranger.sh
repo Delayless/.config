@@ -1,5 +1,6 @@
 #!/bin/bash
 # ranger_devicons Prerequisites https://github.com/ryanoasis/nerd-fonts
+# https://github.com/alexanderjeurissen/ranger_devicons
 sudo pacman -S ranger --noconfirm
 
 # all of w3m and ueberzug are used to preview image.
