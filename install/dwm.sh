@@ -10,7 +10,9 @@ sudo pacman -S bc xorg-xsetroot pulseaudio acpi   --noconfirm
 # solve icons display abnormally(e.g, udiskie, joplin)
 sudo pacman -S adwaita-icon-theme libappindicator-gtk3 --noconfirm
 # it's necessary for lodging by lightdm
-[ ! -f /usr/share/xsessions/dwm.desktop ] && sudo ln -s ~/.config/dwm.desktop /usr/share/xsessions/dwm.desktop
+[ ! -f /usr/share/xsessions/dwm.desktop ] && sudo cp ~/.config/dwm.desktop /usr/share/xsessions/dwm.desktop
+# startx
+[ ! -f /etc/X11/xinit/xinitrc ] && sudo cp ~/.config/.xinitrc /etc/X11/xinit/xinitrc
 # it's necessary for lodging by startx
 [ -f /etc/X11/xinit/xinitrc ] && mv /etc/X11/xinit/xinitrc /etc/X11/xinit/xinitrc.bak.$(date +"%Y%m%d_%H%M%S")
 sudo ln -s ~/.config/.xinitrc /etc/X11/xinit/xinitrc

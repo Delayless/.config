@@ -113,6 +113,7 @@ alias caps="xdotool key Caps_Lock"
 alias study="vim -M ~/Downloads/linux-c/docs/_sidebar.md"
 alias truecolor="curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash"
 alias joplindesktop="\vim -c 'Joplin'"
+alias joplinsetprofile=`sqlite3 /home/delayless/.config/joplin/database.sqlite "UPDATE version SET version = 41;"`
 # tmux attach last detached sessions
 alias t="tmux attach"
 alias obs="DRI_PRIME=1 obs"

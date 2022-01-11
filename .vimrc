@@ -49,7 +49,7 @@ let mapleader=" "
 set scrolloff=3   "at least 3 lines on the screenup and screendown
 noremap <LEADER>sb :set scrollbind!<CR>
 set tabstop=4
-autocmd FileType python set expandtab
+autocmd FileType python,nas set expandtab
 set shiftwidth=4
 set softtabstop=4
 " :help 'whichwrap, [Automatically wrap left and right].
@@ -383,7 +383,6 @@ Plug 'mg979/vim-visual-multi'
 
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tenfyzhong/joplin.vim'
 
 if has('nvim')
     " Plug 'cpiger/NeoDebug'
@@ -397,6 +396,7 @@ if has('nvim')
 else
     map <LEADER>S :w !sudo tee %<CR><CR>
 	Plug 'mg979/vim-xtabline'   "Tab manager in the top of windows
+	Plug 'tenfyzhong/joplin.vim'
 endif
 
 call plug#end()

@@ -37,3 +37,4 @@ export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 exec dwm
+# exec dwm 2>>~/.cache/dwm.log
