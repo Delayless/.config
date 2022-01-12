@@ -7,6 +7,15 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" ===
+" === Create a _machine_specific.vim file to adjust machine specific stuff, like python interpreter location
+" ===
+let has_machine_specific_file = 1
+if empty(glob('~/.config/_machine_specific.vim'))
+	let has_machine_specific_file = 0
+	silent! exec "!cp ~/.config/default_configs/_machine_specific_default.vim ~/.config/_machine_specific.vim"
+endif
+
 " Open vim display Garbage R^[[>1;4205;0c^[]10;rgb:ffff/ffff/ffff^G
 " But one side-effect of this setting is broken setting background auto-detection
 " set t_RB= t_RF= t_RV= t_u7= t_ut=
@@ -318,7 +327,9 @@ Plug 'skywind3000/vim-rt-format', { 'do': 'pip3 install autopep8' }
 " Optimize Chinese input experience
 " To avoid the Esc delay, please set 'ttimeoutlen' to 100 or some value.
 " It's also related to screens's maptimeout
+" Requirements: python-dbus
 " Plug 'lilydjwg/fcitx.vim'
+Plug 'rlue/vim-barbaric'
 
 " Install nodejs when necessary:  curl -sL install-node.now.sh/lts | bash
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -854,6 +865,7 @@ func! CompileRunGcc()
         :below sp
 		:res -5
         exec "term time ./%<.o"
+		" term gcc -ansi -Wall % -o %< && time ./%<.o
     elseif &filetype == 'cpp'
         set splitbelow
         exec "!g++ -std=c++11 -g % -Wall -o %<.o"
@@ -870,6 +882,7 @@ func! CompileRunGcc()
         :sp
         :term python3 %
     elseif &filetype == 'html'
+		silent! exec "!".g:mkdp_browser." % &"
         silent! exec "!google-chrome-stable % &"
     elseif &filetype == 'markdown'
         exec "MarkdownPreview"
@@ -1060,6 +1073,24 @@ autocmd! User GoyoEnter call <SID>goyo_enter()
 autocmd! User GoyoLeave call <SID>goyo_leave()
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
+
+
+" ===
+" === vim-barbaric
+" ===
+" The IME to invoke for managing input languages (macos, fcitx, ibus, xkb-switch)
+let g:barbaric_ime = 'fcitx'
+" The input method for Normal mode (as defined by `xkbswitch -g`, `ibus engine`, or `xkb-switch -p`)
+" let g:barbaric_default = 1
+" The scope where alternate input methods persist (buffer, window, tab, global)
+let g:barbaric_scope = 'global'
+" Forget alternate input method after n seconds in Normal mode (disabled by default)
+" Useful if you only need IM persistence for short bursts of active work.
+let g:barbaric_timeout = 10
+" The fcitx-remote binary (to distinguish between fcitx and fcitx5)
+let g:barbaric_fcitx_cmd = 'fcitx5-remote'
+" The xkb-switch library path (for Linux xkb-switch users ONLY)
+" let g:barbaric_libxkbswitch = $HOME . '/.local/lib/libxkbswitch.so'
 
 
 " ===
@@ -1565,10 +1596,10 @@ vnoremap <silent> * :<C-U>
 " set regexpengine=1
 
 
-autocmd InsertLeave * :silent !fcitx5-remote -c
-autocmd BufCreate * :silent !fcitx5-remote -c
-autocmd BufEnter  * :silent !fcitx5-remote -c
-autocmd BufLeave  * :silent !fcitx5-remote -c
+" autocmd InsertLeave * :silent !fcitx5-remote -c
+" autocmd BufCreate * :silent !fcitx5-remote -c
+" autocmd BufEnter  * :silent !fcitx5-remote -c
+" autocmd BufLeave  * :silent !fcitx5-remote -c
 
 
 au BufNewFile *.cpp,*.[ch],*.sh,*.java :call SetTitle()
@@ -1607,3 +1638,15 @@ func SetTitle()
     autocmd BufNewFile * normal G
 endfunc
 
+
+" ===
+" === Necessary Commands to Execute
+" ===
+exec "nohlsearch"
+
+
+" Open the _machine_specific.vim file if it has just been created
+if has_machine_specific_file == 0
+	exec "e ~/.config/_machine_specific.vim"
+endif
+source ~/.config/_machine_specific.vim

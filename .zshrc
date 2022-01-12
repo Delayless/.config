@@ -112,8 +112,9 @@ alias caps="xdotool key Caps_Lock"
 # alias getip="getent hosts unix.stackexchange.com | awk '{ print $1 }'"
 alias study="vim -M ~/Downloads/linux-c/docs/_sidebar.md"
 alias truecolor="curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash"
-alias joplindesktop="\vim -c 'Joplin'"
-alias joplinsetprofile=`sqlite3 /home/delayless/.config/joplin/database.sqlite "UPDATE version SET version = 41;"`
+alias jv="\vim -c 'Joplin'"
+alias joplinsetprofile="sqlite3 "$XDG_CONFIG_HOME"/joplin/database.sqlite 'UPDATE version SET version = 41;'"
+
 # tmux attach last detached sessions
 alias t="tmux attach"
 alias obs="DRI_PRIME=1 obs"
@@ -130,6 +131,7 @@ source $HOME/.config/broot/launcher/bash/br
 export TERM_ITALICS=true
 export RANGER_LOAD_DEFAULT_RC="false"
 export PATH=$HOME/go/bin:$HOME/.local/bin:$PATH
+export XDG_CONFIG_HOME=$HOME/.config
 
 # Use ranger to switch directories and bind it to ctrl-o
 # q swith directory and cancel ranger.
