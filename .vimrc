@@ -49,7 +49,9 @@ let mapleader=" "
 set scrolloff=3   "at least 3 lines on the screenup and screendown
 noremap <LEADER>sb :set scrollbind!<CR>
 set tabstop=4
-autocmd FileType python,nas set expandtab
+autocmd BufNewFile,BufRead *.c.orig   set syntax=c
+autocmd BufNewFile,BufRead *.nas,*.asm  set filetype=asm
+autocmd FileType python,asm set expandtab
 set shiftwidth=4
 set softtabstop=4
 " :help 'whichwrap, [Automatically wrap left and right].
@@ -1523,6 +1525,12 @@ let g:tq_online_backends_timeout = 0.4
 " nnoremap <LEADER>cs :ThesaurusQueryReplaceCurrentWord<CR>
 " phrase
 " vnoremap <LEADER>cs y:ThesaurusQueryReplace <C-r>"<CR>
+
+
+" ===
+" === vim-commentary
+" ===
+autocmd FileType asm setlocal commentstring=;\ %s
 
 
 " :r !w3m -dump https://xxx.com/
