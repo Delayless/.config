@@ -211,6 +211,8 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
     # Desktop annotation.
     yay -S gromit-mpx --noconfirm
 	yay -S v2raya --noconfirm
+	# research tool for cite
+	sudo pacman -S zotero --noconfirm
 	# The break time reminder app
 	yay -S stretchly --noconfirm
 	# if install fzf using pacman, it's not be enabled by default key bindings in terminal.

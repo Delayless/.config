@@ -930,8 +930,21 @@ let g:eleline_powerline_fonts = 1
 " === lightline.vim
 " ===
 let g:lightline = {
-      \ 'colorscheme': 'darcula',
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ ['mode', 'paste'],
+      \             ['readonly', 'filename', 'currentfunction', 'modified'] ],
+      \   'right': [ ['lineinfo'],
+      \              ['fileformat', 'fileencoding', 'filetype'] ],
+      \ },
+      \ 'component': {
+      \   'currentfunction': '%{get(b:, "coc_current_function", "")}'
+      \ },
+      \ 'component_visible_condition': {
+      \   'currentfunction': 'exists("b:coc_current_function")&&b:coc_current_function!=""'
+      \ },
       \ }
+set tabline=%!lightline#tabline()
 
 
 " ===
@@ -1145,12 +1158,13 @@ function! s:show_documentation()
 endfunction
 nnoremap <silent> D :call <SID>show_documentation()<CR>
 
-augroup mygroup
+augroup coc
   autocmd!
   " Setup formatexpr specified filetype(s).
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  autocmd User CocStatusChange call lightline#update()
 augroup end
 " Formatting selected code.
 " `<LEADER>fm{motion}` in normal mode.

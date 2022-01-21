@@ -3,6 +3,7 @@
 	"coc.preferences.snippetStatusText": "Ⓢ ",
 	"coc.preferences.enableFloatHighlight": true,
 	"coc.preferences.extensionUpdateCheck": "daily",
+	"coc.preferences.currentFunctionSymbolAutoUpdate": true,
 	"coc.preferences.formatOnSaveFiletypes": ["html", "json", "css"],
 	"list.insertMappings": {
 		"<C-p>": "normal:k",

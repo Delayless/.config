@@ -116,7 +116,7 @@ alias jv="\vim -c 'Joplin'"
 alias joplinsetprofile="sqlite3 "$XDG_CONFIG_HOME"/joplin/database.sqlite 'UPDATE version SET version = 41;'"
 
 # tmux attach last detached sessions
-alias t="tmux attach"
+alias t="tmux attach -d"
 alias obs="DRI_PRIME=1 obs"
 
 # source $HOME/.config/zsh-vim-mode.zsh
