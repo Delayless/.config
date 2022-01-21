@@ -34,7 +34,7 @@ set nocompatible
 filetype on
 filetype plugin indent on
 set encoding=UTF-8
-set fileencodings=utf-8,gbk
+set fileencodings=utf-8,sjis,gbk,default
 
 " Shift+insert paste from system clipboard without any dependency.
 " vim version feature must include clipboard.
@@ -43,6 +43,7 @@ set fileencodings=utf-8,gbk
 set clipboard=unnamedplus
 " Copy/Paste. vim must be running when using shared clipboard.
 vnoremap Y "+y
+nnoremap Y "+yy
 " nnoremap <C-b> "*p
 
 " tab to indentation.
@@ -1233,8 +1234,8 @@ vmap <nowait> <LEADER>tt <Plug>(coc-translator-pv)
 " nmap <LEADER>e <Plug>(coc-translator-e)
 " vmap <LEADER>e <Plug>(coc-translator-ev)
 " replace
-" nmap <LEADER>r <Plug>(coc-translator-r)
-" vmap <LEADER>r <Plug>(coc-translator-rv)
+nmap <LEADER>tr <Plug>(coc-translator-r)
+vmap <LEADER>tr <Plug>(coc-translator-rv)
 
 
 " ===
@@ -1587,6 +1588,12 @@ vnoremap * :SS<CR>
 vnoremap <silent> * :<C-U>
   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
   \gvy/<C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+
+vnoremap <silent> # :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy?<C-R><C-R>=substitute(
   \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
 

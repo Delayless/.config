@@ -194,3 +194,12 @@ vman() {
 
     unset MANPAGER
 }
+
+post() {
+	$* | curl -F "c=@-" "http://fars.ee/?u=1"
+}
+
+# https://github.com/ohmyzsh/ohmyzsh/issues/10597
+# This is fixed in zsh-users/zsh@2c000ee, which hasn't been published yet.
+autoload -Uz +X _bpf_filters
+functions[_bpf_filters]="${functions[_bpf_filters]//:operator:\(not \(\)/:operator:(not \()}"

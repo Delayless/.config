@@ -133,6 +133,8 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S goldendict --noconfirm
 	# google translate for goldendict
 	pip3 install google-translate-for-goldendict
+	# trans
+	sudo pacman -S translate-shell --noconfirm
 	# GoldenDict - Edit - Dictionary - Program
 	# type: html, command: `python -m googletranslate.googletranslate zh-CN %GDWORD%`
 	sudo pacman -S axel --noconfirm
@@ -181,7 +183,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	# 有些许延迟，不加进去了。
 	# sudo pacman -S interception-tools interception-caps2esc --noconfirm
 	# turns any device with a web browser into a secondary screen.
-	sudo pacman -S deskreen --noconfirm
+	yay -S deskreen --noconfirm
 	##############compton###############
 	# sudo pacman -S libx11 libxcomposite libxdamage libxfixes libxext libxrender libxrandr libxinerama ruby-pkg-config xorg-xwininfo libconfig libdrm libdbusmenu-glib asciidoc --noconfirm
 	# sudo pacman -S nvidia-utils --noconfirm
@@ -209,6 +211,8 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
     # Desktop annotation.
     yay -S gromit-mpx --noconfirm
 	yay -S v2raya --noconfirm
+	# The break time reminder app
+	yay -S stretchly --noconfirm
 	# if install fzf using pacman, it's not be enabled by default key bindings in terminal.
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 	~/.fzf/install
