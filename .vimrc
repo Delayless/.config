@@ -235,11 +235,11 @@ noremap ti :tabe<CR>
 noremap tc :tabclose<CR>
 noremap tC :tabonly<CR>
 " Move around tabs with th and tl
-noremap th :-tabnext<CR>
-noremap tl :+tabnext<CR>
+noremap th :tabNext<CR>
+noremap tl :tabnext<CR>
 " Move the tabs with tmh and tml
-noremap tmh :-tabmove<CR>
-noremap tml :+tabmove<CR>
+noremap tmh :tabMove<CR>
+noremap tml :tabmove<CR>
 
 "noremap <LEADER>j 20J
 noremap U <C-r>
@@ -945,6 +945,12 @@ let g:lightline = {
       \ },
       \ }
 set tabline=%!lightline#tabline()
+" autocmd CursorMoved * call s:display_annotation()
+" add the follow line to end of component to display abosolute path
+" 'filename': '%<%{LightlineFilename()}',
+" function! LightlineFilename() abort
+"   return expand('%:p') !=# '' ? expand('%:p') : '[No Name]'
+" endfunction
 
 
 " ===
@@ -1021,6 +1027,7 @@ let g:bookmark_no_default_key_mappings = 1
 let g:bookmark_center = 1
 let g:bookmark_auto_close = 1
 let g:bookmark_highlight_lines = 1
+let g:bookmark_display_annotation = 1
 function! BookmarkMapKeys()
     nmap mm :BookmarkToggle<CR>
     nmap mi :BookmarkAnnotate<CR>

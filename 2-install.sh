@@ -213,6 +213,9 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	yay -S v2raya --noconfirm
 	# research tool for cite
 	sudo pacman -S zotero --noconfirm
+	sudo pacman -S neofetch --noconfirm
+	# system information
+	suod pacman -S inxi --noconfirm
 	# The break time reminder app
 	yay -S stretchly --noconfirm
 	# if install fzf using pacman, it's not be enabled by default key bindings in terminal.
