@@ -13,7 +13,9 @@ export LC_CTYPE=en_US.UTF-8
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="agnoster"
-ZSH_THEME="gnzh"
+# ZSH_THEME="gnzh"
+# ZSH_THEME="refined"
+ZSH_THEME="nicoulaj"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.

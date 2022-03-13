@@ -76,6 +76,9 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S flameshot --noconfirm
 	# Clouddrive mounts cloud storage services as local file system.
 	# https://hub.docker.com/r/cloudnas/clouddrive
+	# `rclone` is a command line program to manage files on cloud storage.
+	# rsync
+	# sudo pacman -S rclone --noconfirm
 	sudo pacman -S baidunetdisk-bin --noconfirm
 	sudo pacman -S audacious --noconfirm
 	sudo pacman -S netease-cloud-music --noconfirm

@@ -1278,6 +1278,11 @@ let g:wildfire_water_map = "<BS>"
 let g:wildfire_objects =  ["i'", 'i"', "i)", "i]", "i}", "ip", "it", "i>", "i`"]
 
 " ===
+" === auto-pairs
+" ===
+let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''", '<':'>'}
+
+" ===
 " === vim-repeat
 " ===
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
@@ -1678,3 +1683,5 @@ if has_machine_specific_file == 0
 	exec "e ~/.config/_machine_specific.vim"
 endif
 source ~/.config/_machine_specific.vim
+
+set guifont=Firacode:h10
