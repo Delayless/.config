@@ -47,7 +47,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
     sudo pacman -S fcitx5-configtool-git fcitx5-chewing --noconfirm
 	sudo pacman -S pikaur --noconfirm
 	sudo pacman -S yay --noconfirm
-	sudo pacman -S i3 --noconfirm
+	# sudo pacman -S i3 --noconfirm
 	sudo pacman -S tmux --noconfirm
 	# display memory usage for tmux
 	yay -S rainbarf --noconfirm
@@ -85,6 +85,8 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S google-chrome --noconfirm
 	sudo pacman -S qutebrowser --noconfirm
 	yay -S wechat-uos --noconfirm
+	# alternative matlab
+	sudo pacman -S octave --noconfirm
 	# Python image library.(OCR)
 	pip3 install pillow
 	# neovim debug python
@@ -201,6 +203,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S zsh --noconfirm
 	sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	yay -S ccat-git --noconfirm
+	yay -S dragon-drop --noconfirm
 	sudo pacman -S bat --noconfirm
 	# Drawing Figures
     sudo pacman -S inkescape --noconfirm

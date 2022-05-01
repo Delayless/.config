@@ -1,8 +1,8 @@
 # Zathura configuration file
 # See man `man zathurarc'
 
-map <C-s> feedkeys ":exec /home/lenovo/.config/zathura/zathura_backward_search.sh<Return>"
-map <C-l> focus_inputbar ":exec /home/lenovo/.config/zathura/zathura_backward_search.sh"
+map <C-s> feedkeys ":exec /home/delayless/.config/zathura/zathura_backward_search.sh<Return>"
+map <C-l> focus_inputbar ":exec /home/delayless/.config/zathura/zathura_backward_search.sh"
 map yp focus_inputbar ":exec bash -c \"echo \\\"$FILE\\\" | xclip -selection c\""
 
 set synctex true
