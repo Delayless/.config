@@ -23,4 +23,4 @@ git clone https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_CUSTOM
 [ "${SHELL##/*/}" != "zsh" ] && echo 'You might need to change default shell to zsh: `chsh -s /bin/zsh`'
 
 # fd: fzf alt-c change directory
-sudo pacman -S fd xclip -no-confirm
+sudo pacman -S fd xclip --noconfirm

@@ -82,6 +82,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S baidunetdisk-bin --noconfirm
 	sudo pacman -S audacious --noconfirm
 	sudo pacman -S netease-cloud-music --noconfirm
+	sudo pacman -S music-dl --noconfirm
 	sudo pacman -S google-chrome --noconfirm
 	sudo pacman -S qutebrowser --noconfirm
 	yay -S wechat-uos --noconfirm
@@ -214,6 +215,8 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S tldr --noconfirm
 	# manual cppman std::string
 	yay -S cppman --noconfirm
+	# man pages about C library functions
+	sudo pacman -S man-pages --noconfirm
     # Desktop annotation.
     yay -S gromit-mpx --noconfirm
 	yay -S v2raya --noconfirm
@@ -222,6 +225,8 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S neofetch --noconfirm
 	# system information
 	suod pacman -S inxi --noconfirm
+	# Download youtube and bilibili
+	sudo pacman -S you-get --noconfirm
 	# The break time reminder app
 	yay -S stretchly --noconfirm
 	# if install fzf using pacman, it's not be enabled by default key bindings in terminal.

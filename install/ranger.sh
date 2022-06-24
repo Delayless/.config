@@ -26,3 +26,5 @@ sudo pacman -S perl-image-exiftool --noconfirm
 sudo pacman -S catdoc --noconfirm
 # preview xlsx in ranger
 pip3 install xlsx2csv --noconfirm
+# Drag and drop
+yay -S dragon-drop --noconfirm

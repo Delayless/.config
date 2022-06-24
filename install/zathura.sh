@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo pacman -S zathura --noconfirm
-# pdf reversb search
+# pdf reverse search
 # Maybe need to install libsynctex, neovim-remote
 # sudo pacman -S libsynctex
 

@@ -312,7 +312,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'airblade/vim-gitgutter'
 
 " Markdown, It only works on vim >= 8.1 and neovim
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown']}
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'Delayless/bullets.vim'  " automated bullet lists, :RenumberSelection.
 Plug 'SidOfc/mkdx'  "used for jump headline from Toc.
 " Plug 'plasticboy/vim-markdown'
@@ -1359,16 +1359,22 @@ let g:ycm_semantic_triggers =  {'VimspectorPrompt': [ '.', '->', ':', '<']}
 nmap <leader>dc  <Plug>VimspectorContinue
 nmap <leader>dq  <Plug>VimspectorStop
 " equal gdb command `run`
-nmap <leader>dr  :call CompileRunGcc()<CR><Esc>:q<CR><Plug>VimspectorRestart<CR><Esc><Esc>
+" nmap <leader>dr  :call CompileRunGcc()<CR><Esc><Plug>VimspectorRestart<CR><Esc><Esc>
+nmap <leader>dr  <Plug>VimspectorRestart<CR>
+" nmap <leader>dr  :call CompileRunGcc()<CR><Esc>:q<CR>:call vimspector#Restart()<CR><Esc><Esc>
+
 nmap <leader>dP  <Plug>VimspectorPause
 " Toggle line breakpoint on the current line.
 nmap <leader>db  <Plug>VimspectorToggleBreakpoint
 " set a conditional breakpoint
 nmap <leader>dif  <Plug>VimspectorToggleConditionalBreakpoint
+nmap <Leader>dib <Plug>VimspectorBalloonEval
+xmap <Leader>dib <Plug>VimspectorBalloonEval
 " Add a function breakpoint for the expression under cursor
 nmap <leader>dB  <Plug>VimspectorAddFunctionBreakpoint
 nmap <leader>dn  <Plug>VimspectorStepOver
 nmap <leader>ds  <Plug>VimspectorStepInto
+nmap <leader>dt  <Plug>VimspectorRunToCursor
 " equal gdb command `finish`
 nmap <leader>df  <Plug>VimspectorStepOut
 nmap <leader>dw :VimspectorWatch

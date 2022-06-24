@@ -66,10 +66,14 @@
 /vlc/*
 !/vlc/vlcrc
 
-!/mpv/
+!/mpv/mpv.conf
+!/mpv/scripts/
+!/mpv/script-opts/
 
 !/24-bit-color.sh
 
 !/fontconfig/
 
 !/default_configs/
+
+!/.inputrc
