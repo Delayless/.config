@@ -60,7 +60,7 @@ set recolor-darkcolor "#E0E0E0" #06
 set recolor-reverse-video "false"
 set recolor-keephue "true"
 
-set highlight-transparency 0.1
+set highlight-transparency 0.7
 
 set render-loading "false"
 set scroll-step 50

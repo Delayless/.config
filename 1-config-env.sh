@@ -6,12 +6,9 @@
 
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
-sudo pacman-mirrors -i -c China -m rank
 echo "[archlinuxcn]" | sudo tee -a /etc/pacman.conf
 echo "Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/\$arch" | sudo tee -a /etc/pacman.conf
 sudo pacman -Sy archlinuxcn-keyring --noconfirm
-# update the list of mirrors source
-sudo pacman-mirrors -g
 sudo pacman -Syyu
 
 # wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/all/
