@@ -309,10 +309,13 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'johnstef99/vim-nerdtree-syntax-highlight'
 Plug 'airblade/vim-gitgutter'
 
 " Markdown, It only works on vim >= 8.1 and neovim
+" :call mkdp#util#install()
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+" Plug 'iamcco/markdown-preview.nvim', { 'do': ':call mkdp#util#install()', 'for': 'markdown' }
 Plug 'Delayless/bullets.vim'  " automated bullet lists, :RenumberSelection.
 Plug 'SidOfc/mkdx'  "used for jump headline from Toc.
 " Plug 'plasticboy/vim-markdown'
