@@ -308,7 +308,7 @@ call plug#begin('~/.vim/plugged')
 " Option 'on', means On-demand loading: Commands or <Plug>-mappings
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'airblade/vim-gitgutter'
 
 " Markdown, It only works on vim >= 8.1 and neovim
@@ -332,8 +332,6 @@ Plug 'skywind3000/vim-rt-format', { 'do': 'pip3 install autopep8' }
 " Plug 'lilydjwg/fcitx.vim'
 Plug 'rlue/vim-barbaric'
 
-" Install nodejs when necessary:  curl -sL install-node.now.sh/lts | bash
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 
 Plug 'SirVer/ultisnips'
@@ -383,7 +381,9 @@ Plug 'tpope/vim-repeat' " The . command will work with ds, cs, yss
 Plug 'junegunn/vim-after-object' " copy, change, delete, yank after some symbols like `=/:/-/#/<space>`
 Plug 'chrisbra/NrrwRgn'     "display narrow region(focus)
 Plug 'puremourning/vimspector', { 'do': './install_gadget.py --enable-python --enable-c --enable-go'}
-Plug 'liuchengxu/vim-which-key'
+"Plug 'liuchengxu/vim-which-key'
+" lazy load
+Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'mboughaba/i3config.vim'
 Plug 'ron89/thesaurus_query.vim'
 " if the filetype isn't supported, adjust 'commentstring'
@@ -400,6 +400,8 @@ Plug 'ctrlpvim/ctrlp.vim'
 
 if has('nvim')
     " Plug 'cpiger/NeoDebug'
+	" Install nodejs when necessary:  curl -sL install-node.now.sh/lts | bash
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'lambdalisue/suda.vim'
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 	Plug 'kyazdani42/nvim-web-devicons'
@@ -1476,7 +1478,8 @@ let g:which_key_map.b = {
     \ 'h' : ['bprevious' , 'previous-buffer'     ] ,
     \ '?' : ['Buffers'   , 'fzf-buffer'          ] ,
     \ }
-call which_key#register('<Space>', "g:which_key_map")
+"call which_key#register('<Space>', "g:which_key_map")
+autocmd! User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
 
 " nnoremap <silent> , :WhichKey  ','<CR>
 " vnoremap <silent> , :WhichKeyVisual ','<CR>
