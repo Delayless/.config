@@ -25,6 +25,7 @@ sudo pacman -S mediainfo --noconfirm
 sudo pacman -S perl-image-exiftool --noconfirm
 sudo pacman -S catdoc --noconfirm
 # preview xlsx in ranger
-pip3 install xlsx2csv --noconfirm
+pip install xlsx2csv
 # Drag and drop
 yay -S dragon-drop --noconfirm
+yay -S ccat-git --noconfirm

@@ -101,7 +101,8 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
     # not nerd-fonts-noto, it's too bloated.
     sudo pacman -S noto-fonts --noconfirm
     ## Emoji
-    yay -S noto-fonts-emoji ttf-joypixels ttf-twemoji ttf-twemoji-color ttf-symbola ttf-linux-libertine ttf-liberation
+	sudo pacman -S noto-fonts-emoji ttf-joypixels ttf-twemoji ttf-linux-libertine ttf-liberation --noconfirm
+    yay -S ttf-twemoji-color ttf-symbola --noconfirm
     ## Chinese
     sudo pacman -S adobe-source-han-mono-cn-fonts adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts wqy-microhei wqy-zenhei wqy-bitmapfont --noconfirm
 	# sudo pacman -S nerd-fonts-dejavu-sans-mono --noconfirm

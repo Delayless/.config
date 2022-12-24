@@ -70,7 +70,7 @@
 !/mpv/scripts/
 !/mpv/script-opts/
 
-!/24-bit-color.sh
+!/print-24-bit-color.sh
 
 !/fontconfig/
 
