@@ -19,6 +19,7 @@
 	// popup window's width
 	"suggest.labelMaxLength": 50,
 	"suggest.triggerAfterInsertEnter": true,
+	"suggest.noselect": true,
 	"suggest.autoTrigger": "always",
 	"suggest.enablePreview": true,
 	"suggest.detailField": "preview",
