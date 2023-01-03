@@ -1170,6 +1170,13 @@ function! s:show_documentation()
 endfunction
 nnoremap <silent> D :call <SID>show_documentation()<CR>
 
+if has('nvim')
+    nnoremap <nowait><expr> <C-d> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-d>"
+    nnoremap <nowait><expr> <C-u> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-u>"
+    inoremap <nowait><expr> <C-d> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<C-d>"
+    inoremap <nowait><expr> <C-u> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<C-u>"
+end
+
 augroup coc
   autocmd!
   " Setup formatexpr specified filetype(s).
