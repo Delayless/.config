@@ -1169,6 +1169,12 @@ inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
+" Use Ctrl-l to confirm completion, use:
+inoremap <expr> <C-L> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+" Confirm the completion when popupmenu is visible, insert Ctrl-l and notify coc.nvim otherwise.
+inoremap <silent><expr> <C-L> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 " Use D to show documentation in preview window
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -1257,7 +1263,7 @@ source ~/.config/snippits.vim
 " ===
 " === ultisnips
 " ===
-let g:UltiSnipsExpandTrigger="<c-l>"
+let g:UltiSnipsExpandTrigger="<nop>"
 let g:UltiSnipsListSnippets="<c-tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
