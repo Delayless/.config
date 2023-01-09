@@ -1271,6 +1271,7 @@ source ~/.config/snippits.vim
 " ===
 " === ultisnips
 " ===
+" lead to press '<' to slow down(delay)
 let g:UltiSnipsExpandTrigger="<nop>"
 let g:UltiSnipsListSnippets="<c-tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
@@ -1614,7 +1615,7 @@ function CdParentDir()
         endif
     endfor
 endfunction
-autocmd FileReadPost,VimEnter,InsertLeave *.md call CdParentDir()
+"autocmd FileReadPost,VimEnter,InsertLeave *.md call CdParentDir()
 
 
 " ===
@@ -1731,3 +1732,10 @@ endif
 source ~/.config/_machine_specific.vim
 
 set guifont=Firacode:h10
+
+
+if has('nvim')
+	autocmd TermOpen * setlocal nonumber norelativenumber
+else
+	autocmd TerminalOpen * setlocal nonumber norelativenumber
+endif
