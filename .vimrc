@@ -319,6 +319,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'Delayless/bullets.vim'  " automated bullet lists, :RenumberSelection.
 Plug 'SidOfc/mkdx'  "used for jump headline from Toc.
 " Plug 'plasticboy/vim-markdown'
+Plug 'rhysd/vim-gfm-syntax'
 Plug 'ferrine/md-img-paste.vim'
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'iamcco/mathjax-support-for-mkdp'
@@ -583,6 +584,7 @@ vmap <LEADER>tM :TableModeRealign<CR>
 " ===
 " let g:vim_markdown_folding_disabled = 1
 " let g:vim_markdown_no_default_key_mappings = 1
+" let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml']
 " " LaTeX code is replaced or made invisible when your cursor is not on that line.
 " " e.g, conceal link on `[name](link)`, replaces `\bigcap` by ∩, \in by ∈ etc.
 " " To enable conceal use Vim's standard conceal configuration.
@@ -599,6 +601,12 @@ vmap <LEADER>tM :TableModeRealign<CR>
 " " e.g. `]]`, '[[`, `][', '[]', `]c`, ']u', ':Toc', 'InsertToc'
 " map ge <Plug>Markdown_EditUrlUnderCursor
 " map ]c <Plug>Markdown_MoveToCurHeader
+
+
+" ===
+" === vim-gfm-syntax
+" ===
+let g:markdown_fenced_languages = ['cpp', 'ruby', 'json', 'c', 'python', 'bash']
 
 
 " ===
@@ -1385,9 +1393,10 @@ let g:ycm_semantic_triggers =  {'VimspectorPrompt': [ '.', '->', ':', '<']}
 " When debugging, continue. Otherwise start debugging.
 nmap <leader>dc  <Plug>VimspectorContinue
 nmap <leader>dq  <Plug>VimspectorStop
+nmap <leader>dx  :VimspectorReset<CR>
 " equal gdb command `run`
 " nmap <leader>dr  :call CompileRunGcc()<CR><Esc><Plug>VimspectorRestart<CR><Esc><Esc>
-nmap <leader>dr  <Plug>VimspectorRestart<CR>
+nmap <leader>dr  <Plug>VimspectorRestart
 " nmap <leader>dr  :call CompileRunGcc()<CR><Esc>:q<CR>:call vimspector#Restart()<CR><Esc><Esc>
 
 nmap <leader>dP  <Plug>VimspectorPause
@@ -1402,8 +1411,11 @@ nmap <leader>dB  <Plug>VimspectorAddFunctionBreakpoint
 nmap <leader>dn  <Plug>VimspectorStepOver
 nmap <leader>ds  <Plug>VimspectorStepInto
 nmap <leader>dt  <Plug>VimspectorRunToCursor
+" Reset the current program counter to the current line
+nmap <leader>dT  <Plug>VimspectorGoToCurrentLine
 " equal gdb command `finish`
 nmap <leader>df  <Plug>VimspectorStepOut
+nmap <leader>da  <Plug>VimspectorDisassemble
 nmap <leader>dw :VimspectorWatch
 nmap <leader>de :VimspectorEval
 nmap <leader>do :VimspectorShowOutput
