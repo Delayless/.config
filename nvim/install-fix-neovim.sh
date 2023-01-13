@@ -10,5 +10,5 @@ sudo npm install -g neovim
 pip3 uninstall pynvim neovim
 pip3 install pynvim
 pip3 install neovim
-python2 -m pip install neovim
-python2 -m pip install pynvim
+#python2 -m pip install neovim
+#python2 -m pip install pynvim

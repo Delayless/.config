@@ -875,7 +875,7 @@ noremap <F5> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
     exec "w"
     if &filetype == 'c'
-        exec "!g++ -g % -o %<.o"
+        exec "!g++ -g % -Wall -o %<.o"
         :below sp
 		:res -5
         exec "term time ./%<.o"
@@ -1592,10 +1592,13 @@ let g:VM_maps['Find Subword Under'] = '<C-b>'           " replace visual C-n
 " ===
 " === nvim-telescope/telescope.nvim
 " ===
-" nnoremap <leader>ff <cmd>Telescope find_files<cr>
-" nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-" nnoremap <leader>fb <cmd>Telescope buffers<cr>
-" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+if has ('nvim')
+    " Ctrl-c to close telescope
+    nnoremap <leader>ff <cmd>Telescope find_files<cr>
+    nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+    nnoremap <leader>fb <cmd>Telescope buffers<cr>
+    nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+endif
 
 
 " ===

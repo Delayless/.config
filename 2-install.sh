@@ -122,6 +122,8 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S jq --noconfirm
 	# Dependency for Archive Compression/Extraction in ranger
 	sudo pacman -S atool --noconfirm
+	# for .7z archiver
+	sudo pacman -S p7zip --noconfirm
 	sudo pacman -S odt2txt --noconfirm
     sudo pacman -S mediainfo --noconfirm
     sudo pacman -S perl-image-exiftool --noconfirm
