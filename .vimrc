@@ -1568,7 +1568,7 @@ autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.org
 
 
 " ===
-" === vim-multiple-cursor
+" === vim-multiple-cursors
 " ===
 let g:multi_cursor_use_default_mapping=0
 let g:multi_cursor_start_word_key      = '<C-b>'
