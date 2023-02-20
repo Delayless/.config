@@ -53,6 +53,7 @@ shift+o move-right,move-up
 shift+comma move-left,move-down
 shift+period move-right,move-down
 space warp,click 1,end
+shift+space warp,doubleclick 1,end
 semicolon warp,end
 1 click 1
 2 click 2
