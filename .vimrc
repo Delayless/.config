@@ -55,13 +55,14 @@ vnoremap <c-n> :m '>+1<CR>gv=gv
 nnoremap <c-p> V:m '<-2<CR>gv=gv<esc>
 nnoremap <c-n> V:m '>+1<CR>gv=gv<esc>
 
-let mapleader=" "
+" let mapleader=" "
+let g:mapleader = "\<Space>"
 set scrolloff=3   "at least 3 lines on the screenup and screendown
 noremap <LEADER>sb :set scrollbind!<CR>
 set tabstop=4
 autocmd BufNewFile,BufRead *.c.orig   set syntax=c
 autocmd BufNewFile,BufRead *.nas,*.asm  set filetype=asm
-autocmd FileType python,asm set expandtab
+autocmd FileType python,asm,c set expandtab
 set shiftwidth=4
 set softtabstop=4
 " :help 'whichwrap, [Automatically wrap left and right].
@@ -81,7 +82,7 @@ set ruler
 set cursorline
 set number
 set relativenumber
-set autochdir " auto change working directory
+" set autochdir " auto change working directory
 set showcmd
 set wildmenu
 set mouse=nv
@@ -320,6 +321,7 @@ Plug 'Delayless/bullets.vim'  " automated bullet lists, :RenumberSelection.
 Plug 'SidOfc/mkdx'  "used for jump headline from Toc.
 " Plug 'plasticboy/vim-markdown'
 Plug 'rhysd/vim-gfm-syntax'
+Plug 'mtdl9/vim-log-highlighting'
 Plug 'ferrine/md-img-paste.vim'
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'iamcco/mathjax-support-for-mkdp'
@@ -337,6 +339,7 @@ Plug 'skywind3000/vim-rt-format', { 'do': 'pip3 install autopep8' }
 Plug 'rlue/vim-barbaric'
 
 Plug 'tpope/vim-fugitive'
+Plug 'tveskag/nvim-blame-line'
 
 Plug 'SirVer/ultisnips'
 Plug 'Delayless/vim-snippets'
@@ -401,6 +404,8 @@ Plug 'mg979/vim-visual-multi'
 
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mg979/vim-xtabline'   "Tab manager in the top of windows
+Plug 'github/copilot.vim'
 
 if has('nvim')
     " Plug 'cpiger/NeoDebug'
@@ -408,19 +413,24 @@ if has('nvim')
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'lambdalisue/suda.vim'
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-	Plug 'kyazdani42/nvim-web-devicons'
-	Plug 'akinsho/nvim-bufferline.lua'
+	Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim'
 	map <LEADER>S :SudaWrite<CR>
 else
     map <LEADER>S :w !sudo tee %<CR><CR>
-	Plug 'mg979/vim-xtabline'   "Tab manager in the top of windows
 	Plug 'tenfyzhong/joplin.vim'
 endif
 
 call plug#end()
 
+" ===
+" === akinsho/bufferline.nvim
+" ===
+if has('nvim')
+	lua require("bufferline").setup{}
+	let g:bufferline_echo = 1
+endif
 
 " ===
 " === restore_view
@@ -488,6 +498,25 @@ nnoremap <LEADER>gj :GitGutterNextHunk<CR>
 nnoremap <LEADER>ga :GitGutterStageHunk<CR>
 " Undo Changed Context
 nnoremap <LEADER>gu :GitGutterUndoHunk<CR>
+
+
+" ===
+" === tveskag/nvim-blame-line
+" ===
+nnoremap <silent> <LEADER>gb :ToggleBlameLine<CR>
+autocmd BufEnter * EnableBlameLine
+" " Specify the highlight group used for the virtual text ('Comment' by default)
+" let g:blameLineVirtualTextHighlight = 'Question'
+
+" " Change format of virtual text ('%s' by default)
+let g:blameLineVirtualTextFormat = '            %s'
+
+" " Customize format for git blame (Default format: '%an | %ar | %s')
+let g:blameLineGitFormat = '<%an>  |  %ar  |  %h: %s'
+" " Refer to 'git-show --format=' man pages for format options)
+
+" " Change message when content is not committed
+" let g:blameLineMessageWhenNotYetCommited = ''
 
 
 " ===
@@ -1150,10 +1179,10 @@ let g:coc_config_home = $HOME.'/.config/'
 autocmd FileType json syntax match Comment +\/\/.\+$+
 " You can automatically install multiple extensions when the coc.nvim service starts by defining global variable `g:coc_global_extensions`
 let g:coc_global_extensions = [  'coc-dictionary', 'coc-word', 'coc-emoji', 'coc-marketplace', 'coc-diagnostic',
-            \ 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-highlight', 'coc-snippets', 'coc-actions',
-            \ 'coc-cmake', 'coc-python', 'coc-pyright', 'coc-vimlsp', 'coc-translator', 'coc-texlab',
-            \ 'coc-html', 'coc-prettier', 'coc-css', 'coc-tailwindcss', 'coc-stylelint', 'coc-go',
-            \ 'coc-json', 'coc-tsserver', 'coc-tslint-plugin', 'coc-eslint', 'coc-snippets']
+            \ 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-highlight', 'coc-snippets', 'coc-clangd',
+            \ 'coc-cmake', 'coc-pyright', 'coc-vimlsp', 'coc-translator', 'coc-texlab', 'coc-pyls',
+            \ 'coc-html', 'coc-prettier', 'coc-css', 'coc-stylelint', 'coc-go', 'coc-rls',
+            \ 'coc-json', 'coc-tsserver', 'coc-tslint-plugin', 'coc-eslint', 'coc-snippets', 'coc-ccls']
 " when popupmenu is invisible, press <Tab> to Insert <tab> when previous text is space, refresh completion if not.
 " when popupmenu is visible, Use <tab> and <S-tab> to navigate completion list:
 inoremap <silent><expr> <TAB>
@@ -1184,21 +1213,30 @@ inoremap <silent><expr> <C-L> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use D to show documentation in preview window
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
+nnoremap <silent> D :call ShowDocumentation()<CR>
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
   else
-    call CocAction('doHover')
+    call feedkeys('K', 'in')
   endif
 endfunction
-nnoremap <silent> D :call <SID>show_documentation()<CR>
+
+" Highlight the symbol and its references when holding the cursor
+autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * if ! coc#util#has_float() | call CocActionAsync('doHover') | endif
 
 if has('nvim')
-    nnoremap <nowait><expr> <C-d> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-d>"
-    nnoremap <nowait><expr> <C-u> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-u>"
-    inoremap <nowait><expr> <C-d> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<C-d>"
-    inoremap <nowait><expr> <C-u> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<C-u>"
+  nnoremap <silent><nowait><expr> <C-d> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-d>"
+  nnoremap <silent><nowait><expr> <C-u> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-u>"
+  inoremap <silent><nowait><expr> <C-d> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<C-d>"
+  inoremap <silent><nowait><expr> <C-u> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<C-u>"
 end
+
+" nnoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : "\<C-n>"
+" nnoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
+" nnoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(0) : "\<down>"
+" nnoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(0) : "\<up>"
 
 augroup coc
   autocmd!
@@ -1213,17 +1251,30 @@ augroup end
 " `<space>fmac` format classobj in normal mode.
 xmap <LEADER>fm  <Plug>(coc-format-selected)
 nmap <LEADER>fm  <Plug>(coc-format-selected)
-" Remap for do codeAction of selected region
-function! s:cocActionsOpenFromSelected(type) abort
-  execute 'CocCommand actions.open ' . a:type
-endfunction
-xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
+
+" Applying code actions to the selected code block
+" Example: `<leader>aap` for current paragraph
+xmap <silent> <leader>a  <Plug>(coc-codeaction-selected)
+nmap <silent> <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying code actions at the cursor position
+nmap <leader>ac  <Plug>(coc-codeaction-cursor)
+" Remap keys for apply code actions affect whole buffer
+nmap <leader>as  <Plug>(coc-codeaction-source)
+" Apply the most preferred quickfix action to fix diagnostic on the current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Remap keys for applying refactor code actions
+nmap <silent> <leader>re  <Plug>(coc-codeaction-refactor)
+xmap <silent> <leader>rf  <Plug>(coc-codeaction-refactor-selected)
+nmap <silent> <leader>rf  <Plug>(coc-codeaction-refactor-selected)
 nnoremap <c-c> :CocCommand<CR>
+
+" Run the Code Lens action on the current line
+nmap <leader>cl  <Plug>(coc-codelens-action)
+
 " Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 " Map function and class text objects.
 " e.g: map ac to class operation(ac is a new {motion}). `dac` delete whole class.
 " use in omap(:h Operator-pending) and xmap(:h visual-mode)
@@ -1236,12 +1287,13 @@ xmap ic <Plug>(coc-classobj-i)
 omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
-" Commands
-nmap gd <Plug>(coc-definition)
-nmap gy <Plug>(coc-type-definition)
-nmap gr <Plug>(coc-references)
+
+" GoTo code navigation
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gr <Plug>(coc-references)
 " default "gi": Insert text in the same position as where Insert mode was stopped last time in the current buffer.
-" nmap gi <Plug>(coc-implementation)
+" nmap <silent> gi <Plug>(coc-implementation)
 " rename current word
 nmap <F2> <Plug>(coc-rename)
 nmap <LEADER>rn <Plug>(coc-rename)
@@ -1514,6 +1566,9 @@ let g:which_key_map.b = {
     \ 'L' : ['blast'     , 'last-buffer'         ] ,
     \ 'l' : ['bnext'     , 'next-buffer'         ] ,
     \ 'h' : ['bprevious' , 'previous-buffer'     ] ,
+    \ 'n' : ['bnext'     , 'next-buffer'         ] ,
+    \ 'N' : ['bprevious' , 'previous-buffer'     ] ,
+    \ 'p' : ['bprevious' , 'previous-buffer'     ] ,
     \ '?' : ['Buffers'   , 'fzf-buffer'          ] ,
     \ }
 "call which_key#register('<Space>', "g:which_key_map")
@@ -1595,9 +1650,9 @@ let g:VM_maps['Find Subword Under'] = '<C-b>'           " replace visual C-n
 if has ('nvim')
     " Ctrl-c to close telescope
     nnoremap <leader>ff <cmd>Telescope find_files<cr>
-    nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+    nnoremap <leader>fs <cmd>Telescope live_grep<cr>
     nnoremap <leader>fb <cmd>Telescope buffers<cr>
-    nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+    nnoremap <leader>ft <cmd>Telescope help_tags<cr>
 endif
 
 
@@ -1735,6 +1790,9 @@ endif
 source ~/.config/_machine_specific.vim
 
 set guifont=Firacode:h10
+
+" set helplang=cn
+set helplang=en
 
 
 if has('nvim')

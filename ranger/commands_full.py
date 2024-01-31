@@ -1226,16 +1226,25 @@ class scout(Command):
         return self._regex
 
     def _count(self, move=False, offset=0):
-        count   = 0
         cwd     = self.fm.thisdir
         pattern = self.pattern
 
-        if not pattern:
+        if not cwd.files:
             return 0
         if pattern == '.':
             return 0
         if pattern == '..':
             return 1
+
+        files_len = len(cwd.files)
+
+        if not pattern:
+            if move and files_len > 1:
+                cwd.move(to=(cwd.pointer + offset) % files_len)
+            return -1
+
+        count = 0
+
 
         deq = deque(cwd.files)
         deq.rotate(-cwd.pointer - offset)
@@ -1245,7 +1254,7 @@ class scout(Command):
             if regex.search(fsobj.basename):
                 count += 1
                 if move and count == 1:
-                    cwd.move(to=(cwd.pointer + i) % len(cwd.files))
+                    cwd.move(to=(cwd.pointer + i) % files_len)
                     self.fm.thisfile = cwd.pointed_obj
             if count > 1:
                 return count

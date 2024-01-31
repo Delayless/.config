@@ -78,7 +78,14 @@ alias gd='git difftool'
 # `git fetch --unshallow` to convert to a complete repository.
 alias gc='gitclone'
 gitclone() {
-    git clone --depth=1 https://github.com/$@
+    if [[ "$@" == *"github"* ]]; then
+        url="$@"
+    else
+        url="https://github.com/$@"
+    fi
+
+    # git clone --depth=1 $url
+    git clone $url
     if (( $? == 0 )); then
         repo=`echo $@ | cut -d '/' -f2`
         cd $repo
@@ -120,6 +127,7 @@ alias joplinsetprofile="sqlite3 "$XDG_CONFIG_HOME"/joplin/database.sqlite 'UPDAT
 # tmux attach last detached sessions
 alias t="tmux attach -d"
 alias obs="DRI_PRIME=1 obs"
+alias vimdiff='nvim -d'
 
 # source $HOME/.config/zsh-vim-mode.zsh
 source $HOME/.config/zsh-emacs-mode.zsh

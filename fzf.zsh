@@ -24,3 +24,5 @@ bindkey -M vicmd '^T' fzf-file-widget
 bindkey -M vicmd '\ec' fzf-cd-widget
 
 
+# bindkey "^[b"      backward-word
+# bindkey "^[[1;3D]" backward-word
