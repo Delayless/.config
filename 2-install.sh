@@ -59,7 +59,7 @@ if [ "${HOSTNAME}" == "Manjaro" ]; then
 	sudo pacman -S wireshark-qt --noconfirm
 	# nice log file viewer. journalctl -u v2ray | lnav. lnav /path/to/log
 	sudo pacman -S lnav --noconfirm
-	# edit gigabit text file smoothly
+	# edit gigabit text file smoothly / huge file / big file
 	yay -S joe --noconfirm
 	# docker monitor like top
 	sudo pacman -S ctop --noconfirm

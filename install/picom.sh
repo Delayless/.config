@@ -1,6 +1,6 @@
 #/bin/bash
 
-git clone https://github.com/Delayless/picom /tmp/picom
+git clone https://github.com/yshui/picom /tmp/picom
 cd /tmp/picom
 git submodule update --init --recursive
 

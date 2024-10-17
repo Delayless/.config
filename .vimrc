@@ -359,12 +359,15 @@ Plug 'frazrepo/vim-rainbow'
 Plug 'joshdick/onedark.vim'
 Plug 'bling/vim-bufferline'
 Plug 'ryanoasis/vim-devicons'
-Plug 'Delayless/vim-bookmarks'
+Plug 'MattesGroeger/vim-bookmarks'
 " fades your inactive buffers and preserves syntax highlighting.
 Plug 'TaDaa/vimade'
 Plug 'mhinz/vim-startify'   " StartPage
 Plug 'junegunn/goyo.vim'    " focus read/write
 Plug 'junegunn/limelight.vim' " Hyperfocus on a range
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'tree-sitter/tree-sitter-rust'
+" Plug 'mrcjkb/rustaceanvim'
 
 Plug 'vim-scripts/restore_view.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -409,7 +412,7 @@ Plug 'github/copilot.vim'
 
 if has('nvim')
     " Plug 'cpiger/NeoDebug'
-	" Install nodejs when necessary:  curl -sL install-node.now.sh/lts | bash
+	" Install nodejs when necessary:  curl -sL https://install-node.vercel.app/lts | bash
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'lambdalisue/suda.vim'
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
@@ -936,6 +939,10 @@ func! CompileRunGcc()
         set splitbelow
         :sp
         :term go run %
+    elseif &filetype == 'rust'
+        set splitbelow
+        :sp
+        :term cargo run %
     endif
 endfunc
 
@@ -1181,7 +1188,7 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 let g:coc_global_extensions = [  'coc-dictionary', 'coc-word', 'coc-emoji', 'coc-marketplace', 'coc-diagnostic',
             \ 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-highlight', 'coc-snippets', 'coc-clangd',
             \ 'coc-cmake', 'coc-pyright', 'coc-vimlsp', 'coc-translator', 'coc-texlab', 'coc-pyls',
-            \ 'coc-html', 'coc-prettier', 'coc-css', 'coc-stylelint', 'coc-go', 'coc-rls',
+            \ 'coc-html', 'coc-prettier', 'coc-css', 'coc-stylelint', 'coc-go', 'coc-rust-analyzer',
             \ 'coc-json', 'coc-tsserver', 'coc-tslint-plugin', 'coc-eslint', 'coc-snippets', 'coc-ccls']
 " when popupmenu is invisible, press <Tab> to Insert <tab> when previous text is space, refresh completion if not.
 " when popupmenu is visible, Use <tab> and <S-tab> to navigate completion list:
@@ -1368,7 +1375,8 @@ let g:wildfire_objects =  ["i'", 'i"', "i)", "i]", "i}", "ip", "it", "i>", "i`"]
 " ===
 " === auto-pairs
 " ===
-let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''", '<':'>'}
+let g:AutoPairsFlyMode = 0
+let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
 
 " ===
 " === vim-repeat

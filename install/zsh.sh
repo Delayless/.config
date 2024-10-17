@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GITPROXY="https://ghproxy.com/"
+GITPROXY=""
 sudo pacman -S zsh --noconfirm
 sudo pacman -S broot --noconfirm
 broot --install
