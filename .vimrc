@@ -259,7 +259,6 @@ map <LEADER><CR> :nohlsearch<CR>
 map <LEADER>n :set nonu<CR>:set norelativenumber<CR>
 map <LEADER>N :set nu<CR>:set relativenumber<CR>
 "Greater Indent format for copying from Internet or no
-set pastetoggle=<F10>
 map <LEADER>sp :set paste!<CR>
 
 
@@ -278,6 +277,7 @@ if has('nvim')
     noremap <c-g> :tabe term://lazygit<CR>
 
 else
+    set pastetoggle=<F10>
     noremap <Bslash>py :belowright term ipython3<CR>
     noremap <Bslash>t :belowright term<CR>
     noremap <c-g> :tab term lazygit<CR>
@@ -385,7 +385,7 @@ Plug 'gcmt/wildfire.vim' " Enter to select the closest text object(brackets).
 Plug 'jiangmiao/auto-pairs' " better than coc-pairs, Alt+p toggle autopairs.
 Plug 'airblade/vim-matchquote'  " %-style motion for single/double quotation mark, ` (backtick), and | (pipe).
 Plug 'zef/vim-cycle' " toggle true/false....(ctrl+a, ctrl+x)
-Plug 'voldikss/vim-translator' " better than coc-translator in nvim.
+Plug 'Delayless/vim-translator' " better than coc-translator in nvim.
 Plug 'godlygeek/tabular' "Align, :Tabularize /】\zs<CR>
 Plug 'tpope/vim-repeat' " The . command will work with ds, cs, yss
 Plug 'junegunn/vim-after-object' " copy, change, delete, yank after some symbols like `=/:/-/#/<space>`
@@ -1188,7 +1188,7 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 let g:coc_global_extensions = [  'coc-dictionary', 'coc-word', 'coc-emoji', 'coc-marketplace', 'coc-diagnostic',
             \ 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-highlight', 'coc-snippets', 'coc-clangd',
             \ 'coc-cmake', 'coc-pyright', 'coc-vimlsp', 'coc-translator', 'coc-texlab', 'coc-pyls',
-            \ 'coc-html', 'coc-prettier', 'coc-css', 'coc-stylelint', 'coc-go', 'coc-rust-analyzer',
+			\ 'coc-html', 'coc-prettier', 'coc-css', 'coc-stylelint', 'coc-go', 'coc-rust-analyzer',
             \ 'coc-json', 'coc-tsserver', 'coc-tslint-plugin', 'coc-eslint', 'coc-snippets', 'coc-ccls']
 " when popupmenu is invisible, press <Tab> to Insert <tab> when previous text is space, refresh completion if not.
 " when popupmenu is visible, Use <tab> and <S-tab> to navigate completion list:
